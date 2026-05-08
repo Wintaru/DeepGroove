@@ -24,7 +24,18 @@ final class SavePhotoHandler: IHandler {
                 directory: directory,
                 filename: filename
             )
+
             let photo = RecordPhoto(photoPath: fileURL.path, photoType: req.photoType)
+
+            // Establish the SwiftData relationship
+            let recordId = req.recordId
+            let descriptor = FetchDescriptor<VinylRecord>(
+                predicate: #Predicate { $0.id == recordId }
+            )
+            if let record = try modelContext.fetch(descriptor).first {
+                record.photos.append(photo)
+            }
+
             modelContext.insert(photo)
             try modelContext.save()
             return SavePhotoResponse(correlationId: req.correlationId, photo: photo)
