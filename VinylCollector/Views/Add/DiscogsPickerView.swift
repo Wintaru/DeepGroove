@@ -92,12 +92,10 @@ struct DiscogsPickerView: View {
     }
 
     private func prefillManualEntry() {
-        if let id = identification {
-            vm.manualArtist = id.artist ?? ""
-            vm.manualAlbumTitle = id.albumTitle ?? ""
-            vm.manualYear = id.year.map { String($0) } ?? ""
-            vm.manualLabel = id.label ?? ""
-        }
+        vm.manualArtist = ""
+        vm.manualAlbumTitle = ""
+        vm.manualYear = ""
+        vm.manualLabel = ""
         vm.state = .showingManualEntry
     }
 }

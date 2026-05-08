@@ -19,13 +19,10 @@ final class SavePhotoHandler: IHandler {
         do {
             let directory = photosDirectory()
             let filename = "\(UUID().uuidString).jpg"
-            let fileURL = try imageUtility.saveToDisk(
-                image: req.image,
-                directory: directory,
-                filename: filename
-            )
+            try imageUtility.saveToDisk(image: req.image, directory: directory, filename: filename)
 
-            let photo = RecordPhoto(photoPath: fileURL.path, photoType: req.photoType)
+            let relativePath = "RecordPhotos/\(filename)"
+            let photo = RecordPhoto(photoPath: relativePath, photoType: req.photoType)
 
             // Establish the SwiftData relationship
             let recordId = req.recordId

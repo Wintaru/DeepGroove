@@ -1,10 +1,13 @@
-import Foundation
+import UIKit
 
 @Observable
 final class RecordDetailViewModel {
     var isEditing = false
     var isDeleting = false
     var showingDeleteConfirm = false
+    var showingAddPhotoSource = false
+    var showingCamera = false
+    var showingPhotoLibrary = false
     var errorMessage: String?
     var didDelete = false
 
@@ -50,6 +53,13 @@ final class RecordDetailViewModel {
             isEditing = false
         } else {
             errorMessage = response.errorMessage ?? "Failed to save."
+        }
+    }
+
+    func attachPhoto(_ image: UIImage, to record: VinylRecord) async {
+        let response = await recordManager.execute(AttachPhotoRequest(recordId: record.id, image: image))
+        if !response.success {
+            errorMessage = response.errorMessage ?? "Failed to save photo."
         }
     }
 

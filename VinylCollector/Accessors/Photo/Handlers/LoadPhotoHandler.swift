@@ -12,9 +12,11 @@ final class LoadPhotoHandler: IHandler {
             return UnhandledRequestResponse(correlationId: request.correlationId,
                                            requestType: String(describing: type(of: request)))
         }
-        guard let image = imageUtility.loadFromDisk(path: req.photoPath) else {
+        let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let resolvedPath = docs.appendingPathComponent(req.photoPath).path
+        guard let image = imageUtility.loadFromDisk(path: resolvedPath) else {
             return LoadPhotoResponse(correlationId: req.correlationId,
-                                     errorMessage: "Image not found at path: \(req.photoPath)")
+                                     errorMessage: "Image not found at path: \(resolvedPath)")
         }
         return LoadPhotoResponse(correlationId: req.correlationId, image: image)
     }

@@ -9,7 +9,8 @@
       "Bash(xargs ls)",
       "Bash(xcodebuild -project VinylCollector.xcodeproj -scheme VinylCollector -destination 'platform=iOS Simulator,name=iPhone 16' build)",
       "Bash(xcodebuild -project VinylCollector.xcodeproj -scheme VinylCollector -destination 'platform=iOS Simulator,name=iPhone 16 Pro' build)",
-      "Bash(xcodebuild -project VinylCollector.xcodeproj -scheme VinylCollector -destination 'platform=iOS Simulator,name=iPhone 17 Pro' build)"
+      "Bash(xcodebuild -project VinylCollector.xcodeproj -scheme VinylCollector -destination 'platform=iOS Simulator,name=iPhone 17 Pro' build)",
+      "Bash(xcodegen generate *)"
     ],
     "additionalDirectories": [
       "/Users/jdonner/.claude"

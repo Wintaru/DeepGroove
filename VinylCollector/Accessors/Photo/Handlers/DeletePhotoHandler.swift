@@ -22,7 +22,7 @@ final class DeletePhotoHandler: IHandler {
                                            errorMessage: "Photo not found: \(id)")
             }
             // Delete file from disk
-            try? FileManager.default.removeItem(atPath: photo.photoPath)
+            try? FileManager.default.removeItem(atPath: photo.resolvedPath)
             modelContext.delete(photo)
             try modelContext.save()
             return DeletePhotoResponse(correlationId: req.correlationId)

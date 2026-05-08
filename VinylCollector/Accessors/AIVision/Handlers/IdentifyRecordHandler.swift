@@ -5,8 +5,23 @@ final class IdentifyRecordHandler: IHandler {
     private let imageUtility: ImageUtility
 
     private static let identificationPrompt = """
-        You are a vinyl record expert. Identify the record in this image.
-        Return ONLY a JSON object with these fields (omit any you cannot determine):
+        You are an expert vinyl record identifier with deep knowledge of album art across all genres and eras.
+
+        Examine this image carefully. It may show:
+        - The full album cover (front or back)
+        - Just the vinyl record label (the paper disc in the center)
+        - A barcode or spine
+
+        Use every visual clue available to identify the record:
+        - Any visible text: artist name, album title, label name, catalog number, copyright year
+        - Record label design: color, logo, font style (e.g. blue Columbia, orange Atlantic, Apple Records logo)
+        - Artwork style, imagery, photography, or illustration that may be iconic or recognizable
+        - Spine text if visible
+        - Matrix/runout etchings if visible on the vinyl itself
+
+        Even if the cover has no text and is primarily photographic or abstract art, do your best to identify it from the visual content alone. Many iconic albums are recognizable purely by their artwork.
+
+        Return ONLY a valid JSON object with these fields (omit fields you cannot determine with reasonable confidence):
         {
           "artist": "Artist Name",
           "albumTitle": "Album Title",
@@ -16,7 +31,8 @@ final class IdentifyRecordHandler: IHandler {
           "genres": ["Rock", "Blues"],
           "country": "US"
         }
-        If you cannot identify the record at all, return: {"unidentifiable": true}
+
+        Only return {"unidentifiable": true} if you truly have no useful information at all. Even a partial identification (just artist, or just album title) is valuable — include whatever you can determine.
         """
 
     init(networkUtility: NetworkUtility, imageUtility: ImageUtility) {

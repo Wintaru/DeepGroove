@@ -36,6 +36,9 @@ struct RecordDetailView: View {
                     shareButton
                     Menu {
                         Button("Edit") { model.beginEditing(record: record) }
+                        Button { model.showingAddPhotoSource = true } label: {
+                            Label("Add Photo", systemImage: "photo.badge.plus")
+                        }
                         Divider()
                         Button("Delete", role: .destructive) {
                             model.showingDeleteConfirm = true
@@ -45,6 +48,37 @@ struct RecordDetailView: View {
                     }
                 }
             }
+        }
+        .confirmationDialog("Add Photo", isPresented: Binding(
+            get: { model.showingAddPhotoSource },
+            set: { model.showingAddPhotoSource = $0 }
+        )) {
+            Button("Take Photo") { model.showingCamera = true }
+            Button("Choose from Library") { model.showingPhotoLibrary = true }
+        }
+        .sheet(isPresented: Binding(
+            get: { model.showingCamera },
+            set: { model.showingCamera = $0 }
+        )) {
+            CameraView(sourceType: .camera) { image in
+                model.showingCamera = false
+                Task { await model.attachPhoto(image, to: record) }
+            } onCancel: {
+                model.showingCamera = false
+            }
+            .ignoresSafeArea()
+        }
+        .sheet(isPresented: Binding(
+            get: { model.showingPhotoLibrary },
+            set: { model.showingPhotoLibrary = $0 }
+        )) {
+            CameraView(sourceType: .photoLibrary) { image in
+                model.showingPhotoLibrary = false
+                Task { await model.attachPhoto(image, to: record) }
+            } onCancel: {
+                model.showingPhotoLibrary = false
+            }
+            .ignoresSafeArea()
         }
         .sheet(isPresented: Binding(
             get: { model.isEditing },
@@ -57,7 +91,7 @@ struct RecordDetailView: View {
             set: { model.showingDeleteConfirm = $0 }
         ), titleVisibility: .visible) {
             Button("Delete", role: .destructive) {
-                let paths = record.photos?.map(\.photoPath) ?? []
+                let paths = record.photos?.map(\.resolvedPath) ?? []
                 modelContext.delete(record)
                 for path in paths { try? FileManager.default.removeItem(atPath: path) }
                 dismiss()
@@ -95,7 +129,7 @@ struct RecordDetailView: View {
             } else {
                 TabView(selection: $selectedPhotoIndex) {
                     ForEach(Array(photos.enumerated()), id: \.element.id) { index, photo in
-                        if let image = UIImage(contentsOfFile: photo.photoPath) {
+                        if let image = UIImage(contentsOfFile: photo.resolvedPath) {
                             Image(uiImage: image)
                                 .resizable()
                                 .scaledToFit()

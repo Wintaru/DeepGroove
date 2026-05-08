@@ -28,6 +28,9 @@ final class AddRecordViewModel {
     var manualYear = ""
     var manualLabel = ""
 
+    // Photo captured during the search phase — kept so manual entry can still attach it
+    var pendingUserPhoto: UIImage?
+
     private let recordManager: IRecordManager
 
     init(recordManager: IRecordManager) {
@@ -50,6 +53,14 @@ final class AddRecordViewModel {
 
     func goToManualEntry() {
         state = .showingManualEntry
+    }
+
+    func searchDiscogsFromManualFields() async {
+        state = .identifying
+        let response = await recordManager.query(SearchRecordRequest(
+            source: .text(artist: manualArtist, albumTitle: manualAlbumTitle)
+        ))
+        handleSearchResponse(response)
     }
 
     // MARK: - Step 2: Confirm selection and save
@@ -76,7 +87,8 @@ final class AddRecordViewModel {
         }
         state = .identifying
         let response = await recordManager.execute(AddRecordRequest(
-            artworkPreference: artworkPreference,
+            userPhoto: pendingUserPhoto,
+            artworkPreference: pendingUserPhoto != nil ? .userPhoto : artworkPreference,
             condition: condition,
             notes: notes.isEmpty ? nil : notes,
             artistOverride: manualArtist,
@@ -94,6 +106,7 @@ final class AddRecordViewModel {
         manualAlbumTitle = ""
         manualYear = ""
         manualLabel = ""
+        pendingUserPhoto = nil
     }
 
     // MARK: - Private
@@ -103,18 +116,21 @@ final class AddRecordViewModel {
             state = .failure(response.errorMessage ?? "Search failed.")
             return
         }
+        if let photo = result.userPhoto {
+            pendingUserPhoto = photo
+        }
         if !result.candidates.isEmpty {
             state = .showingDiscogsResults(
                 candidates: result.candidates,
                 identification: result.identification,
                 userPhoto: result.userPhoto
             )
-        } else if let id = result.identification, id.artist != nil || id.albumTitle != nil {
-            // AI found something but no Discogs match — pre-fill manual entry
-            manualArtist = id.artist ?? ""
-            manualAlbumTitle = id.albumTitle ?? ""
-            manualYear = id.year.map { String($0) } ?? ""
-            manualLabel = id.label ?? ""
+        } else if result.identification?.artist != nil || result.identification?.albumTitle != nil {
+            // AI found something but no Discogs match — go to blank manual entry
+            manualArtist = ""
+            manualAlbumTitle = ""
+            manualYear = ""
+            manualLabel = ""
             state = .showingManualEntry
         } else {
             state = .failure(response.errorMessage ?? "No results found. Try manual entry.")

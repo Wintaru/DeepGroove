@@ -110,6 +110,7 @@ final class DependencyContainer: ObservableObject {
                 .register(RemoveRecordHandler(recordAccessor: recordAccessor,
                                               photoAccessor: photoAccessor),
                           for: RemoveRecordRequest.self)
+                .register(AttachPhotoHandler(photoAccessor: photoAccessor), for: AttachPhotoRequest.self)
                 .build(),
             queryResolver: HandlerResolverBuilder()
                 .register(GetRecordHandler(recordAccessor: recordAccessor), for: GetRecordRequest.self)

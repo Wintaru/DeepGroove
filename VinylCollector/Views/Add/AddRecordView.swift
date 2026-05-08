@@ -166,11 +166,20 @@ struct AddRecordView: View {
                     .frame(minHeight: 60)
             }
             Section {
-                Button("Add Record") {
+                Button {
+                    Task { await vm.searchDiscogsFromManualFields() }
+                } label: {
+                    Label("Search Discogs", systemImage: "magnifyingglass")
+                        .frame(maxWidth: .infinity)
+                }
+                .disabled(vm.manualArtist.isEmpty && vm.manualAlbumTitle.isEmpty)
+
+                Button("Add Without Searching") {
                     Task { await vm.addManually() }
                 }
                 .frame(maxWidth: .infinity)
                 .disabled(vm.manualArtist.isEmpty || vm.manualAlbumTitle.isEmpty)
+                .foregroundStyle(.secondary)
             }
         }
     }

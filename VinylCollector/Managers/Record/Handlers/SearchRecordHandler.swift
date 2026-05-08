@@ -52,6 +52,21 @@ final class SearchRecordHandler: IHandler {
             let candidates = await searchByBarcode(code, correlationId: req.correlationId)
             return SearchRecordResponse(correlationId: req.correlationId, candidates: candidates)
 
+        case .text(let artist, let albumTitle):
+            let query = [artist, albumTitle].filter { !$0.isEmpty }.joined(separator: " ")
+            let response = await discogsAccessor.load(
+                SearchDiscogsRequest(query: query, token: apiConfiguration.discogsToken)
+            )
+            let results = Array(((response as? SearchDiscogsResponse)?.results ?? []).prefix(8))
+            let identification = AIIdentification(
+                artist: artist.isEmpty ? nil : artist,
+                albumTitle: albumTitle.isEmpty ? nil : albumTitle,
+                year: nil, label: nil, catalogNumber: nil, genres: [], country: nil, rawJSON: ""
+            )
+            return SearchRecordResponse(correlationId: req.correlationId,
+                                        candidates: results,
+                                        identification: identification)
+
         case .manual:
             return SearchRecordResponse(correlationId: req.correlationId, candidates: [])
         }

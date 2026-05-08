@@ -23,7 +23,7 @@ final class DeleteRecordHandler: IHandler {
             }
 
             // Collect photo paths before deleting (cascade will remove the DB rows)
-            let photoPaths = (record.photos ?? []).map { $0.photoPath }
+            let photoPaths = (record.photos ?? []).map { $0.resolvedPath }
 
             // Delete record — cascade rule removes RecordPhoto rows automatically
             modelContext.delete(record)

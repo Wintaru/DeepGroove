@@ -40,7 +40,7 @@ struct RecordRowView: View {
     private var thumbnailView: some View {
         Group {
             if let photo = record.thumbnailPhoto,
-               let image = UIImage(contentsOfFile: photo.photoPath) {
+               let image = UIImage(contentsOfFile: photo.resolvedPath) {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFill()

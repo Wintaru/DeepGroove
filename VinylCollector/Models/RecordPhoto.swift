@@ -4,7 +4,7 @@ import SwiftData
 @Model
 final class RecordPhoto {
     var id: UUID = UUID()
-    var photoPath: String = ""
+    var photoPath: String = ""  // relative path from Documents directory, e.g. "RecordPhotos/uuid.jpg"
     var photoType: PhotoType = PhotoType.userCapture
     var dateAdded: Date = Date()
     var record: VinylRecord?
@@ -14,6 +14,13 @@ final class RecordPhoto {
         self.photoPath = photoPath
         self.photoType = photoType
         self.dateAdded = Date()
+    }
+
+    // Resolves the stored relative path to the current absolute path.
+    // The app container UUID changes on reinstall, so we never store absolute paths.
+    var resolvedPath: String {
+        let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        return docs.appendingPathComponent(photoPath).path
     }
 }
 

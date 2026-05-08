@@ -27,6 +27,7 @@
 		2E095B514C7B91BE212C435B /* AddRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDF798BC96B0F07CABA548 /* AddRecordResponse.swift */; };
 		2E6AD59BE1457E2B1744D775 /* IIdentificationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA617C1F5205E21B2D8AF2 /* IIdentificationEngine.swift */; };
 		2F5088741E81E38432C400B9 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135034EE4C31E382300F009B /* CollectionView.swift */; };
+		3287D1C7B4131DA83EFAD92E /* AttachPhotoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EA51EC7ABBA14824B2A175 /* AttachPhotoRequest.swift */; };
 		3963C6DBBD05B8886987DCF6 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA21533F48107E642433F39C /* CameraView.swift */; };
 		3E89DAFA1FB9C7F912B4D6B8 /* SavePhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82B99B69280558B0F86D01 /* SavePhotoResponse.swift */; };
 		3FC9DF3A73A8429CF619C117 /* RecordRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376BD682EF0A32F05F7B81AD /* RecordRowView.swift */; };
@@ -45,6 +46,7 @@
 		567DD81E208F95F4B027E728 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB143DDC99997F5DC5BDD046 /* StatisticsViewModel.swift */; };
 		568B326FB6EA24070347D20A /* EditRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E844EE09E77FC91692230C /* EditRecordHandler.swift */; };
 		57C6F4D6BE1B154B46E1581A /* AddRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D85B74971389D71FD24442F /* AddRecordViewModel.swift */; };
+		593A48F613EBAF75EC2206A8 /* AttachPhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C1D1945D913CBBD42E9147 /* AttachPhotoResponse.swift */; };
 		59ABEF99408A77930A252A3E /* ComputeStatisticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B1AF7CFFD5610EF358343 /* ComputeStatisticsHandler.swift */; };
 		5A0E21AA24363B0E6CBB6251 /* ComputeStatisticsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5173C6D3F45C17EC9E5B560 /* ComputeStatisticsResponse.swift */; };
 		5AB9834C12FCCF237C849611 /* BarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22704454C236B06F0FF7D6CA /* BarcodeView.swift */; };
@@ -101,6 +103,7 @@
 		DBC9752A69CB19274B70707A /* RemoveRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326A133D8F459172C530CCBA /* RemoveRecordRequest.swift */; };
 		E0F9469E556AEB15166A1A78 /* HandlerResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54A6E9B9C1CAB061D7FB9F5 /* HandlerResolver.swift */; };
 		E1804CB4CC49D7329658DE1D /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578C02F196F9E39AF96EEAA3 /* StatisticsView.swift */; };
+		E1C8BF3DB340E143F8C1D15A /* AttachPhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFF58277BE9881E6A80FCAE /* AttachPhotoHandler.swift */; };
 		E2A5EDFBE6964D4E97185FE3 /* MergeMetadataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB0B050AA797840E1B716A5 /* MergeMetadataResponse.swift */; };
 		E5F09E7EF9D50057D3568789 /* LogUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0457282A617A6A788A93837 /* LogUtility.swift */; };
 		E6891C49ACE8B007CD736CCB /* LoadPhotoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7A36C829015DCCCEA4DB6 /* LoadPhotoRequest.swift */; };
@@ -151,6 +154,7 @@
 		3CFF7B588771FADCF5BB9C0B /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		3D49AA722C59CEDE3317883F /* RecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordManager.swift; sourceTree = "<group>"; };
 		3D85B74971389D71FD24442F /* AddRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordViewModel.swift; sourceTree = "<group>"; };
+		41C1D1945D913CBBD42E9147 /* AttachPhotoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachPhotoResponse.swift; sourceTree = "<group>"; };
 		4342DDDFA0F8E376AD04ACB1 /* LoadAllRecordsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAllRecordsRequest.swift; sourceTree = "<group>"; };
 		43991E1A77EC7A0E2A173CC7 /* GetCollectionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCollectionRequest.swift; sourceTree = "<group>"; };
 		45A5C40DE107D28840684007 /* GetRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecordResponse.swift; sourceTree = "<group>"; };
@@ -214,6 +218,7 @@
 		D038E2F407B3EEDB399AB578 /* DeleteRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRecordRequest.swift; sourceTree = "<group>"; };
 		D0457282A617A6A788A93837 /* LogUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogUtility.swift; sourceTree = "<group>"; };
 		D13C344129828CED95615B2E /* IStatisticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStatisticsManager.swift; sourceTree = "<group>"; };
+		D8EA51EC7ABBA14824B2A175 /* AttachPhotoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachPhotoRequest.swift; sourceTree = "<group>"; };
 		DC87C8D4B19ACD1693975449 /* EditRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordRequest.swift; sourceTree = "<group>"; };
 		DF05FE8E2AB580C709A986FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E1FE0822D5F9B071B8007C13 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
@@ -225,6 +230,7 @@
 		EBE581BE3905A08C21C2137B /* NetworkUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtility.swift; sourceTree = "<group>"; };
 		EC9D4A992199BD7F7707AD8E /* DeletePhotoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePhotoHandler.swift; sourceTree = "<group>"; };
 		ED5D258199A5705137941EDA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		EEFF58277BE9881E6A80FCAE /* AttachPhotoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachPhotoHandler.swift; sourceTree = "<group>"; };
 		F155ABEA74C208F9BE435CE1 /* VinylRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VinylRecord.swift; sourceTree = "<group>"; };
 		F2B4D392DBD1D69B707D7524 /* LoadRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadRecordHandler.swift; sourceTree = "<group>"; };
 		F5173C6D3F45C17EC9E5B560 /* ComputeStatisticsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputeStatisticsResponse.swift; sourceTree = "<group>"; };
@@ -373,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				CA662ED35C936694552F7C86 /* AddRecordHandler.swift */,
+				EEFF58277BE9881E6A80FCAE /* AttachPhotoHandler.swift */,
 				E4E844EE09E77FC91692230C /* EditRecordHandler.swift */,
 				2FFF91631E42052A35771BD2 /* GetCollectionHandler.swift */,
 				AF781AFD3BDD52E0F48460CB /* GetRecordHandler.swift */,
@@ -577,6 +584,8 @@
 			children = (
 				1A9D8531D42842ED39700EFA /* AddRecordRequest.swift */,
 				4CFDF798BC96B0F07CABA548 /* AddRecordResponse.swift */,
+				D8EA51EC7ABBA14824B2A175 /* AttachPhotoRequest.swift */,
+				41C1D1945D913CBBD42E9147 /* AttachPhotoResponse.swift */,
 				DC87C8D4B19ACD1693975449 /* EditRecordRequest.swift */,
 				2F2D05288044ACEA7A63B6E7 /* EditRecordResponse.swift */,
 				43991E1A77EC7A0E2A173CC7 /* GetCollectionRequest.swift */,
@@ -810,6 +819,9 @@
 				2E095B514C7B91BE212C435B /* AddRecordResponse.swift in Sources */,
 				DA246D8C72274869ADC04F76 /* AddRecordView.swift in Sources */,
 				57C6F4D6BE1B154B46E1581A /* AddRecordViewModel.swift in Sources */,
+				E1C8BF3DB340E143F8C1D15A /* AttachPhotoHandler.swift in Sources */,
+				3287D1C7B4131DA83EFAD92E /* AttachPhotoRequest.swift in Sources */,
+				593A48F613EBAF75EC2206A8 /* AttachPhotoResponse.swift in Sources */,
 				5AB9834C12FCCF237C849611 /* BarcodeView.swift in Sources */,
 				3963C6DBBD05B8886987DCF6 /* CameraView.swift in Sources */,
 				2F5088741E81E38432C400B9 /* CollectionView.swift in Sources */,

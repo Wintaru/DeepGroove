@@ -114,7 +114,7 @@ struct CollectionView: View {
                 for index in indexSet {
                     guard displayRecords.indices.contains(index) else { continue }
                     let record = displayRecords[index]
-                    let paths = record.photos?.map(\.photoPath) ?? []
+                    let paths = record.photos?.map(\.resolvedPath) ?? []
                     modelContext.delete(record)
                     for path in paths { try? FileManager.default.removeItem(atPath: path) }
                 }
