@@ -79,7 +79,7 @@ struct RecordDetailView: View {
     // MARK: - Sections
 
     private var photoHeader: some View {
-        let photos = record.photos
+        let photos = record.photos ?? []
         return Group {
             if photos.isEmpty {
                 Image(systemName: "record.circle.fill")
@@ -166,7 +166,7 @@ struct RecordDetailView: View {
                         .padding(.horizontal, 10)
                         .padding(.vertical, 4)
                         .background(Color.accentColor.opacity(0.1))
-                        .foregroundStyle(.accentColor)
+                        .foregroundStyle(Color.accentColor)
                         .clipShape(Capsule())
                 }
             }
@@ -197,7 +197,7 @@ struct RecordDetailView: View {
 
 private struct EditRecordView: View {
     let record: VinylRecord
-    let vm: RecordDetailViewModel
+    @Bindable var vm: RecordDetailViewModel
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {

@@ -43,8 +43,8 @@ final class RecordDetailViewModel {
             year: year == nil && !editYear.isEmpty ? nil : .some(year),
             label: editLabel.isEmpty ? .some(nil) : .some(editLabel),
             catalogNumber: editCatalogNumber.isEmpty ? .some(nil) : .some(editCatalogNumber),
-            condition: editCondition,
-            notes: editNotes.isEmpty ? .some(nil) : .some(editNotes)
+            notes: editNotes.isEmpty ? .some(nil) : .some(editNotes),
+            condition: editCondition
         ))
         if response.success {
             isEditing = false

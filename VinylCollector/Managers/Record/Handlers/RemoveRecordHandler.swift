@@ -1,12 +1,11 @@
 import Foundation
 
+@MainActor
 final class RemoveRecordHandler: IHandler {
     private let recordAccessor: IRecordAccessor
-    private let photoAccessor: IPhotoAccessor
 
     init(recordAccessor: IRecordAccessor, photoAccessor: IPhotoAccessor) {
         self.recordAccessor = recordAccessor
-        self.photoAccessor = photoAccessor
     }
 
     func handle(_ request: RequestBase) async -> ResponseBase {
@@ -14,28 +13,12 @@ final class RemoveRecordHandler: IHandler {
             return UnhandledRequestResponse(correlationId: request.correlationId,
                                            requestType: String(describing: type(of: request)))
         }
-
-        let loadResponse = await recordAccessor.load(LoadRecordRequest(recordId: req.recordId))
-        guard loadResponse.success, let record = (loadResponse as? LoadRecordResponse)?.record else {
-            return RemoveRecordResponse(
-                correlationId: req.correlationId,
-                errorMessage: loadResponse.errorMessage ?? "Record not found."
-            )
+        let response = await recordAccessor.remove(DeleteRecordRequest(recordId: req.recordId))
+        if response.success {
+            return RemoveRecordResponse(correlationId: req.correlationId)
+        } else {
+            return RemoveRecordResponse(correlationId: req.correlationId,
+                                        errorMessage: response.errorMessage ?? "Failed to delete record.")
         }
-
-        // Delete each photo file from disk before the SwiftData cascade removes the rows
-        for photo in record.photos {
-            await photoAccessor.remove(DeletePhotoRequest(photoId: photo.id))
-        }
-
-        let deleteResponse = await recordAccessor.remove(DeleteRecordRequest(recordId: req.recordId))
-        guard deleteResponse.success else {
-            return RemoveRecordResponse(
-                correlationId: req.correlationId,
-                errorMessage: deleteResponse.errorMessage ?? "Failed to delete record."
-            )
-        }
-
-        return RemoveRecordResponse(correlationId: req.correlationId)
     }
 }

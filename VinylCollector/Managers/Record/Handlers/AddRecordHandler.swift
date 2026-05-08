@@ -39,7 +39,12 @@ final class AddRecordHandler: IHandler {
                                            requestType: String(describing: type(of: request)))
         }
 
-        let (identification, userPhoto, barcode) = await identify(from: req.source)
+        let (identification, userPhoto, barcode, aiError) = await identify(from: req.source)
+
+        if let aiError, identification == nil, barcode == nil {
+            return AddRecordResponse(correlationId: req.correlationId, errorMessage: aiError)
+        }
+
         let discogsRelease = await fetchDiscogsRelease(identification: identification, barcode: barcode)
 
         let mergeResponse = await metadataEngine.transform(MergeMetadataRequest(
@@ -94,32 +99,37 @@ final class AddRecordHandler: IHandler {
 
     // MARK: - Private helpers
 
-    private func identify(from source: AddRecordSource) async -> (AIIdentification?, UIImage?, String?) {
+    private func identify(from source: AddRecordSource) async -> (AIIdentification?, UIImage?, String?, String?) {
         switch source {
         case .photo(let image):
-            let identification = await identifyViaAI(image: image)
-            return (identification, image, nil)
+            let (identification, error) = await identifyViaAI(image: image)
+            return (identification, image, nil, error)
         case .barcode(let code):
-            return (nil, nil, code)
+            return (nil, nil, code, nil)
         case .manual:
-            return (nil, nil, nil)
+            return (nil, nil, nil, nil)
         }
     }
 
-    private func identifyViaAI(image: UIImage) async -> AIIdentification? {
-        guard !apiConfiguration.anthropicAPIKey.isEmpty else { return nil }
+    private func identifyViaAI(image: UIImage) async -> (AIIdentification?, String?) {
+        guard !apiConfiguration.anthropicAPIKey.isEmpty else {
+            return (nil, "No Anthropic API key set. Add it in Settings.")
+        }
 
         let visionResponse = await aiVisionAccessor.load(
             IdentifyRecordRequest(image: image, apiKey: apiConfiguration.anthropicAPIKey)
         )
-        guard let identified = visionResponse as? IdentifyRecordResponse,
-              let rawAI = identified.identification
-        else { return nil }
+        guard let identified = visionResponse as? IdentifyRecordResponse else {
+            return (nil, visionResponse.errorMessage ?? "AI identification failed.")
+        }
+        guard let rawAI = identified.identification else {
+            return (nil, identified.errorMessage ?? "Could not identify record from photo.")
+        }
 
         let parseResponse = await identificationEngine.evaluate(
             ParseIdentificationRequest(rawJSON: rawAI.rawJSON)
         )
-        return (parseResponse as? ParseIdentificationResponse)?.identification
+        return ((parseResponse as? ParseIdentificationResponse)?.identification, nil)
     }
 
     private func fetchDiscogsRelease(identification: AIIdentification?, barcode: String?) async -> DiscogsRelease? {

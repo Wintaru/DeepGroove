@@ -39,9 +39,8 @@ final class MergeMetadataHandler: IHandler {
             ?? ai?.catalogNumber
 
         // Merge genres: Discogs is authoritative; fall back to AI
-        let genres = discogs.map { $0.genres }.flatMap { $0 }.isEmpty == false
-            ? (discogs?.genres ?? [])
-            : (ai?.genres ?? [])
+        let discogsGenres = discogs?.genres ?? []
+        let genres = discogsGenres.isEmpty ? (ai?.genres ?? []) : discogsGenres
 
         let styles = discogs?.styles ?? []
 

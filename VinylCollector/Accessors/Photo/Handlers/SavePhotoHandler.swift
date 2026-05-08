@@ -29,11 +29,9 @@ final class SavePhotoHandler: IHandler {
 
             // Establish the SwiftData relationship
             let recordId = req.recordId
-            let descriptor = FetchDescriptor<VinylRecord>(
-                predicate: #Predicate { $0.id == recordId }
-            )
-            if let record = try modelContext.fetch(descriptor).first {
-                record.photos.append(photo)
+            let all = try modelContext.fetch(FetchDescriptor<VinylRecord>())
+            if let record = all.first(where: { $0.id == recordId }) {
+                record.photos?.append(photo)
             }
 
             modelContext.insert(photo)

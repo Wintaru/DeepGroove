@@ -15,27 +15,26 @@ final class LoadAllRecordsHandler: IHandler {
                                            requestType: String(describing: type(of: request)))
         }
         do {
-            var descriptor = FetchDescriptor<VinylRecord>()
-            descriptor.sortBy = sortDescriptors(for: req.sortOrder)
-            var records = try modelContext.fetch(descriptor)
-            records = applyFilter(req.filter, to: records)
-            return LoadAllRecordsResponse(correlationId: req.correlationId, records: records)
+            let all = try modelContext.fetch(FetchDescriptor<VinylRecord>())
+            let filtered = applyFilter(req.filter, to: all)
+            let sorted = applySort(req.sortOrder, to: filtered)
+            return LoadAllRecordsResponse(correlationId: req.correlationId, records: sorted)
         } catch {
             return LoadAllRecordsResponse(correlationId: req.correlationId,
                                           errorMessage: error.localizedDescription)
         }
     }
 
-    private func sortDescriptors(for order: CollectionSortOrder) -> [SortDescriptor<VinylRecord>] {
+    private func applySort(_ order: CollectionSortOrder, to records: [VinylRecord]) -> [VinylRecord] {
         switch order {
-        case .artistAscending:      [SortDescriptor(\.artist)]
-        case .artistDescending:     [SortDescriptor(\.artist, order: .reverse)]
-        case .titleAscending:       [SortDescriptor(\.albumTitle)]
-        case .titleDescending:      [SortDescriptor(\.albumTitle, order: .reverse)]
-        case .yearNewest:           [SortDescriptor(\.year, order: .reverse)]
-        case .yearOldest:           [SortDescriptor(\.year)]
-        case .dateAddedNewest:      [SortDescriptor(\.dateAdded, order: .reverse)]
-        case .dateAddedOldest:      [SortDescriptor(\.dateAdded)]
+        case .artistAscending:      records.sorted { $0.artist < $1.artist }
+        case .artistDescending:     records.sorted { $0.artist > $1.artist }
+        case .titleAscending:       records.sorted { $0.albumTitle < $1.albumTitle }
+        case .titleDescending:      records.sorted { $0.albumTitle > $1.albumTitle }
+        case .yearNewest:           records.sorted { ($0.year ?? 0) > ($1.year ?? 0) }
+        case .yearOldest:           records.sorted { ($0.year ?? 0) < ($1.year ?? 0) }
+        case .dateAddedNewest:      records.sorted { $0.dateAdded > $1.dateAdded }
+        case .dateAddedOldest:      records.sorted { $0.dateAdded < $1.dateAdded }
         }
     }
 

@@ -3,26 +3,26 @@ import SwiftData
 
 @Model
 final class VinylRecord {
-    @Attribute(.unique) var id: UUID
-    var artist: String
-    var albumTitle: String
+    var id: UUID = UUID()
+    var artist: String = ""
+    var albumTitle: String = ""
     var year: Int?
     var label: String?
     var catalogNumber: String?
-    var genres: [String]
-    var styles: [String]
+    var genres: [String] = []
+    var styles: [String] = []
     var country: String?
     var barcode: String?
     var discogsId: Int?
     var notes: String?
-    var condition: RecordCondition
-    var artworkSource: ArtworkSource
+    var condition: RecordCondition = RecordCondition.veryGoodPlus
+    var artworkSource: ArtworkSource = ArtworkSource.downloaded
     var estimatedValue: Double?
-    var dateAdded: Date
-    var lastModified: Date
+    var dateAdded: Date = Date()
+    var lastModified: Date = Date()
 
     @Relationship(deleteRule: .cascade)
-    var photos: [RecordPhoto]
+    var photos: [RecordPhoto]? = []
 
     init(
         id: UUID = UUID(),
@@ -62,8 +62,8 @@ final class VinylRecord {
     }
 
     var displayTitle: String { "\(artist) – \(albumTitle)" }
-    var primaryPhoto: RecordPhoto? { photos.first(where: { $0.photoType == .userCapture }) }
-    var artworkPhoto: RecordPhoto? { photos.first(where: { $0.photoType == .artwork }) }
+    var primaryPhoto: RecordPhoto? { (photos ?? []).first(where: { $0.photoType == .userCapture }) }
+    var artworkPhoto: RecordPhoto? { (photos ?? []).first(where: { $0.photoType == .artwork }) }
 
     var thumbnailPhoto: RecordPhoto? {
         switch artworkSource {

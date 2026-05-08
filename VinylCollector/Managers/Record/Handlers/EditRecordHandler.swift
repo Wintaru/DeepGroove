@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 final class EditRecordHandler: IHandler {
     private let recordAccessor: IRecordAccessor
 

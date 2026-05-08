@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 final class GetStatisticsHandler: IHandler {
     private let recordAccessor: IRecordAccessor
     private let statisticsEngine: IStatisticsEngine

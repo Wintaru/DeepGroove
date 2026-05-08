@@ -16,11 +16,8 @@ final class LoadRecordHandler: IHandler {
         }
         do {
             let id = req.recordId
-            let descriptor = FetchDescriptor<VinylRecord>(
-                predicate: #Predicate { $0.id == id }
-            )
-            let results = try modelContext.fetch(descriptor)
-            guard let record = results.first else {
+            let all = try modelContext.fetch(FetchDescriptor<VinylRecord>())
+            guard let record = all.first(where: { $0.id == id }) else {
                 return LoadRecordResponse(correlationId: req.correlationId,
                                          errorMessage: "Record not found: \(id)")
             }

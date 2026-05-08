@@ -1,6 +1,6 @@
 import Foundation
 
-class ResponseBase: @unchecked Sendable {
+class ResponseBase {
     let correlationId: UUID
     let success: Bool
     let errorMessage: String?

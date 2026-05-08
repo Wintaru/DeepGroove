@@ -16,16 +16,24 @@ final class DeleteRecordHandler: IHandler {
         }
         do {
             let id = req.recordId
-            let descriptor = FetchDescriptor<VinylRecord>(
-                predicate: #Predicate { $0.id == id }
-            )
-            let results = try modelContext.fetch(descriptor)
-            guard let record = results.first else {
+            let all = try modelContext.fetch(FetchDescriptor<VinylRecord>())
+            guard let record = all.first(where: { $0.id == id }) else {
                 return DeleteRecordResponse(correlationId: req.correlationId,
                                             errorMessage: "Record not found: \(id)")
             }
+
+            // Collect photo paths before deleting (cascade will remove the DB rows)
+            let photoPaths = (record.photos ?? []).map { $0.photoPath }
+
+            // Delete record — cascade rule removes RecordPhoto rows automatically
             modelContext.delete(record)
             try modelContext.save()
+
+            // Clean up files from disk after the save succeeds
+            for path in photoPaths {
+                try? FileManager.default.removeItem(atPath: path)
+            }
+
             return DeleteRecordResponse(correlationId: req.correlationId)
         } catch {
             return DeleteRecordResponse(correlationId: req.correlationId,

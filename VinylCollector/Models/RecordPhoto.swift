@@ -3,10 +3,10 @@ import SwiftData
 
 @Model
 final class RecordPhoto {
-    @Attribute(.unique) var id: UUID
-    var photoPath: String
-    var photoType: PhotoType
-    var dateAdded: Date
+    var id: UUID = UUID()
+    var photoPath: String = ""
+    var photoType: PhotoType = PhotoType.userCapture
+    var dateAdded: Date = Date()
     var record: VinylRecord?
 
     init(id: UUID = UUID(), photoPath: String, photoType: PhotoType) {

@@ -35,7 +35,7 @@ final class IdentifyRecordHandler: IHandler {
         }
         do {
             let body = ClaudeRequest(
-                model: "claude-opus-4-5",
+                model: "claude-sonnet-4-6",
                 maxTokens: 1024,
                 messages: [
                     ClaudeMessage(role: "user", content: [
@@ -64,7 +64,7 @@ final class IdentifyRecordHandler: IHandler {
             return IdentifyRecordResponse(correlationId: req.correlationId, identification: identification)
         } catch {
             return IdentifyRecordResponse(correlationId: req.correlationId,
-                                          errorMessage: error.localizedDescription)
+                                          errorMessage: "AI identification failed: \(error.localizedDescription)")
         }
     }
 

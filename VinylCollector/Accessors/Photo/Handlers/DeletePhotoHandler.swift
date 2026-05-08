@@ -16,11 +16,8 @@ final class DeletePhotoHandler: IHandler {
         }
         do {
             let id = req.photoId
-            let descriptor = FetchDescriptor<RecordPhoto>(
-                predicate: #Predicate { $0.id == id }
-            )
-            let results = try modelContext.fetch(descriptor)
-            guard let photo = results.first else {
+            let all = try modelContext.fetch(FetchDescriptor<RecordPhoto>())
+            guard let photo = all.first(where: { $0.id == id }) else {
                 return DeletePhotoResponse(correlationId: req.correlationId,
                                            errorMessage: "Photo not found: \(id)")
             }

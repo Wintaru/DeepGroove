@@ -78,7 +78,7 @@ struct CollectionView: View {
                 get: { vm.showingAddRecord },
                 set: { vm.showingAddRecord = $0 }
             )) {
-                AddRecordView()
+                AddRecordView(recordManager: container.recordManager)
             }
             .sheet(isPresented: Binding(
                 get: { vm.showingFilters },

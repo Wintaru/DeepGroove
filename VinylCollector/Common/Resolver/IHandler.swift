@@ -1,5 +1,5 @@
 import Foundation
 
-protocol IHandler: AnyObject, Sendable {
+protocol IHandler: AnyObject {
     func handle(_ request: RequestBase) async -> ResponseBase
 }

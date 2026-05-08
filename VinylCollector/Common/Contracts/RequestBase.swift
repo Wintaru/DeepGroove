@@ -1,6 +1,6 @@
 import Foundation
 
-class RequestBase: @unchecked Sendable {
+class RequestBase {
     let correlationId: UUID
     let timestamp: Date
 

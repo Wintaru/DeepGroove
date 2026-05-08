@@ -1,26 +1,26 @@
 import SwiftUI
 
 struct AddRecordView: View {
-    @EnvironmentObject private var container: DependencyContainer
     @Environment(\.dismiss) private var dismiss
-    @State private var vm: AddRecordViewModel?
+    @State private var vm: AddRecordViewModel
 
-    private var model: AddRecordViewModel {
-        vm ?? AddRecordViewModel(recordManager: container.recordManager)
+    init(recordManager: IRecordManager) {
+        _vm = State(initialValue: AddRecordViewModel(recordManager: recordManager))
     }
 
     var body: some View {
+        @Bindable var model = vm
         NavigationStack {
             Group {
-                switch model.state {
-                case .selectSource:       sourceSelectionView
-                case .showingCamera:      cameraSheet
-                case .showingPhotoLibrary: photoLibrarySheet
+                switch vm.state {
+                case .selectSource:          sourceSelectionView
+                case .showingCamera:         cameraSheet
+                case .showingPhotoLibrary:   photoLibrarySheet
                 case .showingBarcodeScanner: barcodeScannerSheet
-                case .showingManualEntry: manualEntryView
-                case .identifying:        identifyingView
-                case .success(let record): successView(record)
-                case .failure(let message): failureView(message)
+                case .showingManualEntry:    manualEntryView(model: $model)
+                case .identifying:           identifyingView
+                case .success(let record):   successView(record)
+                case .failure(let message):  failureView(message)
                 }
             }
             .navigationTitle("Add Record")
@@ -29,11 +29,6 @@ struct AddRecordView: View {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
                 }
-            }
-        }
-        .task {
-            if vm == nil {
-                vm = AddRecordViewModel(recordManager: container.recordManager)
             }
         }
     }
@@ -53,28 +48,28 @@ struct AddRecordView: View {
                     subtitle: "AI identifies the record from a photo",
                     icon: "camera.fill",
                     color: .blue
-                ) { model.state = .showingCamera }
+                ) { vm.state = .showingCamera }
 
                 sourceButton(
                     title: "Choose from Library",
                     subtitle: "Pick an existing photo of the record",
                     icon: "photo.fill",
                     color: .purple
-                ) { model.state = .showingPhotoLibrary }
+                ) { vm.state = .showingPhotoLibrary }
 
                 sourceButton(
                     title: "Scan Barcode",
                     subtitle: "Fast lookup using the record's barcode",
                     icon: "barcode.viewfinder",
                     color: .green
-                ) { model.state = .showingBarcodeScanner }
+                ) { vm.state = .showingBarcodeScanner }
 
                 sourceButton(
                     title: "Manual Entry",
                     subtitle: "Type in the details yourself",
                     icon: "pencil",
                     color: .orange
-                ) { model.state = .showingManualEntry }
+                ) { vm.state = .showingManualEntry }
             }
             .padding(.horizontal)
 
@@ -106,9 +101,9 @@ struct AddRecordView: View {
     @ViewBuilder
     private var cameraSheet: some View {
         CameraView(sourceType: .camera) { image in
-            Task { await model.addFromPhoto(image) }
+            Task { await vm.addFromPhoto(image) }
         } onCancel: {
-            model.state = .selectSource
+            vm.state = .selectSource
         }
         .ignoresSafeArea()
     }
@@ -116,9 +111,9 @@ struct AddRecordView: View {
     @ViewBuilder
     private var photoLibrarySheet: some View {
         CameraView(sourceType: .photoLibrary) { image in
-            Task { await model.addFromPhoto(image) }
+            Task { await vm.addFromPhoto(image) }
         } onCancel: {
-            model.state = .selectSource
+            vm.state = .selectSource
         }
         .ignoresSafeArea()
     }
@@ -126,39 +121,39 @@ struct AddRecordView: View {
     @ViewBuilder
     private var barcodeScannerSheet: some View {
         BarcodeView { barcode in
-            Task { await model.addFromBarcode(barcode) }
+            Task { await vm.addFromBarcode(barcode) }
         } onCancel: {
-            model.state = .selectSource
+            vm.state = .selectSource
         }
         .ignoresSafeArea()
     }
 
-    private var manualEntryView: some View {
+    private func manualEntryView(model: Bindable<AddRecordViewModel>) -> some View {
         Form {
             Section("Required") {
-                TextField("Artist", text: $model.manualArtist)
-                TextField("Album Title", text: $model.manualAlbumTitle)
+                TextField("Artist", text: model.manualArtist)
+                TextField("Album Title", text: model.manualAlbumTitle)
             }
             Section("Optional") {
-                TextField("Year", text: $model.manualYear)
+                TextField("Year", text: model.manualYear)
                     .keyboardType(.numberPad)
-                TextField("Label", text: $model.manualLabel)
-                Picker("Condition", selection: $model.condition) {
+                TextField("Label", text: model.manualLabel)
+                Picker("Condition", selection: model.condition) {
                     ForEach(RecordCondition.allCases, id: \.self) { c in
                         Text(c.displayName).tag(c)
                     }
                 }
             }
             Section("Notes") {
-                TextEditor(text: $model.notes)
+                TextEditor(text: model.notes)
                     .frame(minHeight: 60)
             }
             Section {
                 Button("Add Record") {
-                    Task { await model.addManually() }
+                    Task { await vm.addManually() }
                 }
                 .frame(maxWidth: .infinity)
-                .disabled(model.manualArtist.isEmpty || model.manualAlbumTitle.isEmpty)
+                .disabled(vm.manualArtist.isEmpty || vm.manualAlbumTitle.isEmpty)
             }
         }
     }
@@ -197,7 +192,7 @@ struct AddRecordView: View {
             Button("Done") { dismiss() }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
-            Button("Add Another") { model.reset() }
+            Button("Add Another") { vm.reset() }
                 .foregroundStyle(.secondary)
             Spacer()
         }
@@ -219,7 +214,7 @@ struct AddRecordView: View {
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
             }
-            Button("Try Again") { model.state = .selectSource }
+            Button("Try Again") { vm.state = .selectSource }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
             Spacer()
