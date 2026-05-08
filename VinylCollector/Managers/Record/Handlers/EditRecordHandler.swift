@@ -1,11 +1,14 @@
 import Foundation
+import SwiftData
 
 @MainActor
 final class EditRecordHandler: IHandler {
     private let recordAccessor: IRecordAccessor
+    private let modelContext: ModelContext
 
-    init(recordAccessor: IRecordAccessor) {
+    init(recordAccessor: IRecordAccessor, modelContext: ModelContext) {
         self.recordAccessor = recordAccessor
+        self.modelContext = modelContext
     }
 
     func handle(_ request: RequestBase) async -> ResponseBase {
@@ -36,12 +39,11 @@ final class EditRecordHandler: IHandler {
         if let discogsId = req.discogsId { record.discogsId = discogsId }
         record.lastModified = Date()
 
-        let saveResponse = await recordAccessor.store(SaveRecordRequest(record: record))
-        guard saveResponse.success else {
-            return EditRecordResponse(
-                correlationId: req.correlationId,
-                errorMessage: saveResponse.errorMessage ?? "Failed to save changes."
-            )
+        do {
+            try modelContext.save()
+        } catch {
+            return EditRecordResponse(correlationId: req.correlationId,
+                                      errorMessage: error.localizedDescription)
         }
 
         return EditRecordResponse(correlationId: req.correlationId, record: record)

@@ -1,8 +1,10 @@
 import SwiftUI
+import SwiftData
 
 struct RecordDetailView: View {
     let record: VinylRecord
     @EnvironmentObject private var container: DependencyContainer
+    @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     @State private var vm: RecordDetailViewModel?
     @State private var selectedPhotoIndex = 0
@@ -55,11 +57,12 @@ struct RecordDetailView: View {
             set: { model.showingDeleteConfirm = $0 }
         ), titleVisibility: .visible) {
             Button("Delete", role: .destructive) {
-                Task { await model.deleteRecord(record) }
+                let paths = record.photos?.map(\.photoPath) ?? []
+                modelContext.delete(record)
+                for path in paths { try? FileManager.default.removeItem(atPath: path) }
+                dismiss()
+                // No explicit save — autosave commits after dismiss animation finishes.
             }
-        }
-        .onChange(of: model.didDelete) { _, deleted in
-            if deleted { dismiss() }
         }
         .alert("Error", isPresented: Binding(
             get: { model.errorMessage != nil },

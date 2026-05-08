@@ -49,6 +49,7 @@
 		5A0E21AA24363B0E6CBB6251 /* ComputeStatisticsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5173C6D3F45C17EC9E5B560 /* ComputeStatisticsResponse.swift */; };
 		5AB9834C12FCCF237C849611 /* BarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22704454C236B06F0FF7D6CA /* BarcodeView.swift */; };
 		5C866430237A00AB9351F4C8 /* DeletePhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9D4A992199BD7F7707AD8E /* DeletePhotoHandler.swift */; };
+		5D847DC9D85AA21AB73A7CD2 /* DiscogsPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B09706AEBDE0761A841F6 /* DiscogsPickerView.swift */; };
 		5E56F30C05651A45FE85AA3C /* RemoveRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69D7D9FDC772D9B8C2E253B /* RemoveRecordHandler.swift */; };
 		5EB1BE185477343DC7AFA67C /* GetStatisticsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CC61E8070114B52A574BFC /* GetStatisticsRequest.swift */; };
 		5FAC50CA5A65F68373390CBC /* AddRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA662ED35C936694552F7C86 /* AddRecordHandler.swift */; };
@@ -58,6 +59,7 @@
 		69F68682BDE61BBEC4F5741E /* StatisticsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020C9175D87CEF435592AD24 /* StatisticsEngine.swift */; };
 		6FF957672AE756F19B8F7111 /* MergeMetadataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64229DE83F98A53FE127EA30 /* MergeMetadataHandler.swift */; };
 		715964164EC0AF1E592B6414 /* IAIVisionAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F89ACE1A26AC20BF7F0068 /* IAIVisionAccessor.swift */; };
+		72645F7A9752BF12CF644EB0 /* SearchRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4549E9C96840B7F76A357DA /* SearchRecordResponse.swift */; };
 		74B38E942F7C3885EA4EEA73 /* IRecordAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511DA77A90DF24F80043AD6E /* IRecordAccessor.swift */; };
 		7C11A40616F04F338350D9EA /* RecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D49AA722C59CEDE3317883F /* RecordManager.swift */; };
 		7E93CC893B03D69940F1A98D /* IRecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF5F87754EA375EB1E3DBED /* IRecordManager.swift */; };
@@ -76,6 +78,7 @@
 		A2CAF46171F3515ED7DB0545 /* GetRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7545742340ECFEC277A44 /* GetRecordRequest.swift */; };
 		A2CC1BFF9C7BD7A59264B5DE /* RequestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4AAE536D16F529239EDDE /* RequestBase.swift */; };
 		A41209BA335C5EF673FD0883 /* SavePhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C473021FA931C59E47A6C6D /* SavePhotoHandler.swift */; };
+		A4DE0E470897C3C2487054C0 /* SearchRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496B3194B84E56D25EE0FD4F /* SearchRecordRequest.swift */; };
 		AAA971E193A7CFE062EDAAC8 /* IDiscogsAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98C6E39A43F57F797EC4ECC /* IDiscogsAccessor.swift */; };
 		AC649E8953ABF995028A00A9 /* RecordAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464C44B5257BCFBC579D102 /* RecordAccessor.swift */; };
 		AD593FA3AA776C9F2761962D /* GetCollectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43991E1A77EC7A0E2A173CC7 /* GetCollectionRequest.swift */; };
@@ -102,6 +105,7 @@
 		E5F09E7EF9D50057D3568789 /* LogUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0457282A617A6A788A93837 /* LogUtility.swift */; };
 		E6891C49ACE8B007CD736CCB /* LoadPhotoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7A36C829015DCCCEA4DB6 /* LoadPhotoRequest.swift */; };
 		E77008D3D3B213228D6D92D5 /* IdentifyRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5DAA13A9636BDDDE4C6A71 /* IdentifyRecordHandler.swift */; };
+		EA7F652EBF63C8B4F25B1966 /* SearchRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E478AAF824111BF170B04976 /* SearchRecordHandler.swift */; };
 		F1C60841548F30793AF7C0EF /* ComputeStatisticsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BBB1DBE43CF8650CC6BA6F /* ComputeStatisticsRequest.swift */; };
 		F3496B6004DD6AE5DF0BA015 /* GetRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A5C40DE107D28840684007 /* GetRecordResponse.swift */; };
 		F38A03DFEE942EED3110424D /* LoadAllRecordsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C4BF5B39E33120BA2DC60 /* LoadAllRecordsResponse.swift */; };
@@ -153,6 +157,8 @@
 		45C8E0BD9D5B3FC51906BCEE /* RecordDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailViewModel.swift; sourceTree = "<group>"; };
 		469B375CB21A29008E850D86 /* AddRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordView.swift; sourceTree = "<group>"; };
 		492B5FBC0E4945A8B03D545D /* LoadRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadRecordRequest.swift; sourceTree = "<group>"; };
+		496B3194B84E56D25EE0FD4F /* SearchRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecordRequest.swift; sourceTree = "<group>"; };
+		4C7B09706AEBDE0761A841F6 /* DiscogsPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscogsPickerView.swift; sourceTree = "<group>"; };
 		4CFDF798BC96B0F07CABA548 /* AddRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordResponse.swift; sourceTree = "<group>"; };
 		511DA77A90DF24F80043AD6E /* IRecordAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRecordAccessor.swift; sourceTree = "<group>"; };
 		5162AAF6523673DC6E41FA9F /* ParseIdentificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseIdentificationRequest.swift; sourceTree = "<group>"; };
@@ -182,6 +188,7 @@
 		9ECE280458A7CA761563FC4B /* IdentificationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationEngine.swift; sourceTree = "<group>"; };
 		9F8FF53777AD2E7E44C65A46 /* SearchDiscogsByBarcodeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDiscogsByBarcodeHandler.swift; sourceTree = "<group>"; };
 		A2561B969D8E6AA0817B908E /* IStatisticsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStatisticsEngine.swift; sourceTree = "<group>"; };
+		A4549E9C96840B7F76A357DA /* SearchRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecordResponse.swift; sourceTree = "<group>"; };
 		A69D7D9FDC772D9B8C2E253B /* RemoveRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveRecordHandler.swift; sourceTree = "<group>"; };
 		A916FB59A2226B8CEB02A2AC /* VinylCollectorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VinylCollectorApp.swift; sourceTree = "<group>"; };
 		AA154C5660378F7832795F0C /* IPhotoAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPhotoAccessor.swift; sourceTree = "<group>"; };
@@ -210,6 +217,7 @@
 		DC87C8D4B19ACD1693975449 /* EditRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordRequest.swift; sourceTree = "<group>"; };
 		DF05FE8E2AB580C709A986FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E1FE0822D5F9B071B8007C13 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
+		E478AAF824111BF170B04976 /* SearchRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecordHandler.swift; sourceTree = "<group>"; };
 		E4E844EE09E77FC91692230C /* EditRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordHandler.swift; sourceTree = "<group>"; };
 		E664B0E6C557C94AE9F9DB9B /* RecordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailView.swift; sourceTree = "<group>"; };
 		E66FFCF685207C1DFB8A819E /* VinylCollector.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VinylCollector.entitlements; sourceTree = "<group>"; };
@@ -369,6 +377,7 @@
 				2FFF91631E42052A35771BD2 /* GetCollectionHandler.swift */,
 				AF781AFD3BDD52E0F48460CB /* GetRecordHandler.swift */,
 				A69D7D9FDC772D9B8C2E253B /* RemoveRecordHandler.swift */,
+				E478AAF824111BF170B04976 /* SearchRecordHandler.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -389,6 +398,7 @@
 				3D85B74971389D71FD24442F /* AddRecordViewModel.swift */,
 				22704454C236B06F0FF7D6CA /* BarcodeView.swift */,
 				AA21533F48107E642433F39C /* CameraView.swift */,
+				4C7B09706AEBDE0761A841F6 /* DiscogsPickerView.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -575,6 +585,8 @@
 				45A5C40DE107D28840684007 /* GetRecordResponse.swift */,
 				326A133D8F459172C530CCBA /* RemoveRecordRequest.swift */,
 				EACD7F01C6E121DD02667620 /* RemoveRecordResponse.swift */,
+				496B3194B84E56D25EE0FD4F /* SearchRecordRequest.swift */,
+				A4549E9C96840B7F76A357DA /* SearchRecordResponse.swift */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -814,6 +826,7 @@
 				0DE26A1784297EB0C87F15D3 /* DeleteRecordResponse.swift in Sources */,
 				FD2C7DF31E3A49128A517B04 /* DependencyContainer.swift in Sources */,
 				4B347C10EBC7E8CD3041A6E5 /* DiscogsAccessor.swift in Sources */,
+				5D847DC9D85AA21AB73A7CD2 /* DiscogsPickerView.swift in Sources */,
 				568B326FB6EA24070347D20A /* EditRecordHandler.swift in Sources */,
 				D2838BDDD9C8C51EF7DCF42E /* EditRecordRequest.swift in Sources */,
 				BCC7D3B46CD858BF7DFDBF22 /* EditRecordResponse.swift in Sources */,
@@ -887,6 +900,9 @@
 				8D74C5714B42ACD9078D473C /* SearchDiscogsHandler.swift in Sources */,
 				03B3BC75024FA5240473F1BE /* SearchDiscogsRequest.swift in Sources */,
 				1664B3881D2A8AA54589D299 /* SearchDiscogsResponse.swift in Sources */,
+				EA7F652EBF63C8B4F25B1966 /* SearchRecordHandler.swift in Sources */,
+				A4DE0E470897C3C2487054C0 /* SearchRecordRequest.swift in Sources */,
+				72645F7A9752BF12CF644EB0 /* SearchRecordResponse.swift in Sources */,
 				F6E87542A4345290D75352EE /* SettingsView.swift in Sources */,
 				69F68682BDE61BBEC4F5741E /* StatisticsEngine.swift in Sources */,
 				A2086AEBF43418FE31EB815E /* StatisticsManager.swift in Sources */,

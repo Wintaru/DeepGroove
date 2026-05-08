@@ -7,7 +7,11 @@ enum AddRecordState {
     case showingBarcodeScanner
     case showingManualEntry
     case identifying
-    case success(VinylRecord)
+    case showingDiscogsResults(
+            candidates: [DiscogsSearchResult],
+            identification: AIIdentification?,
+            userPhoto: UIImage?)
+    case success(String)
     case failure(String)
 }
 
@@ -30,31 +34,39 @@ final class AddRecordViewModel {
         self.recordManager = recordManager
     }
 
-    var isIdentifying: Bool {
-        if case .identifying = state { return true }
-        return false
+    // MARK: - Step 1: Search
+
+    func searchFromPhoto(_ image: UIImage) async {
+        state = .identifying
+        let response = await recordManager.query(SearchRecordRequest(source: .photo(image)))
+        handleSearchResponse(response)
     }
 
-    func addFromPhoto(_ image: UIImage) async {
+    func searchFromBarcode(_ barcode: String) async {
+        state = .identifying
+        let response = await recordManager.query(SearchRecordRequest(source: .barcode(barcode)))
+        handleSearchResponse(response)
+    }
+
+    func goToManualEntry() {
+        state = .showingManualEntry
+    }
+
+    // MARK: - Step 2: Confirm selection and save
+
+    func confirmResult(_ chosen: DiscogsSearchResult?,
+                       identification: AIIdentification?,
+                       userPhoto: UIImage?) async {
         state = .identifying
         let response = await recordManager.execute(AddRecordRequest(
-            source: .photo(image),
+            chosenResult: chosen,
+            identification: identification,
+            userPhoto: userPhoto,
             artworkPreference: artworkPreference,
             condition: condition,
             notes: notes.isEmpty ? nil : notes
         ))
-        handleResponse(response)
-    }
-
-    func addFromBarcode(_ barcode: String) async {
-        state = .identifying
-        let response = await recordManager.execute(AddRecordRequest(
-            source: .barcode(barcode),
-            artworkPreference: artworkPreference,
-            condition: condition,
-            notes: notes.isEmpty ? nil : notes
-        ))
-        handleResponse(response)
+        handleSaveResponse(response)
     }
 
     func addManually() async {
@@ -64,7 +76,6 @@ final class AddRecordViewModel {
         }
         state = .identifying
         let response = await recordManager.execute(AddRecordRequest(
-            source: .manual,
             artworkPreference: artworkPreference,
             condition: condition,
             notes: notes.isEmpty ? nil : notes,
@@ -73,7 +84,7 @@ final class AddRecordViewModel {
             yearOverride: Int(manualYear),
             labelOverride: manualLabel.isEmpty ? nil : manualLabel
         ))
-        handleResponse(response)
+        handleSaveResponse(response)
     }
 
     func reset() {
@@ -85,9 +96,35 @@ final class AddRecordViewModel {
         manualLabel = ""
     }
 
-    private func handleResponse(_ response: ResponseBase) {
-        if let result = response as? AddRecordResponse, result.success, let record = result.record {
-            state = .success(record)
+    // MARK: - Private
+
+    private func handleSearchResponse(_ response: ResponseBase) {
+        guard let result = response as? SearchRecordResponse else {
+            state = .failure(response.errorMessage ?? "Search failed.")
+            return
+        }
+        if !result.candidates.isEmpty {
+            state = .showingDiscogsResults(
+                candidates: result.candidates,
+                identification: result.identification,
+                userPhoto: result.userPhoto
+            )
+        } else if let id = result.identification, id.artist != nil || id.albumTitle != nil {
+            // AI found something but no Discogs match — pre-fill manual entry
+            manualArtist = id.artist ?? ""
+            manualAlbumTitle = id.albumTitle ?? ""
+            manualYear = id.year.map { String($0) } ?? ""
+            manualLabel = id.label ?? ""
+            state = .showingManualEntry
+        } else {
+            state = .failure(response.errorMessage ?? "No results found. Try manual entry.")
+        }
+    }
+
+    private func handleSaveResponse(_ response: ResponseBase) {
+        if let result = response as? AddRecordResponse, result.success,
+           let title = result.displayTitle {
+            state = .success(title)
         } else {
             state = .failure(response.errorMessage ?? "Failed to add record.")
         }

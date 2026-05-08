@@ -3,6 +3,7 @@ import SwiftData
 
 struct CollectionView: View {
     @EnvironmentObject private var container: DependencyContainer
+    @Environment(\.modelContext) private var modelContext
     @Query(sort: \VinylRecord.dateAdded, order: .reverse) private var allRecords: [VinylRecord]
     @State private var viewModel: CollectionViewModel?
 
@@ -110,11 +111,16 @@ struct CollectionView: View {
                 }
             }
             .onDelete { indexSet in
-                Task {
-                    for index in indexSet {
-                        await vm.delete(record: displayRecords[index])
-                    }
+                for index in indexSet {
+                    guard displayRecords.indices.contains(index) else { continue }
+                    let record = displayRecords[index]
+                    let paths = record.photos?.map(\.photoPath) ?? []
+                    modelContext.delete(record)
+                    for path in paths { try? FileManager.default.removeItem(atPath: path) }
                 }
+                // No explicit save — autosave commits after the removal animation finishes.
+                // Calling save() here would detach backing data while SwiftUI still renders the
+                // disappearing row, causing a "backing data detached" crash on artworkSource.
             }
         }
         .listStyle(.plain)

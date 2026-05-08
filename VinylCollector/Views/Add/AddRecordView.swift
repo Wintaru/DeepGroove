@@ -13,14 +13,27 @@ struct AddRecordView: View {
         NavigationStack {
             Group {
                 switch vm.state {
-                case .selectSource:          sourceSelectionView
-                case .showingCamera:         cameraSheet
-                case .showingPhotoLibrary:   photoLibrarySheet
-                case .showingBarcodeScanner: barcodeScannerSheet
-                case .showingManualEntry:    manualEntryView(model: $model)
-                case .identifying:           identifyingView
-                case .success(let record):   successView(record)
-                case .failure(let message):  failureView(message)
+                case .selectSource:
+                    sourceSelectionView
+                case .showingCamera:
+                    cameraSheet
+                case .showingPhotoLibrary:
+                    photoLibrarySheet
+                case .showingBarcodeScanner:
+                    barcodeScannerSheet
+                case .showingManualEntry:
+                    manualEntryView(model: $model)
+                case .identifying:
+                    identifyingView
+                case .showingDiscogsResults(let candidates, let identification, let userPhoto):
+                    DiscogsPickerView(candidates: candidates,
+                                      identification: identification,
+                                      userPhoto: userPhoto,
+                                      vm: vm)
+                case .success(let title):
+                    successView(title)
+                case .failure(let message):
+                    failureView(message)
                 }
             }
             .navigationTitle("Add Record")
@@ -33,7 +46,7 @@ struct AddRecordView: View {
         }
     }
 
-    // MARK: - States
+    // MARK: - Source selection
 
     private var sourceSelectionView: some View {
         VStack(spacing: 20) {
@@ -45,21 +58,21 @@ struct AddRecordView: View {
             VStack(spacing: 12) {
                 sourceButton(
                     title: "Take a Photo",
-                    subtitle: "AI identifies the record from a photo",
+                    subtitle: "Photo of album art or barcode — AI identifies it",
                     icon: "camera.fill",
                     color: .blue
                 ) { vm.state = .showingCamera }
 
                 sourceButton(
                     title: "Choose from Library",
-                    subtitle: "Pick an existing photo of the record",
+                    subtitle: "Pick a photo of the cover or barcode",
                     icon: "photo.fill",
                     color: .purple
                 ) { vm.state = .showingPhotoLibrary }
 
                 sourceButton(
                     title: "Scan Barcode",
-                    subtitle: "Fast lookup using the record's barcode",
+                    subtitle: "Live barcode scanner for instant lookup",
                     icon: "barcode.viewfinder",
                     color: .green
                 ) { vm.state = .showingBarcodeScanner }
@@ -69,7 +82,7 @@ struct AddRecordView: View {
                     subtitle: "Type in the details yourself",
                     icon: "pencil",
                     color: .orange
-                ) { vm.state = .showingManualEntry }
+                ) { vm.goToManualEntry() }
             }
             .padding(.horizontal)
 
@@ -98,10 +111,12 @@ struct AddRecordView: View {
         }
     }
 
+    // MARK: - Camera / library / barcode sheets
+
     @ViewBuilder
     private var cameraSheet: some View {
         CameraView(sourceType: .camera) { image in
-            Task { await vm.addFromPhoto(image) }
+            Task { await vm.searchFromPhoto(image) }
         } onCancel: {
             vm.state = .selectSource
         }
@@ -111,7 +126,7 @@ struct AddRecordView: View {
     @ViewBuilder
     private var photoLibrarySheet: some View {
         CameraView(sourceType: .photoLibrary) { image in
-            Task { await vm.addFromPhoto(image) }
+            Task { await vm.searchFromPhoto(image) }
         } onCancel: {
             vm.state = .selectSource
         }
@@ -121,12 +136,14 @@ struct AddRecordView: View {
     @ViewBuilder
     private var barcodeScannerSheet: some View {
         BarcodeView { barcode in
-            Task { await vm.addFromBarcode(barcode) }
+            Task { await vm.searchFromBarcode(barcode) }
         } onCancel: {
             vm.state = .selectSource
         }
         .ignoresSafeArea()
     }
+
+    // MARK: - Manual entry
 
     private func manualEntryView(model: Bindable<AddRecordViewModel>) -> some View {
         Form {
@@ -158,42 +175,34 @@ struct AddRecordView: View {
         }
     }
 
+    // MARK: - Status screens
+
     private var identifyingView: some View {
         VStack(spacing: 24) {
             Spacer()
-            ProgressView()
-                .scaleEffect(1.5)
-            Text("Identifying record…")
-                .font(.headline)
+            ProgressView().scaleEffect(1.5)
+            Text("Searching…").font(.headline)
             Text("Looking up artist, album, and metadata")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
+                .font(.subheadline).foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
             Spacer()
         }
         .padding()
     }
 
-    private func successView(_ record: VinylRecord) -> some View {
+    private func successView(_ title: String) -> some View {
         VStack(spacing: 24) {
             Spacer()
             Image(systemName: "checkmark.circle.fill")
-                .font(.system(size: 72))
-                .foregroundStyle(.green)
+                .font(.system(size: 72)).foregroundStyle(.green)
             VStack(spacing: 6) {
-                Text("Added to Collection")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                Text(record.displayTitle)
-                    .font(.headline)
-                    .foregroundStyle(.secondary)
+                Text("Added to Collection").font(.title2).fontWeight(.bold)
+                Text(title)
+                    .font(.headline).foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
             }
-            Button("Done") { dismiss() }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
-            Button("Add Another") { vm.reset() }
-                .foregroundStyle(.secondary)
+            Button("Done") { dismiss() }.buttonStyle(.borderedProminent).controlSize(.large)
+            Button("Add Another") { vm.reset() }.foregroundStyle(.secondary)
             Spacer()
         }
         .padding()
@@ -203,20 +212,14 @@ struct AddRecordView: View {
         VStack(spacing: 24) {
             Spacer()
             Image(systemName: "exclamationmark.circle.fill")
-                .font(.system(size: 72))
-                .foregroundStyle(.red)
+                .font(.system(size: 72)).foregroundStyle(.red)
             VStack(spacing: 6) {
-                Text("Something went wrong")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                Text(message)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                Text("Something went wrong").font(.title2).fontWeight(.bold)
+                Text(message).font(.subheadline).foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
             }
             Button("Try Again") { vm.state = .selectSource }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
+                .buttonStyle(.borderedProminent).controlSize(.large)
             Spacer()
         }
         .padding()

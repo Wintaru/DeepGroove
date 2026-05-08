@@ -1,15 +1,15 @@
 import Foundation
 
 final class SaveRecordResponse: ResponseBase {
-    let record: VinylRecord?
+    let recordId: UUID?
 
-    init(correlationId: UUID, record: VinylRecord) {
-        self.record = record
+    init(correlationId: UUID, recordId: UUID) {
+        self.recordId = recordId
         super.init(correlationId: correlationId, success: true)
     }
 
     init(correlationId: UUID, errorMessage: String) {
-        self.record = nil
+        self.recordId = nil
         super.init(correlationId: correlationId, success: false, errorMessage: errorMessage)
     }
 }

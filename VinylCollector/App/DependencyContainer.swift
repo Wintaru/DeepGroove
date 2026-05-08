@@ -86,9 +86,7 @@ final class DependencyContainer: ObservableObject {
         // ── Managers ───────────────────────────────────────────────────────────
 
         let addHandler = AddRecordHandler(
-            aiVisionAccessor: aiVisionAccessor,
             discogsAccessor: discogsAccessor,
-            identificationEngine: identificationEngine,
             metadataEngine: metadataEngine,
             recordAccessor: recordAccessor,
             photoAccessor: photoAccessor,
@@ -97,10 +95,18 @@ final class DependencyContainer: ObservableObject {
             apiConfiguration: apiConfiguration
         )
 
+        let searchHandler = SearchRecordHandler(
+            aiVisionAccessor: aiVisionAccessor,
+            discogsAccessor: discogsAccessor,
+            identificationEngine: identificationEngine,
+            imageUtility: images,
+            apiConfiguration: apiConfiguration
+        )
+
         self.recordManager = RecordManager(
             executeResolver: HandlerResolverBuilder()
                 .register(addHandler, for: AddRecordRequest.self)
-                .register(EditRecordHandler(recordAccessor: recordAccessor), for: EditRecordRequest.self)
+                .register(EditRecordHandler(recordAccessor: recordAccessor, modelContext: modelContext), for: EditRecordRequest.self)
                 .register(RemoveRecordHandler(recordAccessor: recordAccessor,
                                               photoAccessor: photoAccessor),
                           for: RemoveRecordRequest.self)
@@ -109,6 +115,7 @@ final class DependencyContainer: ObservableObject {
                 .register(GetRecordHandler(recordAccessor: recordAccessor), for: GetRecordRequest.self)
                 .register(GetCollectionHandler(recordAccessor: recordAccessor),
                           for: GetCollectionRequest.self)
+                .register(searchHandler, for: SearchRecordRequest.self)
                 .build()
         )
 

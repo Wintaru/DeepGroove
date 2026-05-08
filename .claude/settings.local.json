@@ -6,7 +6,10 @@
       "Read(//Users/jdonner/.claude/**)",
       "Bash(git init *)",
       "Bash(xargs cat -n)",
-      "Bash(xargs ls)"
+      "Bash(xargs ls)",
+      "Bash(xcodebuild -project VinylCollector.xcodeproj -scheme VinylCollector -destination 'platform=iOS Simulator,name=iPhone 16' build)",
+      "Bash(xcodebuild -project VinylCollector.xcodeproj -scheme VinylCollector -destination 'platform=iOS Simulator,name=iPhone 16 Pro' build)",
+      "Bash(xcodebuild -project VinylCollector.xcodeproj -scheme VinylCollector -destination 'platform=iOS Simulator,name=iPhone 17 Pro' build)"
     ],
     "additionalDirectories": [
       "/Users/jdonner/.claude"

@@ -1,4 +1,5 @@
 import UIKit
+import Vision
 
 final class ImageUtility: Sendable {
     func compress(_ image: UIImage, maxDimension: CGFloat = 1024, quality: CGFloat = 0.8) -> Data? {
@@ -21,6 +22,15 @@ final class ImageUtility: Sendable {
         let fileURL = directory.appendingPathComponent(filename)
         try data.write(to: fileURL)
         return fileURL
+    }
+
+    func detectBarcode(in image: UIImage) -> String? {
+        guard let cgImage = image.cgImage else { return nil }
+        let request = VNDetectBarcodesRequest()
+        request.symbologies = [.ean13, .ean8, .upce, .code128, .code39, .qr]
+        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+        try? handler.perform([request])
+        return (request.results as? [VNBarcodeObservation])?.first?.payloadStringValue
     }
 
     private func scale(_ image: UIImage, maxDimension: CGFloat) -> UIImage {

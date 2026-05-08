@@ -7,18 +7,21 @@ enum AddRecordSource {
 }
 
 final class AddRecordRequest: RequestBase {
-    let source: AddRecordSource
+    let chosenResult: DiscogsSearchResult?
+    let identification: AIIdentification?
+    let userPhoto: UIImage?
     let artworkPreference: ArtworkSource
     let condition: RecordCondition
     let notes: String?
-    // Optional overrides applied after identification (user-supplied corrections)
     let artistOverride: String?
     let albumTitleOverride: String?
     let yearOverride: Int?
     let labelOverride: String?
 
     init(
-        source: AddRecordSource,
+        chosenResult: DiscogsSearchResult? = nil,
+        identification: AIIdentification? = nil,
+        userPhoto: UIImage? = nil,
         artworkPreference: ArtworkSource = .downloaded,
         condition: RecordCondition = .veryGoodPlus,
         notes: String? = nil,
@@ -27,7 +30,9 @@ final class AddRecordRequest: RequestBase {
         yearOverride: Int? = nil,
         labelOverride: String? = nil
     ) {
-        self.source = source
+        self.chosenResult = chosenResult
+        self.identification = identification
+        self.userPhoto = userPhoto
         self.artworkPreference = artworkPreference
         self.condition = condition
         self.notes = notes
