@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la /Users/jdonner/.claude/projects/ 2>/dev/null | head -20)",
+      "Read(//Users/jdonner/.claude/projects/**)",
+      "Read(//Users/jdonner/.claude/**)",
+      "Bash(git init *)"
+    ],
+    "additionalDirectories": [
+      "/Users/jdonner/.claude"
+    ]
+  }
+}

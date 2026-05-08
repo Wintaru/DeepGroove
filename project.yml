@@ -1,0 +1,55 @@
+name: VinylCollector
+
+options:
+  bundleIdPrefix: com.vinylcollector
+  deploymentTarget:
+    iOS: "17.0"
+  xcodeVersion: "15.4"
+  generateEmptyDirectories: true
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: "5.10"
+    SWIFT_STRICT_CONCURRENCY: complete
+    ENABLE_HARDENED_RUNTIME: YES
+
+targets:
+  VinylCollector:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: VinylCollector
+        excludes:
+          - "**/.DS_Store"
+    settings:
+      base:
+        INFOPLIST_FILE: VinylCollector/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.vinylcollector.app
+        DEVELOPMENT_TEAM: ""
+        TARGETED_DEVICE_FAMILY: "1"
+        SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+    entitlements:
+      path: VinylCollector/VinylCollector.entitlements
+      properties:
+        com.apple.developer.icloud-container-identifiers:
+          - iCloud.com.vinylcollector.app
+        com.apple.developer.ubiquity-kvstore-identifier: $(TeamIdentifierPrefix)com.vinylcollector.app
+
+schemes:
+  VinylCollector:
+    build:
+      targets:
+        VinylCollector: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
