@@ -26,16 +26,7 @@ final class LoadAllRecordsHandler: IHandler {
     }
 
     private func applySort(_ order: CollectionSortOrder, to records: [VinylRecord]) -> [VinylRecord] {
-        switch order {
-        case .artistAscending:      records.sorted { $0.artist < $1.artist }
-        case .artistDescending:     records.sorted { $0.artist > $1.artist }
-        case .titleAscending:       records.sorted { $0.albumTitle < $1.albumTitle }
-        case .titleDescending:      records.sorted { $0.albumTitle > $1.albumTitle }
-        case .yearNewest:           records.sorted { ($0.year ?? 0) > ($1.year ?? 0) }
-        case .yearOldest:           records.sorted { ($0.year ?? 0) < ($1.year ?? 0) }
-        case .dateAddedNewest:      records.sorted { $0.dateAdded > $1.dateAdded }
-        case .dateAddedOldest:      records.sorted { $0.dateAdded < $1.dateAdded }
-        }
+        order.apply(to: records)
     }
 
     private func applyFilter(_ filter: CollectionFilter, to records: [VinylRecord]) -> [VinylRecord] {

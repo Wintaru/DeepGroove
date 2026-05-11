@@ -91,21 +91,17 @@ struct RecordDetailView: View {
             set: { model.showingDeleteConfirm = $0 }
         ), titleVisibility: .visible) {
             Button("Delete", role: .destructive) {
-                let paths = record.photos?.map(\.resolvedPath) ?? []
+                let relativePaths = record.photos?.map(\.photoPath) ?? []
                 modelContext.delete(record)
-                for path in paths { try? FileManager.default.removeItem(atPath: path) }
+                FileManagerUtility().removeFiles(atRelativePaths: relativePaths)
                 dismiss()
                 // No explicit save — autosave commits after dismiss animation finishes.
             }
         }
-        .alert("Error", isPresented: Binding(
-            get: { model.errorMessage != nil },
-            set: { if !$0 { model.errorMessage = nil } }
-        )) {
-            Button("OK") { model.errorMessage = nil }
-        } message: {
-            Text(model.errorMessage ?? "")
-        }
+        .errorAlert(message: Binding(
+            get: { model.errorMessage },
+            set: { model.errorMessage = $0 }
+        ))
         .task {
             if vm == nil {
                 vm = RecordDetailViewModel(recordManager: container.recordManager)

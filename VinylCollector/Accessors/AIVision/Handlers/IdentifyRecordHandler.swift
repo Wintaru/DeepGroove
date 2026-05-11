@@ -35,6 +35,8 @@ final class IdentifyRecordHandler: IHandler {
         Only return {"unidentifiable": true} if you truly have no useful information at all. Even a partial identification (just artist, or just album title) is valuable — include whatever you can determine.
         """
 
+    private let stringUtility = StringUtility()
+
     init(networkUtility: NetworkUtility, imageUtility: ImageUtility) {
         self.networkUtility = networkUtility
         self.imageUtility = imageUtility
@@ -86,7 +88,7 @@ final class IdentifyRecordHandler: IHandler {
 
     private func parseIdentification(from text: String, correlationId: UUID) -> AIIdentification {
         // Extract JSON from the response (Claude may wrap it in markdown code fences)
-        let jsonString = extractJSON(from: text)
+        let jsonString = stringUtility.extractJSON(from: text) ?? text
         guard
             let data = jsonString.data(using: .utf8),
             let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
@@ -106,13 +108,6 @@ final class IdentifyRecordHandler: IHandler {
         )
     }
 
-    private func extractJSON(from text: String) -> String {
-        // Strip markdown code fences if present
-        if let start = text.range(of: "{"), let end = text.range(of: "}", options: .backwards) {
-            return String(text[start.lowerBound...end.upperBound])
-        }
-        return text
-    }
 }
 
 // MARK: - Private Claude API types

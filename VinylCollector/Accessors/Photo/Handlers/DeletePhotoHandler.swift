@@ -4,9 +4,11 @@ import SwiftData
 @MainActor
 final class DeletePhotoHandler: IHandler {
     private let modelContext: ModelContext
+    private let fileManagerUtility: FileManagerUtility
 
-    init(modelContext: ModelContext) {
+    init(modelContext: ModelContext, fileManagerUtility: FileManagerUtility) {
         self.modelContext = modelContext
+        self.fileManagerUtility = fileManagerUtility
     }
 
     func handle(_ request: RequestBase) async -> ResponseBase {
@@ -15,14 +17,11 @@ final class DeletePhotoHandler: IHandler {
                                            requestType: String(describing: type(of: request)))
         }
         do {
-            let id = req.photoId
-            let all = try modelContext.fetch(FetchDescriptor<RecordPhoto>())
-            guard let photo = all.first(where: { $0.id == id }) else {
+            guard let photo = try modelContext.fetchFirst(RecordPhoto.self, id: req.photoId) else {
                 return DeletePhotoResponse(correlationId: req.correlationId,
-                                           errorMessage: "Photo not found: \(id)")
+                                           errorMessage: "Photo not found: \(req.photoId)")
             }
-            // Delete file from disk
-            try? FileManager.default.removeItem(atPath: photo.resolvedPath)
+            fileManagerUtility.removeFiles(atRelativePaths: [photo.photoPath])
             modelContext.delete(photo)
             try modelContext.save()
             return DeletePhotoResponse(correlationId: req.correlationId)

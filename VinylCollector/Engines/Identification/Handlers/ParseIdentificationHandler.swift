@@ -2,6 +2,7 @@ import Foundation
 
 final class ParseIdentificationHandler: IHandler {
 
+    private let stringUtility = StringUtility()
     private static let minimumYear = 1900
     private static let maximumYear = Calendar.current.component(.year, from: Date()) + 1
 
@@ -11,7 +12,7 @@ final class ParseIdentificationHandler: IHandler {
                                            requestType: String(describing: type(of: request)))
         }
 
-        guard let json = extractJSON(from: req.rawJSON),
+        guard let json = stringUtility.extractJSON(from: req.rawJSON),
               let data = json.data(using: .utf8),
               let dict = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
         else {
@@ -59,10 +60,4 @@ final class ParseIdentificationHandler: IHandler {
         return ParseIdentificationResponse(correlationId: req.correlationId, identification: identification)
     }
 
-    private func extractJSON(from text: String) -> String? {
-        guard let start = text.range(of: "{"),
-              let end = text.range(of: "}", options: .backwards)
-        else { return nil }
-        return String(text[start.lowerBound...end.upperBound])
-    }
 }

@@ -4,9 +4,11 @@ import SwiftData
 @MainActor
 final class DeleteRecordHandler: IHandler {
     private let modelContext: ModelContext
+    private let fileManagerUtility: FileManagerUtility
 
-    init(modelContext: ModelContext) {
+    init(modelContext: ModelContext, fileManagerUtility: FileManagerUtility) {
         self.modelContext = modelContext
+        self.fileManagerUtility = fileManagerUtility
     }
 
     func handle(_ request: RequestBase) async -> ResponseBase {
@@ -15,24 +17,15 @@ final class DeleteRecordHandler: IHandler {
                                            requestType: String(describing: type(of: request)))
         }
         do {
-            let id = req.recordId
-            let all = try modelContext.fetch(FetchDescriptor<VinylRecord>())
-            guard let record = all.first(where: { $0.id == id }) else {
+            guard let record = try modelContext.fetchFirst(VinylRecord.self, id: req.recordId) else {
                 return DeleteRecordResponse(correlationId: req.correlationId,
-                                            errorMessage: "Record not found: \(id)")
+                                            errorMessage: "Record not found: \(req.recordId)")
             }
 
-            // Collect photo paths before deleting (cascade will remove the DB rows)
-            let photoPaths = (record.photos ?? []).map { $0.resolvedPath }
-
-            // Delete record — cascade rule removes RecordPhoto rows automatically
+            let relativePaths = (record.photos ?? []).map { $0.photoPath }
             modelContext.delete(record)
             try modelContext.save()
-
-            // Clean up files from disk after the save succeeds
-            for path in photoPaths {
-                try? FileManager.default.removeItem(atPath: path)
-            }
+            fileManagerUtility.removeFiles(atRelativePaths: relativePaths)
 
             return DeleteRecordResponse(correlationId: req.correlationId)
         } catch {

@@ -15,11 +15,9 @@ final class LoadRecordHandler: IHandler {
                                            requestType: String(describing: type(of: request)))
         }
         do {
-            let id = req.recordId
-            let all = try modelContext.fetch(FetchDescriptor<VinylRecord>())
-            guard let record = all.first(where: { $0.id == id }) else {
+            guard let record = try modelContext.fetchFirst(VinylRecord.self, id: req.recordId) else {
                 return LoadRecordResponse(correlationId: req.correlationId,
-                                         errorMessage: "Record not found: \(id)")
+                                         errorMessage: "Record not found: \(req.recordId)")
             }
             return LoadRecordResponse(correlationId: req.correlationId, record: record)
         } catch {

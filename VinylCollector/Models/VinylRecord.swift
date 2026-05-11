@@ -2,7 +2,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class VinylRecord {
+final class VinylRecord: ModelWithUUID {
     var id: UUID = UUID()
     var artist: String = ""
     var albumTitle: String = ""

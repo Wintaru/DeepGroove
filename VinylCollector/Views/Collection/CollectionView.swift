@@ -4,41 +4,34 @@ import SwiftData
 struct CollectionView: View {
     @EnvironmentObject private var container: DependencyContainer
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \VinylRecord.dateAdded, order: .reverse) private var allRecords: [VinylRecord]
+    @Query private var allRecords: [VinylRecord]
     @State private var viewModel: CollectionViewModel?
 
     private var vm: CollectionViewModel { viewModel ?? CollectionViewModel(recordManager: container.recordManager) }
 
     private var displayRecords: [VinylRecord] {
         guard let vm = viewModel else { return allRecords }
-        let filter = vm.activeFilter
         var records = allRecords
 
-        if let searchText = filter.searchText {
-            let lower = searchText.lowercased()
+        if !vm.searchText.isEmpty {
+            let lower = vm.searchText.lowercased()
             records = records.filter {
                 $0.artist.lowercased().contains(lower) ||
                 $0.albumTitle.lowercased().contains(lower) ||
                 ($0.label?.lowercased().contains(lower) ?? false)
             }
         }
-        if let genres = filter.genres {
-            records = records.filter { !Set($0.genres).isDisjoint(with: genres) }
+        if !vm.selectedGenres.isEmpty {
+            records = records.filter { !Set($0.genres).isDisjoint(with: vm.selectedGenres) }
         }
-        if let conditions = filter.conditions {
-            records = records.filter { conditions.contains($0.condition) }
+        if !vm.selectedDecades.isEmpty {
+            records = records.filter { record in
+                guard let year = record.year else { return false }
+                return vm.selectedDecades.contains(year / 10 * 10)
+            }
         }
 
-        switch vm.sortOrder {
-        case .artistAscending:      return records.sorted { $0.artist < $1.artist }
-        case .artistDescending:     return records.sorted { $0.artist > $1.artist }
-        case .titleAscending:       return records.sorted { $0.albumTitle < $1.albumTitle }
-        case .titleDescending:      return records.sorted { $0.albumTitle > $1.albumTitle }
-        case .yearNewest:           return records.sorted { ($0.year ?? 0) > ($1.year ?? 0) }
-        case .yearOldest:           return records.sorted { ($0.year ?? 0) < ($1.year ?? 0) }
-        case .dateAddedNewest:      return records
-        case .dateAddedOldest:      return records.reversed()
-        }
+        return vm.sortOrder.apply(to: records)
     }
 
     var body: some View {
@@ -54,7 +47,8 @@ struct CollectionView: View {
             .searchable(text: Binding(
                 get: { vm.searchText },
                 set: { vm.searchText = $0 }
-            ))
+            ), placement: .navigationBarDrawer(displayMode: .always),
+               prompt: "Search artist, album, or label")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     sortMenu
@@ -66,8 +60,9 @@ struct CollectionView: View {
                                 .foregroundStyle(.red)
                         }
                         Button { vm.showingFilters = true } label: {
-                            Image(systemName: vm.hasActiveFilters ? "line.3.horizontal.decrease.circle.fill"
-                                                                  : "line.3.horizontal.decrease.circle")
+                            Image(systemName: vm.hasActiveFilters
+                                  ? "line.3.horizontal.decrease.circle.fill"
+                                  : "line.3.horizontal.decrease.circle")
                         }
                         Button { vm.showingAddRecord = true } label: {
                             Image(systemName: "plus")
@@ -85,16 +80,12 @@ struct CollectionView: View {
                 get: { vm.showingFilters },
                 set: { vm.showingFilters = $0 }
             )) {
-                FilterView(vm: vm)
+                FilterView(vm: vm, allRecords: allRecords)
             }
-            .alert("Error", isPresented: Binding(
-                get: { vm.errorMessage != nil },
-                set: { if !$0 { vm.errorMessage = nil } }
-            )) {
-                Button("OK") { vm.errorMessage = nil }
-            } message: {
-                Text(vm.errorMessage ?? "")
-            }
+            .errorAlert(message: Binding(
+                get: { vm.errorMessage },
+                set: { vm.errorMessage = $0 }
+            ))
         }
         .task {
             if viewModel == nil {
@@ -111,16 +102,15 @@ struct CollectionView: View {
                 }
             }
             .onDelete { indexSet in
+                let fileManager = FileManagerUtility()
                 for index in indexSet {
                     guard displayRecords.indices.contains(index) else { continue }
                     let record = displayRecords[index]
-                    let paths = record.photos?.map(\.resolvedPath) ?? []
+                    let relativePaths = record.photos?.map(\.photoPath) ?? []
                     modelContext.delete(record)
-                    for path in paths { try? FileManager.default.removeItem(atPath: path) }
+                    fileManager.removeFiles(atRelativePaths: relativePaths)
                 }
                 // No explicit save — autosave commits after the removal animation finishes.
-                // Calling save() here would detach backing data while SwiftUI still renders the
-                // disappearing row, causing a "backing data detached" crash on artworkSource.
             }
         }
         .listStyle(.plain)
@@ -160,19 +150,49 @@ struct CollectionView: View {
 private struct FilterView: View {
     @Environment(\.dismiss) private var dismiss
     var vm: CollectionViewModel
+    let allRecords: [VinylRecord]
+
+    private var availableGenres: [String] {
+        Array(Set(allRecords.flatMap { $0.genres })).sorted()
+    }
+
+    private var availableDecades: [Int] {
+        let decades = Set(allRecords.compactMap { $0.year }.map { $0 / 10 * 10 })
+        return decades.sorted()
+    }
+
+    private func decadeLabel(_ decade: Int) -> String {
+        "\(decade)s"
+    }
 
     var body: some View {
         NavigationStack {
             Form {
-                Section("Condition") {
-                    ForEach(RecordCondition.allCases, id: \.self) { condition in
-                        Toggle(condition.displayName, isOn: Binding(
-                            get: { vm.selectedConditions.contains(condition) },
-                            set: { selected in
-                                if selected { vm.selectedConditions.append(condition) }
-                                else { vm.selectedConditions.removeAll { $0 == condition } }
-                            }
-                        ))
+                if !availableGenres.isEmpty {
+                    Section("Genre") {
+                        ForEach(availableGenres, id: \.self) { genre in
+                            Toggle(genre, isOn: Binding(
+                                get: { vm.selectedGenres.contains(genre) },
+                                set: { selected in
+                                    if selected { vm.selectedGenres.insert(genre) }
+                                    else { vm.selectedGenres.remove(genre) }
+                                }
+                            ))
+                        }
+                    }
+                }
+
+                if !availableDecades.isEmpty {
+                    Section("Decade") {
+                        ForEach(availableDecades, id: \.self) { decade in
+                            Toggle(decadeLabel(decade), isOn: Binding(
+                                get: { vm.selectedDecades.contains(decade) },
+                                set: { selected in
+                                    if selected { vm.selectedDecades.insert(decade) }
+                                    else { vm.selectedDecades.remove(decade) }
+                                }
+                            ))
+                        }
                     }
                 }
             }

@@ -2,7 +2,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class RecordPhoto {
+final class RecordPhoto: ModelWithUUID {
     var id: UUID = UUID()
     var photoPath: String = ""  // relative path from Documents directory, e.g. "RecordPhotos/uuid.jpg"
     var photoType: PhotoType = PhotoType.userCapture
@@ -19,8 +19,7 @@ final class RecordPhoto {
     // Resolves the stored relative path to the current absolute path.
     // The app container UUID changes on reinstall, so we never store absolute paths.
     var resolvedPath: String {
-        let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        return docs.appendingPathComponent(photoPath).path
+        FileManagerUtility().resolvedPath(for: photoPath)
     }
 }
 

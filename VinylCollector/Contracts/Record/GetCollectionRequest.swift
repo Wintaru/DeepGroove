@@ -40,6 +40,19 @@ enum CollectionSortOrder: String, CaseIterable, Sendable {
         case .dateAddedOldest: "Oldest Added"
         }
     }
+
+    func apply(to records: [VinylRecord]) -> [VinylRecord] {
+        switch self {
+        case .artistAscending:  return records.sorted { $0.artist < $1.artist }
+        case .artistDescending: return records.sorted { $0.artist > $1.artist }
+        case .titleAscending:   return records.sorted { $0.albumTitle < $1.albumTitle }
+        case .titleDescending:  return records.sorted { $0.albumTitle > $1.albumTitle }
+        case .yearNewest:       return records.sorted { ($0.year ?? 0) > ($1.year ?? 0) }
+        case .yearOldest:       return records.sorted { ($0.year ?? 0) < ($1.year ?? 0) }
+        case .dateAddedNewest:  return records.sorted { $0.dateAdded > $1.dateAdded }
+        case .dateAddedOldest:  return records.sorted { $0.dateAdded < $1.dateAdded }
+        }
+    }
 }
 
 final class GetCollectionRequest: RequestBase {

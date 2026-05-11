@@ -17,6 +17,7 @@ final class DependencyContainer: ObservableObject {
         let apiConfiguration = APIConfiguration()
         let network = NetworkUtility()
         let images = ImageUtility()
+        let files = FileManagerUtility()
 
         // ── Accessors ──────────────────────────────────────────────────────────
 
@@ -29,20 +30,20 @@ final class DependencyContainer: ObservableObject {
                 .register(LoadAllRecordsHandler(modelContext: modelContext), for: LoadAllRecordsRequest.self)
                 .build(),
             removeResolver: HandlerResolverBuilder()
-                .register(DeleteRecordHandler(modelContext: modelContext), for: DeleteRecordRequest.self)
+                .register(DeleteRecordHandler(modelContext: modelContext, fileManagerUtility: files), for: DeleteRecordRequest.self)
                 .build()
         )
 
         let photoAccessor = PhotoAccessor(
             storeResolver: HandlerResolverBuilder()
-                .register(SavePhotoHandler(modelContext: modelContext, imageUtility: images),
+                .register(SavePhotoHandler(modelContext: modelContext, imageUtility: images, fileManagerUtility: files),
                           for: SavePhotoRequest.self)
                 .build(),
             loadResolver: HandlerResolverBuilder()
-                .register(LoadPhotoHandler(imageUtility: images), for: LoadPhotoRequest.self)
+                .register(LoadPhotoHandler(imageUtility: images, fileManagerUtility: files), for: LoadPhotoRequest.self)
                 .build(),
             removeResolver: HandlerResolverBuilder()
-                .register(DeletePhotoHandler(modelContext: modelContext), for: DeletePhotoRequest.self)
+                .register(DeletePhotoHandler(modelContext: modelContext, fileManagerUtility: files), for: DeletePhotoRequest.self)
                 .build()
         )
 

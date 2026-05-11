@@ -3,14 +3,14 @@ import Foundation
 @Observable
 final class CollectionViewModel {
     var searchText = ""
-    var sortOrder: CollectionSortOrder = .dateAddedNewest
+    var sortOrder: CollectionSortOrder = .artistAscending
     var showingFilters = false
     var showingAddRecord = false
     var isDeleting = false
     var errorMessage: String?
 
-    var selectedGenres: [String] = []
-    var selectedConditions: [RecordCondition] = []
+    var selectedGenres: Set<String> = []
+    var selectedDecades: Set<Int> = []
 
     private let recordManager: IRecordManager
 
@@ -21,13 +21,12 @@ final class CollectionViewModel {
     var activeFilter: CollectionFilter {
         CollectionFilter(
             searchText: searchText.isEmpty ? nil : searchText,
-            genres: selectedGenres.isEmpty ? nil : selectedGenres,
-            conditions: selectedConditions.isEmpty ? nil : selectedConditions
+            genres: selectedGenres.isEmpty ? nil : Array(selectedGenres)
         )
     }
 
     var hasActiveFilters: Bool {
-        !selectedGenres.isEmpty || !selectedConditions.isEmpty
+        !selectedGenres.isEmpty || !selectedDecades.isEmpty
     }
 
     func delete(record: VinylRecord) async {
@@ -41,7 +40,7 @@ final class CollectionViewModel {
 
     func clearFilters() {
         selectedGenres = []
-        selectedConditions = []
+        selectedDecades = []
         searchText = ""
     }
 }
