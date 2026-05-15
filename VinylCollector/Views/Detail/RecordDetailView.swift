@@ -14,7 +14,8 @@ struct RecordDetailView: View {
     }
 
     var body: some View {
-        ScrollView {
+        @Bindable var vm = vm
+        return ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 photoHeader
                     .padding(.bottom, 20)
@@ -49,17 +50,11 @@ struct RecordDetailView: View {
                 }
             }
         }
-        .confirmationDialog("Add Photo", isPresented: Binding(
-            get: { vm.showingAddPhotoSource },
-            set: { vm.showingAddPhotoSource = $0 }
-        )) {
+        .confirmationDialog("Add Photo", isPresented: $vm.showingAddPhotoSource) {
             Button("Take Photo") { vm.showingCamera = true }
             Button("Choose from Library") { vm.showingPhotoLibrary = true }
         }
-        .sheet(isPresented: Binding(
-            get: { vm.showingCamera },
-            set: { vm.showingCamera = $0 }
-        )) {
+        .sheet(isPresented: $vm.showingCamera) {
             CameraView(sourceType: .camera) { image in
                 vm.showingCamera = false
                 Task { await vm.attachPhoto(image, to: record) }
@@ -68,10 +63,7 @@ struct RecordDetailView: View {
             }
             .ignoresSafeArea()
         }
-        .sheet(isPresented: Binding(
-            get: { vm.showingPhotoLibrary },
-            set: { vm.showingPhotoLibrary = $0 }
-        )) {
+        .sheet(isPresented: $vm.showingPhotoLibrary) {
             CameraView(sourceType: .photoLibrary) { image in
                 vm.showingPhotoLibrary = false
                 Task { await vm.attachPhoto(image, to: record) }
@@ -80,16 +72,11 @@ struct RecordDetailView: View {
             }
             .ignoresSafeArea()
         }
-        .sheet(isPresented: Binding(
-            get: { vm.isEditing },
-            set: { vm.isEditing = $0 }
-        )) {
-            EditRecordView(record: record, vm: model)
+        .sheet(isPresented: $vm.isEditing) {
+            EditRecordView(record: record, vm: vm)
         }
-        .confirmationDialog("Delete this record?", isPresented: Binding(
-            get: { vm.showingDeleteConfirm },
-            set: { vm.showingDeleteConfirm = $0 }
-        ), titleVisibility: .visible) {
+        .confirmationDialog("Delete this record?", isPresented: $vm.showingDeleteConfirm,
+                            titleVisibility: .visible) {
             Button("Delete", role: .destructive) {
                 let relativePaths = record.photos?.map(\.photoPath) ?? []
                 modelContext.delete(record)
@@ -98,10 +85,7 @@ struct RecordDetailView: View {
                 // No explicit save — autosave commits after dismiss animation finishes.
             }
         }
-        .errorAlert(message: Binding(
-            get: { vm.errorMessage },
-            set: { vm.errorMessage = $0 }
-        ))
+        .errorAlert(message: $vm.errorMessage)
     }
 
     // MARK: - Sections
