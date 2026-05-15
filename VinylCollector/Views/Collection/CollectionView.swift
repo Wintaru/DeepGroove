@@ -7,7 +7,7 @@ struct CollectionView: View {
     @Query private var allRecords: [VinylRecord]
     @State private var viewModel: CollectionViewModel?
 
-    private var vm: CollectionViewModel { viewModel ?? CollectionViewModel(recordManager: container.recordManager) }
+    private var vm: CollectionViewModel { viewModel ?? CollectionViewModel() }
 
     private var displayRecords: [VinylRecord] {
         guard let vm = viewModel else { return allRecords }
@@ -89,7 +89,7 @@ struct CollectionView: View {
         }
         .task {
             if viewModel == nil {
-                viewModel = CollectionViewModel(recordManager: container.recordManager)
+                viewModel = CollectionViewModel()
             }
         }
     }

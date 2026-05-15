@@ -3,13 +3,11 @@ import UIKit
 @Observable
 final class RecordDetailViewModel {
     var isEditing = false
-    var isDeleting = false
     var showingDeleteConfirm = false
     var showingAddPhotoSource = false
     var showingCamera = false
     var showingPhotoLibrary = false
     var errorMessage: String?
-    var didDelete = false
 
     // Edit form state
     var editArtist = ""
@@ -60,17 +58,6 @@ final class RecordDetailViewModel {
         let response = await recordManager.execute(AttachPhotoRequest(recordId: record.id, image: image))
         if !response.success {
             errorMessage = response.errorMessage ?? "Failed to save photo."
-        }
-    }
-
-    func deleteRecord(_ record: VinylRecord) async {
-        isDeleting = true
-        defer { isDeleting = false }
-        let response = await recordManager.execute(RemoveRecordRequest(recordId: record.id))
-        if response.success {
-            didDelete = true
-        } else {
-            errorMessage = response.errorMessage ?? "Failed to delete."
         }
     }
 }

@@ -4,7 +4,7 @@ import Foundation
 final class RemoveRecordHandler: IHandler {
     private let recordAccessor: IRecordAccessor
 
-    init(recordAccessor: IRecordAccessor, photoAccessor: IPhotoAccessor) {
+    init(recordAccessor: IRecordAccessor) {
         self.recordAccessor = recordAccessor
     }
 
