@@ -97,22 +97,3 @@ enum CollectionSortOrder: String, CaseIterable, Sendable {
     }
 }
 
-final class GetCollectionRequest: RequestBase, @unchecked Sendable {
-    let filter: CollectionFilter
-    let sortOrder: CollectionSortOrder
-    let limit: Int?
-    let offset: Int?
-
-    init(
-        filter: CollectionFilter = CollectionFilter(),
-        sortOrder: CollectionSortOrder = .dateAddedNewest,
-        limit: Int? = nil,
-        offset: Int? = nil
-    ) {
-        self.filter = filter
-        self.sortOrder = sortOrder
-        self.limit = limit
-        self.offset = offset
-        super.init()
-    }
-}

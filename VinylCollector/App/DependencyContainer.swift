@@ -114,8 +114,6 @@ final class DependencyContainer: ObservableObject {
                 .build(),
             queryResolver: HandlerResolverBuilder()
                 .register(GetRecordHandler(recordAccessor: recordAccessor), for: GetRecordRequest.self)
-                .register(GetCollectionHandler(recordAccessor: recordAccessor),
-                          for: GetCollectionRequest.self)
                 .register(searchHandler, for: SearchRecordRequest.self)
                 .build()
         )
