@@ -23,6 +23,10 @@ struct AddRecordView: View {
                     barcodeScannerSheet
                 case .showingManualEntry:
                     manualEntryView(model: $model)
+                case .confirmingCrop(let image, let detectedRect):
+                    CoverCropView(image: image, detectedRect: detectedRect) { rect in
+                        Task { await vm.searchWithCrop(image, rect: rect) }
+                    }
                 case .identifying:
                     identifyingView
                 case .showingDiscogsResults(let candidates, let identification, let userPhoto):
@@ -116,7 +120,7 @@ struct AddRecordView: View {
     @ViewBuilder
     private var cameraSheet: some View {
         CameraView(sourceType: .camera) { image in
-            Task { await vm.searchFromPhoto(image) }
+            vm.photoSelected(image)
         } onCancel: {
             vm.state = .selectSource
         }
@@ -126,7 +130,7 @@ struct AddRecordView: View {
     @ViewBuilder
     private var photoLibrarySheet: some View {
         CameraView(sourceType: .photoLibrary) { image in
-            Task { await vm.searchFromPhoto(image) }
+            vm.photoSelected(image)
         } onCancel: {
             vm.state = .selectSource
         }

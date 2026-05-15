@@ -6,6 +6,8 @@ enum AddRecordState {
     case showingPhotoLibrary
     case showingBarcodeScanner
     case showingManualEntry
+    // Photo captured — waiting for user to confirm crop region before searching
+    case confirmingCrop(image: UIImage, detectedRect: CGRect?)
     case identifying
     case showingDiscogsResults(
             candidates: [DiscogsSearchResult],
@@ -32,12 +34,25 @@ final class AddRecordViewModel {
     var pendingUserPhoto: UIImage?
 
     private let recordManager: IRecordManager
+    private let imageUtility = ImageUtility()
 
     init(recordManager: IRecordManager) {
         self.recordManager = recordManager
     }
 
     // MARK: - Step 1: Search
+
+    // Called immediately after photo capture — detects the cover rect and shows crop confirmation.
+    func photoSelected(_ image: UIImage) {
+        let rect = imageUtility.detectCoverRect(in: image)
+        state = .confirmingCrop(image: image, detectedRect: rect)
+    }
+
+    // Called from the crop confirmation screen — crops if a rect was chosen, then searches.
+    func searchWithCrop(_ image: UIImage, rect: CGRect?) async {
+        let searchImage = rect.map { imageUtility.crop(image: image, to: $0) } ?? image
+        await searchFromPhoto(searchImage)
+    }
 
     func searchFromPhoto(_ image: UIImage) async {
         state = .identifying
