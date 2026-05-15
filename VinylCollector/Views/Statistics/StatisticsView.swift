@@ -58,13 +58,15 @@ struct StatisticsView: View {
             if !stats.topArtists.isEmpty {
                 Section("Top Artists") {
                     ForEach(stats.topArtists, id: \.artist) { stat in
-                        HStack {
-                            Text(stat.artist)
-                                .lineLimit(1)
-                            Spacer()
-                            Text("\(stat.recordCount)")
-                                .foregroundStyle(.secondary)
-                                .monospacedDigit()
+                        NavigationLink(destination: FilteredRecordListView(filter: .artist(stat.artist))) {
+                            HStack {
+                                Text(stat.artist)
+                                    .lineLimit(1)
+                                Spacer()
+                                Text("\(stat.recordCount)")
+                                    .foregroundStyle(.secondary)
+                                    .monospacedDigit()
+                            }
                         }
                     }
                 }
@@ -73,23 +75,25 @@ struct StatisticsView: View {
             if !stats.genreBreakdown.isEmpty {
                 Section("Genres") {
                     ForEach(stats.genreBreakdown, id: \.genre) { stat in
-                        VStack(alignment: .leading, spacing: 4) {
-                            HStack {
-                                Text(stat.genre)
-                                Spacer()
-                                Text(String(format: "%.0f%%", stat.percentage))
-                                    .foregroundStyle(.secondary)
-                                    .monospacedDigit()
+                        NavigationLink(destination: FilteredRecordListView(filter: .genre(stat.genre))) {
+                            VStack(alignment: .leading, spacing: 4) {
+                                HStack {
+                                    Text(stat.genre)
+                                    Spacer()
+                                    Text(String(format: "%.0f%%", stat.percentage))
+                                        .foregroundStyle(.secondary)
+                                        .monospacedDigit()
+                                }
+                                GeometryReader { geo in
+                                    RoundedRectangle(cornerRadius: 3)
+                                        .fill(Color.accentColor)
+                                        .frame(width: geo.size.width * (stat.percentage / 100))
+                                        .frame(height: 4)
+                                }
+                                .frame(height: 4)
                             }
-                            GeometryReader { geo in
-                                RoundedRectangle(cornerRadius: 3)
-                                    .fill(Color.accentColor)
-                                    .frame(width: geo.size.width * (stat.percentage / 100))
-                                    .frame(height: 4)
-                            }
-                            .frame(height: 4)
+                            .padding(.vertical, 2)
                         }
-                        .padding(.vertical, 2)
                     }
                 }
             }
@@ -97,12 +101,14 @@ struct StatisticsView: View {
             if !stats.decadeBreakdown.isEmpty {
                 Section("By Decade") {
                     ForEach(stats.decadeBreakdown, id: \.decade) { stat in
-                        HStack {
-                            Text("\(stat.decade)s")
-                            Spacer()
-                            Text("\(stat.recordCount) records")
-                                .foregroundStyle(.secondary)
-                                .monospacedDigit()
+                        NavigationLink(destination: FilteredRecordListView(filter: .decade(stat.decade))) {
+                            HStack {
+                                Text("\(stat.decade)s")
+                                Spacer()
+                                Text("\(stat.recordCount) records")
+                                    .foregroundStyle(.secondary)
+                                    .monospacedDigit()
+                            }
                         }
                     }
                 }
@@ -112,12 +118,14 @@ struct StatisticsView: View {
                 Section("Condition") {
                     ForEach(RecordCondition.allCases.filter { stats.conditionBreakdown[$0] != nil },
                             id: \.self) { condition in
-                        HStack {
-                            Text(condition.displayName)
-                            Spacer()
-                            Text("\(stats.conditionBreakdown[condition] ?? 0)")
-                                .foregroundStyle(.secondary)
-                                .monospacedDigit()
+                        NavigationLink(destination: FilteredRecordListView(filter: .condition(condition))) {
+                            HStack {
+                                Text(condition.displayName)
+                                Spacer()
+                                Text("\(stats.conditionBreakdown[condition] ?? 0)")
+                                    .foregroundStyle(.secondary)
+                                    .monospacedDigit()
+                            }
                         }
                     }
                 }

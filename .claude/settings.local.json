@@ -10,7 +10,11 @@
       "Bash(xcodebuild -project VinylCollector.xcodeproj -scheme VinylCollector -destination 'platform=iOS Simulator,name=iPhone 16' build)",
       "Bash(xcodebuild -project VinylCollector.xcodeproj -scheme VinylCollector -destination 'platform=iOS Simulator,name=iPhone 16 Pro' build)",
       "Bash(xcodebuild -project VinylCollector.xcodeproj -scheme VinylCollector -destination 'platform=iOS Simulator,name=iPhone 17 Pro' build)",
-      "Bash(xcodegen generate *)"
+      "Bash(xcodegen generate *)",
+      "Bash(grep -v \"^$\")",
+      "Bash(xcodebuild -project /Users/jdonner/Workspace/VinylCollector/VinylCollector.xcodeproj -scheme VinylCollector -destination 'generic/platform=iOS Simulator' build)",
+      "Bash(xcode-select -p)",
+      "Bash(sudo xcode-select -s /Applications/Xcode-16.4.0.app/Contents/Developer)"
     ],
     "additionalDirectories": [
       "/Users/jdonner/.claude"
