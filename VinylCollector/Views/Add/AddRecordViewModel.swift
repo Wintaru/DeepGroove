@@ -1,5 +1,27 @@
 import UIKit
 
+enum RecordInputMethod {
+    case camera, photoLibrary, barcodeScanner, manualEntry
+
+    var resumeState: AddRecordState {
+        switch self {
+        case .camera:        return .showingCamera
+        case .photoLibrary:  return .showingPhotoLibrary
+        case .barcodeScanner: return .showingBarcodeScanner
+        case .manualEntry:   return .showingManualEntry
+        }
+    }
+
+    var addAnotherLabel: String {
+        switch self {
+        case .camera:         return "Take Another Photo"
+        case .photoLibrary:   return "Choose Another Photo"
+        case .barcodeScanner: return "Scan Another"
+        case .manualEntry:    return "Add Another Manually"
+        }
+    }
+}
+
 enum AddRecordState {
     case selectSource
     case showingCamera
@@ -14,6 +36,7 @@ enum AddRecordState {
             identification: AIIdentification?,
             userPhoto: UIImage?)
     case success(String)
+    case noResults(String)
     case failure(String)
 }
 
@@ -32,12 +55,38 @@ final class AddRecordViewModel {
 
     // Photo captured during the search phase — kept so manual entry can still attach it
     var pendingUserPhoto: UIImage?
+    private(set) var lastUsedMethod: RecordInputMethod?
+
+    var addAnotherLabel: String { lastUsedMethod?.addAnotherLabel ?? "Add Another" }
 
     private let recordManager: IRecordManager
     private let imageUtility = ImageUtility()
 
     init(recordManager: IRecordManager) {
         self.recordManager = recordManager
+    }
+
+    // MARK: - Source selection
+
+    func selectCamera() {
+        lastUsedMethod = .camera
+        state = .showingCamera
+    }
+
+    func selectPhotoLibrary() {
+        lastUsedMethod = .photoLibrary
+        state = .showingPhotoLibrary
+    }
+
+    func selectBarcodeScanner() {
+        lastUsedMethod = .barcodeScanner
+        state = .showingBarcodeScanner
+    }
+
+    // Clears the remembered method and returns to source selection.
+    func chooseDifferentMethod() {
+        lastUsedMethod = nil
+        state = .selectSource
     }
 
     // MARK: - Step 1: Search
@@ -67,6 +116,7 @@ final class AddRecordViewModel {
     }
 
     func goToManualEntry() {
+        lastUsedMethod = .manualEntry
         state = .showingManualEntry
     }
 
@@ -115,7 +165,7 @@ final class AddRecordViewModel {
     }
 
     func reset() {
-        state = .selectSource
+        state = lastUsedMethod?.resumeState ?? .selectSource
         notes = ""
         manualArtist = ""
         manualAlbumTitle = ""
@@ -148,7 +198,7 @@ final class AddRecordViewModel {
             manualLabel = ""
             state = .showingManualEntry
         } else {
-            state = .failure(response.errorMessage ?? "No results found. Try manual entry.")
+            state = .noResults(response.errorMessage ?? "No results found. Try adding it manually.")
         }
     }
 

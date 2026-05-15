@@ -5,43 +5,32 @@ struct DiscogsPickerView: View {
     let identification: AIIdentification?
     let userPhoto: UIImage?
     let vm: AddRecordViewModel
-    @Environment(\.dismiss) private var dismiss
-
     var body: some View {
-        NavigationStack {
-            List {
-                Section {
-                    ForEach(candidates, id: \.id) { result in
-                        Button { select(result) } label: { resultRow(result) }
-                            .buttonStyle(.plain)
-                    }
-                } header: {
-                    Text("Select the correct release")
-                        .textCase(nil)
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
+        List {
+            Section {
+                ForEach(candidates, id: \.id) { result in
+                    Button { select(result) } label: { resultRow(result) }
+                        .buttonStyle(.plain)
                 }
-
-                Section {
-                    Button {
-                        prefillManualEntry()
-                    } label: {
-                        Label("None of these — enter manually", systemImage: "pencil")
-                            .foregroundStyle(.secondary)
-                    }
-                }
+            } header: {
+                Text("Select the correct release")
+                    .textCase(nil)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
             }
-            .listStyle(.insetGrouped)
-            .navigationTitle("Which release?")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        vm.state = .selectSource
-                    }
+
+            Section {
+                Button {
+                    prefillManualEntry()
+                } label: {
+                    Label("None of these — enter manually", systemImage: "pencil")
+                        .foregroundStyle(.secondary)
                 }
             }
         }
+        .listStyle(.insetGrouped)
+        .navigationTitle("Which release?")
+        .navigationBarTitleDisplayMode(.inline)
     }
 
     private func resultRow(_ result: DiscogsSearchResult) -> some View {

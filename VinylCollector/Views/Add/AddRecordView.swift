@@ -36,6 +36,8 @@ struct AddRecordView: View {
                                       vm: vm)
                 case .success(let title):
                     successView(title)
+                case .noResults(let message):
+                    noResultsView(message)
                 case .failure(let message):
                     failureView(message)
                 }
@@ -65,21 +67,21 @@ struct AddRecordView: View {
                     subtitle: "Photo of album art or barcode — AI identifies it",
                     icon: "camera.fill",
                     color: .blue
-                ) { vm.state = .showingCamera }
+                ) { vm.selectCamera() }
 
                 sourceButton(
                     title: "Choose from Library",
                     subtitle: "Pick a photo of the cover or barcode",
                     icon: "photo.fill",
                     color: .purple
-                ) { vm.state = .showingPhotoLibrary }
+                ) { vm.selectPhotoLibrary() }
 
                 sourceButton(
                     title: "Scan Barcode",
                     subtitle: "Live barcode scanner for instant lookup",
                     icon: "barcode.viewfinder",
                     color: .green
-                ) { vm.state = .showingBarcodeScanner }
+                ) { vm.selectBarcodeScanner() }
 
                 sourceButton(
                     title: "Manual Entry",
@@ -150,15 +152,22 @@ struct AddRecordView: View {
     // MARK: - Manual entry
 
     private func manualEntryView(model: Bindable<AddRecordViewModel>) -> some View {
-        Form {
+        let canSearch = !vm.manualArtist.isEmpty || !vm.manualAlbumTitle.isEmpty
+        let doSearch = { Task { await vm.searchDiscogsFromManualFields() } }
+        return Form {
             Section("Required") {
                 TextField("Artist", text: model.manualArtist)
+                    .submitLabel(.next)
                 TextField("Album Title", text: model.manualAlbumTitle)
+                    .submitLabel(.search)
+                    .onSubmit { if canSearch { doSearch() } }
             }
             Section("Optional") {
                 TextField("Year", text: model.manualYear)
                     .keyboardType(.numberPad)
                 TextField("Label", text: model.manualLabel)
+                    .submitLabel(.search)
+                    .onSubmit { if canSearch { doSearch() } }
                 Picker("Condition", selection: model.condition) {
                     ForEach(RecordCondition.allCases, id: \.self) { c in
                         Text(c.displayName).tag(c)
@@ -215,7 +224,31 @@ struct AddRecordView: View {
                     .multilineTextAlignment(.center)
             }
             Button("Done") { dismiss() }.buttonStyle(.borderedProminent).controlSize(.large)
-            Button("Add Another") { vm.reset() }.foregroundStyle(.secondary)
+            Button(vm.addAnotherLabel) { vm.reset() }.foregroundStyle(.secondary)
+            if vm.lastUsedMethod != nil {
+                Button("Choose different method") { vm.chooseDifferentMethod() }
+                    .font(.caption)
+                    .foregroundStyle(.tertiary)
+            }
+            Spacer()
+        }
+        .padding()
+    }
+
+    private func noResultsView(_ message: String) -> some View {
+        VStack(spacing: 24) {
+            Spacer()
+            Image(systemName: "magnifyingglass")
+                .font(.system(size: 72)).foregroundStyle(.secondary)
+            VStack(spacing: 6) {
+                Text("No Results Found").font(.title2).fontWeight(.bold)
+                Text(message).font(.subheadline).foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+            }
+            Button("Try Again") { vm.reset() }
+                .buttonStyle(.borderedProminent).controlSize(.large)
+            Button("Enter Manually") { vm.goToManualEntry() }
+                .foregroundStyle(.secondary)
             Spacer()
         }
         .padding()
