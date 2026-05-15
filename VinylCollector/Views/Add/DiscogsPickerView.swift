@@ -21,7 +21,7 @@ struct DiscogsPickerView: View {
 
             Section {
                 Button {
-                    prefillManualEntry()
+                    vm.selectNoMatch(identification: identification)
                 } label: {
                     Label("None of these — enter manually", systemImage: "pencil")
                         .foregroundStyle(.secondary)
@@ -80,11 +80,5 @@ struct DiscogsPickerView: View {
         Task { await vm.confirmResult(result, identification: identification, userPhoto: userPhoto) }
     }
 
-    private func prefillManualEntry() {
-        vm.manualArtist = ""
-        vm.manualAlbumTitle = ""
-        vm.manualYear = ""
-        vm.manualLabel = ""
-        vm.state = .showingManualEntry
-    }
+
 }

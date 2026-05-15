@@ -120,6 +120,14 @@ final class AddRecordViewModel {
         state = .showingManualEntry
     }
 
+    func selectNoMatch(identification: AIIdentification?) {
+        manualArtist = identification?.artist ?? ""
+        manualAlbumTitle = identification?.albumTitle ?? ""
+        manualYear = identification?.year.map { String($0) } ?? ""
+        manualLabel = identification?.label ?? ""
+        state = .showingManualEntry
+    }
+
     func searchDiscogsFromManualFields() async {
         state = .identifying
         let response = await recordManager.query(SearchRecordRequest(
@@ -190,12 +198,12 @@ final class AddRecordViewModel {
                 identification: result.identification,
                 userPhoto: result.userPhoto
             )
-        } else if result.identification?.artist != nil || result.identification?.albumTitle != nil {
-            // AI found something but no Discogs match — go to blank manual entry
-            manualArtist = ""
-            manualAlbumTitle = ""
-            manualYear = ""
-            manualLabel = ""
+        } else if let id = result.identification,
+                  id.artist != nil || id.albumTitle != nil {
+            manualArtist = id.artist ?? ""
+            manualAlbumTitle = id.albumTitle ?? ""
+            manualYear = id.year.map { String($0) } ?? ""
+            manualLabel = id.label ?? ""
             state = .showingManualEntry
         } else {
             state = .noResults(response.errorMessage ?? "No results found. Try adding it manually.")
