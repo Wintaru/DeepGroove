@@ -103,6 +103,7 @@
 		CD1814973706E7363D2DF78C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CDDD71BAC1D7F625ECA3082 /* Assets.xcassets */; };
 		D018BB434853AA87FC3B8F86 /* LoadRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492B5FBC0E4945A8B03D545D /* LoadRecordRequest.swift */; };
 		D17792FB8544970535BC676D /* RemoveRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACD7F01C6E121DD02667620 /* RemoveRecordResponse.swift */; };
+		D24BB41C8BB501F2142E6857 /* DiscogsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D469E794FF7CF48968664CC /* DiscogsAPI.swift */; };
 		D2838BDDD9C8C51EF7DCF42E /* EditRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC87C8D4B19ACD1693975449 /* EditRecordRequest.swift */; };
 		D325784A78F1F217ED52FE7A /* DeletePhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93C380FADCC2D357BE36EA7 /* DeletePhotoResponse.swift */; };
 		D475778D3F89FB0DDD047637 /* SearchDiscogsByBarcodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FF53777AD2E7E44C65A46 /* SearchDiscogsByBarcodeHandler.swift */; };
@@ -188,6 +189,7 @@
 		496B3194B84E56D25EE0FD4F /* SearchRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecordRequest.swift; sourceTree = "<group>"; };
 		4C7B09706AEBDE0761A841F6 /* DiscogsPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscogsPickerView.swift; sourceTree = "<group>"; };
 		4CFDF798BC96B0F07CABA548 /* AddRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordResponse.swift; sourceTree = "<group>"; };
+		4D469E794FF7CF48968664CC /* DiscogsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscogsAPI.swift; sourceTree = "<group>"; };
 		511DA77A90DF24F80043AD6E /* IRecordAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRecordAccessor.swift; sourceTree = "<group>"; };
 		5162AAF6523673DC6E41FA9F /* ParseIdentificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseIdentificationRequest.swift; sourceTree = "<group>"; };
 		54866D596E6B1AD651920A41 /* StatisticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsManager.swift; sourceTree = "<group>"; };
@@ -627,6 +629,7 @@
 			children = (
 				7BB2A77E24431A6E66FFF109 /* Handlers */,
 				61395A552D07BF5D2C101E37 /* DiscogsAccessor.swift */,
+				4D469E794FF7CF48968664CC /* DiscogsAPI.swift */,
 			);
 			path = Discogs;
 			sourceTree = "<group>";
@@ -1004,6 +1007,7 @@
 				0DCF6D83D4E418A272BF3945 /* DeleteRecordRequest.swift in Sources */,
 				0DE26A1784297EB0C87F15D3 /* DeleteRecordResponse.swift in Sources */,
 				FD2C7DF31E3A49128A517B04 /* DependencyContainer.swift in Sources */,
+				D24BB41C8BB501F2142E6857 /* DiscogsAPI.swift in Sources */,
 				4B347C10EBC7E8CD3041A6E5 /* DiscogsAccessor.swift in Sources */,
 				5D847DC9D85AA21AB73A7CD2 /* DiscogsPickerView.swift in Sources */,
 				0E6992B67DA8F8A376DF6A23 /* DiscogsSearchAPITypes.swift in Sources */,

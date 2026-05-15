@@ -30,7 +30,10 @@
       "Bash(xcodebuild -project /Users/jdonner/Workspace/VinylCollector/VinylCollector.xcodeproj -scheme VinylCollector -destination 'id=BEE9732F-495F-4981-B8B4-F1022D74D1C3' build)",
       "Bash(xcodebuild -project /Users/jdonner/Workspace/VinylCollector/VinylCollector.xcodeproj -scheme VinylCollector -destination 'id=BEE9732F-495F-4981-B8B4-F1022D74D1C3' clean build)",
       "Bash(git -C /Users/jdonner/Workspace/VinylCollector add VinylCollector/Contracts/Persistence/SaveRecordRequest.swift VinylCollector/Accessors/Record/Handlers/SaveRecordHandler.swift VinylCollector/Managers/Record/Handlers/AddRecordHandler.swift)",
-      "Bash(git -C /Users/jdonner/Workspace/VinylCollector add VinylCollector/Views/Add/AddRecordViewModel.swift)"
+      "Bash(git -C /Users/jdonner/Workspace/VinylCollector add VinylCollector/Views/Add/AddRecordViewModel.swift)",
+      "Bash(xcodebuild -scheme VinylCollector -destination 'platform=iOS Simulator,name=iPhone 16' build)",
+      "Bash(xcodebuild -scheme VinylCollector -destination 'platform=iOS Simulator,name=iPhone 16 Pro' build)",
+      "Bash(xcodebuild -scheme VinylCollector -destination 'platform=iOS Simulator,id=BEE9732F-495F-4981-B8B4-F1022D74D1C3' build)"
     ],
     "additionalDirectories": [
       "/Users/jdonner/.claude",
