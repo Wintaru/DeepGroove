@@ -1,6 +1,6 @@
 import Foundation
 
-final class AddRecordResponse: ResponseBase {
+final class AddRecordResponse: ResponseBase, @unchecked Sendable {
     let recordId: UUID?
     let displayTitle: String?
 

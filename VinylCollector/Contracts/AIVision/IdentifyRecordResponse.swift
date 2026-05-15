@@ -11,7 +11,7 @@ struct AIIdentification: Sendable {
     let rawJSON: String
 }
 
-final class IdentifyRecordResponse: ResponseBase {
+final class IdentifyRecordResponse: ResponseBase, @unchecked Sendable {
     let rawJSON: String?
 
     init(correlationId: UUID, rawJSON: String) {

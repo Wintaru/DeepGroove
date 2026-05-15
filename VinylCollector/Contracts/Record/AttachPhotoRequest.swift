@@ -1,6 +1,6 @@
 import UIKit
 
-final class AttachPhotoRequest: RequestBase {
+final class AttachPhotoRequest: RequestBase, @unchecked Sendable {
     let recordId: UUID
     let image: UIImage
 

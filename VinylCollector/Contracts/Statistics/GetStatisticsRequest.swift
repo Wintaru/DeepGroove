@@ -1,3 +1,3 @@
 import Foundation
 
-final class GetStatisticsRequest: RequestBase {}
+final class GetStatisticsRequest: RequestBase, @unchecked Sendable {}

@@ -1,6 +1,6 @@
 import Foundation
 
-final class LoadAllRecordsRequest: RequestBase {
+final class LoadAllRecordsRequest: RequestBase, @unchecked Sendable {
     let filter: CollectionFilter
     let sortOrder: CollectionSortOrder
 

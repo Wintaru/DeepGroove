@@ -127,8 +127,11 @@ struct CollectionView: View {
                 Button {
                     vm.sortOrder = order
                 } label: {
-                    Label(order.displayName,
-                          systemImage: vm.sortOrder == order ? "checkmark" : "")
+                    if vm.sortOrder == order {
+                        Label(order.displayName, systemImage: "checkmark")
+                    } else {
+                        Text(order.displayName)
+                    }
                 }
             }
         } label: {

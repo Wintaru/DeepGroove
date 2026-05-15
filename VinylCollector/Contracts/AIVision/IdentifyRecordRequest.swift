@@ -1,6 +1,6 @@
 import UIKit
 
-final class IdentifyRecordRequest: RequestBase {
+final class IdentifyRecordRequest: RequestBase, @unchecked Sendable {
     let image: UIImage
     let apiKey: String
 

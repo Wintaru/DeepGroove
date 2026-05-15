@@ -55,7 +55,7 @@ enum CollectionSortOrder: String, CaseIterable, Sendable {
     }
 }
 
-final class GetCollectionRequest: RequestBase {
+final class GetCollectionRequest: RequestBase, @unchecked Sendable {
     let filter: CollectionFilter
     let sortOrder: CollectionSortOrder
     let limit: Int?

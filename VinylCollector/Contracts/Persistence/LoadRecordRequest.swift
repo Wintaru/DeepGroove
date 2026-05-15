@@ -1,6 +1,6 @@
 import Foundation
 
-final class LoadRecordRequest: RequestBase {
+final class LoadRecordRequest: RequestBase, @unchecked Sendable {
     let recordId: UUID
 
     init(recordId: UUID) {

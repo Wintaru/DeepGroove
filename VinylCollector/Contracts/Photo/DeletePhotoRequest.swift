@@ -1,6 +1,6 @@
 import Foundation
 
-final class DeletePhotoRequest: RequestBase {
+final class DeletePhotoRequest: RequestBase, @unchecked Sendable {
     let photoId: UUID
 
     init(photoId: UUID) {

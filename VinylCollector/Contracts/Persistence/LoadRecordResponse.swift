@@ -1,6 +1,6 @@
 import Foundation
 
-final class LoadRecordResponse: ResponseBase {
+final class LoadRecordResponse: ResponseBase, @unchecked Sendable {
     let record: VinylRecord?
 
     init(correlationId: UUID, record: VinylRecord) {

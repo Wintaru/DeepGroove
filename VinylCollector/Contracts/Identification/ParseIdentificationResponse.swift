@@ -1,6 +1,6 @@
 import Foundation
 
-final class ParseIdentificationResponse: ResponseBase {
+final class ParseIdentificationResponse: ResponseBase, @unchecked Sendable {
     let identification: AIIdentification?
 
     init(correlationId: UUID, identification: AIIdentification) {

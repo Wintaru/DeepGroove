@@ -1,6 +1,6 @@
 import UIKit
 
-final class LoadPhotoResponse: ResponseBase {
+final class LoadPhotoResponse: ResponseBase, @unchecked Sendable {
     let image: UIImage?
 
     init(correlationId: UUID, image: UIImage) {

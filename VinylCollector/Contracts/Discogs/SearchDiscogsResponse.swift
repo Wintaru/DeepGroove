@@ -14,7 +14,7 @@ struct DiscogsSearchResult: Sendable {
     let barcodes: [String]
 }
 
-final class SearchDiscogsResponse: ResponseBase {
+final class SearchDiscogsResponse: ResponseBase, @unchecked Sendable {
     let results: [DiscogsSearchResult]
 
     init(correlationId: UUID, results: [DiscogsSearchResult]) {

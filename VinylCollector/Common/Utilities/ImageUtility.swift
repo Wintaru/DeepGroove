@@ -35,6 +35,7 @@ final class ImageUtility: Sendable {
         UIImage(contentsOfFile: path)
     }
 
+    @discardableResult
     func saveToDisk(image: UIImage, directory: URL, filename: String) throws -> URL {
         guard let data = image.jpegData(compressionQuality: 0.85) else {
             throw ImageError.compressionFailed
@@ -84,7 +85,7 @@ final class ImageUtility: Sendable {
         request.symbologies = [.ean13, .ean8, .upce, .code128, .code39, .qr]
         let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
         try? handler.perform([request])
-        return (request.results as? [VNBarcodeObservation])?.first?.payloadStringValue
+        return request.results?.first?.payloadStringValue
     }
 
     private func scale(_ image: UIImage, maxDimension: CGFloat) -> UIImage {

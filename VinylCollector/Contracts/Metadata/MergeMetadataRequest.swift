@@ -1,6 +1,6 @@
 import Foundation
 
-final class MergeMetadataRequest: RequestBase {
+final class MergeMetadataRequest: RequestBase, @unchecked Sendable {
     let identification: AIIdentification?
     let discogsRelease: DiscogsRelease?
     let artworkPreference: ArtworkSource

@@ -27,7 +27,7 @@ struct DiscogsTrack: Sendable {
     let duration: String?
 }
 
-final class LoadDiscogsReleaseResponse: ResponseBase {
+final class LoadDiscogsReleaseResponse: ResponseBase, @unchecked Sendable {
     let release: DiscogsRelease?
 
     init(correlationId: UUID, release: DiscogsRelease) {

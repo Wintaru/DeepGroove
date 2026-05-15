@@ -1,6 +1,6 @@
 import Foundation
 
-final class DeleteRecordResponse: ResponseBase {
+final class DeleteRecordResponse: ResponseBase, @unchecked Sendable {
     init(correlationId: UUID) {
         super.init(correlationId: correlationId, success: true)
     }

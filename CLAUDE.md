@@ -130,6 +130,75 @@ init(recordManager: IRecordManager) {
 
 ---
 
+## Build quality — zero warnings
+
+The project must build with **zero Swift compiler warnings**. Warnings are treated as defects.
+During code review, flag any of the patterns below as blocking issues.
+
+### Contract types must restate `@unchecked Sendable`
+
+Every class that inherits `RequestBase` or `ResponseBase` must explicitly restate
+`@unchecked Sendable` in its inheritance clause, or the compiler warns in targeted
+concurrency mode:
+
+```swift
+// WRONG — inherited silently, compiler warns
+final class FooRequest: RequestBase { ... }
+
+// CORRECT
+final class FooRequest: RequestBase, @unchecked Sendable { ... }
+```
+
+This applies to every file under `Contracts/` and to `UnhandledRequestResponse` in
+`Common/Contracts/ResponseBase.swift`.
+
+### `CollectionStatistics` and other structs containing `@Model` types
+
+A `struct` that stores `[VinylRecord]` (or any SwiftData `@Model`) cannot be `Sendable`
+because `@Model` classes are not `Sendable`. Use `@unchecked Sendable`:
+
+```swift
+// WRONG
+struct CollectionStatistics: Sendable { let mostRecentlyAdded: [VinylRecord] }
+
+// CORRECT
+struct CollectionStatistics: @unchecked Sendable { let mostRecentlyAdded: [VinylRecord] }
+```
+
+### `Image(systemName:)` must never receive an empty string
+
+Passing `""` to `systemName` or `systemImage` logs a SwiftUI fault at runtime.
+Never use a ternary that can produce an empty string — use a conditional view instead:
+
+```swift
+// WRONG — logs "No symbol named '' found in system symbol set" for every unselected item
+Label(name, systemImage: isSelected ? "checkmark" : "")
+
+// CORRECT
+if isSelected { Label(name, systemImage: "checkmark") } else { Text(name) }
+```
+
+### Fire-and-forget `Task` results must be explicitly discarded
+
+A closure that creates a `Task` and returns it produces an "unused result" warning at
+every call site. Discard inside the closure:
+
+```swift
+// WRONG — closure has return type Task<(), Never>, warning at every call site
+let doWork = { Task { await vm.doSomething() } }
+
+// CORRECT
+let doWork = { _ = Task { await vm.doSomething() } }
+```
+
+### Functions whose return value is routinely ignored need `@discardableResult`
+
+If a throwing or non-throwing function returns a value that callers legitimately
+discard (e.g. `saveToDisk` returning a `URL` used only internally), mark it
+`@discardableResult` rather than suppressing at every call site.
+
+---
+
 ## Concurrency mode
 
 `SWIFT_STRICT_CONCURRENCY = targeted` in `project.yml`. After any `xcodegen generate`, verify

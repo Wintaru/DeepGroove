@@ -1,6 +1,6 @@
 import UIKit
 
-final class SavePhotoRequest: RequestBase {
+final class SavePhotoRequest: RequestBase, @unchecked Sendable {
     let image: UIImage
     let photoType: PhotoType
     let recordId: UUID

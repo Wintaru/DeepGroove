@@ -1,6 +1,6 @@
 import Foundation
 
-final class SavePhotoResponse: ResponseBase {
+final class SavePhotoResponse: ResponseBase, @unchecked Sendable {
     let photo: RecordPhoto?
 
     init(correlationId: UUID, photo: RecordPhoto) {

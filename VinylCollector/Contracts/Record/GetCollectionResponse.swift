@@ -1,6 +1,6 @@
 import Foundation
 
-final class GetCollectionResponse: ResponseBase {
+final class GetCollectionResponse: ResponseBase, @unchecked Sendable {
     let records: [VinylRecord]
     let totalCount: Int
 

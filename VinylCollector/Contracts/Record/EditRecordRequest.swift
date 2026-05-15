@@ -1,6 +1,6 @@
 import Foundation
 
-final class EditRecordRequest: RequestBase {
+final class EditRecordRequest: RequestBase, @unchecked Sendable {
     let recordId: UUID
     let artist: String?
     let albumTitle: String?

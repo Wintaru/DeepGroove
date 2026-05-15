@@ -17,7 +17,7 @@ struct RecordCreationData: Sendable {
     let estimatedValue: Double?
 }
 
-final class SaveRecordRequest: RequestBase {
+final class SaveRecordRequest: RequestBase, @unchecked Sendable {
     let data: RecordCreationData
 
     init(data: RecordCreationData) {

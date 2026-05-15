@@ -1,6 +1,6 @@
 import Foundation
 
-class ResponseBase {
+class ResponseBase: @unchecked Sendable {
     let correlationId: UUID
     let success: Bool
     let errorMessage: String?
@@ -12,7 +12,7 @@ class ResponseBase {
     }
 }
 
-final class UnhandledRequestResponse: ResponseBase {
+final class UnhandledRequestResponse: ResponseBase, @unchecked Sendable {
     let requestType: String
 
     init(correlationId: UUID, requestType: String) {

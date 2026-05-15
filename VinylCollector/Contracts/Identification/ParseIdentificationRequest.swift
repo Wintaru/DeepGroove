@@ -1,6 +1,6 @@
 import Foundation
 
-final class ParseIdentificationRequest: RequestBase {
+final class ParseIdentificationRequest: RequestBase, @unchecked Sendable {
     let rawJSON: String
 
     init(rawJSON: String) {

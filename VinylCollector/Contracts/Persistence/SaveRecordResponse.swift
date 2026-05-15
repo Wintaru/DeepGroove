@@ -1,6 +1,6 @@
 import Foundation
 
-final class SaveRecordResponse: ResponseBase {
+final class SaveRecordResponse: ResponseBase, @unchecked Sendable {
     let recordId: UUID?
 
     init(correlationId: UUID, recordId: UUID) {

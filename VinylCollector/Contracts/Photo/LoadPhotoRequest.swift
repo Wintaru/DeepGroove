@@ -1,6 +1,6 @@
 import Foundation
 
-final class LoadPhotoRequest: RequestBase {
+final class LoadPhotoRequest: RequestBase, @unchecked Sendable {
     let photoPath: String
 
     init(photoPath: String) {

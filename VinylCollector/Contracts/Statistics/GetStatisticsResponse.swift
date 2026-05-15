@@ -16,7 +16,7 @@ struct DecadeStat: Sendable {
     let recordCount: Int
 }
 
-struct CollectionStatistics: Sendable {
+struct CollectionStatistics: @unchecked Sendable {
     let totalRecords: Int
     let totalEstimatedValue: Double
     let topArtists: [ArtistStat]
@@ -26,7 +26,7 @@ struct CollectionStatistics: Sendable {
     let mostRecentlyAdded: [VinylRecord]
 }
 
-final class GetStatisticsResponse: ResponseBase {
+final class GetStatisticsResponse: ResponseBase, @unchecked Sendable {
     let statistics: CollectionStatistics?
 
     init(correlationId: UUID, statistics: CollectionStatistics) {

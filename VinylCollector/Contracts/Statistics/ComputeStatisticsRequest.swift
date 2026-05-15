@@ -1,6 +1,6 @@
 import Foundation
 
-final class ComputeStatisticsRequest: RequestBase {
+final class ComputeStatisticsRequest: RequestBase, @unchecked Sendable {
     let records: [VinylRecord]
 
     init(records: [VinylRecord]) {

@@ -17,7 +17,7 @@ struct RecordCandidate: Sendable {
     let notes: String?
 }
 
-final class MergeMetadataResponse: ResponseBase {
+final class MergeMetadataResponse: ResponseBase, @unchecked Sendable {
     let candidate: RecordCandidate?
 
     init(correlationId: UUID, candidate: RecordCandidate) {

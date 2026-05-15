@@ -1,6 +1,6 @@
 import Foundation
 
-final class AttachPhotoResponse: ResponseBase {
+final class AttachPhotoResponse: ResponseBase, @unchecked Sendable {
     init(correlationId: UUID) {
         super.init(correlationId: correlationId, success: true)
     }

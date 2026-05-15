@@ -153,7 +153,7 @@ struct AddRecordView: View {
 
     private func manualEntryView(model: Bindable<AddRecordViewModel>) -> some View {
         let canSearch = !vm.manualArtist.isEmpty || !vm.manualAlbumTitle.isEmpty
-        let doSearch = { Task { await vm.searchDiscogsFromManualFields() } }
+        let doSearch = { _ = Task { await vm.searchDiscogsFromManualFields() } }
         return Form {
             Section("Required") {
                 TextField("Artist", text: model.manualArtist)

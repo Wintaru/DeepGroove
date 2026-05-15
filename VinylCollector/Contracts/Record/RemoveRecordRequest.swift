@@ -1,6 +1,6 @@
 import Foundation
 
-final class RemoveRecordRequest: RequestBase {
+final class RemoveRecordRequest: RequestBase, @unchecked Sendable {
     let recordId: UUID
 
     init(recordId: UUID) {

@@ -1,6 +1,6 @@
 import Foundation
 
-final class DeletePhotoResponse: ResponseBase {
+final class DeletePhotoResponse: ResponseBase, @unchecked Sendable {
     init(correlationId: UUID) {
         super.init(correlationId: correlationId, success: true)
     }

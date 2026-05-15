@@ -1,6 +1,6 @@
 import Foundation
 
-final class SearchDiscogsRequest: RequestBase {
+final class SearchDiscogsRequest: RequestBase, @unchecked Sendable {
     let query: String
     let token: String?
 

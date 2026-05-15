@@ -1,6 +1,6 @@
 import UIKit
 
-final class SearchRecordResponse: ResponseBase {
+final class SearchRecordResponse: ResponseBase, @unchecked Sendable {
     let candidates: [DiscogsSearchResult]
     let identification: AIIdentification?
     let userPhoto: UIImage?

@@ -1,6 +1,6 @@
 import Foundation
 
-final class ComputeStatisticsResponse: ResponseBase {
+final class ComputeStatisticsResponse: ResponseBase, @unchecked Sendable {
     let statistics: CollectionStatistics?
 
     init(correlationId: UUID, statistics: CollectionStatistics) {

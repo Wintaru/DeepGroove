@@ -1,6 +1,6 @@
 import Foundation
 
-final class LoadDiscogsReleaseRequest: RequestBase {
+final class LoadDiscogsReleaseRequest: RequestBase, @unchecked Sendable {
     let releaseId: Int
     let token: String?
 

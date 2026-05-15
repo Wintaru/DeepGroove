@@ -1,6 +1,6 @@
 import Foundation
 
-final class SearchDiscogsByBarcodeResponse: ResponseBase {
+final class SearchDiscogsByBarcodeResponse: ResponseBase, @unchecked Sendable {
     let results: [DiscogsSearchResult]
 
     init(correlationId: UUID, results: [DiscogsSearchResult]) {

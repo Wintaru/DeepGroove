@@ -7,7 +7,7 @@ enum AddRecordSource {
     case manual
 }
 
-final class AddRecordRequest: RequestBase {
+final class AddRecordRequest: RequestBase, @unchecked Sendable {
     let chosenResult: DiscogsSearchResult?
     let identification: AIIdentification?
     let userPhoto: UIImage?

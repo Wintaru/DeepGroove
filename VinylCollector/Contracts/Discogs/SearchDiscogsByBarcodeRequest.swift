@@ -1,6 +1,6 @@
 import Foundation
 
-final class SearchDiscogsByBarcodeRequest: RequestBase {
+final class SearchDiscogsByBarcodeRequest: RequestBase, @unchecked Sendable {
     let barcode: String
     let token: String?
 
