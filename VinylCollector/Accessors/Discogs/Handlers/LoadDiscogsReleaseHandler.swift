@@ -13,13 +13,13 @@ final class LoadDiscogsReleaseHandler: IHandler {
                                            requestType: String(describing: type(of: request)))
         }
         do {
-            var components = URLComponents(string: "https://api.discogs.com/releases/\(req.releaseId)")!
+            var components = URLComponents(string: "\(DiscogsAPI.releaseURL)/\(req.releaseId)")!
             if let token = req.token {
                 components.queryItems = [URLQueryItem(name: "token", value: token)]
             }
             let data = try await networkUtility.get(
                 url: components.url!,
-                headers: ["User-Agent": "VinylCollector/1.0"]
+                headers: DiscogsAPI.userAgentHeaders
             )
             let decoded = try JSONDecoder().decode(DiscogsReleaseAPIResponse.self, from: data)
             let release = decoded.toRelease()

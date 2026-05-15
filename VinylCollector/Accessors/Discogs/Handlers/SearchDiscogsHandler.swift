@@ -13,7 +13,7 @@ final class SearchDiscogsHandler: IHandler {
                                            requestType: String(describing: type(of: request)))
         }
         do {
-            var components = URLComponents(string: "https://api.discogs.com/database/search")!
+            var components = URLComponents(string: DiscogsAPI.searchURL)!
             components.queryItems = [
                 URLQueryItem(name: "q", value: req.query),
                 URLQueryItem(name: "type", value: "release"),
@@ -24,7 +24,7 @@ final class SearchDiscogsHandler: IHandler {
             }
             let data = try await networkUtility.get(
                 url: components.url!,
-                headers: ["User-Agent": "VinylCollector/1.0"]
+                headers: DiscogsAPI.userAgentHeaders
             )
             let decoded = try JSONDecoder().decode(DiscogsSearchAPIResponse.self, from: data)
             let results = decoded.results.map { $0.toSearchResult() }

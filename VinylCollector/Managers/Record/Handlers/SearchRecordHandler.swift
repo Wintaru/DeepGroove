@@ -21,6 +21,8 @@ final class SearchRecordHandler: IHandler {
         self.apiConfiguration = apiConfiguration
     }
 
+    private let maxCandidates = 8
+
     func handle(_ request: RequestBase) async -> ResponseBase {
         guard let req = request as? SearchRecordRequest else {
             return UnhandledRequestResponse(correlationId: request.correlationId,
@@ -57,7 +59,7 @@ final class SearchRecordHandler: IHandler {
             let response = await discogsAccessor.load(
                 SearchDiscogsRequest(query: query, token: apiConfiguration.discogsToken)
             )
-            let results = Array(((response as? SearchDiscogsResponse)?.results ?? []).prefix(8))
+            let results = Array(((response as? SearchDiscogsResponse)?.results ?? []).prefix(maxCandidates))
             let identification = AIIdentification(
                 artist: artist.isEmpty ? nil : artist,
                 albumTitle: albumTitle.isEmpty ? nil : albumTitle,
@@ -108,6 +110,6 @@ final class SearchRecordHandler: IHandler {
             SearchDiscogsRequest(query: "\(artist) \(title)", token: apiConfiguration.discogsToken)
         )
         let results = (response as? SearchDiscogsResponse)?.results ?? []
-        return Array(results.prefix(8))
+        return Array(results.prefix(maxCandidates))
     }
 }
