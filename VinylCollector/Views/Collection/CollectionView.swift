@@ -8,31 +8,17 @@ struct CollectionView: View {
     @State private var vm = CollectionViewModel()
 
     private var displayRecords: [VinylRecord] {
-        var records = allRecords
-
-        if !vm.searchText.isEmpty {
-            let lower = vm.searchText.lowercased()
-            records = records.filter {
-                $0.artist.lowercased().contains(lower) ||
-                $0.albumTitle.lowercased().contains(lower) ||
-                ($0.label?.lowercased().contains(lower) ?? false)
-            }
-        }
-        if !vm.selectedGenres.isEmpty {
-            records = records.filter { !Set($0.genres).isDisjoint(with: vm.selectedGenres) }
-        }
-        if !vm.selectedDecades.isEmpty {
-            records = records.filter { record in
-                guard let year = record.year else { return false }
-                return vm.selectedDecades.contains(year / 10 * 10)
-            }
-        }
-
-        return vm.sortOrder.apply(to: records)
+        let filter = CollectionFilter(
+            searchText: vm.searchText.isEmpty ? nil : vm.searchText,
+            genres: vm.selectedGenres.isEmpty ? nil : Array(vm.selectedGenres),
+            decades: vm.selectedDecades.isEmpty ? nil : vm.selectedDecades
+        )
+        return vm.sortOrder.apply(to: filter.applying(allRecords))
     }
 
     var body: some View {
-        NavigationStack {
+        @Bindable var vm = vm
+        return NavigationStack {
             Group {
                 if allRecords.isEmpty {
                     emptyState
@@ -41,11 +27,9 @@ struct CollectionView: View {
                 }
             }
             .navigationTitle("Collection")
-            .searchable(text: Binding(
-                get: { vm.searchText },
-                set: { vm.searchText = $0 }
-            ), placement: .navigationBarDrawer(displayMode: .always),
-               prompt: "Search artist, album, or label")
+            .searchable(text: $vm.searchText,
+                        placement: .navigationBarDrawer(displayMode: .always),
+                        prompt: "Search artist, album, or label")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     sortMenu
@@ -67,22 +51,13 @@ struct CollectionView: View {
                     }
                 }
             }
-            .sheet(isPresented: Binding(
-                get: { vm.showingAddRecord },
-                set: { vm.showingAddRecord = $0 }
-            )) {
+            .sheet(isPresented: $vm.showingAddRecord) {
                 AddRecordView(recordManager: container.recordManager)
             }
-            .sheet(isPresented: Binding(
-                get: { vm.showingFilters },
-                set: { vm.showingFilters = $0 }
-            )) {
+            .sheet(isPresented: $vm.showingFilters) {
                 FilterView(vm: vm, allRecords: allRecords)
             }
-            .errorAlert(message: Binding(
-                get: { vm.errorMessage },
-                set: { vm.errorMessage = $0 }
-            ))
+            .errorAlert(message: $vm.errorMessage)
         }
     }
 

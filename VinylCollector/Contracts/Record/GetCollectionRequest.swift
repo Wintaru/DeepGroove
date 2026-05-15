@@ -5,6 +5,7 @@ struct CollectionFilter: Sendable {
     var genres: [String]?
     var artists: [String]?
     var yearRange: ClosedRange<Int>?
+    var decades: Set<Int>?
     var conditions: [RecordCondition]?
     var labels: [String]?
 
@@ -13,8 +14,49 @@ struct CollectionFilter: Sendable {
         genres == nil &&
         artists == nil &&
         yearRange == nil &&
+        decades == nil &&
         conditions == nil &&
         labels == nil
+    }
+
+    func applying(_ records: [VinylRecord]) -> [VinylRecord] {
+        var result = records
+        if let searchText, !searchText.isEmpty {
+            let lower = searchText.lowercased()
+            result = result.filter {
+                $0.artist.lowercased().contains(lower) ||
+                $0.albumTitle.lowercased().contains(lower) ||
+                ($0.label?.lowercased().contains(lower) ?? false)
+            }
+        }
+        if let genres, !genres.isEmpty {
+            result = result.filter { !Set($0.genres).isDisjoint(with: genres) }
+        }
+        if let artists, !artists.isEmpty {
+            result = result.filter { artists.contains($0.artist) }
+        }
+        if let yearRange {
+            result = result.filter { record in
+                guard let year = record.year else { return false }
+                return yearRange.contains(year)
+            }
+        }
+        if let decades, !decades.isEmpty {
+            result = result.filter { record in
+                guard let year = record.year else { return false }
+                return decades.contains(year / 10 * 10)
+            }
+        }
+        if let conditions, !conditions.isEmpty {
+            result = result.filter { conditions.contains($0.condition) }
+        }
+        if let labels, !labels.isEmpty {
+            result = result.filter { record in
+                guard let label = record.label else { return false }
+                return labels.contains(label)
+            }
+        }
+        return result
     }
 }
 
