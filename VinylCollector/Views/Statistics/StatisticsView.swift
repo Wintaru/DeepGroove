@@ -8,7 +8,8 @@ struct StatisticsView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        @Bindable var vm = vm
+        return NavigationStack {
             Group {
                 if vm.isLoading {
                     ProgressView("Loading statistics…")
@@ -23,10 +24,7 @@ struct StatisticsView: View {
                 }
             }
             .navigationTitle("Statistics")
-            .errorAlert(message: Binding(
-                get: { vm.errorMessage },
-                set: { vm.errorMessage = $0 }
-            ))
+            .errorAlert(message: $vm.errorMessage)
         }
         .task {
             await vm.load()
