@@ -33,6 +33,7 @@ enum StatFilter {
 
 struct FilteredRecordListView: View {
     let filter: StatFilter
+    @EnvironmentObject private var container: DependencyContainer
     @Query private var allRecords: [VinylRecord]
 
     private var displayRecords: [VinylRecord] {
@@ -44,7 +45,7 @@ struct FilteredRecordListView: View {
     var body: some View {
         List {
             ForEach(displayRecords) { record in
-                NavigationLink(destination: RecordDetailView(record: record)) {
+                NavigationLink(destination: RecordDetailView(record: record, recordManager: container.recordManager)) {
                     RecordRowView(record: record)
                 }
             }

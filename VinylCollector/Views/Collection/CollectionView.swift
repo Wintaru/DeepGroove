@@ -89,7 +89,7 @@ struct CollectionView: View {
     private var recordList: some View {
         List {
             ForEach(displayRecords) { record in
-                NavigationLink(destination: RecordDetailView(record: record)) {
+                NavigationLink(destination: RecordDetailView(record: record, recordManager: container.recordManager)) {
                     RecordRowView(record: record)
                 }
             }

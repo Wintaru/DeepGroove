@@ -3,14 +3,14 @@ import SwiftData
 
 struct RecordDetailView: View {
     let record: VinylRecord
-    @EnvironmentObject private var container: DependencyContainer
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
-    @State private var vm: RecordDetailViewModel?
+    @State private var vm: RecordDetailViewModel
     @State private var selectedPhotoIndex = 0
 
-    private var model: RecordDetailViewModel {
-        vm ?? RecordDetailViewModel(recordManager: container.recordManager)
+    init(record: VinylRecord, recordManager: IRecordManager) {
+        self.record = record
+        _vm = State(initialValue: RecordDetailViewModel(recordManager: recordManager))
     }
 
     var body: some View {
@@ -35,13 +35,13 @@ struct RecordDetailView: View {
                 HStack {
                     shareButton
                     Menu {
-                        Button("Edit") { model.beginEditing(record: record) }
-                        Button { model.showingAddPhotoSource = true } label: {
+                        Button("Edit") { vm.beginEditing(record: record) }
+                        Button { vm.showingAddPhotoSource = true } label: {
                             Label("Add Photo", systemImage: "photo.badge.plus")
                         }
                         Divider()
                         Button("Delete", role: .destructive) {
-                            model.showingDeleteConfirm = true
+                            vm.showingDeleteConfirm = true
                         }
                     } label: {
                         Image(systemName: "ellipsis.circle")
@@ -50,45 +50,45 @@ struct RecordDetailView: View {
             }
         }
         .confirmationDialog("Add Photo", isPresented: Binding(
-            get: { model.showingAddPhotoSource },
-            set: { model.showingAddPhotoSource = $0 }
+            get: { vm.showingAddPhotoSource },
+            set: { vm.showingAddPhotoSource = $0 }
         )) {
-            Button("Take Photo") { model.showingCamera = true }
-            Button("Choose from Library") { model.showingPhotoLibrary = true }
+            Button("Take Photo") { vm.showingCamera = true }
+            Button("Choose from Library") { vm.showingPhotoLibrary = true }
         }
         .sheet(isPresented: Binding(
-            get: { model.showingCamera },
-            set: { model.showingCamera = $0 }
+            get: { vm.showingCamera },
+            set: { vm.showingCamera = $0 }
         )) {
             CameraView(sourceType: .camera) { image in
-                model.showingCamera = false
-                Task { await model.attachPhoto(image, to: record) }
+                vm.showingCamera = false
+                Task { await vm.attachPhoto(image, to: record) }
             } onCancel: {
-                model.showingCamera = false
+                vm.showingCamera = false
             }
             .ignoresSafeArea()
         }
         .sheet(isPresented: Binding(
-            get: { model.showingPhotoLibrary },
-            set: { model.showingPhotoLibrary = $0 }
+            get: { vm.showingPhotoLibrary },
+            set: { vm.showingPhotoLibrary = $0 }
         )) {
             CameraView(sourceType: .photoLibrary) { image in
-                model.showingPhotoLibrary = false
-                Task { await model.attachPhoto(image, to: record) }
+                vm.showingPhotoLibrary = false
+                Task { await vm.attachPhoto(image, to: record) }
             } onCancel: {
-                model.showingPhotoLibrary = false
+                vm.showingPhotoLibrary = false
             }
             .ignoresSafeArea()
         }
         .sheet(isPresented: Binding(
-            get: { model.isEditing },
-            set: { model.isEditing = $0 }
+            get: { vm.isEditing },
+            set: { vm.isEditing = $0 }
         )) {
             EditRecordView(record: record, vm: model)
         }
         .confirmationDialog("Delete this record?", isPresented: Binding(
-            get: { model.showingDeleteConfirm },
-            set: { model.showingDeleteConfirm = $0 }
+            get: { vm.showingDeleteConfirm },
+            set: { vm.showingDeleteConfirm = $0 }
         ), titleVisibility: .visible) {
             Button("Delete", role: .destructive) {
                 let relativePaths = record.photos?.map(\.photoPath) ?? []
@@ -99,14 +99,9 @@ struct RecordDetailView: View {
             }
         }
         .errorAlert(message: Binding(
-            get: { model.errorMessage },
-            set: { model.errorMessage = $0 }
+            get: { vm.errorMessage },
+            set: { vm.errorMessage = $0 }
         ))
-        .task {
-            if vm == nil {
-                vm = RecordDetailViewModel(recordManager: container.recordManager)
-            }
-        }
     }
 
     // MARK: - Sections
