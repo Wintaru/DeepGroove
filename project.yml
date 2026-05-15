@@ -16,6 +16,23 @@ settings:
     ENABLE_HARDENED_RUNTIME: YES
 
 targets:
+  VinylCollectorTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: VinylCollectorTests
+        excludes:
+          - "**/.DS_Store"
+    settings:
+      base:
+        SWIFT_VERSION: "5.10"
+        SWIFT_STRICT_CONCURRENCY: targeted
+        GENERATE_INFOPLIST_FILE: YES
+        DEVELOPMENT_TEAM: 9C5WLPGP58
+    dependencies:
+      - target: VinylCollector
+
   VinylCollector:
     type: application
     platform: iOS
@@ -50,6 +67,8 @@ schemes:
       config: Debug
     test:
       config: Debug
+      targets:
+        - VinylCollectorTests
     profile:
       config: Release
     analyze:

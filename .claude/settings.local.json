@@ -22,7 +22,11 @@
       "Bash(mv /Users/jdonner/Workspace/VinylCollector/.claude/commands/cr.md /Users/jdonner/Workspace/VinylCollector/.claude/commands/codereview.md)",
       "Bash(mkdir -p /Users/jdonner/.claude/commands)",
       "Bash(cp /Users/jdonner/Workspace/VinylCollector/.claude/commands/codereview.md /Users/jdonner/.claude/commands/codereview.md)",
-      "Bash(cp /Users/jdonner/Workspace/VinylCollector/.claude/commands/add-tests.md /Users/jdonner/.claude/commands/add-tests.md)"
+      "Bash(cp /Users/jdonner/Workspace/VinylCollector/.claude/commands/add-tests.md /Users/jdonner/.claude/commands/add-tests.md)",
+      "Bash(xcodebuild -project VinylCollector.xcodeproj -scheme VinylCollector -destination 'platform=iOS Simulator,name=iPhone 16' -only-testing:VinylCollectorTests build-for-testing)",
+      "Bash(xcrun simctl *)",
+      "Bash(xcodebuild -project VinylCollector.xcodeproj -scheme VinylCollector -destination 'platform=iOS Simulator,name=iPhone 16 Pro' -only-testing:VinylCollectorTests build-for-testing)",
+      "Bash(xcodebuild -project /Users/jdonner/Workspace/VinylCollector/VinylCollector.xcodeproj -scheme VinylCollector -destination 'id=BEE9732F-495F-4981-B8B4-F1022D74D1C3' -only-testing:VinylCollectorTests build-for-testing)"
     ],
     "additionalDirectories": [
       "/Users/jdonner/.claude",

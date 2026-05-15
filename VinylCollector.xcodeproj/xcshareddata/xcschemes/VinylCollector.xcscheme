@@ -39,6 +39,17 @@
          </BuildableReference>
       </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0439E3FDC3CA56859A01C096"
+               BuildableName = "VinylCollectorTests.xctest"
+               BlueprintName = "VinylCollectorTests"
+               ReferencedContainer = "container:VinylCollector.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <CommandLineArguments>
       </CommandLineArguments>
