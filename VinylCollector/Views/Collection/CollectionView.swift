@@ -5,12 +5,9 @@ struct CollectionView: View {
     @EnvironmentObject private var container: DependencyContainer
     @Environment(\.modelContext) private var modelContext
     @Query private var allRecords: [VinylRecord]
-    @State private var viewModel: CollectionViewModel?
-
-    private var vm: CollectionViewModel { viewModel ?? CollectionViewModel() }
+    @State private var vm = CollectionViewModel()
 
     private var displayRecords: [VinylRecord] {
-        guard let vm = viewModel else { return allRecords }
         var records = allRecords
 
         if !vm.searchText.isEmpty {
@@ -86,11 +83,6 @@ struct CollectionView: View {
                 get: { vm.errorMessage },
                 set: { vm.errorMessage = $0 }
             ))
-        }
-        .task {
-            if viewModel == nil {
-                viewModel = CollectionViewModel()
-            }
         }
     }
 

@@ -1,13 +1,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject private var container: DependencyContainer
+
     var body: some View {
         TabView {
             CollectionView()
                 .tabItem {
                     Label("Collection", systemImage: "record.circle")
                 }
-            StatisticsView()
+            StatisticsView(statisticsManager: container.statisticsManager)
                 .tabItem {
                     Label("Statistics", systemImage: "chart.bar.fill")
                 }

@@ -1,19 +1,18 @@
 import SwiftUI
 
 struct StatisticsView: View {
-    @EnvironmentObject private var container: DependencyContainer
-    @State private var vm: StatisticsViewModel?
+    @State private var vm: StatisticsViewModel
 
-    private var model: StatisticsViewModel {
-        vm ?? StatisticsViewModel(statisticsManager: container.statisticsManager)
+    init(statisticsManager: IStatisticsManager) {
+        _vm = State(initialValue: StatisticsViewModel(statisticsManager: statisticsManager))
     }
 
     var body: some View {
         NavigationStack {
             Group {
-                if model.isLoading {
+                if vm.isLoading {
                     ProgressView("Loading statistics…")
-                } else if let stats = model.statistics {
+                } else if let stats = vm.statistics {
                     statisticsContent(stats)
                 } else {
                     ContentUnavailableView(
@@ -25,15 +24,12 @@ struct StatisticsView: View {
             }
             .navigationTitle("Statistics")
             .errorAlert(message: Binding(
-                get: { model.errorMessage },
-                set: { model.errorMessage = $0 }
+                get: { vm.errorMessage },
+                set: { vm.errorMessage = $0 }
             ))
         }
         .task {
-            if vm == nil {
-                vm = StatisticsViewModel(statisticsManager: container.statisticsManager)
-            }
-            await model.load()
+            await vm.load()
         }
     }
 
