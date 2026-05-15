@@ -50,7 +50,7 @@ struct StatisticsView: View {
             if !stats.topArtists.isEmpty {
                 Section("Top Artists") {
                     ForEach(stats.topArtists, id: \.artist) { stat in
-                        NavigationLink(destination: FilteredRecordListView(filter: .artist(stat.artist))) {
+                        NavigationLink(destination: FilteredRecordListView(title: stat.artist, filter: CollectionFilter(artists: [stat.artist]))) {
                             HStack {
                                 Text(stat.artist)
                                     .lineLimit(1)
@@ -67,7 +67,7 @@ struct StatisticsView: View {
             if !stats.genreBreakdown.isEmpty {
                 Section("Genres") {
                     ForEach(stats.genreBreakdown, id: \.genre) { stat in
-                        NavigationLink(destination: FilteredRecordListView(filter: .genre(stat.genre))) {
+                        NavigationLink(destination: FilteredRecordListView(title: stat.genre, filter: CollectionFilter(genres: [stat.genre]))) {
                             VStack(alignment: .leading, spacing: 4) {
                                 HStack {
                                     Text(stat.genre)
@@ -93,7 +93,7 @@ struct StatisticsView: View {
             if !stats.decadeBreakdown.isEmpty {
                 Section("By Decade") {
                     ForEach(stats.decadeBreakdown, id: \.decade) { stat in
-                        NavigationLink(destination: FilteredRecordListView(filter: .decade(stat.decade))) {
+                        NavigationLink(destination: FilteredRecordListView(title: "\(stat.decade)s", filter: CollectionFilter(decades: [stat.decade]))) {
                             HStack {
                                 Text("\(stat.decade)s")
                                 Spacer()
@@ -110,7 +110,7 @@ struct StatisticsView: View {
                 Section("Condition") {
                     ForEach(RecordCondition.allCases.filter { stats.conditionBreakdown[$0] != nil },
                             id: \.self) { condition in
-                        NavigationLink(destination: FilteredRecordListView(filter: .condition(condition))) {
+                        NavigationLink(destination: FilteredRecordListView(title: condition.displayName, filter: CollectionFilter(conditions: [condition]))) {
                             HStack {
                                 Text(condition.displayName)
                                 Spacer()
