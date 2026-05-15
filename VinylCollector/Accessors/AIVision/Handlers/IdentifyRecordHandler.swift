@@ -35,8 +35,6 @@ final class IdentifyRecordHandler: IHandler {
         Only return {"unidentifiable": true} if you truly have no useful information at all. Even a partial identification (just artist, or just album title) is valuable — include whatever you can determine.
         """
 
-    private let stringUtility = StringUtility()
-
     init(networkUtility: NetworkUtility, imageUtility: ImageUtility) {
         self.networkUtility = networkUtility
         self.imageUtility = imageUtility
@@ -78,35 +76,13 @@ final class IdentifyRecordHandler: IHandler {
                 return IdentifyRecordResponse(correlationId: req.correlationId,
                                               errorMessage: "Empty response from Claude.")
             }
-            let identification = parseIdentification(from: text, correlationId: req.correlationId)
-            return IdentifyRecordResponse(correlationId: req.correlationId, identification: identification)
+            return IdentifyRecordResponse(correlationId: req.correlationId, rawJSON: text)
         } catch {
             return IdentifyRecordResponse(correlationId: req.correlationId,
                                           errorMessage: "AI identification failed: \(error.localizedDescription)")
         }
     }
 
-    private func parseIdentification(from text: String, correlationId: UUID) -> AIIdentification {
-        // Extract JSON from the response (Claude may wrap it in markdown code fences)
-        let jsonString = stringUtility.extractJSON(from: text) ?? text
-        guard
-            let data = jsonString.data(using: .utf8),
-            let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
-        else {
-            return AIIdentification(artist: nil, albumTitle: nil, year: nil, label: nil,
-                                    catalogNumber: nil, genres: [], country: nil, rawJSON: text)
-        }
-        return AIIdentification(
-            artist: json["artist"] as? String,
-            albumTitle: json["albumTitle"] as? String,
-            year: json["year"] as? Int,
-            label: json["label"] as? String,
-            catalogNumber: json["catalogNumber"] as? String,
-            genres: json["genres"] as? [String] ?? [],
-            country: json["country"] as? String,
-            rawJSON: text
-        )
-    }
 
 }
 

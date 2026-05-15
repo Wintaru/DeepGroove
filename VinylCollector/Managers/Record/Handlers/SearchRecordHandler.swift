@@ -84,11 +84,11 @@ final class SearchRecordHandler: IHandler {
         guard let identified = response as? IdentifyRecordResponse else {
             return (nil, response.errorMessage ?? "AI identification failed.")
         }
-        guard let raw = identified.identification else {
+        guard let rawJSON = identified.rawJSON else {
             return (nil, identified.errorMessage ?? "Could not identify record from photo.")
         }
         let parseResponse = await identificationEngine.evaluate(
-            ParseIdentificationRequest(rawJSON: raw.rawJSON)
+            ParseIdentificationRequest(rawJSON: rawJSON)
         )
         return ((parseResponse as? ParseIdentificationResponse)?.identification, nil)
     }

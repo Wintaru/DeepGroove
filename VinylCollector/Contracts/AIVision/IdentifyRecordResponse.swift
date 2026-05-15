@@ -12,15 +12,15 @@ struct AIIdentification: Sendable {
 }
 
 final class IdentifyRecordResponse: ResponseBase {
-    let identification: AIIdentification?
+    let rawJSON: String?
 
-    init(correlationId: UUID, identification: AIIdentification) {
-        self.identification = identification
+    init(correlationId: UUID, rawJSON: String) {
+        self.rawJSON = rawJSON
         super.init(correlationId: correlationId, success: true)
     }
 
     init(correlationId: UUID, errorMessage: String) {
-        self.identification = nil
+        self.rawJSON = nil
         super.init(correlationId: correlationId, success: false, errorMessage: errorMessage)
     }
 }
