@@ -21,7 +21,8 @@
       "Bash(mkdir -p /Users/jdonner/Workspace/VinylCollector/.claude/commands)",
       "Bash(mv /Users/jdonner/Workspace/VinylCollector/.claude/commands/cr.md /Users/jdonner/Workspace/VinylCollector/.claude/commands/codereview.md)",
       "Bash(mkdir -p /Users/jdonner/.claude/commands)",
-      "Bash(cp /Users/jdonner/Workspace/VinylCollector/.claude/commands/codereview.md /Users/jdonner/.claude/commands/codereview.md)"
+      "Bash(cp /Users/jdonner/Workspace/VinylCollector/.claude/commands/codereview.md /Users/jdonner/.claude/commands/codereview.md)",
+      "Bash(cp /Users/jdonner/Workspace/VinylCollector/.claude/commands/add-tests.md /Users/jdonner/.claude/commands/add-tests.md)"
     ],
     "additionalDirectories": [
       "/Users/jdonner/.claude",
