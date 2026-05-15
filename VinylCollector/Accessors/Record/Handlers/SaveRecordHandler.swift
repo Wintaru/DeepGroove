@@ -14,21 +14,21 @@ final class SaveRecordHandler: IHandler {
             return UnhandledRequestResponse(correlationId: request.correlationId,
                                            requestType: String(describing: type(of: request)))
         }
-        let d = req.data
+        let c = req.candidate
         let record = VinylRecord(
-            artist: d.artist,
-            albumTitle: d.albumTitle,
-            year: d.year,
-            label: d.label,
-            catalogNumber: d.catalogNumber,
-            genres: d.genres,
-            styles: d.styles,
-            country: d.country,
-            discogsId: d.discogsId,
-            notes: d.notes,
-            condition: d.condition,
-            artworkSource: d.artworkSource,
-            estimatedValue: d.estimatedValue
+            artist: c.artist,
+            albumTitle: c.albumTitle,
+            year: c.year,
+            label: c.label,
+            catalogNumber: c.catalogNumber,
+            genres: c.genres,
+            styles: c.styles,
+            country: c.country,
+            discogsId: c.discogsId,
+            notes: c.notes,
+            condition: c.condition,
+            artworkSource: c.artworkSource,
+            estimatedValue: c.estimatedValue
         )
         do {
             modelContext.insert(record)

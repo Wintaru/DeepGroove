@@ -66,24 +66,7 @@ final class AddRecordHandler: IHandler {
             )
         }
 
-        let creationData = RecordCreationData(
-            artist: candidate.artist,
-            albumTitle: candidate.albumTitle,
-            year: candidate.year,
-            label: candidate.label,
-            catalogNumber: candidate.catalogNumber,
-            genres: candidate.genres,
-            styles: candidate.styles,
-            country: candidate.country,
-            discogsId: candidate.discogsId,
-            notes: candidate.notes,
-            condition: candidate.condition,
-            artworkSource: candidate.artworkSource,
-            artworkURL: candidate.artworkURL,
-            estimatedValue: candidate.estimatedValue
-        )
-
-        let saveResponse = await recordAccessor.store(SaveRecordRequest(data: creationData))
+        let saveResponse = await recordAccessor.store(SaveRecordRequest(candidate: candidate))
         guard saveResponse.success, let recordId = (saveResponse as? SaveRecordResponse)?.recordId else {
             return AddRecordResponse(
                 correlationId: req.correlationId,
