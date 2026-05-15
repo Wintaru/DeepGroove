@@ -24,14 +24,10 @@ struct StatisticsView: View {
                 }
             }
             .navigationTitle("Statistics")
-            .alert("Error", isPresented: Binding(
-                get: { model.errorMessage != nil },
-                set: { if !$0 { model.errorMessage = nil } }
-            )) {
-                Button("OK") { model.errorMessage = nil }
-            } message: {
-                Text(model.errorMessage ?? "")
-            }
+            .errorAlert(message: Binding(
+                get: { model.errorMessage },
+                set: { model.errorMessage = $0 }
+            ))
         }
         .task {
             if vm == nil {
