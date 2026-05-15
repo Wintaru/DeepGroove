@@ -14,10 +14,19 @@
       "Bash(grep -v \"^$\")",
       "Bash(xcodebuild -project /Users/jdonner/Workspace/VinylCollector/VinylCollector.xcodeproj -scheme VinylCollector -destination 'generic/platform=iOS Simulator' build)",
       "Bash(xcode-select -p)",
-      "Bash(sudo xcode-select -s /Applications/Xcode-16.4.0.app/Contents/Developer)"
+      "Bash(sudo xcode-select -s /Applications/Xcode-16.4.0.app/Contents/Developer)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(mkdir -p /Users/jdonner/Workspace/VinylCollector/.claude/commands)",
+      "Bash(mv /Users/jdonner/Workspace/VinylCollector/.claude/commands/cr.md /Users/jdonner/Workspace/VinylCollector/.claude/commands/codereview.md)",
+      "Bash(mkdir -p /Users/jdonner/.claude/commands)",
+      "Bash(cp /Users/jdonner/Workspace/VinylCollector/.claude/commands/codereview.md /Users/jdonner/.claude/commands/codereview.md)"
     ],
     "additionalDirectories": [
-      "/Users/jdonner/.claude"
+      "/Users/jdonner/.claude",
+      "/Users/jdonner/Workspace/VinylCollector/.claude",
+      "/Users/jdonner/Workspace/VinylCollector/.claude/commands"
     ]
   }
 }
