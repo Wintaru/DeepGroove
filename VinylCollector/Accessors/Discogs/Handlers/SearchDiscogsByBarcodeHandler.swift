@@ -13,15 +13,17 @@ final class SearchDiscogsByBarcodeHandler: IHandler {
                                            requestType: String(describing: type(of: request)))
         }
         do {
-            let results = try await performDiscogsSearch(
+            let (results, totalPages) = try await performDiscogsSearch(
                 queryItems: [
                     URLQueryItem(name: "barcode", value: req.barcode),
                     URLQueryItem(name: "type", value: "release")
                 ],
                 token: req.token,
+                page: req.page,
                 networkUtility: networkUtility
             )
-            return SearchDiscogsResponse(correlationId: req.correlationId, results: results)
+            return SearchDiscogsResponse(correlationId: req.correlationId, results: results,
+                                          totalPages: totalPages)
         } catch {
             return SearchDiscogsResponse(correlationId: req.correlationId,
                                           errorMessage: error.localizedDescription)

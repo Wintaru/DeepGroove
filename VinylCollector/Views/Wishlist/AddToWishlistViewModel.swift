@@ -1,40 +1,16 @@
 import UIKit
 
-enum RecordInputMethod {
-    case camera, photoLibrary, barcodeScanner, manualEntry
-
-    var resumeState: AddRecordState {
-        switch self {
-        case .camera:        return .showingCamera
-        case .photoLibrary:  return .showingPhotoLibrary
-        case .barcodeScanner: return .showingBarcodeScanner
-        case .manualEntry:   return .showingManualEntry
-        }
-    }
-
-    var addAnotherLabel: String {
-        switch self {
-        case .camera:         return "Take Another Photo"
-        case .photoLibrary:   return "Choose Another Photo"
-        case .barcodeScanner: return "Scan Another"
-        case .manualEntry:    return "Add Another Manually"
-        }
-    }
-}
-
-enum AddRecordState {
+enum AddToWishlistState {
     case selectSource
     case showingCamera
     case showingPhotoLibrary
     case showingBarcodeScanner
     case showingManualEntry
-    // Photo captured — waiting for user to confirm crop region before searching
     case confirmingCrop(image: UIImage, detectedRect: CGRect?)
-    case identifying
+    case searching
     case showingDiscogsResults(
             candidates: [DiscogsSearchResult],
             identification: AIIdentification?,
-            userPhoto: UIImage?,
             currentPage: Int,
             totalPages: Int)
     case success(String)
@@ -43,86 +19,70 @@ enum AddRecordState {
 }
 
 @Observable
-final class AddRecordViewModel {
-    var state: AddRecordState = .selectSource
-    var artworkPreference: ArtworkSource = .downloaded
-    var condition: RecordCondition = .veryGoodPlus
-    var notes = ""
+final class AddToWishlistViewModel {
+    var state: AddToWishlistState = .selectSource
 
-    // Manual entry fields
     var manualArtist = ""
     var manualAlbumTitle = ""
     var manualYear = ""
     var manualLabel = ""
 
-    // Photo captured during the search phase — kept so manual entry can still attach it
-    var pendingUserPhoto: UIImage?
-    private(set) var lastUsedMethod: RecordInputMethod?
-
-    var addAnotherLabel: String { lastUsedMethod?.addAnotherLabel ?? "Add Another" }
     var isLoadingMore = false
 
     private let recordManager: IRecordManager
+    private let wishlistManager: IWishlistManager
     private let imageUtility = ImageUtility()
-    private let onSuccess: (() -> Void)?
 
-    init(recordManager: IRecordManager, onSuccess: (() -> Void)? = nil) {
+    init(recordManager: IRecordManager, wishlistManager: IWishlistManager) {
         self.recordManager = recordManager
-        self.onSuccess = onSuccess
+        self.wishlistManager = wishlistManager
     }
 
     // MARK: - Source selection
 
-    func selectCamera() {
-        lastUsedMethod = .camera
-        state = .showingCamera
-    }
+    func selectCamera() { state = .showingCamera }
+    func selectPhotoLibrary() { state = .showingPhotoLibrary }
+    func selectBarcodeScanner() { state = .showingBarcodeScanner }
+    func goToManualEntry() { state = .showingManualEntry }
 
-    func selectPhotoLibrary() {
-        lastUsedMethod = .photoLibrary
-        state = .showingPhotoLibrary
-    }
-
-    func selectBarcodeScanner() {
-        lastUsedMethod = .barcodeScanner
-        state = .showingBarcodeScanner
-    }
-
-    // Clears the remembered method and returns to source selection.
-    func chooseDifferentMethod() {
-        lastUsedMethod = nil
+    func reset() {
         state = .selectSource
+        manualArtist = ""
+        manualAlbumTitle = ""
+        manualYear = ""
+        manualLabel = ""
     }
 
-    // MARK: - Step 1: Search
+    // MARK: - Search
 
-    // Called immediately after photo capture — detects the cover rect and shows crop confirmation.
     func photoSelected(_ image: UIImage) {
         let rect = imageUtility.detectCoverRect(in: image)
         state = .confirmingCrop(image: image, detectedRect: rect)
     }
 
-    // Called from the crop confirmation screen — crops if a rect was chosen, then searches.
     func searchWithCrop(_ image: UIImage, rect: CGRect?) async {
         let searchImage = rect.map { imageUtility.crop(image: image, to: $0) } ?? image
         await searchFromPhoto(searchImage)
     }
 
     func searchFromPhoto(_ image: UIImage) async {
-        state = .identifying
+        state = .searching
         let response = await recordManager.query(SearchRecordRequest(source: .photo(image)))
         handleSearchResponse(response)
     }
 
     func searchFromBarcode(_ barcode: String) async {
-        state = .identifying
+        state = .searching
         let response = await recordManager.query(SearchRecordRequest(source: .barcode(barcode)))
         handleSearchResponse(response)
     }
 
-    func goToManualEntry() {
-        lastUsedMethod = .manualEntry
-        state = .showingManualEntry
+    func searchDiscogsFromManualFields() async {
+        state = .searching
+        let response = await recordManager.query(SearchRecordRequest(
+            source: .text(artist: manualArtist, albumTitle: manualAlbumTitle)
+        ))
+        handleSearchResponse(response)
     }
 
     func selectNoMatch(identification: AIIdentification?) {
@@ -133,28 +93,11 @@ final class AddRecordViewModel {
         state = .showingManualEntry
     }
 
-    func searchDiscogsFromManualFields() async {
-        state = .identifying
-        let response = await recordManager.query(SearchRecordRequest(
-            source: .text(artist: manualArtist, albumTitle: manualAlbumTitle)
-        ))
-        handleSearchResponse(response)
-    }
+    // MARK: - Save to wishlist
 
-    // MARK: - Step 2: Confirm selection and save
-
-    func confirmResult(_ chosen: DiscogsSearchResult?,
-                       identification: AIIdentification?,
-                       userPhoto: UIImage?) async {
-        state = .identifying
-        let response = await recordManager.execute(AddRecordRequest(
-            chosenResult: chosen,
-            identification: identification,
-            userPhoto: userPhoto,
-            artworkPreference: artworkPreference,
-            condition: condition,
-            notes: notes.isEmpty ? nil : notes
-        ))
+    func confirmResult(_ chosen: DiscogsSearchResult) async {
+        state = .searching
+        let response = await wishlistManager.execute(AddToWishlistRequest(chosenResult: chosen))
         handleSaveResponse(response)
     }
 
@@ -163,12 +106,8 @@ final class AddRecordViewModel {
             state = .failure("Artist and album title are required.")
             return
         }
-        state = .identifying
-        let response = await recordManager.execute(AddRecordRequest(
-            userPhoto: pendingUserPhoto,
-            artworkPreference: pendingUserPhoto != nil ? .userPhoto : artworkPreference,
-            condition: condition,
-            notes: notes.isEmpty ? nil : notes,
+        state = .searching
+        let response = await wishlistManager.execute(AddToWishlistRequest(
             artistOverride: manualArtist,
             albumTitleOverride: manualAlbumTitle,
             yearOverride: Int(manualYear),
@@ -177,20 +116,10 @@ final class AddRecordViewModel {
         handleSaveResponse(response)
     }
 
-    func reset() {
-        state = lastUsedMethod?.resumeState ?? .selectSource
-        notes = ""
-        manualArtist = ""
-        manualAlbumTitle = ""
-        manualYear = ""
-        manualLabel = ""
-        pendingUserPhoto = nil
-    }
-
     // MARK: - Private
 
     func loadMoreResults() async {
-        guard case let .showingDiscogsResults(existing, identification, userPhoto, currentPage, totalPages) = state,
+        guard case let .showingDiscogsResults(existing, identification, currentPage, totalPages) = state,
               currentPage < totalPages,
               !manualArtist.isEmpty || !manualAlbumTitle.isEmpty else { return }
         isLoadingMore = true
@@ -203,7 +132,6 @@ final class AddRecordViewModel {
         state = .showingDiscogsResults(
             candidates: existing + result.candidates,
             identification: identification,
-            userPhoto: userPhoto,
             currentPage: result.currentPage,
             totalPages: result.totalPages
         )
@@ -214,14 +142,10 @@ final class AddRecordViewModel {
             state = .failure(response.errorMessage ?? "Search failed.")
             return
         }
-        if let photo = result.userPhoto {
-            pendingUserPhoto = photo
-        }
         if !result.candidates.isEmpty {
             state = .showingDiscogsResults(
                 candidates: result.candidates,
                 identification: result.identification,
-                userPhoto: result.userPhoto,
                 currentPage: result.currentPage,
                 totalPages: result.totalPages
             )
@@ -238,12 +162,11 @@ final class AddRecordViewModel {
     }
 
     private func handleSaveResponse(_ response: ResponseBase) {
-        if let result = response as? AddRecordResponse, result.success,
+        if let result = response as? AddToWishlistResponse, result.success,
            let title = result.displayTitle {
             state = .success(title)
-            onSuccess?()
         } else {
-            state = .failure(response.errorMessage ?? "Failed to add record.")
+            state = .failure(response.errorMessage ?? "Failed to add to wishlist.")
         }
     }
 }

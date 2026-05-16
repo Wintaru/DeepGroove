@@ -3,19 +3,27 @@ import Foundation
 func performDiscogsSearch(
     queryItems: [URLQueryItem],
     token: String?,
+    page: Int = 1,
     networkUtility: NetworkUtility
-) async throws -> [DiscogsSearchResult] {
+) async throws -> (results: [DiscogsSearchResult], totalPages: Int) {
     var components = URLComponents(string: DiscogsAPI.searchURL)!
     components.queryItems = queryItems
+    components.queryItems?.append(URLQueryItem(name: "per_page", value: "25"))
+    components.queryItems?.append(URLQueryItem(name: "page", value: String(page)))
     if let token {
         components.queryItems?.append(URLQueryItem(name: "token", value: token))
     }
     let data = try await networkUtility.get(url: components.url!, headers: DiscogsAPI.userAgentHeaders)
     let decoded = try JSONDecoder().decode(DiscogsSearchAPIResponse.self, from: data)
-    return decoded.results.map { $0.toSearchResult() }
+    return (decoded.results.map { $0.toSearchResult() }, decoded.pagination.pages)
 }
 
-struct DiscogsSearchAPIResponse: Decodable {
+fileprivate struct DiscogsPagination: Decodable {
+    let pages: Int
+}
+
+fileprivate struct DiscogsSearchAPIResponse: Decodable {
+    let pagination: DiscogsPagination
     let results: [DiscogsSearchAPIResult]
 }
 

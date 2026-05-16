@@ -21,8 +21,6 @@ final class SearchRecordHandler: IHandler {
         self.apiConfiguration = apiConfiguration
     }
 
-    private let maxCandidates = 8
-
     func handle(_ request: RequestBase) async -> ResponseBase {
         guard let req = request as? SearchRecordRequest else {
             return UnhandledRequestResponse(correlationId: request.correlationId,
@@ -31,7 +29,6 @@ final class SearchRecordHandler: IHandler {
 
         switch req.source {
         case .photo(let image):
-            // Try barcode detection in the image first — faster and more precise
             if let barcode = imageUtility.detectBarcode(in: image) {
                 let candidates = await searchByBarcode(barcode, correlationId: req.correlationId)
                 if !candidates.isEmpty {
@@ -39,7 +36,6 @@ final class SearchRecordHandler: IHandler {
                                                candidates: candidates, userPhoto: image)
                 }
             }
-            // Fall back to AI visual identification
             let (identification, aiError) = await identifyViaAI(image: image)
             if let aiError, identification == nil {
                 return SearchRecordResponse(correlationId: req.correlationId, errorMessage: aiError)
@@ -55,19 +51,27 @@ final class SearchRecordHandler: IHandler {
             return SearchRecordResponse(correlationId: req.correlationId, candidates: candidates)
 
         case .text(let artist, let albumTitle):
-            let query = [artist, albumTitle].filter { !$0.isEmpty }.joined(separator: " ")
             let response = await discogsAccessor.load(
-                SearchDiscogsRequest(query: query, token: apiConfiguration.discogsToken)
+                SearchDiscogsRequest(
+                    artist: artist.isEmpty ? nil : artist,
+                    releaseTitle: albumTitle.isEmpty ? nil : albumTitle,
+                    sort: "have",
+                    sortOrder: "desc",
+                    token: apiConfiguration.discogsToken,
+                    page: req.page
+                )
             )
-            let results = Array(((response as? SearchDiscogsResponse)?.results ?? []).prefix(maxCandidates))
+            let discogsResponse = response as? SearchDiscogsResponse
             let identification = AIIdentification(
                 artist: artist.isEmpty ? nil : artist,
                 albumTitle: albumTitle.isEmpty ? nil : albumTitle,
                 year: nil, label: nil, catalogNumber: nil, genres: [], country: nil, rawJSON: ""
             )
             return SearchRecordResponse(correlationId: req.correlationId,
-                                        candidates: results,
-                                        identification: identification)
+                                        candidates: discogsResponse?.results ?? [],
+                                        identification: identification,
+                                        currentPage: req.page,
+                                        totalPages: discogsResponse?.totalPages ?? 1)
 
         case .manual:
             return SearchRecordResponse(correlationId: req.correlationId, candidates: [])
@@ -107,9 +111,14 @@ final class SearchRecordHandler: IHandler {
             return []
         }
         let response = await discogsAccessor.load(
-            SearchDiscogsRequest(query: "\(artist) \(title)", token: apiConfiguration.discogsToken)
+            SearchDiscogsRequest(
+                artist: artist,
+                releaseTitle: title,
+                sort: "have",
+                sortOrder: "desc",
+                token: apiConfiguration.discogsToken
+            )
         )
-        let results = (response as? SearchDiscogsResponse)?.results ?? []
-        return Array(results.prefix(maxCandidates))
+        return (response as? SearchDiscogsResponse)?.results ?? []
     }
 }

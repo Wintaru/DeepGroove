@@ -7,6 +7,7 @@ final class DependencyContainer: ObservableObject {
     // MARK: - Public managers (consumed by views / view-models)
     let recordManager: IRecordManager
     let statisticsManager: IStatisticsManager
+    let wishlistManager: IWishlistManager
 
     // MARK: - Shared observable configuration (consumed by SettingsView)
     let apiConfiguration: APIConfiguration
@@ -20,6 +21,18 @@ final class DependencyContainer: ObservableObject {
         let files = FileManagerUtility()
 
         // ── Accessors ──────────────────────────────────────────────────────────
+
+        let wishlistAccessor = WishlistAccessor(
+            storeResolver: HandlerResolverBuilder()
+                .register(SaveWishlistItemHandler(modelContext: modelContext), for: SaveWishlistItemRequest.self)
+                .build(),
+            loadResolver: HandlerResolverBuilder()
+                .register(LoadAllWishlistItemsHandler(modelContext: modelContext), for: LoadAllWishlistItemsRequest.self)
+                .build(),
+            removeResolver: HandlerResolverBuilder()
+                .register(DeleteWishlistItemHandler(modelContext: modelContext), for: DeleteWishlistItemRequest.self)
+                .build()
+        )
 
         let recordAccessor = RecordAccessor(
             storeResolver: HandlerResolverBuilder()
@@ -124,6 +137,16 @@ final class DependencyContainer: ObservableObject {
                 .register(GetStatisticsHandler(recordAccessor: recordAccessor,
                                                statisticsEngine: statisticsEngine),
                           for: GetStatisticsRequest.self)
+                .build()
+        )
+
+        self.wishlistManager = WishlistManager(
+            executeResolver: HandlerResolverBuilder()
+                .register(AddToWishlistHandler(wishlistAccessor: wishlistAccessor), for: AddToWishlistRequest.self)
+                .register(RemoveFromWishlistHandler(wishlistAccessor: wishlistAccessor), for: RemoveFromWishlistRequest.self)
+                .build(),
+            queryResolver: HandlerResolverBuilder()
+                .register(GetWishlistHandler(wishlistAccessor: wishlistAccessor), for: GetWishlistRequest.self)
                 .build()
         )
 

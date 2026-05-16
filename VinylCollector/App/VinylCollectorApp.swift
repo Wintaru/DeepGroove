@@ -8,7 +8,7 @@ struct VinylCollectorApp: App {
 
     init() {
         do {
-            let schema = Schema([VinylRecord.self, RecordPhoto.self])
+            let schema = Schema([VinylRecord.self, RecordPhoto.self, WishlistRecord.self])
             let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false,
                                             cloudKitDatabase: .none)
             let container = try ModelContainer(for: schema, configurations: [config])

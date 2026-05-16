@@ -13,16 +13,21 @@ final class SearchDiscogsHandler: IHandler {
                                            requestType: String(describing: type(of: request)))
         }
         do {
-            let results = try await performDiscogsSearch(
-                queryItems: [
-                    URLQueryItem(name: "q", value: req.query),
-                    URLQueryItem(name: "type", value: "release"),
-                    URLQueryItem(name: "per_page", value: "10")
-                ],
+            var queryItems: [URLQueryItem] = [URLQueryItem(name: "type", value: "release")]
+            if let q = req.query          { queryItems.append(.init(name: "q",             value: q)) }
+            if let a = req.artist         { queryItems.append(.init(name: "artist",         value: a)) }
+            if let t = req.releaseTitle   { queryItems.append(.init(name: "release_title",  value: t)) }
+            if let s = req.sort           { queryItems.append(.init(name: "sort",           value: s)) }
+            if let o = req.sortOrder      { queryItems.append(.init(name: "sort_order",     value: o)) }
+
+            let (results, totalPages) = try await performDiscogsSearch(
+                queryItems: queryItems,
                 token: req.token,
+                page: req.page,
                 networkUtility: networkUtility
             )
-            return SearchDiscogsResponse(correlationId: req.correlationId, results: results)
+            return SearchDiscogsResponse(correlationId: req.correlationId, results: results,
+                                         totalPages: totalPages)
         } catch {
             return SearchDiscogsResponse(correlationId: req.correlationId,
                                          errorMessage: error.localizedDescription)

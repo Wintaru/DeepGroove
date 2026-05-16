@@ -1,6 +1,6 @@
 import Foundation
 
-struct DiscogsSearchResult: Sendable {
+struct DiscogsSearchResult: Sendable, Hashable {
     let id: Int
     let title: String
     let year: String?
@@ -16,14 +16,17 @@ struct DiscogsSearchResult: Sendable {
 
 final class SearchDiscogsResponse: ResponseBase, @unchecked Sendable {
     let results: [DiscogsSearchResult]
+    let totalPages: Int
 
-    init(correlationId: UUID, results: [DiscogsSearchResult]) {
+    init(correlationId: UUID, results: [DiscogsSearchResult], totalPages: Int) {
         self.results = results
+        self.totalPages = totalPages
         super.init(correlationId: correlationId, success: true)
     }
 
     init(correlationId: UUID, errorMessage: String) {
         self.results = []
+        self.totalPages = 0
         super.init(correlationId: correlationId, success: false, errorMessage: errorMessage)
     }
 }

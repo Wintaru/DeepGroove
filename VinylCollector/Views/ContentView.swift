@@ -9,6 +9,10 @@ struct ContentView: View {
                 .tabItem {
                     Label("Collection", systemImage: "record.circle")
                 }
+            WishlistView()
+                .tabItem {
+                    Label("Wishlist", systemImage: "star.circle")
+                }
             StatisticsView(statisticsManager: container.statisticsManager)
                 .tabItem {
                     Label("Statistics", systemImage: "chart.bar.fill")

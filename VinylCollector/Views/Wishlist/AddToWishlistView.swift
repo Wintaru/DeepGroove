@@ -1,11 +1,14 @@
 import SwiftUI
 
-struct AddRecordView: View {
+struct AddToWishlistView: View {
     @Environment(\.dismiss) private var dismiss
-    @State private var vm: AddRecordViewModel
+    @State private var vm: AddToWishlistViewModel
 
-    init(recordManager: IRecordManager, onSuccess: (() -> Void)? = nil) {
-        _vm = State(initialValue: AddRecordViewModel(recordManager: recordManager, onSuccess: onSuccess))
+    init(recordManager: IRecordManager, wishlistManager: IWishlistManager) {
+        _vm = State(initialValue: AddToWishlistViewModel(
+            recordManager: recordManager,
+            wishlistManager: wishlistManager
+        ))
     }
 
     var body: some View {
@@ -27,18 +30,15 @@ struct AddRecordView: View {
                     CoverCropView(image: image, detectedRect: detectedRect) { rect in
                         Task { await vm.searchWithCrop(image, rect: rect) }
                     }
-                case .identifying:
-                    identifyingView
-                case .showingDiscogsResults(let candidates, let identification, let userPhoto,
+                case .searching:
+                    searchingView
+                case .showingDiscogsResults(let candidates, let identification,
                                             let currentPage, let totalPages):
                     DiscogsPickerView(
                         candidates: candidates,
                         hasMore: currentPage < totalPages,
                         isLoadingMore: vm.isLoadingMore,
-                        onSelect: { result in
-                            Task { await vm.confirmResult(result, identification: identification,
-                                                         userPhoto: userPhoto) }
-                        },
+                        onSelect: { result in Task { await vm.confirmResult(result) } },
                         onNoMatch: { vm.selectNoMatch(identification: identification) },
                         onLoadMore: { Task { await vm.loadMoreResults() } }
                     )
@@ -50,7 +50,7 @@ struct AddRecordView: View {
                     failureView(message)
                 }
             }
-            .navigationTitle("Add Record")
+            .navigationTitle("Add to Wishlist")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -64,7 +64,7 @@ struct AddRecordView: View {
 
     private var sourceSelectionView: some View {
         VStack(spacing: 20) {
-            Text("How would you like to add this record?")
+            Text("How would you like to find this record?")
                 .font(.headline)
                 .multilineTextAlignment(.center)
                 .padding(.top, 32)
@@ -92,9 +92,9 @@ struct AddRecordView: View {
                 ) { vm.selectBarcodeScanner() }
 
                 sourceButton(
-                    title: "Manual Entry",
-                    subtitle: "Type in the details yourself",
-                    icon: "pencil",
+                    title: "Search by Name",
+                    subtitle: "Type in the artist or album title",
+                    icon: "magnifyingglass",
                     color: .orange
                 ) { vm.goToManualEntry() }
             }
@@ -159,7 +159,7 @@ struct AddRecordView: View {
 
     // MARK: - Manual entry
 
-    private func manualEntryView(model: Bindable<AddRecordViewModel>) -> some View {
+    private func manualEntryView(model: Bindable<AddToWishlistViewModel>) -> some View {
         let canSearch = !vm.manualArtist.isEmpty || !vm.manualAlbumTitle.isEmpty
         let doSearch = { _ = Task { await vm.searchDiscogsFromManualFields() } }
         return Form {
@@ -176,15 +176,6 @@ struct AddRecordView: View {
                 TextField("Label", text: model.manualLabel)
                     .submitLabel(.search)
                     .onSubmit { if canSearch { doSearch() } }
-                Picker("Condition", selection: model.condition) {
-                    ForEach(RecordCondition.allCases, id: \.self) { c in
-                        Text(c.displayName).tag(c)
-                    }
-                }
-            }
-            Section("Notes") {
-                TextEditor(text: model.notes)
-                    .frame(minHeight: 60)
             }
             Section {
                 Button {
@@ -207,7 +198,7 @@ struct AddRecordView: View {
 
     // MARK: - Status screens
 
-    private var identifyingView: some View {
+    private var searchingView: some View {
         VStack(spacing: 24) {
             Spacer()
             ProgressView().scaleEffect(1.5)
@@ -223,21 +214,16 @@ struct AddRecordView: View {
     private func successView(_ title: String) -> some View {
         VStack(spacing: 24) {
             Spacer()
-            Image(systemName: "checkmark.circle.fill")
-                .font(.system(size: 72)).foregroundStyle(.green)
+            Image(systemName: "star.circle.fill")
+                .font(.system(size: 72)).foregroundStyle(.yellow)
             VStack(spacing: 6) {
-                Text("Added to Collection").font(.title2).fontWeight(.bold)
+                Text("Added to Wishlist").font(.title2).fontWeight(.bold)
                 Text(title)
                     .font(.headline).foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
             }
             Button("Done") { dismiss() }.buttonStyle(.borderedProminent).controlSize(.large)
-            Button(vm.addAnotherLabel) { vm.reset() }.foregroundStyle(.secondary)
-            if vm.lastUsedMethod != nil {
-                Button("Choose different method") { vm.chooseDifferentMethod() }
-                    .font(.caption)
-                    .foregroundStyle(.tertiary)
-            }
+            Button("Add Another") { vm.reset() }.foregroundStyle(.secondary)
             Spacer()
         }
         .padding()
