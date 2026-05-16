@@ -7,16 +7,15 @@ final class WishlistViewModel {
     var isAddingToCollection = false
     var errorMessage: String?
 
-    private var recordManager: IRecordManager?
-    private var wishlistManager: IWishlistManager?
+    private let recordManager: IRecordManager
+    private let wishlistManager: IWishlistManager
 
-    func setManagers(recordManager: IRecordManager, wishlistManager: IWishlistManager) {
+    init(recordManager: IRecordManager, wishlistManager: IWishlistManager) {
         self.recordManager = recordManager
         self.wishlistManager = wishlistManager
     }
 
     func foundIt(_ item: WishlistRecord) async {
-        guard let recordManager, let wishlistManager else { return }
         isAddingToCollection = true
 
         let searchResult: DiscogsSearchResult? = item.discogsId.map { id in

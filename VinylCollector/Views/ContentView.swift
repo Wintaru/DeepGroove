@@ -9,7 +9,8 @@ struct ContentView: View {
                 .tabItem {
                     Label("Collection", systemImage: "record.circle")
                 }
-            WishlistView()
+            WishlistView(recordManager: container.recordManager,
+                         wishlistManager: container.wishlistManager)
                 .tabItem {
                     Label("Wishlist", systemImage: "star.circle")
                 }

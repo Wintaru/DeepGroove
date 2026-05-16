@@ -2,10 +2,21 @@ import SwiftUI
 import SwiftData
 
 struct WishlistView: View {
-    @EnvironmentObject private var container: DependencyContainer
     @Environment(\.modelContext) private var modelContext
     @Query private var allItems: [WishlistRecord]
-    @State private var vm = WishlistViewModel()
+    @State private var vm: WishlistViewModel
+
+    private let recordManager: IRecordManager
+    private let wishlistManager: IWishlistManager
+
+    init(recordManager: IRecordManager, wishlistManager: IWishlistManager) {
+        self.recordManager = recordManager
+        self.wishlistManager = wishlistManager
+        _vm = State(initialValue: WishlistViewModel(
+            recordManager: recordManager,
+            wishlistManager: wishlistManager
+        ))
+    }
 
     var body: some View {
         NavigationStack {
@@ -30,8 +41,8 @@ struct WishlistView: View {
             }
             .sheet(isPresented: $vm.showingAddToWishlist) {
                 AddToWishlistView(
-                    recordManager: container.recordManager,
-                    wishlistManager: container.wishlistManager
+                    recordManager: recordManager,
+                    wishlistManager: wishlistManager
                 )
             }
             .sheet(isPresented: Binding(
@@ -40,7 +51,7 @@ struct WishlistView: View {
             )) {
                 if let record = vm.addedRecord {
                     NavigationStack {
-                        RecordDetailView(record: record, recordManager: container.recordManager)
+                        RecordDetailView(record: record, recordManager: recordManager)
                     }
                 }
             }
@@ -48,10 +59,6 @@ struct WishlistView: View {
                 get: { vm.errorMessage },
                 set: { vm.errorMessage = $0 }
             ))
-        }
-        .onAppear {
-            vm.setManagers(recordManager: container.recordManager,
-                           wishlistManager: container.wishlistManager)
         }
     }
 
