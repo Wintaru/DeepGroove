@@ -37,6 +37,7 @@
 		367FD2F71D3C76B00E803ACA /* AddToWishlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580EC857EC4AC4B7FDA1D512 /* AddToWishlistViewModel.swift */; };
 		3963C6DBBD05B8886987DCF6 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA21533F48107E642433F39C /* CameraView.swift */; };
 		3E89DAFA1FB9C7F912B4D6B8 /* SavePhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82B99B69280558B0F86D01 /* SavePhotoResponse.swift */; };
+		3FAAE8CD3769F690FC44BA84 /* AddToWishlistHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD0A538D3F0F1EEFAB34BF9 /* AddToWishlistHandlerTests.swift */; };
 		3FC9DF3A73A8429CF619C117 /* RecordRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376BD682EF0A32F05F7B81AD /* RecordRowView.swift */; };
 		42D3E3C06E026E4ECE0F0635 /* SaveRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368E3335F64B08266B9E5929 /* SaveRecordResponse.swift */; };
 		455226A7F5BA101FCE5DAE84 /* DeleteRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD84213E43426FD3F3E35DCF /* DeleteRecordHandler.swift */; };
@@ -76,6 +77,7 @@
 		717636DCA05AE43A1FC514EE /* LoadAllWishlistItemsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966221C6E9F623E0C0CE1B6C /* LoadAllWishlistItemsRequest.swift */; };
 		72645F7A9752BF12CF644EB0 /* SearchRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4549E9C96840B7F76A357DA /* SearchRecordResponse.swift */; };
 		74B38E942F7C3885EA4EEA73 /* IRecordAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511DA77A90DF24F80043AD6E /* IRecordAccessor.swift */; };
+		7510F36B07A494B22CC0E6C3 /* SearchRecordHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610F50680FB9BA8648916D90 /* SearchRecordHandlerTests.swift */; };
 		7792BAC2C8BA7B2036A7CF41 /* FilteredRecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9677E420FC576647EE57BD30 /* FilteredRecordListView.swift */; };
 		79187E7B33F255773ED56BAC /* StringUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84680D05331B8030A9D113A /* StringUtility.swift */; };
 		7C11A40616F04F338350D9EA /* RecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D49AA722C59CEDE3317883F /* RecordManager.swift */; };
@@ -189,6 +191,7 @@
 		17FA8E1748CDC93C9F21BBD4 /* MergeMetadataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeMetadataRequest.swift; sourceTree = "<group>"; };
 		1A9D8531D42842ED39700EFA /* AddRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordRequest.swift; sourceTree = "<group>"; };
 		1B0BF3F8EF0C3521B8CBA6B6 /* AIVisionAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIVisionAccessor.swift; sourceTree = "<group>"; };
+		1BD0A538D3F0F1EEFAB34BF9 /* AddToWishlistHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToWishlistHandlerTests.swift; sourceTree = "<group>"; };
 		1DADBC594453119CCF3FD87E /* LoadAllRecordsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAllRecordsHandler.swift; sourceTree = "<group>"; };
 		1EF14D17F355B8CB31FADCA4 /* DeletePhotoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePhotoRequest.swift; sourceTree = "<group>"; };
 		21F42FFB396C4AE5B0A05607 /* LoadPhotoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPhotoResponse.swift; sourceTree = "<group>"; };
@@ -232,6 +235,7 @@
 		578C02F196F9E39AF96EEAA3 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		580EC857EC4AC4B7FDA1D512 /* AddToWishlistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToWishlistViewModel.swift; sourceTree = "<group>"; };
 		594335F041EC22B1C290D9D8 /* WishlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistView.swift; sourceTree = "<group>"; };
+		610F50680FB9BA8648916D90 /* SearchRecordHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecordHandlerTests.swift; sourceTree = "<group>"; };
 		61395A552D07BF5D2C101E37 /* DiscogsAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscogsAccessor.swift; sourceTree = "<group>"; };
 		62977B0F14E3B2A4558E5425 /* SearchDiscogsByBarcodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDiscogsByBarcodeRequest.swift; sourceTree = "<group>"; };
 		62BBB1DBE43CF8650CC6BA6F /* ComputeStatisticsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputeStatisticsRequest.swift; sourceTree = "<group>"; };
@@ -352,6 +356,14 @@
 			);
 			sourceTree = "<group>";
 		};
+		0CB861C8CFD439DAF757964A /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				1BD0A538D3F0F1EEFAB34BF9 /* AddToWishlistHandlerTests.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
 		0E9928D854AED1889CA20D24 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,6 +379,14 @@
 				06D95F9833D37F6B8B556D23 /* ResponseBase.swift */,
 			);
 			path = Contracts;
+			sourceTree = "<group>";
+		};
+		13F58A2221D2D09ABCC39D0C /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				610F50680FB9BA8648916D90 /* SearchRecordHandlerTests.swift */,
+			);
+			path = Handlers;
 			sourceTree = "<group>";
 		};
 		203AA4324297CBEAE49310D1 /* Products */ = {
@@ -419,6 +439,14 @@
 				B0A7D4997D9CAD15D278A54D /* IHandler.swift */,
 			);
 			path = Resolver;
+			sourceTree = "<group>";
+		};
+		3CE962893B9AA058E6F60010 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				13F58A2221D2D09ABCC39D0C /* Handlers */,
+			);
+			path = Record;
 			sourceTree = "<group>";
 		};
 		3D993C0CC2F8A93FFD1FAAFA /* Record */ = {
@@ -613,6 +641,14 @@
 			path = Handlers;
 			sourceTree = "<group>";
 		};
+		7A78C2F3D83EBE49B70DE08D /* Wishlist */ = {
+			isa = PBXGroup;
+			children = (
+				0CB861C8CFD439DAF757964A /* Handlers */,
+			);
+			path = Wishlist;
+			sourceTree = "<group>";
+		};
 		7BB2A77E24431A6E66FFF109 /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
@@ -756,6 +792,7 @@
 			children = (
 				A3E04DA023538972D8744B83 /* Common */,
 				9B282E4C15970FC0920D01B8 /* Engines */,
+				A2463C2C55B006FD68671271 /* Managers */,
 			);
 			path = VinylCollectorTests;
 			sourceTree = "<group>";
@@ -826,6 +863,15 @@
 				E66FFCF685207C1DFB8A819E /* VinylCollector.entitlements */,
 			);
 			path = VinylCollector;
+			sourceTree = "<group>";
+		};
+		A2463C2C55B006FD68671271 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				3CE962893B9AA058E6F60010 /* Record */,
+				7A78C2F3D83EBE49B70DE08D /* Wishlist */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		A3E04DA023538972D8744B83 /* Common */ = {
@@ -1096,9 +1142,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FAAE8CD3769F690FC44BA84 /* AddToWishlistHandlerTests.swift in Sources */,
 				F7E90816C900B169183344E3 /* ComputeStatisticsHandlerTests.swift in Sources */,
 				33CC08D2D5D602758E15EC21 /* MergeMetadataHandlerTests.swift in Sources */,
 				C105C04AD659D493CAE97C29 /* ParseIdentificationHandlerTests.swift in Sources */,
+				7510F36B07A494B22CC0E6C3 /* SearchRecordHandlerTests.swift in Sources */,
 				5A1877AC285BFC8EF0222719 /* StringUtilityTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

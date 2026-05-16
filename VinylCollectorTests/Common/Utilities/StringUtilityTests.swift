@@ -32,4 +32,30 @@ struct StringUtilityTests {
         let result = utility.extractJSON(from: "")
         #expect(result == nil)
     }
+
+    @Test func splitDiscogsTitle_standardTitle() {
+        let (artist, album) = utility.splitDiscogsTitle("Pink Floyd - The Wall")
+        #expect(artist == "Pink Floyd")
+        #expect(album == "The Wall")
+    }
+
+    @Test func splitDiscogsTitle_noSeparator() {
+        let (artist, album) = utility.splitDiscogsTitle("Pink Floyd")
+        #expect(artist == "")
+        #expect(album == "Pink Floyd")
+    }
+
+    @Test func splitDiscogsTitle_emptyString() {
+        let (artist, album) = utility.splitDiscogsTitle("")
+        #expect(artist == "")
+        #expect(album == "")
+    }
+
+    @Test func splitDiscogsTitle_multipleDashes() {
+        let (artist, album) = utility.splitDiscogsTitle(
+            "Joy Division - Unknown Pleasures - Expanded"
+        )
+        #expect(artist == "Joy Division")
+        #expect(album == "Unknown Pleasures - Expanded")
+    }
 }
