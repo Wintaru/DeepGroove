@@ -2,6 +2,7 @@ import SwiftUI
 
 struct RecordRowView: View {
     let record: VinylRecord
+    private let imageUtility = ImageUtility()
 
     var body: some View {
         HStack(spacing: 12) {
@@ -40,7 +41,7 @@ struct RecordRowView: View {
     private var thumbnailView: some View {
         Group {
             if let photo = record.thumbnailPhoto,
-               let image = UIImage(contentsOfFile: photo.resolvedPath) {
+               let image = imageUtility.loadThumbnail(path: photo.resolvedPath, maxPixelSize: 200) {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFill()

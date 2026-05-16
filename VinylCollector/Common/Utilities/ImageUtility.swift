@@ -36,13 +36,30 @@ final class ImageUtility: Sendable {
     }
 
     @discardableResult
-    func saveToDisk(image: UIImage, directory: URL, filename: String) throws -> URL {
-        guard let data = image.jpegData(compressionQuality: 0.85) else {
+    func saveToDisk(image: UIImage, directory: URL, filename: String, maxDimension: CGFloat = 1200) throws -> URL {
+        let sized = scale(image, maxDimension: maxDimension)
+        guard let data = sized.jpegData(compressionQuality: 0.85) else {
             throw ImageError.compressionFailed
         }
         let fileURL = directory.appendingPathComponent(filename)
         try data.write(to: fileURL)
         return fileURL
+    }
+
+    // Loads a downsampled image using ImageIO — decodes only the pixels needed for the
+    // target size rather than the full-resolution image, keeping memory use proportional
+    // to the display size rather than the source file size.
+    func loadThumbnail(path: String, maxPixelSize: Int) -> UIImage? {
+        let url = URL(fileURLWithPath: path)
+        let options: [CFString: Any] = [
+            kCGImageSourceCreateThumbnailFromImageAlways: true,
+            kCGImageSourceThumbnailMaxPixelSize: maxPixelSize,
+            kCGImageSourceCreateThumbnailWithTransform: true
+        ]
+        guard let source = CGImageSourceCreateWithURL(url as CFURL, nil),
+              let cgImage = CGImageSourceCreateThumbnailAtIndex(source, 0, options as CFDictionary)
+        else { return nil }
+        return UIImage(cgImage: cgImage)
     }
 
     // Detects the most prominent rectangular region (e.g. an album cover) in the image.

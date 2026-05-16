@@ -3,6 +3,7 @@ import SwiftData
 
 struct RecordDetailView: View {
     let record: VinylRecord
+    private let imageUtility = ImageUtility()
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     @State private var vm: RecordDetailViewModel
@@ -104,7 +105,7 @@ struct RecordDetailView: View {
             } else {
                 TabView(selection: $selectedPhotoIndex) {
                     ForEach(Array(photos.enumerated()), id: \.element.id) { index, photo in
-                        if let image = UIImage(contentsOfFile: photo.resolvedPath) {
+                        if let image = imageUtility.loadThumbnail(path: photo.resolvedPath, maxPixelSize: 1200) {
                             Image(uiImage: image)
                                 .resizable()
                                 .scaledToFit()
