@@ -34,7 +34,6 @@ enum AddRecordState {
     case showingDiscogsResults(
             candidates: [DiscogsSearchResult],
             identification: AIIdentification?,
-            userPhoto: UIImage?,
             currentPage: Int,
             totalPages: Int)
     case success(String)
@@ -190,7 +189,7 @@ final class AddRecordViewModel {
     // MARK: - Private
 
     func loadMoreResults() async {
-        guard case let .showingDiscogsResults(existing, identification, userPhoto, currentPage, totalPages) = state,
+        guard case let .showingDiscogsResults(existing, identification, currentPage, totalPages) = state,
               currentPage < totalPages,
               !manualArtist.isEmpty || !manualAlbumTitle.isEmpty else { return }
         isLoadingMore = true
@@ -203,7 +202,6 @@ final class AddRecordViewModel {
         state = .showingDiscogsResults(
             candidates: existing + result.candidates,
             identification: identification,
-            userPhoto: userPhoto,
             currentPage: result.currentPage,
             totalPages: result.totalPages
         )
@@ -221,7 +219,6 @@ final class AddRecordViewModel {
             state = .showingDiscogsResults(
                 candidates: result.candidates,
                 identification: result.identification,
-                userPhoto: result.userPhoto,
                 currentPage: result.currentPage,
                 totalPages: result.totalPages
             )

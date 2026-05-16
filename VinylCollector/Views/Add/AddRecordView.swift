@@ -29,7 +29,7 @@ struct AddRecordView: View {
                     }
                 case .identifying:
                     searchingView()
-                case .showingDiscogsResults(let candidates, let identification, let userPhoto,
+                case .showingDiscogsResults(let candidates, let identification,
                                             let currentPage, let totalPages):
                     DiscogsPickerView(
                         candidates: candidates,
@@ -37,7 +37,7 @@ struct AddRecordView: View {
                         isLoadingMore: vm.isLoadingMore,
                         onSelect: { result in
                             Task { await vm.confirmResult(result, identification: identification,
-                                                         userPhoto: userPhoto) }
+                                                         userPhoto: vm.pendingUserPhoto) }
                         },
                         onNoMatch: { vm.selectNoMatch(identification: identification) },
                         onLoadMore: { Task { await vm.loadMoreResults() } }
