@@ -48,7 +48,7 @@ final class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOut
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if !session.isRunning {
-            DispatchQueue.global(qos: .background).async { self.session.startRunning() }
+            DispatchQueue.global(qos: .background).async { [weak self] in self?.session.startRunning() }
         }
     }
 
@@ -82,7 +82,7 @@ final class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOut
         view.layer.addSublayer(preview)
         self.previewLayer = preview
 
-        DispatchQueue.global(qos: .background).async { self.session.startRunning() }
+        DispatchQueue.global(qos: .background).async { [weak self] in self?.session.startRunning() }
     }
 
     private func addCancelButton() {
