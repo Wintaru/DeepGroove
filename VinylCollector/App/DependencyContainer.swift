@@ -24,6 +24,7 @@ final class DependencyContainer: ObservableObject {
         let recordAccessor = RecordAccessor(
             storeResolver: HandlerResolverBuilder()
                 .register(SaveRecordHandler(modelContext: modelContext), for: SaveRecordRequest.self)
+                .register(UpdateRecordHandler(modelContext: modelContext), for: UpdateRecordRequest.self)
                 .build(),
             loadResolver: HandlerResolverBuilder()
                 .register(LoadRecordHandler(modelContext: modelContext), for: LoadRecordRequest.self)
@@ -107,7 +108,7 @@ final class DependencyContainer: ObservableObject {
         self.recordManager = RecordManager(
             executeResolver: HandlerResolverBuilder()
                 .register(addHandler, for: AddRecordRequest.self)
-                .register(EditRecordHandler(recordAccessor: recordAccessor, modelContext: modelContext), for: EditRecordRequest.self)
+                .register(EditRecordHandler(recordAccessor: recordAccessor), for: EditRecordRequest.self)
                 .register(RemoveRecordHandler(recordAccessor: recordAccessor),
                           for: RemoveRecordRequest.self)
                 .register(AttachPhotoHandler(photoAccessor: photoAccessor), for: AttachPhotoRequest.self)
