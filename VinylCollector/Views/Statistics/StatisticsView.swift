@@ -91,9 +91,9 @@ struct StatisticsView: View {
             if !stats.decadeBreakdown.isEmpty {
                 Section("By Decade") {
                     ForEach(stats.decadeBreakdown, id: \.decade) { stat in
-                        NavigationLink(destination: FilteredRecordListView(title: "\(stat.decade)s", filter: CollectionFilter(decades: [stat.decade]))) {
+                        NavigationLink(destination: FilteredRecordListView(title: "\(String(stat.decade))s", filter: CollectionFilter(decades: [stat.decade]))) {
                             HStack {
-                                Text("\(stat.decade)s")
+                                Text(verbatim: "\(String(stat.decade))s")
                                 Spacer()
                                 Text("\(stat.recordCount) records")
                                     .foregroundStyle(.secondary)
