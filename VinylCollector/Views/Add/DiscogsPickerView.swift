@@ -26,18 +26,20 @@ struct DiscogsPickerView: View {
 
     @State private var selectedGroup: AlbumGroup?
 
+    private let strings = StringUtility()
+
     private var groups: [AlbumGroup] {
         var order: [String] = []
         var dict: [String: [DiscogsSearchResult]] = [:]
         for result in candidates {
-            let (_, album) = splitTitle(result.title)
+            let (_, album) = strings.splitDiscogsTitle(result.title)
             let key = album.isEmpty ? result.title : album
             if dict[key] == nil { order.append(key) }
             dict[key, default: []].append(result)
         }
         return order.compactMap { key -> AlbumGroup? in
             guard let releases = dict[key] else { return nil }
-            let (artist, album) = splitTitle(releases[0].title)
+            let (artist, album) = strings.splitDiscogsTitle(releases[0].title)
             return AlbumGroup(id: key, albumTitle: album.isEmpty ? key : album,
                               artist: artist, releases: releases)
         }
@@ -219,11 +221,3 @@ private struct ReleaseListView: View {
     }
 }
 
-// MARK: - Helpers
-
-private func splitTitle(_ title: String) -> (artist: String, album: String) {
-    if let range = title.range(of: " - ") {
-        return (String(title[..<range.lowerBound]), String(title[range.upperBound...]))
-    }
-    return ("", title)
-}

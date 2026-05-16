@@ -3,9 +3,11 @@ import Foundation
 @MainActor
 final class AddToWishlistHandler: IHandler {
     private let wishlistAccessor: IWishlistAccessor
+    private let stringUtility: StringUtility
 
-    init(wishlistAccessor: IWishlistAccessor) {
+    init(wishlistAccessor: IWishlistAccessor, stringUtility: StringUtility) {
         self.wishlistAccessor = wishlistAccessor
+        self.stringUtility = stringUtility
     }
 
     func handle(_ request: RequestBase) async -> ResponseBase {
@@ -24,7 +26,7 @@ final class AddToWishlistHandler: IHandler {
         }
 
         let (parsedArtist, parsedAlbumTitle) = req.chosenResult.map {
-            splitDiscogsTitle($0.title)
+            stringUtility.splitDiscogsTitle($0.title)
         } ?? ("", "")
 
         let artist = req.artistOverride ?? parsedArtist
@@ -53,10 +55,4 @@ final class AddToWishlistHandler: IHandler {
                                      displayTitle: displayTitle)
     }
 
-    private func splitDiscogsTitle(_ title: String) -> (artist: String, albumTitle: String) {
-        if let range = title.range(of: " - ") {
-            return (String(title[..<range.lowerBound]), String(title[range.upperBound...]))
-        }
-        return ("", title)
-    }
 }

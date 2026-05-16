@@ -142,7 +142,7 @@ final class DependencyContainer: ObservableObject {
 
         self.wishlistManager = WishlistManager(
             executeResolver: HandlerResolverBuilder()
-                .register(AddToWishlistHandler(wishlistAccessor: wishlistAccessor), for: AddToWishlistRequest.self)
+                .register(AddToWishlistHandler(wishlistAccessor: wishlistAccessor, stringUtility: StringUtility()), for: AddToWishlistRequest.self)
                 .register(RemoveFromWishlistHandler(wishlistAccessor: wishlistAccessor), for: RemoveFromWishlistRequest.self)
                 .build()
         )
