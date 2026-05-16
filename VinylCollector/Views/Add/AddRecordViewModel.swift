@@ -189,8 +189,10 @@ final class AddRecordViewModel {
     // MARK: - Private
 
     func loadMoreResults() async {
+        let maxCandidates = 40
         guard case let .showingDiscogsResults(existing, identification, currentPage, totalPages) = state,
               currentPage < totalPages,
+              existing.count < maxCandidates,
               !manualArtist.isEmpty || !manualAlbumTitle.isEmpty else { return }
         isLoadingMore = true
         let response = await recordManager.query(SearchRecordRequest(
@@ -199,8 +201,9 @@ final class AddRecordViewModel {
         ))
         isLoadingMore = false
         guard let result = response as? SearchRecordResponse, result.success else { return }
+        let combined = (existing + result.candidates).prefix(maxCandidates)
         state = .showingDiscogsResults(
-            candidates: existing + result.candidates,
+            candidates: Array(combined),
             identification: identification,
             currentPage: result.currentPage,
             totalPages: result.totalPages
