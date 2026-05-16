@@ -31,7 +31,7 @@ struct AddToWishlistView: View {
                         Task { await vm.searchWithCrop(image, rect: rect) }
                     }
                 case .searching:
-                    searchingView
+                    searchingView()
                 case .showingDiscogsResults(let candidates, let identification,
                                             let currentPage, let totalPages):
                     DiscogsPickerView(
@@ -45,9 +45,12 @@ struct AddToWishlistView: View {
                 case .success(let title):
                     successView(title)
                 case .noResults(let message):
-                    noResultsView(message)
+                    noResultsView(message: message,
+                                  onTryAgain: { vm.reset() },
+                                  onEnterManually: { vm.goToManualEntry() })
                 case .failure(let message):
-                    failureView(message)
+                    failureView(message: message,
+                                onTryAgain: { vm.state = .selectSource })
                 }
             }
             .navigationTitle("Add to Wishlist")
@@ -104,26 +107,6 @@ struct AddToWishlistView: View {
         }
     }
 
-    private func sourceButton(title: String, subtitle: String, icon: String,
-                               color: Color, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            HStack(spacing: 16) {
-                Image(systemName: icon)
-                    .font(.title2)
-                    .foregroundStyle(color)
-                    .frame(width: 40)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(title).font(.headline).foregroundStyle(.primary)
-                    Text(subtitle).font(.caption).foregroundStyle(.secondary)
-                }
-                Spacer()
-                Image(systemName: "chevron.right").foregroundStyle(.tertiary)
-            }
-            .padding()
-            .background(Color(.systemGray6))
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-        }
-    }
 
     // MARK: - Camera / library / barcode sheets
 
@@ -198,19 +181,6 @@ struct AddToWishlistView: View {
 
     // MARK: - Status screens
 
-    private var searchingView: some View {
-        VStack(spacing: 24) {
-            Spacer()
-            ProgressView().scaleEffect(1.5)
-            Text("Searching…").font(.headline)
-            Text("Looking up artist, album, and metadata")
-                .font(.subheadline).foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-            Spacer()
-        }
-        .padding()
-    }
-
     private func successView(_ title: String) -> some View {
         VStack(spacing: 24) {
             Spacer()
@@ -229,39 +199,4 @@ struct AddToWishlistView: View {
         .padding()
     }
 
-    private func noResultsView(_ message: String) -> some View {
-        VStack(spacing: 24) {
-            Spacer()
-            Image(systemName: "magnifyingglass")
-                .font(.system(size: 72)).foregroundStyle(.secondary)
-            VStack(spacing: 6) {
-                Text("No Results Found").font(.title2).fontWeight(.bold)
-                Text(message).font(.subheadline).foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-            }
-            Button("Try Again") { vm.reset() }
-                .buttonStyle(.borderedProminent).controlSize(.large)
-            Button("Enter Manually") { vm.goToManualEntry() }
-                .foregroundStyle(.secondary)
-            Spacer()
-        }
-        .padding()
-    }
-
-    private func failureView(_ message: String) -> some View {
-        VStack(spacing: 24) {
-            Spacer()
-            Image(systemName: "exclamationmark.circle.fill")
-                .font(.system(size: 72)).foregroundStyle(.red)
-            VStack(spacing: 6) {
-                Text("Something went wrong").font(.title2).fontWeight(.bold)
-                Text(message).font(.subheadline).foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-            }
-            Button("Try Again") { vm.state = .selectSource }
-                .buttonStyle(.borderedProminent).controlSize(.large)
-            Spacer()
-        }
-        .padding()
-    }
 }

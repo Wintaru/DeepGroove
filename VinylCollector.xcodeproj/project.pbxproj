@@ -28,6 +28,7 @@
 		2586443676E8B1C1071990DD /* LoadAllRecordsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DADBC594453119CCF3FD87E /* LoadAllRecordsHandler.swift */; };
 		25E4C285D6BBFEE2335ED249 /* IMetadataEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD80CC94B82FCC8221C8C918 /* IMetadataEngine.swift */; };
 		29C56A81C19611DEAD7570A0 /* ParseIdentificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3A2B8F79859F31AF4BC500 /* ParseIdentificationHandler.swift */; };
+		2BED5216E1809C8712D59E2E /* AddRecordSharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC8DEF1D8746945A86BD36E /* AddRecordSharedViews.swift */; };
 		2E095B514C7B91BE212C435B /* AddRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDF798BC96B0F07CABA548 /* AddRecordResponse.swift */; };
 		2E6AD59BE1457E2B1744D775 /* IIdentificationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA617C1F5205E21B2D8AF2 /* IIdentificationEngine.swift */; };
 		2F5088741E81E38432C400B9 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135034EE4C31E382300F009B /* CollectionView.swift */; };
@@ -314,6 +315,7 @@
 		EBE581BE3905A08C21C2137B /* NetworkUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtility.swift; sourceTree = "<group>"; };
 		EC9D4A992199BD7F7707AD8E /* DeletePhotoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePhotoHandler.swift; sourceTree = "<group>"; };
 		ED5D258199A5705137941EDA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		EEC8DEF1D8746945A86BD36E /* AddRecordSharedViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordSharedViews.swift; sourceTree = "<group>"; };
 		EEFF58277BE9881E6A80FCAE /* AttachPhotoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachPhotoHandler.swift; sourceTree = "<group>"; };
 		F155ABEA74C208F9BE435CE1 /* VinylRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VinylRecord.swift; sourceTree = "<group>"; };
 		F19B01352EBF703679A29D67 /* DeleteWishlistItemHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteWishlistItemHandler.swift; sourceTree = "<group>"; };
@@ -506,6 +508,7 @@
 		4F3FDF3BBE2F7C7F6915B02F /* Add */ = {
 			isa = PBXGroup;
 			children = (
+				EEC8DEF1D8746945A86BD36E /* AddRecordSharedViews.swift */,
 				469B375CB21A29008E850D86 /* AddRecordView.swift */,
 				3D85B74971389D71FD24442F /* AddRecordViewModel.swift */,
 				22704454C236B06F0FF7D6CA /* BarcodeView.swift */,
@@ -1109,6 +1112,7 @@
 				5FAC50CA5A65F68373390CBC /* AddRecordHandler.swift in Sources */,
 				651844C06920CB7214D543E4 /* AddRecordRequest.swift in Sources */,
 				2E095B514C7B91BE212C435B /* AddRecordResponse.swift in Sources */,
+				2BED5216E1809C8712D59E2E /* AddRecordSharedViews.swift in Sources */,
 				DA246D8C72274869ADC04F76 /* AddRecordView.swift in Sources */,
 				57C6F4D6BE1B154B46E1581A /* AddRecordViewModel.swift in Sources */,
 				5BB3AE224B8C266482908194 /* AddToWishlistHandler.swift in Sources */,
