@@ -99,7 +99,7 @@ final class SearchRecordHandler: IHandler {
         let response = await discogsAccessor.load(
             SearchDiscogsByBarcodeRequest(barcode: barcode, token: apiConfiguration.discogsToken)
         )
-        return (response as? SearchDiscogsByBarcodeResponse)?.results ?? []
+        return (response as? SearchDiscogsResponse)?.results ?? []
     }
 
     private func searchByIdentification(_ identification: AIIdentification?) async -> [DiscogsSearchResult] {

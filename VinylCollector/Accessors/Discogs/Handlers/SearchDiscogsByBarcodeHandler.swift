@@ -13,24 +13,18 @@ final class SearchDiscogsByBarcodeHandler: IHandler {
                                            requestType: String(describing: type(of: request)))
         }
         do {
-            var components = URLComponents(string: DiscogsAPI.searchURL)!
-            components.queryItems = [
-                URLQueryItem(name: "barcode", value: req.barcode),
-                URLQueryItem(name: "type", value: "release")
-            ]
-            if let token = req.token {
-                components.queryItems?.append(URLQueryItem(name: "token", value: token))
-            }
-            let data = try await networkUtility.get(
-                url: components.url!,
-                headers: DiscogsAPI.userAgentHeaders
+            let results = try await performDiscogsSearch(
+                queryItems: [
+                    URLQueryItem(name: "barcode", value: req.barcode),
+                    URLQueryItem(name: "type", value: "release")
+                ],
+                token: req.token,
+                networkUtility: networkUtility
             )
-            let decoded = try JSONDecoder().decode(DiscogsSearchAPIResponse.self, from: data)
-            let results = decoded.results.map { $0.toSearchResult() }
-            return SearchDiscogsByBarcodeResponse(correlationId: req.correlationId, results: results)
+            return SearchDiscogsResponse(correlationId: req.correlationId, results: results)
         } catch {
-            return SearchDiscogsByBarcodeResponse(correlationId: req.correlationId,
-                                                   errorMessage: error.localizedDescription)
+            return SearchDiscogsResponse(correlationId: req.correlationId,
+                                          errorMessage: error.localizedDescription)
         }
     }
 }

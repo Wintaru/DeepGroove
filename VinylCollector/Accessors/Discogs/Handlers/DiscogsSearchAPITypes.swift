@@ -1,5 +1,20 @@
 import Foundation
 
+func performDiscogsSearch(
+    queryItems: [URLQueryItem],
+    token: String?,
+    networkUtility: NetworkUtility
+) async throws -> [DiscogsSearchResult] {
+    var components = URLComponents(string: DiscogsAPI.searchURL)!
+    components.queryItems = queryItems
+    if let token {
+        components.queryItems?.append(URLQueryItem(name: "token", value: token))
+    }
+    let data = try await networkUtility.get(url: components.url!, headers: DiscogsAPI.userAgentHeaders)
+    let decoded = try JSONDecoder().decode(DiscogsSearchAPIResponse.self, from: data)
+    return decoded.results.map { $0.toSearchResult() }
+}
+
 struct DiscogsSearchAPIResponse: Decodable {
     let results: [DiscogsSearchAPIResult]
 }
