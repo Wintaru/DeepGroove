@@ -25,9 +25,7 @@
 		20335675B75D3642F1A2801E /* LoadDiscogsReleaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4CFFD51350297BA2837CD1 /* LoadDiscogsReleaseResponse.swift */; };
 		20AA224FAD92F515D81AA6F0 /* SaveWishlistItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A49AA9EE445C4B7429840C6 /* SaveWishlistItemRequest.swift */; };
 		225EDE5E13B380AC562A77EB /* PhotoAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0563FEE90FE08F174CF655B /* PhotoAccessor.swift */; };
-		25728B5B83DDF07DC0ACD2C4 /* GetWishlistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34811A8A41A3630812C1C10C /* GetWishlistResponse.swift */; };
 		2586443676E8B1C1071990DD /* LoadAllRecordsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DADBC594453119CCF3FD87E /* LoadAllRecordsHandler.swift */; };
-		25A91F539E16F5DC8406A9C9 /* GetWishlistHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B775C82CB1610623980225 /* GetWishlistHandler.swift */; };
 		25E4C285D6BBFEE2335ED249 /* IMetadataEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD80CC94B82FCC8221C8C918 /* IMetadataEngine.swift */; };
 		29C56A81C19611DEAD7570A0 /* ParseIdentificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3A2B8F79859F31AF4BC500 /* ParseIdentificationHandler.swift */; };
 		2E095B514C7B91BE212C435B /* AddRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDF798BC96B0F07CABA548 /* AddRecordResponse.swift */; };
@@ -35,7 +33,6 @@
 		2F5088741E81E38432C400B9 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135034EE4C31E382300F009B /* CollectionView.swift */; };
 		3287D1C7B4131DA83EFAD92E /* AttachPhotoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EA51EC7ABBA14824B2A175 /* AttachPhotoRequest.swift */; };
 		33CC08D2D5D602758E15EC21 /* MergeMetadataHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E03A92819F582234B3EEE /* MergeMetadataHandlerTests.swift */; };
-		34DCBD1E9CBE7A3BEA83C025 /* GetWishlistRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75AB5402D26279AA486B899 /* GetWishlistRequest.swift */; };
 		367FD2F71D3C76B00E803ACA /* AddToWishlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580EC857EC4AC4B7FDA1D512 /* AddToWishlistViewModel.swift */; };
 		3963C6DBBD05B8886987DCF6 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA21533F48107E642433F39C /* CameraView.swift */; };
 		3E89DAFA1FB9C7F912B4D6B8 /* SavePhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82B99B69280558B0F86D01 /* SavePhotoResponse.swift */; };
@@ -174,7 +171,7 @@
 		01B60AF004C87C441E219687 /* View+ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ErrorAlert.swift"; sourceTree = "<group>"; };
 		020C9175D87CEF435592AD24 /* StatisticsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsEngine.swift; sourceTree = "<group>"; };
 		039CF1EFB7B194F8C9C0215B /* LoadAllWishlistItemsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAllWishlistItemsResponse.swift; sourceTree = "<group>"; };
-		04C50D7DA63B56149A34BAA8 /* VinylCollector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VinylCollector.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04C50D7DA63B56149A34BAA8 /* VinylCollector.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = VinylCollector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06D95F9833D37F6B8B556D23 /* ResponseBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseBase.swift; sourceTree = "<group>"; };
 		0BDFCB0D2ADC30B7EF0726D8 /* IdentifyRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyRecordResponse.swift; sourceTree = "<group>"; };
 		0C473021FA931C59E47A6C6D /* SavePhotoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePhotoHandler.swift; sourceTree = "<group>"; };
@@ -199,7 +196,6 @@
 		2A49AA9EE445C4B7429840C6 /* SaveWishlistItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveWishlistItemRequest.swift; sourceTree = "<group>"; };
 		2F2D05288044ACEA7A63B6E7 /* EditRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordResponse.swift; sourceTree = "<group>"; };
 		326A133D8F459172C530CCBA /* RemoveRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveRecordRequest.swift; sourceTree = "<group>"; };
-		34811A8A41A3630812C1C10C /* GetWishlistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWishlistResponse.swift; sourceTree = "<group>"; };
 		368E3335F64B08266B9E5929 /* SaveRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveRecordResponse.swift; sourceTree = "<group>"; };
 		376BD682EF0A32F05F7B81AD /* RecordRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordRowView.swift; sourceTree = "<group>"; };
 		3A82B99B69280558B0F86D01 /* SavePhotoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePhotoResponse.swift; sourceTree = "<group>"; };
@@ -224,7 +220,6 @@
 		4C7B09706AEBDE0761A841F6 /* DiscogsPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscogsPickerView.swift; sourceTree = "<group>"; };
 		4CFDF798BC96B0F07CABA548 /* AddRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordResponse.swift; sourceTree = "<group>"; };
 		4D469E794FF7CF48968664CC /* DiscogsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscogsAPI.swift; sourceTree = "<group>"; };
-		50B775C82CB1610623980225 /* GetWishlistHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWishlistHandler.swift; sourceTree = "<group>"; };
 		510AB87C4EFC14C62165A4A9 /* AddToWishlistHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToWishlistHandler.swift; sourceTree = "<group>"; };
 		511DA77A90DF24F80043AD6E /* IRecordAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRecordAccessor.swift; sourceTree = "<group>"; };
 		5162AAF6523673DC6E41FA9F /* ParseIdentificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseIdentificationRequest.swift; sourceTree = "<group>"; };
@@ -270,7 +265,6 @@
 		A614438956E5FB970871896D /* IWishlistAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWishlistAccessor.swift; sourceTree = "<group>"; };
 		A69D7D9FDC772D9B8C2E253B /* RemoveRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveRecordHandler.swift; sourceTree = "<group>"; };
 		A73C4DFE20F1751DA9FD67F8 /* AddToWishlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToWishlistView.swift; sourceTree = "<group>"; };
-		A75AB5402D26279AA486B899 /* GetWishlistRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWishlistRequest.swift; sourceTree = "<group>"; };
 		A916FB59A2226B8CEB02A2AC /* VinylCollectorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VinylCollectorApp.swift; sourceTree = "<group>"; };
 		AA154C5660378F7832795F0C /* IPhotoAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPhotoAccessor.swift; sourceTree = "<group>"; };
 		AA21533F48107E642433F39C /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
@@ -302,7 +296,7 @@
 		D038E2F407B3EEDB399AB578 /* DeleteRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRecordRequest.swift; sourceTree = "<group>"; };
 		D0457282A617A6A788A93837 /* LogUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogUtility.swift; sourceTree = "<group>"; };
 		D13C344129828CED95615B2E /* IStatisticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStatisticsManager.swift; sourceTree = "<group>"; };
-		D3AF8CD69D76561D18724520 /* VinylCollectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VinylCollectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3AF8CD69D76561D18724520 /* VinylCollectorTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = VinylCollectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7CE4F66803527459B5CE1AC /* SaveWishlistItemHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveWishlistItemHandler.swift; sourceTree = "<group>"; };
 		D8EA51EC7ABBA14824B2A175 /* AttachPhotoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachPhotoRequest.swift; sourceTree = "<group>"; };
 		D9C94B377E487D8F4F4C52F5 /* FileManagerUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerUtility.swift; sourceTree = "<group>"; };
@@ -883,7 +877,6 @@
 			isa = PBXGroup;
 			children = (
 				510AB87C4EFC14C62165A4A9 /* AddToWishlistHandler.swift */,
-				50B775C82CB1610623980225 /* GetWishlistHandler.swift */,
 				7B3BC0815282C8F67D6511DC /* RemoveFromWishlistHandler.swift */,
 			);
 			path = Handlers;
@@ -987,8 +980,6 @@
 				A5CECBB7136AB9CD1473C2B1 /* AddToWishlistResponse.swift */,
 				B53E0321D7B69E4EC1F5B721 /* DeleteWishlistItemRequest.swift */,
 				0E00B2DC3D824EB2F134124E /* DeleteWishlistItemResponse.swift */,
-				A75AB5402D26279AA486B899 /* GetWishlistRequest.swift */,
-				34811A8A41A3630812C1C10C /* GetWishlistResponse.swift */,
 				966221C6E9F623E0C0CE1B6C /* LoadAllWishlistItemsRequest.swift */,
 				039CF1EFB7B194F8C9C0215B /* LoadAllWishlistItemsResponse.swift */,
 				CF63DE449843542610E7490B /* RemoveFromWishlistRequest.swift */,
@@ -1056,7 +1047,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2650;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					0439E3FDC3CA56859A01C096 = {
 						DevelopmentTeam = 9C5WLPGP58;
@@ -1163,9 +1154,6 @@
 				46CB7C580CF072C80DC4CF0C /* GetStatisticsHandler.swift in Sources */,
 				5EB1BE185477343DC7AFA67C /* GetStatisticsRequest.swift in Sources */,
 				4EE5F7BDCAAEA3BAA05D5EAE /* GetStatisticsResponse.swift in Sources */,
-				25A91F539E16F5DC8406A9C9 /* GetWishlistHandler.swift in Sources */,
-				34DCBD1E9CBE7A3BEA83C025 /* GetWishlistRequest.swift in Sources */,
-				25728B5B83DDF07DC0ACD2C4 /* GetWishlistResponse.swift in Sources */,
 				E0F9469E556AEB15166A1A78 /* HandlerResolver.swift in Sources */,
 				715964164EC0AF1E592B6414 /* IAIVisionAccessor.swift in Sources */,
 				AAA971E193A7CFE062EDAAC8 /* IDiscogsAccessor.swift in Sources */,
@@ -1277,6 +1265,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1299,6 +1288,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VinylCollector/VinylCollector.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				INFOPLIST_FILE = VinylCollector/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1316,7 +1306,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1348,11 +1337,9 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1366,7 +1353,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_STRICT_CONCURRENCY = targeted;
@@ -1378,7 +1364,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1410,11 +1395,9 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1435,7 +1418,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = targeted;
@@ -1447,6 +1429,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1469,6 +1452,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VinylCollector/VinylCollector.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				INFOPLIST_FILE = VinylCollector/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (

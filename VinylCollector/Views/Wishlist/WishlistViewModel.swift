@@ -59,11 +59,4 @@ final class WishlistViewModel {
         _ = await wishlistManager.execute(RemoveFromWishlistRequest(itemId: item.id))
     }
 
-    func removeItem(_ item: WishlistRecord) async {
-        guard let wishlistManager else { return }
-        let response = await wishlistManager.execute(RemoveFromWishlistRequest(itemId: item.id))
-        if !response.success {
-            errorMessage = response.errorMessage ?? "Failed to remove item."
-        }
-    }
 }
