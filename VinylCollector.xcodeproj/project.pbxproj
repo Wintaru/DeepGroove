@@ -32,6 +32,7 @@
 		2E095B514C7B91BE212C435B /* AddRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDF798BC96B0F07CABA548 /* AddRecordResponse.swift */; };
 		2E6AD59BE1457E2B1744D775 /* IIdentificationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA617C1F5205E21B2D8AF2 /* IIdentificationEngine.swift */; };
 		2F5088741E81E38432C400B9 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135034EE4C31E382300F009B /* CollectionView.swift */; };
+		305EBC35F55AD139EF5A77B6 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8B536F510AE38F5AFEA4435F /* PrivacyInfo.xcprivacy */; };
 		3287D1C7B4131DA83EFAD92E /* AttachPhotoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EA51EC7ABBA14824B2A175 /* AttachPhotoRequest.swift */; };
 		33CC08D2D5D602758E15EC21 /* MergeMetadataHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E03A92819F582234B3EEE /* MergeMetadataHandlerTests.swift */; };
 		367FD2F71D3C76B00E803ACA /* AddToWishlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580EC857EC4AC4B7FDA1D512 /* AddToWishlistViewModel.swift */; };
@@ -174,7 +175,7 @@
 		01B60AF004C87C441E219687 /* View+ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ErrorAlert.swift"; sourceTree = "<group>"; };
 		020C9175D87CEF435592AD24 /* StatisticsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsEngine.swift; sourceTree = "<group>"; };
 		039CF1EFB7B194F8C9C0215B /* LoadAllWishlistItemsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAllWishlistItemsResponse.swift; sourceTree = "<group>"; };
-		04C50D7DA63B56149A34BAA8 /* VinylCollector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VinylCollector.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04C50D7DA63B56149A34BAA8 /* VinylCollector.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = VinylCollector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06D95F9833D37F6B8B556D23 /* ResponseBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseBase.swift; sourceTree = "<group>"; };
 		0BDFCB0D2ADC30B7EF0726D8 /* IdentifyRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyRecordResponse.swift; sourceTree = "<group>"; };
 		0C473021FA931C59E47A6C6D /* SavePhotoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePhotoHandler.swift; sourceTree = "<group>"; };
@@ -254,6 +255,7 @@
 		7B3BC0815282C8F67D6511DC /* RemoveFromWishlistHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFromWishlistHandler.swift; sourceTree = "<group>"; };
 		7D4672E91CF8F12CD72363C6 /* AddToWishlistRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToWishlistRequest.swift; sourceTree = "<group>"; };
 		81CA617C1F5205E21B2D8AF2 /* IIdentificationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IIdentificationEngine.swift; sourceTree = "<group>"; };
+		8B536F510AE38F5AFEA4435F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		8DB789699A65A2EC60E3063C /* RecordPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPhoto.swift; sourceTree = "<group>"; };
 		8F685267E648F25D888E51EB /* LoadPhotoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPhotoHandler.swift; sourceTree = "<group>"; };
 		9464C44B5257BCFBC579D102 /* RecordAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAccessor.swift; sourceTree = "<group>"; };
@@ -301,7 +303,7 @@
 		D038E2F407B3EEDB399AB578 /* DeleteRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRecordRequest.swift; sourceTree = "<group>"; };
 		D0457282A617A6A788A93837 /* LogUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogUtility.swift; sourceTree = "<group>"; };
 		D13C344129828CED95615B2E /* IStatisticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStatisticsManager.swift; sourceTree = "<group>"; };
-		D3AF8CD69D76561D18724520 /* VinylCollectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VinylCollectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3AF8CD69D76561D18724520 /* VinylCollectorTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = VinylCollectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7CE4F66803527459B5CE1AC /* SaveWishlistItemHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveWishlistItemHandler.swift; sourceTree = "<group>"; };
 		D8EA51EC7ABBA14824B2A175 /* AttachPhotoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachPhotoRequest.swift; sourceTree = "<group>"; };
 		D9C94B377E487D8F4F4C52F5 /* FileManagerUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerUtility.swift; sourceTree = "<group>"; };
@@ -860,6 +862,7 @@
 				492A5164053F67B7780BA290 /* Views */,
 				9CDDD71BAC1D7F625ECA3082 /* Assets.xcassets */,
 				DF05FE8E2AB580C709A986FB /* Info.plist */,
+				8B536F510AE38F5AFEA4435F /* PrivacyInfo.xcprivacy */,
 				E66FFCF685207C1DFB8A819E /* VinylCollector.entitlements */,
 			);
 			path = VinylCollector;
@@ -1096,7 +1099,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2650;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					0439E3FDC3CA56859A01C096 = {
 						DevelopmentTeam = 9C5WLPGP58;
@@ -1132,6 +1135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD1814973706E7363D2DF78C /* Assets.xcassets in Resources */,
+				305EBC35F55AD139EF5A77B6 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1317,6 +1321,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1339,6 +1344,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VinylCollector/VinylCollector.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				INFOPLIST_FILE = VinylCollector/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1356,7 +1362,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1388,11 +1393,9 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1406,7 +1409,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_STRICT_CONCURRENCY = targeted;
@@ -1418,7 +1420,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1450,11 +1451,9 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1475,7 +1474,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = targeted;
@@ -1487,6 +1485,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1509,6 +1508,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VinylCollector/VinylCollector.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				INFOPLIST_FILE = VinylCollector/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
