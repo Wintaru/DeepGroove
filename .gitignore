@@ -33,3 +33,6 @@ Pods/
 
 # Secrets — never commit API keys
 VinylCollector/Configuration/Secrets.swift
+
+# Claude Code local config — contains machine-specific paths and tool permissions
+.claude/
