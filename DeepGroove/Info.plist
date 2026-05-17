@@ -16,27 +16,6 @@
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
-	<key>CFBundleVersion</key>
-	<string>1</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>NSCameraUsageDescription</key>
-	<string>Deep Groove uses the camera to photograph your records for identification and your collection archive.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Deep Groove reads your photo library so you can import existing record photos into your collection.</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Deep Groove saves record photos to your photo library.</string>
-	<key>UIApplicationSceneManifest</key>
-	<dict>
-		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
-	</dict>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>remote-notification</string>
-	</array>
-	<key>UILaunchScreen</key>
-	<dict/>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -48,8 +27,29 @@
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>9</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Deep Groove uses the camera to photograph your records for identification and your collection archive.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Deep Groove saves record photos to your photo library.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Deep Groove reads your photo library so you can import existing record photos into your collection.</string>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
+	<key>UILaunchScreen</key>
+	<dict/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>arm64</string>

@@ -1,0 +1,126 @@
+opt_out_usage
+
+APP_PLIST    = "DeepGroove/Info.plist"
+WIDGET_PLIST = "DeepGrooveWidget/Info.plist"
+SCHEME       = "DeepGroove"
+
+default_platform(:ios)
+
+platform :ios do
+
+  # ── Beta ──────────────────────────────────────────────────────────────────
+  desc "Bump build number, archive, and upload to TestFlight"
+  lane :beta do
+    xcode_select("/Applications/Xcode-26.3.0.app")
+    ensure_git_status_clean
+
+    new_build = bump_build_number
+    sh("cd .. && xcodegen generate")
+    ipa_path = archive_and_export
+
+    upload_to_testflight(
+      api_key: asc_api_key,
+      ipa: ipa_path,
+      skip_waiting_for_build_processing: true
+    )
+
+    version = get_info_plist_value(path: APP_PLIST, key: "CFBundleShortVersionString")
+    git_commit(
+      path: [APP_PLIST, WIDGET_PLIST],
+      message: "Bump build to #{new_build} [beta]"
+    )
+    add_git_tag(tag: "beta/#{version}-#{new_build}")
+    push_to_git_remote(tags: true)
+
+    UI.success "Beta #{version} (#{new_build}) uploaded to TestFlight"
+  end
+
+  # ── Release ───────────────────────────────────────────────────────────────
+  desc "Bump version and build, archive, and upload to App Store (review not auto-submitted)"
+  lane :release do
+    xcode_select("/Applications/Xcode-26.3.0.app")
+    ensure_git_status_clean
+
+    current_version = get_info_plist_value(path: APP_PLIST, key: "CFBundleShortVersionString")
+    new_version = UI.input("Marketing version (current: #{current_version}): ").strip
+    UI.user_error!("Version cannot be empty") if new_version.empty?
+
+    set_info_plist_value(path: APP_PLIST,    key: "CFBundleShortVersionString", value: new_version)
+    set_info_plist_value(path: WIDGET_PLIST, key: "CFBundleShortVersionString", value: new_version)
+
+    new_build = bump_build_number
+    sh("cd .. && xcodegen generate")
+    ipa_path = archive_and_export
+
+    upload_to_app_store(
+      api_key:           asc_api_key,
+      ipa:               ipa_path,
+      submit_for_review: false,
+      force:             true
+    )
+
+    git_commit(
+      path: [APP_PLIST, WIDGET_PLIST],
+      message: "Release #{new_version} (build #{new_build})"
+    )
+    add_git_tag(tag: "release/#{new_version}")
+    push_to_git_remote(tags: true)
+
+    UI.success "#{new_version} (#{new_build}) uploaded to App Store — submit for review in ASC when ready"
+  end
+
+  # ── Helpers ───────────────────────────────────────────────────────────────
+
+  def archive_and_export
+    key_id      = ENV.fetch("ASC_KEY_ID")
+    key_issuer  = ENV.fetch("ASC_ISSUER_ID")
+    key_path    = File.expand_path(ENV.fetch("ASC_KEY_FILEPATH"))
+
+    # Dir.pwd in Fastlane Ruby context is the fastlane/ subdirectory
+    archive_path = File.expand_path("build/DeepGroove.xcarchive")
+    export_path  = File.expand_path("build/export")
+    export_plist = File.expand_path("ExportOptions.plist")
+
+    FileUtils.rm_rf(archive_path)
+    FileUtils.mkdir_p(export_path)
+
+    # Archive via gym — automatic signing, already works
+    build_app(
+      scheme: SCHEME,
+      skip_package_ipa: true,
+      archive_path: archive_path,
+      clean: true
+    )
+
+    # Export manually so we can pass -allowProvisioningUpdates + API key auth,
+    # which lets xcodebuild create/download App Store distribution profiles for
+    # both com.jdonner.deepgroove and com.jdonner.deepgroove.widget on demand
+    sh("xcodebuild -exportArchive " \
+       "-archivePath '#{archive_path}' " \
+       "-exportPath '#{export_path}' " \
+       "-exportOptionsPlist '#{export_plist}' " \
+       "-allowProvisioningUpdates " \
+       "-authenticationKeyPath '#{key_path}' " \
+       "-authenticationKeyID #{key_id} " \
+       "-authenticationKeyIssuerID #{key_issuer}")
+
+    Dir.glob("#{export_path}/*.ipa").first
+  end
+
+  def bump_build_number
+    current = get_info_plist_value(path: APP_PLIST, key: "CFBundleVersion").to_i
+    new_build = (current + 1).to_s
+    set_info_plist_value(path: APP_PLIST,    key: "CFBundleVersion", value: new_build)
+    set_info_plist_value(path: WIDGET_PLIST, key: "CFBundleVersion", value: new_build)
+    new_build
+  end
+
+  def asc_api_key
+    app_store_connect_api_key(
+      key_id:       ENV.fetch("ASC_KEY_ID"),
+      issuer_id:    ENV.fetch("ASC_ISSUER_ID"),
+      key_filepath: ENV.fetch("ASC_KEY_FILEPATH")
+    )
+  end
+
+end

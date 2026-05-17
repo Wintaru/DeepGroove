@@ -34,5 +34,11 @@ Pods/
 # Secrets — never commit API keys
 DeepGroove/Configuration/Secrets.swift
 
+# Fastlane — credentials and build artifacts
+fastlane/.env
+fastlane/build/
+fastlane/README.md
+fastlane/report.xml
+
 # Claude Code local config — contains machine-specific paths and tool permissions
 .claude/

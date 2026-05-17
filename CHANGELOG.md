@@ -14,6 +14,9 @@ Format: `[version] – release date` followed by categorized changes.
 ### Changed
 - Enabled CloudKit sync (`cloudKitDatabase: .automatic`) — collection now syncs across all devices signed into the same Apple ID
 
+### Infrastructure
+- Fastlane `beta` and `release` lanes for versioned, gated App Store submissions
+
 ---
 
 ## [1.0] – Initial Release
