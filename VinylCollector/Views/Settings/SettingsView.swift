@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject private var container: DependencyContainer
     @EnvironmentObject private var apiConfig: APIConfiguration
     @State private var showingAnthropicKey = false
     @State private var showingDiscogsToken = false
@@ -106,6 +107,14 @@ struct SettingsView: View {
                     Text("Discogs")
                 } footer: {
                     Text("Optional but recommended. Increases search rate limits from 25 to 60 requests/min.")
+                }
+
+                Section {
+                    NavigationLink {
+                        SupportView(supportManager: container.supportManager)
+                    } label: {
+                        Label("Support the Developer", systemImage: "heart")
+                    }
                 }
 
                 Section("About") {

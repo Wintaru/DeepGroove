@@ -8,6 +8,7 @@ final class DependencyContainer: ObservableObject {
     let recordManager: IRecordManager
     let statisticsManager: IStatisticsManager
     let wishlistManager: IWishlistManager
+    let supportManager: ISupportManager
 
     // MARK: - Shared observable configuration (consumed by SettingsView)
     let apiConfiguration: APIConfiguration
@@ -144,6 +145,24 @@ final class DependencyContainer: ObservableObject {
             executeResolver: HandlerResolverBuilder()
                 .register(AddToWishlistHandler(wishlistAccessor: wishlistAccessor, stringUtility: StringUtility()), for: AddToWishlistRequest.self)
                 .register(RemoveFromWishlistHandler(wishlistAccessor: wishlistAccessor), for: RemoveFromWishlistRequest.self)
+                .build()
+        )
+
+        let storeKitAccessor = StoreKitAccessor(
+            loadResolver: HandlerResolverBuilder()
+                .register(LoadTipProductsHandler(), for: LoadTipProductsRequest.self)
+                .build(),
+            storeResolver: HandlerResolverBuilder()
+                .register(PurchaseTipProductHandler(), for: PurchaseTipProductRequest.self)
+                .build()
+        )
+
+        self.supportManager = SupportManager(
+            queryResolver: HandlerResolverBuilder()
+                .register(GetTipProductsHandler(storeKitAccessor: storeKitAccessor), for: GetTipProductsRequest.self)
+                .build(),
+            executeResolver: HandlerResolverBuilder()
+                .register(PurchaseTipHandler(storeKitAccessor: storeKitAccessor), for: PurchaseTipRequest.self)
                 .build()
         )
 

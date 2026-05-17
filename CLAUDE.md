@@ -263,3 +263,30 @@ Then reopen `VinylCollector.xcodeproj` in Xcode.
 
 Do not commit `.xcodeproj` — it is gitignored and regenerated from `project.yml`.
 `VinylCollector/Configuration/Secrets.swift` is also gitignored.
+
+---
+
+## Build and test requirements
+
+**Every feature or bug fix must:**
+
+1. **Build with zero errors and zero warnings** — run after any code change:
+   ```
+   xcodebuild -project VinylCollector.xcodeproj -scheme VinylCollector \
+     -destination 'id=<simulator-udid>' clean build 2>&1 \
+     | grep "warning:" | grep -v "appintentsmetadataprocessor"
+   ```
+   This command should produce **no output**. The AppIntents metadata processor line is the only expected warning and is filtered out. Any other warning is a defect.
+
+2. **Include handler-level tests** for every new Manager or Engine handler. Tests live in
+   `VinylCollectorTests/` mirroring the source tree. Use Swift Testing (`import Testing`,
+   `@Suite`, `@Test`, `#expect`). Mock accessor/engine dependencies with private mock classes
+   in the same test file. See any existing test file in `VinylCollectorTests/` for the pattern.
+
+3. **Pass all tests** — run the full suite and confirm zero failures:
+   ```
+   xcodebuild -project VinylCollector.xcodeproj -scheme VinylCollector \
+     -destination 'id=<simulator-udid>' test 2>&1 | grep -E "passed|failed"
+   ```
+
+To find an available simulator UDID: `xcrun simctl list devices available | grep iPhone`

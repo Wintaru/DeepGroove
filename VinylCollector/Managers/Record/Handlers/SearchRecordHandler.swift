@@ -27,8 +27,9 @@ final class SearchRecordHandler: IHandler {
                                            requestType: String(describing: type(of: request)))
         }
 
+        let config = apiConfiguration
         let (anthropicKey, discogsToken) = await MainActor.run {
-            (apiConfiguration.anthropicAPIKey, apiConfiguration.discogsToken)
+            (config.anthropicAPIKey, config.discogsToken)
         }
 
         switch req.source {

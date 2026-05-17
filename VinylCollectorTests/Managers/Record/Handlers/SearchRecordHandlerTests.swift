@@ -48,6 +48,7 @@ private func makeDiscogsResponse(
     )
 }
 
+@MainActor
 private func makeHandler(
     discogs: IDiscogsAccessor = MockDiscogsAccessor(
         response: makeDiscogsResponse()
@@ -75,6 +76,7 @@ private func makeHandler(
 
 // MARK: - Suite
 
+@MainActor
 @Suite("SearchRecordHandler")
 struct SearchRecordHandlerTests {
 

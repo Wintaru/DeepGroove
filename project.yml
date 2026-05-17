@@ -49,6 +49,8 @@ targets:
         DEVELOPMENT_TEAM: 9C5WLPGP58
         TARGETED_DEVICE_FAMILY: "1"
         SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+    dependencies:
+      - sdk: StoreKit.framework
     entitlements:
       path: VinylCollector/VinylCollector.entitlements
       properties:
