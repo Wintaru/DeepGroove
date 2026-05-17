@@ -13,9 +13,12 @@ final class LoadDiscogsReleaseHandler: IHandler {
                                            requestType: String(describing: type(of: request)))
         }
         do {
-            var components = URLComponents(string: "\(DiscogsAPI.releaseURL)/\(req.releaseId)")!
+            guard let url = URL(string: "\(DiscogsAPI.releaseURL)/\(req.releaseId)") else {
+                return LoadDiscogsReleaseResponse(correlationId: req.correlationId,
+                                                 errorMessage: NetworkError.invalidURL.localizedDescription)
+            }
             let data = try await networkUtility.get(
-                url: components.url!,
+                url: url,
                 headers: DiscogsAPI.headers(token: req.token)
             )
             let decoded = try JSONDecoder().decode(DiscogsReleaseAPIResponse.self, from: data)

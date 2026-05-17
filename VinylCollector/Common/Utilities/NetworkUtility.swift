@@ -38,11 +38,13 @@ final class NetworkUtility: Sendable {
 
 enum NetworkError: Error, LocalizedError {
     case invalidResponse
+    case invalidURL
     case httpError(statusCode: Int)
 
     var errorDescription: String? {
         switch self {
         case .invalidResponse: "Invalid server response."
+        case .invalidURL: "Invalid URL."
         case .httpError(let code): "HTTP error \(code)."
         }
     }
