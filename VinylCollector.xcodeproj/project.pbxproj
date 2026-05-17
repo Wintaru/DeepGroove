@@ -159,6 +159,7 @@
 		FD2C7DF31E3A49128A517B04 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFF7B588771FADCF5BB9C0B /* DependencyContainer.swift */; };
 		FD6FF4E4C765329D410F146D /* FileManagerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C94B377E487D8F4F4C52F5 /* FileManagerUtility.swift */; };
 		FD75D2325FBB070AE68F6B6B /* WishlistRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95416B97C1331D55DB4152BD /* WishlistRecord.swift */; };
+		FDC60B16927826CFAD032EA2 /* KeychainUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552784AC9BC540B9BE15A9D /* KeychainUtility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -268,6 +269,7 @@
 		9F8FF53777AD2E7E44C65A46 /* SearchDiscogsByBarcodeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDiscogsByBarcodeHandler.swift; sourceTree = "<group>"; };
 		A2561B969D8E6AA0817B908E /* IStatisticsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStatisticsEngine.swift; sourceTree = "<group>"; };
 		A4549E9C96840B7F76A357DA /* SearchRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecordResponse.swift; sourceTree = "<group>"; };
+		A552784AC9BC540B9BE15A9D /* KeychainUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainUtility.swift; sourceTree = "<group>"; };
 		A5CECBB7136AB9CD1473C2B1 /* AddToWishlistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToWishlistResponse.swift; sourceTree = "<group>"; };
 		A614438956E5FB970871896D /* IWishlistAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWishlistAccessor.swift; sourceTree = "<group>"; };
 		A69D7D9FDC772D9B8C2E253B /* RemoveRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveRecordHandler.swift; sourceTree = "<group>"; };
@@ -1000,6 +1002,7 @@
 			children = (
 				D9C94B377E487D8F4F4C52F5 /* FileManagerUtility.swift */,
 				BBB5C73BC1F3892822622C3F /* ImageUtility.swift */,
+				A552784AC9BC540B9BE15A9D /* KeychainUtility.swift */,
 				D0457282A617A6A788A93837 /* LogUtility.swift */,
 				EBE581BE3905A08C21C2137B /* NetworkUtility.swift */,
 				B84680D05331B8030A9D113A /* StringUtility.swift */,
@@ -1228,6 +1231,7 @@
 				95497BA6B96DFC7DA57EFACC /* IdentifyRecordRequest.swift in Sources */,
 				0F332116DF1B3ABE29C5274C /* IdentifyRecordResponse.swift in Sources */,
 				084597A294F441634FEE2F6C /* ImageUtility.swift in Sources */,
+				FDC60B16927826CFAD032EA2 /* KeychainUtility.swift in Sources */,
 				2586443676E8B1C1071990DD /* LoadAllRecordsHandler.swift in Sources */,
 				526319C444A8E9C33E4C5498 /* LoadAllRecordsRequest.swift in Sources */,
 				F38A03DFEE942EED3110424D /* LoadAllRecordsResponse.swift in Sources */,
