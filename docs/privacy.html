@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Deep Groove</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      max-width: 720px;
+      margin: 48px auto;
+      padding: 0 24px;
+      color: #1c1c1e;
+      line-height: 1.6;
+    }
+    h1 { font-size: 2rem; margin-bottom: 0.25em; }
+    h2 { font-size: 1.2rem; margin-top: 2em; border-bottom: 1px solid #e5e5ea; padding-bottom: 4px; }
+    p, li { font-size: 1rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+    th, td { border: 1px solid #d1d1d6; padding: 8px 12px; text-align: left; font-size: 0.95rem; }
+    th { background: #f2f2f7; }
+    a { color: #007aff; }
+    .subtitle { color: #636366; margin-top: 0; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #1c1c1e; color: #f2f2f7; }
+      th { background: #2c2c2e; }
+      th, td { border-color: #3a3a3c; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Privacy Policy</h1>
+<p class="subtitle">Deep Groove &mdash; Last updated: May 2026</p>
+
+<h2>Overview</h2>
+<p>Deep Groove is a personal iOS app for cataloguing your vinyl record collection. This policy describes what data the app accesses and how it is handled.</p>
+
+<h2>Data We Collect</h2>
+<p><strong>We do not collect any personal data.</strong> Deep Groove does not transmit any user data to the developer or to any analytics service.</p>
+
+<h2>Data Stored on Your Device</h2>
+<p>The following data is stored <strong>locally on your device only</strong>:</p>
+<ul>
+  <li><strong>Record collection</strong> — artist, album title, year, genre, condition, notes, and estimated value for each record in your collection, stored via Apple&rsquo;s SwiftData framework and optionally synced to your personal iCloud account.</li>
+  <li><strong>Photos</strong> — photos you take or import of your records, stored in the app&rsquo;s local storage and optionally synced to iCloud.</li>
+  <li><strong>API keys</strong> — your Anthropic API key and Discogs token, stored in your device&rsquo;s local settings (UserDefaults). These keys are only used to make requests directly from your device to those services and are never transmitted to the developer.</li>
+</ul>
+
+<h2>Third-Party Services</h2>
+<p>Deep Groove makes requests to the following third-party services <strong>on your behalf</strong>:</p>
+<table>
+  <thead>
+    <tr><th>Service</th><th>Purpose</th><th>Their Privacy Policy</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Discogs</strong> (discogs.com)</td>
+      <td>Look up record metadata and artwork</td>
+      <td><a href="https://www.discogs.com/privacy">discogs.com/privacy</a></td>
+    </tr>
+    <tr>
+      <td><strong>Anthropic</strong> (anthropic.com)</td>
+      <td>AI-assisted record identification from photos</td>
+      <td><a href="https://www.anthropic.com/privacy">anthropic.com/privacy</a></td>
+    </tr>
+  </tbody>
+</table>
+<p>When you use AI identification, a photo of your record is sent directly from your device to Anthropic&rsquo;s API using your own API key. Anthropic&rsquo;s privacy policy governs how they handle that data.</p>
+<p>When you search Discogs, your search query or barcode is sent directly from your device to Discogs using your own token.</p>
+
+<h2>iCloud Sync</h2>
+<p>If you are signed into iCloud, your collection data and record photos may be synced to your personal iCloud account via CloudKit. This data is stored in your private iCloud database and is not accessible to the developer.</p>
+
+<h2>Camera and Photo Library</h2>
+<p>Deep Groove requests access to your camera and photo library solely to allow you to photograph records and import existing photos. These images are stored locally on your device and optionally in your personal iCloud account. They are never uploaded to the developer.</p>
+
+<h2>Children&rsquo;s Privacy</h2>
+<p>Deep Groove does not knowingly collect any information from children under 13.</p>
+
+<h2>Changes to This Policy</h2>
+<p>If this policy changes, the updated version will be posted at this same URL with an updated date.</p>
+
+<h2>Contact</h2>
+<p>If you have questions about this privacy policy, contact: <a href="mailto:jdonner@dontpaniclabs.com">jdonner@dontpaniclabs.com</a></p>
+
+</body>
+</html>

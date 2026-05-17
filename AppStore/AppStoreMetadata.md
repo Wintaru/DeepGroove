@@ -1,4 +1,4 @@
-# App Store Metadata — VinylCollector
+# App Store Metadata — Deep Groove
 
 Reference doc for App Store Connect submission. Fill in URLs once hosting is set up.
 
@@ -8,9 +8,9 @@ Reference doc for App Store Connect submission. Fill in URLs once hosting is set
 
 | Field | Value |
 |---|---|
-| **App Name** | VinylCollector |
-| **Bundle ID** | com.jdonner.vinylcollector |
-| **SKU** | vinylcollector-1 |
+| **App Name** | Deep Groove |
+| **Bundle ID** | com.jdonner.deepgroove |
+| **SKU** | deepgroove-1 |
 | **Primary Language** | English (U.S.) |
 | **Primary Category** | Music |
 | **Secondary Category** | Lifestyle |
@@ -22,9 +22,9 @@ Reference doc for App Store Connect submission. Fill in URLs once hosting is set
 ### Description (max 4000 chars)
 
 ```
-VinylCollector is the smartest way to catalogue your vinyl record collection.
+Deep Groove is the smartest way to catalogue your vinyl record collection.
 
-Point your camera at a record sleeve and let AI identify it instantly — or scan the barcode for immediate, precise results. VinylCollector searches Discogs automatically to fill in the artist, album, year, genre, label, and tracklist, so you spend less time typing and more time listening.
+Point your camera at a record sleeve and let AI identify it instantly — or scan the barcode for immediate, precise results. Deep Groove searches Discogs automatically to fill in the artist, album, year, genre, label, and tracklist, so you spend less time typing and more time listening.
 
 KEY FEATURES
 
@@ -44,7 +44,7 @@ To use AI identification, you'll need a free Anthropic API key (anthropic.com). 
 
 PRIVACY
 
-VinylCollector collects no personal data and sends nothing to the developer. Your collection lives on your device and in your private iCloud account. See the full privacy policy at [YOUR PRIVACY POLICY URL].
+Deep Groove collects no personal data and sends nothing to the developer. Your collection lives on your device and in your private iCloud account. See the full privacy policy at https://wintaru.github.io/DeepGroove/privacy
 ```
 
 ### Subtitle (max 30 chars)
@@ -61,7 +61,7 @@ vinyl,records,collection,music,discogs,LP,album,catalog,turntable,wishlist
 
 ### Support URL
 
-`[YOUR SUPPORT URL]` — e.g. a GitHub issues page or simple contact page
+`https://github.com/Wintaru/DeepGroove/issues`
 
 ### Marketing URL (optional)
 
@@ -69,7 +69,7 @@ vinyl,records,collection,music,discogs,LP,album,catalog,turntable,wishlist
 
 ### Privacy Policy URL (required)
 
-`[URL WHERE YOU HOST PrivacyPolicy.md]`
+`https://wintaru.github.io/DeepGroove/privacy`
 
 ---
 
@@ -106,7 +106,7 @@ No.
 
 ### Notes for Reviewer
 ```
-VinylCollector uses two third-party APIs that require user-supplied keys:
+Deep Groove uses two third-party APIs that require user-supplied keys:
 - Anthropic API key (for AI record identification from photos)
 - Discogs developer token (for record metadata search)
 

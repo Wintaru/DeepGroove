@@ -1,4 +1,4 @@
-# VinylCollector — Project Rules
+# Deep Groove — Project Rules
 
 ## Architecture
 
@@ -209,9 +209,9 @@ in `SortDescriptor` generate false-positive errors that have no clean fix.
 
 ## CloudKit setup
 
-- Bundle ID: `com.jdonner.vinylcollector`
+- Bundle ID: `com.jdonner.deepgroove`
 - Team ID: `9C5WLPGP58`
-- CloudKit container: `iCloud.com.jdonner.vinylcollector`
+- CloudKit container: `iCloud.com.jdonner.deepgroove`
 - Required entitlements: `icloud-services: [CloudKit]`, `icloud-container-identifiers`, `ubiquity-kvstore-identifier`
 - Required Info.plist key: `UIBackgroundModes: [remote-notification]`
 
@@ -259,10 +259,10 @@ Uses XcodeGen. After changing `project.yml`, run:
 ```
 xcodegen generate
 ```
-Then reopen `VinylCollector.xcodeproj` in Xcode.
+Then reopen `DeepGroove.xcodeproj` in Xcode.
 
 Do not commit `.xcodeproj` — it is gitignored and regenerated from `project.yml`.
-`VinylCollector/Configuration/Secrets.swift` is also gitignored.
+`DeepGroove/Configuration/Secrets.swift` is also gitignored.
 
 ---
 
@@ -272,20 +272,20 @@ Do not commit `.xcodeproj` — it is gitignored and regenerated from `project.ym
 
 1. **Build with zero errors and zero warnings** — run after any code change:
    ```
-   xcodebuild -project VinylCollector.xcodeproj -scheme VinylCollector \
+   xcodebuild -project DeepGroove.xcodeproj -scheme DeepGroove \
      -destination 'id=<simulator-udid>' clean build 2>&1 \
      | grep "warning:" | grep -v "appintentsmetadataprocessor"
    ```
    This command should produce **no output**. The AppIntents metadata processor line is the only expected warning and is filtered out. Any other warning is a defect.
 
 2. **Include handler-level tests** for every new Manager or Engine handler. Tests live in
-   `VinylCollectorTests/` mirroring the source tree. Use Swift Testing (`import Testing`,
+   `DeepGrooveTests/` mirroring the source tree. Use Swift Testing (`import Testing`,
    `@Suite`, `@Test`, `#expect`). Mock accessor/engine dependencies with private mock classes
-   in the same test file. See any existing test file in `VinylCollectorTests/` for the pattern.
+   in the same test file. See any existing test file in `DeepGrooveTests/` for the pattern.
 
 3. **Pass all tests** — run the full suite and confirm zero failures:
    ```
-   xcodebuild -project VinylCollector.xcodeproj -scheme VinylCollector \
+   xcodebuild -project DeepGroove.xcodeproj -scheme DeepGroove \
      -destination 'id=<simulator-udid>' test 2>&1 | grep -E "passed|failed"
    ```
 

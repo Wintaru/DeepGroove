@@ -1,0 +1,1735 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0078573A094189AFFAC0111A /* LoadAllRecordsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9795596774BDFF8922440B41 /* LoadAllRecordsRequest.swift */; };
+		00E3CD9BC2D08BADF9D8AF67 /* AddToWishlistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45333BC50FAA8462C9802E76 /* AddToWishlistResponse.swift */; };
+		025136171692BA58DE072B56 /* ComputeStatisticsHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5FB35F8E6A214E776CB519 /* ComputeStatisticsHandlerTests.swift */; };
+		02876BEB8682560234C74C09 /* UpdateRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EC42899AE7AD3BFA6203C2 /* UpdateRecordRequest.swift */; };
+		03C303AA6F40C76DB51E2266 /* EditRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672A64F7666EC32A467F9E0C /* EditRecordResponse.swift */; };
+		04B0D9D7C7F0FBB6020722F5 /* GetTipProductsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A5959003B0F4432D517A1 /* GetTipProductsResponse.swift */; };
+		050555B92CE21960530E31B8 /* ResponseBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874DB9B8C30F1A80D244BD1D /* ResponseBase.swift */; };
+		067F8DE4D1F56AEDFEEE11B4 /* SavePhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F113128B30E9AD465B8D4807 /* SavePhotoHandler.swift */; };
+		07DC01F64641963A270B9AC9 /* IHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40293669D28774C38DC3AF2 /* IHandler.swift */; };
+		0859D88C8C0DFE4768EC1B12 /* TipProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE3E2987D5CC0DC7711CAAA /* TipProduct.swift */; };
+		08DDE78503CF782E2C6CCFC7 /* DeleteWishlistItemHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C5FD1E8F08093E62E1039 /* DeleteWishlistItemHandler.swift */; };
+		0CED650580B355AE6F8935B8 /* DeletePhotoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA564E4D58EFFBBEB8DF34DD /* DeletePhotoRequest.swift */; };
+		0DEC479B5225F2B73368983B /* FileManagerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DAA7339E0D2924047F16E0 /* FileManagerUtility.swift */; };
+		0E4C01DAC3F3902DBBEF97D3 /* IStatisticsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48A8384DBB05943680F47FA /* IStatisticsEngine.swift */; };
+		111B6FBD0449B2E2C2962547 /* FilteredRecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B1714C36A8298C99085C68 /* FilteredRecordListView.swift */; };
+		12E1C009FD2C377AD1FD1118 /* LoadPhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3AEA7F16CE39C395041749 /* LoadPhotoResponse.swift */; };
+		14494FA8BE85A16E433992DA /* LoadAllWishlistItemsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AFE9DD9EC340AECF5D6F99 /* LoadAllWishlistItemsResponse.swift */; };
+		14B9B5E97ADEBCF4BB6956F9 /* AddRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E476ABB29976E1094F33F1 /* AddRecordResponse.swift */; };
+		177D15E4C0D50844A50FA129 /* IWishlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B309E5C6F9EA63DD3E9607 /* IWishlistManager.swift */; };
+		1A729606334C16AB78F766F0 /* RecordAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493545E6A3A247A1A6E7942 /* RecordAccessor.swift */; };
+		1C17D5CEF0334232641CE63A /* ComputeStatisticsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DECD04ED2E1D67D6A93A76D /* ComputeStatisticsRequest.swift */; };
+		1C4E6D636C8D61F61C634533 /* KeychainUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19406B1EA343EE224BB8F765 /* KeychainUtility.swift */; };
+		1D5634D4D584032E376226EB /* AddToWishlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A5616EFFDE0C99004F40CF /* AddToWishlistView.swift */; };
+		1F98E80601FCFB22126F6C6A /* DeletePhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0140C092CD802D10675D9EC8 /* DeletePhotoResponse.swift */; };
+		2120F41D4583E079F335BDB7 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE601D92C6777EF12D55B544 /* CollectionViewModel.swift */; };
+		229423FA05462B1506E13C9F /* DiscogsPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF1BCEBA0522D99D2BF7FFC /* DiscogsPickerView.swift */; };
+		22C580FC6F1AAA00CC28D58C /* ISupportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CAC7BED10C40E054396D1 /* ISupportManager.swift */; };
+		285EA0CEFF9FAEC038054FE1 /* AddToWishlistHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED0BADE0424C028134A4319 /* AddToWishlistHandlerTests.swift */; };
+		286717165B237E93EFD7B67E /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBCF88292BDDAA4B680D831 /* CameraView.swift */; };
+		2924A9182B1F49D9FEE4F498 /* DiscogsSearchAPITypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9056E63DB53ABC9EA600321F /* DiscogsSearchAPITypes.swift */; };
+		2AEC3516D5B6E2F9942A6829 /* SaveWishlistItemHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A67A9D0BFE53D3E9C08160 /* SaveWishlistItemHandler.swift */; };
+		2B8CB770B1120251E16DA0DC /* IIdentificationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486BF14A3CB3433475E9576 /* IIdentificationEngine.swift */; };
+		2C7A3E97A130007EF8B89836 /* StatisticsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC62784256142C72F690164 /* StatisticsEngine.swift */; };
+		2C82087BEEEE0D796B136AD0 /* EditRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC4B0952ACB560C4AB96903 /* EditRecordRequest.swift */; };
+		2DEFB443A26BAFE459A31554 /* ParseIdentificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CED52EACA6A390E46E85956 /* ParseIdentificationResponse.swift */; };
+		2ED5B14D6064997EA3DBBD6D /* IMetadataEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80615DD0244DDA77BF8DD236 /* IMetadataEngine.swift */; };
+		345F92D3DE6D9EFDB9CB80E3 /* LoadDiscogsReleaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24F8DACA20355FC732CA7CA /* LoadDiscogsReleaseHandler.swift */; };
+		3525CACDAB2470CAFD7B85F7 /* DeleteRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDBADC55D585CB16A06AAB1 /* DeleteRecordHandler.swift */; };
+		370E2D664893C2ED758045C7 /* ComputeStatisticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18EFF12D7C6F1C02FB0A707 /* ComputeStatisticsHandler.swift */; };
+		3C5AF1E8BA33CFFE148F56D3 /* AIVisionAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851E7DA1D55A8408B0DDDD2 /* AIVisionAccessor.swift */; };
+		3F458D197F658AF890E24A51 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF4C699852DE99B47CB942 /* ContentView.swift */; };
+		3FABAEF2AB99807F31BA5912 /* AddRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD16BA820CAFF4E2BD0412C /* AddRecordHandler.swift */; };
+		40FC803CAF85F6AEB6AAF492 /* LoadTipProductsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199782E51E144DE5B4B9370C /* LoadTipProductsRequest.swift */; };
+		424B7983CCD14986601131D2 /* RemoveRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748E7EEC9F4A770AA98310A /* RemoveRecordRequest.swift */; };
+		4260206A246C44AD96DCC673 /* IWishlistAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBD1680BB7232F0114172E5 /* IWishlistAccessor.swift */; };
+		4531E411BA0A3E1E3CAA571A /* PurchaseTipRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F755EE123FA4EAC1B761B7 /* PurchaseTipRequest.swift */; };
+		47A5753E6EA07F387314578D /* DeleteRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1040457824D7D27A302F2BE /* DeleteRecordRequest.swift */; };
+		47D962B3BA72EEE41FC24F40 /* SearchRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD8BE435A1FBCE0BD74CD8 /* SearchRecordHandler.swift */; };
+		480DB9E3A66CC7600AF8184B /* SearchDiscogsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5CC889F30CBFD36B9241F /* SearchDiscogsRequest.swift */; };
+		481291CF26946D002AADB8C9 /* RecordDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6007510D8F49479A429D3E /* RecordDetailView.swift */; };
+		4CA0D9A8112698308EC4CF38 /* StringUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F63DD216BC73B79E543221 /* StringUtility.swift */; };
+		4D209B57ECD9DD1F791E654E /* LoadRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEC6E594D61ECA842210418 /* LoadRecordRequest.swift */; };
+		4DC9F3B03A7BC65DE7CFC455 /* IAIVisionAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820A92E478FBF6A0DD7F35A /* IAIVisionAccessor.swift */; };
+		4E7093B53658F49D5CC36169 /* GetRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4423E5D80D37807AB0D3E2CB /* GetRecordRequest.swift */; };
+		4FBD9C47B744947793D895DD /* GetTipProductsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB79FABD6BEA0B3C235C21 /* GetTipProductsRequest.swift */; };
+		51709C41171B3DB3C01392A8 /* SaveRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAB4F465BC38BCAA0F5A8B5 /* SaveRecordHandler.swift */; };
+		517820DC303CFED53B45AEFF /* StatisticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35611D5C566B167C708574A9 /* StatisticsManager.swift */; };
+		518CD5477256060D3B181E96 /* IStatisticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87098D1F203DEAFF3936977 /* IStatisticsManager.swift */; };
+		520BA63DCD0B39DB2239B906 /* IRecordAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8246B207603923DD313A7428 /* IRecordAccessor.swift */; };
+		52392679168673822E57E9D3 /* WishlistRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E533644434AB907EB4B0475 /* WishlistRecord.swift */; };
+		53E7FD1A1E6D05C98A2DF02F /* SavePhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD383AFE8B8DDFA17231B30B /* SavePhotoResponse.swift */; };
+		54E650E8CEBC03B20D847087 /* LoadTipProductsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D8E655F92DA32684EBF55A /* LoadTipProductsHandler.swift */; };
+		56D8BEAC4F72273BF92FC661 /* AttachPhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C58F1C9210557E378605C1 /* AttachPhotoHandler.swift */; };
+		574F5A10604FE6834CDDD1D9 /* LoadDiscogsReleaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EBF3C3F7C32702CD8FBE10 /* LoadDiscogsReleaseResponse.swift */; };
+		586EEAE4E5D7A4656029625F /* LogUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29B5853339235A234E8AC7 /* LogUtility.swift */; };
+		60317C1D3181CEA8E10642A8 /* UpdateRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5916BFA414E5FADF96723839 /* UpdateRecordResponse.swift */; };
+		625C5820EBDF8EE9B415ACCE /* RemoveRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1103CA520AD14F619FCBE74 /* RemoveRecordResponse.swift */; };
+		6495922828158CCA5A00F3CC /* View+ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9F5CD0D4B0DBA4CEE138C4 /* View+ErrorAlert.swift */; };
+		6520EFA55773DBDC66F93841 /* LoadAllRecordsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2731F1F31477F7E5D9CB48E /* LoadAllRecordsHandler.swift */; };
+		69EF646AC1BA40C342C2280C /* AttachPhotoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3B73739FC62B9233488A51 /* AttachPhotoRequest.swift */; };
+		69F1BB69086297B714CC6368 /* VinylRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95467A2B61FCE46E82271613 /* VinylRecord.swift */; };
+		6BBFA76E1BDABE75BF5FDEBB /* RecordRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2DF1B605F4FD4C105FB153 /* RecordRowView.swift */; };
+		6C55AD204A1FD76D919DE183 /* LoadDiscogsReleaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2541DA4EBF19D4BC3CA33AD3 /* LoadDiscogsReleaseRequest.swift */; };
+		6E13E9F6003B5164C229E4E7 /* AddRecordSharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7A0F930144BBFC0C23B894 /* AddRecordSharedViews.swift */; };
+		6E70CEB2F0C43D92205A7BC9 /* SupportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447EE59B9FE0D75A10FDACD4 /* SupportManager.swift */; };
+		7150F21ECE8DB4A54935C09F /* SupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE509B196DA728FCCE2C144 /* SupportView.swift */; };
+		719BA3D53B7A74C914F67ADD /* DeepGrooveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723E70553E57FA37FEDD816 /* DeepGrooveApp.swift */; };
+		722CCF02D1865656A2DCEA93 /* AddRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836CE30CAEC4D8BCDF53FD0E /* AddRecordRequest.swift */; };
+		73E54CEFF837FAF12DF61059 /* GetStatisticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D37E77521D7397B5A0EE88 /* GetStatisticsHandler.swift */; };
+		760DA6C5570E0C1F4A76B583 /* IdentifyRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9447A1E3F98CE83C50E7B9BD /* IdentifyRecordHandler.swift */; };
+		76167485EEB1CFF14517B130 /* AddRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE217061F1FE6280491C2E67 /* AddRecordView.swift */; };
+		782EF894FE14E5DDA81FDCFC /* RemoveFromWishlistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E3B28121F43A7E7C5446E4 /* RemoveFromWishlistResponse.swift */; };
+		7C7A1A66CF2FF08DF5BEE6AF /* GetCollectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8CAC84721CBDFAC9C4D67 /* GetCollectionRequest.swift */; };
+		7FEEBC76FBD47D51D5DEB74A /* SearchDiscogsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A111B0F77A8FA339886C21EA /* SearchDiscogsHandler.swift */; };
+		8063091583BDAFF36DD38F23 /* ParseIdentificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC48DB9A352F1162C6CE05B5 /* ParseIdentificationHandler.swift */; };
+		80CAFFF032101ABF0BDBA94D /* SaveWishlistItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E3660067FC73B177E7E157 /* SaveWishlistItemRequest.swift */; };
+		82681088D6F08AED131C6FD3 /* ModelContext+FetchById.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064B8FC23E1A7F737312D6A6 /* ModelContext+FetchById.swift */; };
+		8373D29447B1D75F255B537B /* LoadPhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419FE5A115A2E9E33FF43FF /* LoadPhotoHandler.swift */; };
+		883B82A59AF529098C63AD7F /* LoadPhotoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BD36C3AD429527EBFA66B /* LoadPhotoRequest.swift */; };
+		894EE1A1BA3675293ACE17D8 /* DiscogsAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CCABC2D4AD430D73895C83 /* DiscogsAccessor.swift */; };
+		89C581B8B20B967209CF31F0 /* IdentificationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0B4FEC8A63301B6FC84F3D /* IdentificationEngine.swift */; };
+		8B2B1CCB5E837BA80244668B /* GetTipProductsHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9434E4565176390AA3B0A /* GetTipProductsHandlerTests.swift */; };
+		8D263BED0C41A24166EA02B0 /* DeletePhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260771E2908C896ED251D9E8 /* DeletePhotoHandler.swift */; };
+		8F0E69D6D63E560201025834 /* MergeMetadataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AD10990960DF9DD2B1930 /* MergeMetadataHandler.swift */; };
+		918856E188B81FFA974E8DCD /* PhotoAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F00E6B3AE25F3D885163D9 /* PhotoAccessor.swift */; };
+		9240E8DB4AFAB9BFF34E6024 /* StoreKitAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C820EC58E507557569E5021 /* StoreKitAccessor.swift */; };
+		926C3B14E284B473AD4A5AA9 /* LoadTipProductsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4075EBEC2D15C8892DB497C2 /* LoadTipProductsResponse.swift */; };
+		93DFF15A260B28DD2FB8360A /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BD586B3D4CEE719CC0AA5E /* DependencyContainer.swift */; };
+		950BA8B8EFB4FADFE4816DC9 /* UpdateRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D27A97012C3C135104C8 /* UpdateRecordHandler.swift */; };
+		96A3CDAAD6F6AC4617FE8501 /* AddToWishlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB352CC5A9880F8526764984 /* AddToWishlistViewModel.swift */; };
+		9B1880D5E4F06FBC7D29E3E0 /* SearchRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D3818F993AAA21479E3D2 /* SearchRecordRequest.swift */; };
+		9B4771B67D4237085B621026 /* SearchDiscogsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46EA8CB7EA72604EFF0F37B /* SearchDiscogsResponse.swift */; };
+		9B5F3511BCFD50982D161DB6 /* DeleteRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A060D66C2FB38FCC6437D7E /* DeleteRecordResponse.swift */; };
+		9F18681A154862F395741CA7 /* AttachPhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035F0EC1A9635127B796303E /* AttachPhotoResponse.swift */; };
+		9FCCB0B82658985AA66FEC21 /* ImageUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B901FEBCBA4CFAFDAD00FAF5 /* ImageUtility.swift */; };
+		A1D0BB241410D4E79F7AA276 /* WishlistAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D93702C8AED09BFB63D7BCD /* WishlistAccessor.swift */; };
+		A3246BB99ED492F755AC1784 /* IStoreKitAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB988D26E3DA737BCDC9F732 /* IStoreKitAccessor.swift */; };
+		A4CED452844122EEA2679E5D /* RemoveRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8889A03E9ECE29EA2DD6649 /* RemoveRecordHandler.swift */; };
+		A4ECAFEAB0F0A81C81B8FBD5 /* MergeMetadataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5162E586B3B5E794C35E5 /* MergeMetadataResponse.swift */; };
+		A7B808F98ADD98DDD2D76768 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C5264BDBD9DB06CDFB955A /* SettingsView.swift */; };
+		A83CA50E4B8F654DD78CB7E8 /* CoverCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D3F06B939202490282C90B /* CoverCropView.swift */; };
+		A86701E141AAF021968EF6B1 /* PurchaseTipProductRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E86E298BDEE01BF89A095C /* PurchaseTipProductRequest.swift */; };
+		A981D4D9D9186B3B061E8F86 /* LoadAllWishlistItemsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7D11B1A6889C556DAC9D4E /* LoadAllWishlistItemsRequest.swift */; };
+		AC9FFD17BCA105A25F8030AA /* WishlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374C0725E136A053D7B8E541 /* WishlistManager.swift */; };
+		ACB26C5D6D33AD1499A09D51 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5254963254DD4FFD1D3125 /* StatisticsView.swift */; };
+		AE27826A717335EA50A68819 /* DeleteWishlistItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2887DAB96DB65523B5866CE /* DeleteWishlistItemResponse.swift */; };
+		AFF124EC5087E2C9A574B316 /* SearchRecordHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016C42F09DC0D681AB0C65F8 /* SearchRecordHandlerTests.swift */; };
+		B1043A07D1D0AD71F2459166 /* LoadAllRecordsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73E5E54DD46E81B522E29CD /* LoadAllRecordsResponse.swift */; };
+		B1FD1823185FFF31E8459294 /* ParseIdentificationHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A19A278DD030FE1FDAB867D /* ParseIdentificationHandlerTests.swift */; };
+		B29006AF1CCA693A46D718A3 /* DeleteWishlistItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B0AD0A648366031215FA77 /* DeleteWishlistItemRequest.swift */; };
+		B3C144BF045D951F5B895E13 /* AddRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFDD85EA52565C1919EA69E /* AddRecordViewModel.swift */; };
+		B49FACAA30117F7243AAFCEE /* IPhotoAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61130F6199B50D6FF61C026 /* IPhotoAccessor.swift */; };
+		B97896F36614252FE1FB60E6 /* IRecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F61F9A685EB4024A73D7331 /* IRecordManager.swift */; };
+		BA23F4F372326D891C239464 /* IDiscogsAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ECBB3FE24F0047FC5966F5 /* IDiscogsAccessor.swift */; };
+		C0E35C8CCE606B1451CDCBFB /* IdentifyRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F395F71A0C66FDDBA981C40 /* IdentifyRecordRequest.swift */; };
+		C1D4A73091C4F41ED0CD7913 /* AddToWishlistHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F827ADE662077ABD1A740D9E /* AddToWishlistHandler.swift */; };
+		C209410610112E3DCD5780C0 /* WishlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DDC9801A614C46A01F0A36 /* WishlistView.swift */; };
+		C44BDEEB0FE06CFC06A13A87 /* GetRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EDCF2F4A4FDC8106D02913 /* GetRecordHandler.swift */; };
+		C45FA2CE45B893E7E10FAD35 /* IdentifyRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BFB52FD28C4A817776E4B /* IdentifyRecordResponse.swift */; };
+		C49365A938E6FB878B8797D6 /* BarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB9BCC136A37EEE9A3395CC /* BarcodeView.swift */; };
+		C68400190896944020B9930D /* HandlerResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3915A837814914E5412F9B /* HandlerResolver.swift */; };
+		C73D554570CBC37D00839D04 /* LoadRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0B41532066920EB75B3483 /* LoadRecordResponse.swift */; };
+		C7B0E11B2CAA31DEED3E319B /* DiscogsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AE91F1A286B4BD08590DED /* DiscogsAPI.swift */; };
+		C7E005AD0BAA573ACB46220F /* ComputeStatisticsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FFF3F365CEC7122536E01D /* ComputeStatisticsResponse.swift */; };
+		C846DB6297221EDAF1FB591F /* GetStatisticsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E7191C5B694F8E956439B3 /* GetStatisticsRequest.swift */; };
+		C8EE8DC8827897F07DC7B2C7 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2F7395B1609C32176FE44 /* APIConfiguration.swift */; };
+		C9CF4ACB95562D631763A4EA /* LoadAllWishlistItemsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37215563E712E61455E1E94D /* LoadAllWishlistItemsHandler.swift */; };
+		CA5CB1F1C9433BB4AA652DA0 /* RecordDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F17CFC02582A8E06868F7 /* RecordDetailViewModel.swift */; };
+		CB29B8BF42EF704D0BF3749F /* MergeMetadataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BCB92A08DAFCF05D7456BE /* MergeMetadataRequest.swift */; };
+		CC80CA656BF395693F001EE1 /* PurchaseTipResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E207398F97666C8F3A82493E /* PurchaseTipResponse.swift */; };
+		CF6FBF52E250B1A5744D611A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 9EAC4FC24E87A962C4211ED7 /* PrivacyInfo.xcprivacy */; };
+		D24333D439C5EF67CD8908E2 /* SearchRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EED78B38CEB960590859F8E /* SearchRecordResponse.swift */; };
+		D2E4F8E9351A22C97E9FD6C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54E940707AC85950A664DEAC /* Assets.xcassets */; };
+		D35CB51D70DBF776570AC25C /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF17968384AB28DA97D1536A /* CollectionView.swift */; };
+		D37E68338363FCCD4D1E279F /* RecordPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417DDCDEC4E10F75F04EB9B8 /* RecordPhoto.swift */; };
+		D8244007986711E64A19D907 /* RemoveFromWishlistHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB7E44D9B9D862BB333FFF4 /* RemoveFromWishlistHandler.swift */; };
+		DD002A4C395A2641B5A97853 /* RequestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5EDDEDF7A1EB54850BA7DC /* RequestBase.swift */; };
+		DEA74D06017732014B1DE075 /* SaveRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F0AA5634BACA8BDAF9CC0B /* SaveRecordRequest.swift */; };
+		DF83E82BA8B41E4B3142082C /* PurchaseTipProductResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D78F70B23DFFC80AFFDECD /* PurchaseTipProductResponse.swift */; };
+		DFB2A052B82D977248AB81CE /* SavePhotoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD8376BA43533AFC57CF700 /* SavePhotoRequest.swift */; };
+		E0EC85AD1F7E4FAD2ED3F42A /* SearchDiscogsByBarcodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35E25D50C5EDDFFD2AB9E48 /* SearchDiscogsByBarcodeHandler.swift */; };
+		E22A75202293C6BF80C92772 /* EditRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FAAA173B51A796FA68428F /* EditRecordHandler.swift */; };
+		E3A5152322107260BBE48ADE /* SaveRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4C75B32A6AA3DBDE8F6521 /* SaveRecordResponse.swift */; };
+		E62061676B2606CCE0946BC0 /* GetStatisticsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8909C3B9812844B0D50E604C /* GetStatisticsResponse.swift */; };
+		E797F804DB6102A6BA2D4A7A /* WishlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD89509DDB068889657F66A /* WishlistViewModel.swift */; };
+		E7FB321F2F71E86B513A4F6D /* MetadataEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C75A17FC8B058017AA329A /* MetadataEngine.swift */; };
+		E82492AE1E5155D6F9EC0462 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3086B589739B1FD1735BF56C /* StoreKit.framework */; };
+		E82928E701F5823546C1FCD4 /* PurchaseTipProductHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7813AFFF3E6F83877B4FF39 /* PurchaseTipProductHandler.swift */; };
+		E9F8D08A5015C134A27B7AA1 /* GetRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94539D8C0DC6FB065F67A59F /* GetRecordResponse.swift */; };
+		EA67DB9BA0FDBA51242C93E5 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840D77AF43EED2AF8DEDC90 /* StatisticsViewModel.swift */; };
+		EB277299804B22269FBBBAC6 /* SearchDiscogsByBarcodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942C5BD71E00CB2C0728C0FD /* SearchDiscogsByBarcodeRequest.swift */; };
+		EB456748336DE2AA5E939481 /* PurchaseTipHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66071AB842DFCBB2F05E7D49 /* PurchaseTipHandler.swift */; };
+		EC04076A8EF3B4FA5E872BF3 /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FF1B2BE32014C848794C09 /* NetworkUtility.swift */; };
+		F0559C13D1B02C9DCD2D04E5 /* PurchaseTipHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41619988DD496B04D620D9C2 /* PurchaseTipHandlerTests.swift */; };
+		F093F3EC80A198812D9527A4 /* SupportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0F821A37EE167527A784DA /* SupportViewModel.swift */; };
+		F1FF594CD90A4926DC6096FF /* RemoveFromWishlistRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0655A2050989B606714C9CDB /* RemoveFromWishlistRequest.swift */; };
+		F32F3FAB14C1DA30B9E71F03 /* WishlistItemRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FACA285A04F0A37FDB1F8E /* WishlistItemRowView.swift */; };
+		F336DA3A5BDC2235A850C855 /* ParseIdentificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE465BB4A0EB81E72A8ABDBD /* ParseIdentificationRequest.swift */; };
+		F35A3DAC0B52E124D310518E /* RecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585B42B5FA2EB07395E5490E /* RecordManager.swift */; };
+		F6223384BD09448CDB64D869 /* LoadRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE2FB722975834629B9C5AE /* LoadRecordHandler.swift */; };
+		F6CBF9C9A30F242C92669C8A /* AddToWishlistRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5A114116758090C49774D /* AddToWishlistRequest.swift */; };
+		FAE563AC73D78596F7ADA3CA /* SaveWishlistItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AA6FBEB95C862C410EDD9A /* SaveWishlistItemResponse.swift */; };
+		FCCB67161DDF44FEC13068F5 /* MergeMetadataHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE258646627C2722CC44789 /* MergeMetadataHandlerTests.swift */; };
+		FF80E7776F5E12D19E4C0B1C /* GetTipProductsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C690E13D2754095519FEE /* GetTipProductsHandler.swift */; };
+		FFD1365C78963F2B58B90345 /* StringUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59667BC52065D9E2EB5BF235 /* StringUtilityTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		914EE2DE6178864FF65D4579 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E34D75DBA4866C61659B1F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5AFD5BD118321123FD237582;
+			remoteInfo = DeepGroove;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00D8D27A97012C3C135104C8 /* UpdateRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRecordHandler.swift; sourceTree = "<group>"; };
+		0140C092CD802D10675D9EC8 /* DeletePhotoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePhotoResponse.swift; sourceTree = "<group>"; };
+		016C42F09DC0D681AB0C65F8 /* SearchRecordHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecordHandlerTests.swift; sourceTree = "<group>"; };
+		035F0EC1A9635127B796303E /* AttachPhotoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachPhotoResponse.swift; sourceTree = "<group>"; };
+		044BFB52FD28C4A817776E4B /* IdentifyRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyRecordResponse.swift; sourceTree = "<group>"; };
+		046A5959003B0F4432D517A1 /* GetTipProductsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTipProductsResponse.swift; sourceTree = "<group>"; };
+		04B1714C36A8298C99085C68 /* FilteredRecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredRecordListView.swift; sourceTree = "<group>"; };
+		064B8FC23E1A7F737312D6A6 /* ModelContext+FetchById.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelContext+FetchById.swift"; sourceTree = "<group>"; };
+		0655A2050989B606714C9CDB /* RemoveFromWishlistRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFromWishlistRequest.swift; sourceTree = "<group>"; };
+		06B5CC889F30CBFD36B9241F /* SearchDiscogsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDiscogsRequest.swift; sourceTree = "<group>"; };
+		0D0B41532066920EB75B3483 /* LoadRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadRecordResponse.swift; sourceTree = "<group>"; };
+		0DE5162E586B3B5E794C35E5 /* MergeMetadataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeMetadataResponse.swift; sourceTree = "<group>"; };
+		10EBF3C3F7C32702CD8FBE10 /* LoadDiscogsReleaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDiscogsReleaseResponse.swift; sourceTree = "<group>"; };
+		14DF4C699852DE99B47CB942 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		16BD586B3D4CEE719CC0AA5E /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		1851E7DA1D55A8408B0DDDD2 /* AIVisionAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIVisionAccessor.swift; sourceTree = "<group>"; };
+		19406B1EA343EE224BB8F765 /* KeychainUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainUtility.swift; sourceTree = "<group>"; };
+		199782E51E144DE5B4B9370C /* LoadTipProductsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadTipProductsRequest.swift; sourceTree = "<group>"; };
+		1AE509B196DA728FCCE2C144 /* SupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportView.swift; sourceTree = "<group>"; };
+		21DAA7339E0D2924047F16E0 /* FileManagerUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerUtility.swift; sourceTree = "<group>"; };
+		2541DA4EBF19D4BC3CA33AD3 /* LoadDiscogsReleaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDiscogsReleaseRequest.swift; sourceTree = "<group>"; };
+		260771E2908C896ED251D9E8 /* DeletePhotoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePhotoHandler.swift; sourceTree = "<group>"; };
+		2BB8CAC84721CBDFAC9C4D67 /* GetCollectionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCollectionRequest.swift; sourceTree = "<group>"; };
+		2CF2F7395B1609C32176FE44 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
+		2E533644434AB907EB4B0475 /* WishlistRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistRecord.swift; sourceTree = "<group>"; };
+		2F5C690E13D2754095519FEE /* GetTipProductsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTipProductsHandler.swift; sourceTree = "<group>"; };
+		3086B589739B1FD1735BF56C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		30C75A17FC8B058017AA329A /* MetadataEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataEngine.swift; sourceTree = "<group>"; };
+		35611D5C566B167C708574A9 /* StatisticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsManager.swift; sourceTree = "<group>"; };
+		35BCB92A08DAFCF05D7456BE /* MergeMetadataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeMetadataRequest.swift; sourceTree = "<group>"; };
+		37215563E712E61455E1E94D /* LoadAllWishlistItemsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAllWishlistItemsHandler.swift; sourceTree = "<group>"; };
+		374C0725E136A053D7B8E541 /* WishlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistManager.swift; sourceTree = "<group>"; };
+		38F00E6B3AE25F3D885163D9 /* PhotoAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAccessor.swift; sourceTree = "<group>"; };
+		3C29B5853339235A234E8AC7 /* LogUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogUtility.swift; sourceTree = "<group>"; };
+		3CF1BCEBA0522D99D2BF7FFC /* DiscogsPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscogsPickerView.swift; sourceTree = "<group>"; };
+		3E2DF1B605F4FD4C105FB153 /* RecordRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordRowView.swift; sourceTree = "<group>"; };
+		3EED78B38CEB960590859F8E /* SearchRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecordResponse.swift; sourceTree = "<group>"; };
+		3F61F9A685EB4024A73D7331 /* IRecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRecordManager.swift; sourceTree = "<group>"; };
+		4075EBEC2D15C8892DB497C2 /* LoadTipProductsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadTipProductsResponse.swift; sourceTree = "<group>"; };
+		40AA6FBEB95C862C410EDD9A /* SaveWishlistItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveWishlistItemResponse.swift; sourceTree = "<group>"; };
+		41619988DD496B04D620D9C2 /* PurchaseTipHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTipHandlerTests.swift; sourceTree = "<group>"; };
+		417DDCDEC4E10F75F04EB9B8 /* RecordPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPhoto.swift; sourceTree = "<group>"; };
+		42B309E5C6F9EA63DD3E9607 /* IWishlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWishlistManager.swift; sourceTree = "<group>"; };
+		42FACA285A04F0A37FDB1F8E /* WishlistItemRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistItemRowView.swift; sourceTree = "<group>"; };
+		4423E5D80D37807AB0D3E2CB /* GetRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecordRequest.swift; sourceTree = "<group>"; };
+		447EE59B9FE0D75A10FDACD4 /* SupportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportManager.swift; sourceTree = "<group>"; };
+		45333BC50FAA8462C9802E76 /* AddToWishlistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToWishlistResponse.swift; sourceTree = "<group>"; };
+		45C5264BDBD9DB06CDFB955A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		486B5FC6C097727987DA2993 /* DeepGrooveTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = DeepGrooveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		48CCABC2D4AD430D73895C83 /* DiscogsAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscogsAccessor.swift; sourceTree = "<group>"; };
+		4AA9434E4565176390AA3B0A /* GetTipProductsHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTipProductsHandlerTests.swift; sourceTree = "<group>"; };
+		4E0B4FEC8A63301B6FC84F3D /* IdentificationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationEngine.swift; sourceTree = "<group>"; };
+		4EDBADC55D585CB16A06AAB1 /* DeleteRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRecordHandler.swift; sourceTree = "<group>"; };
+		5493545E6A3A247A1A6E7942 /* RecordAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAccessor.swift; sourceTree = "<group>"; };
+		54E940707AC85950A664DEAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		57F755EE123FA4EAC1B761B7 /* PurchaseTipRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTipRequest.swift; sourceTree = "<group>"; };
+		585B42B5FA2EB07395E5490E /* RecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordManager.swift; sourceTree = "<group>"; };
+		58EDCF2F4A4FDC8106D02913 /* GetRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecordHandler.swift; sourceTree = "<group>"; };
+		5916BFA414E5FADF96723839 /* UpdateRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRecordResponse.swift; sourceTree = "<group>"; };
+		59667BC52065D9E2EB5BF235 /* StringUtilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtilityTests.swift; sourceTree = "<group>"; };
+		59EC42899AE7AD3BFA6203C2 /* UpdateRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRecordRequest.swift; sourceTree = "<group>"; };
+		5AD16BA820CAFF4E2BD0412C /* AddRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordHandler.swift; sourceTree = "<group>"; };
+		5CED52EACA6A390E46E85956 /* ParseIdentificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseIdentificationResponse.swift; sourceTree = "<group>"; };
+		5DC62784256142C72F690164 /* StatisticsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsEngine.swift; sourceTree = "<group>"; };
+		5DECD04ED2E1D67D6A93A76D /* ComputeStatisticsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputeStatisticsRequest.swift; sourceTree = "<group>"; };
+		5E3915A837814914E5412F9B /* HandlerResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlerResolver.swift; sourceTree = "<group>"; };
+		63E3B28121F43A7E7C5446E4 /* RemoveFromWishlistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFromWishlistResponse.swift; sourceTree = "<group>"; };
+		63FB79FABD6BEA0B3C235C21 /* GetTipProductsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTipProductsRequest.swift; sourceTree = "<group>"; };
+		64AFE9DD9EC340AECF5D6F99 /* LoadAllWishlistItemsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAllWishlistItemsResponse.swift; sourceTree = "<group>"; };
+		64FAAA173B51A796FA68428F /* EditRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordHandler.swift; sourceTree = "<group>"; };
+		66071AB842DFCBB2F05E7D49 /* PurchaseTipHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTipHandler.swift; sourceTree = "<group>"; };
+		672A64F7666EC32A467F9E0C /* EditRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordResponse.swift; sourceTree = "<group>"; };
+		6A060D66C2FB38FCC6437D7E /* DeleteRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRecordResponse.swift; sourceTree = "<group>"; };
+		6A19A278DD030FE1FDAB867D /* ParseIdentificationHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseIdentificationHandlerTests.swift; sourceTree = "<group>"; };
+		6D5FB35F8E6A214E776CB519 /* ComputeStatisticsHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputeStatisticsHandlerTests.swift; sourceTree = "<group>"; };
+		6DD8376BA43533AFC57CF700 /* SavePhotoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePhotoRequest.swift; sourceTree = "<group>"; };
+		6F6007510D8F49479A429D3E /* RecordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailView.swift; sourceTree = "<group>"; };
+		71D78F70B23DFFC80AFFDECD /* PurchaseTipProductResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTipProductResponse.swift; sourceTree = "<group>"; };
+		7419FE5A115A2E9E33FF43FF /* LoadPhotoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPhotoHandler.swift; sourceTree = "<group>"; };
+		764AD10990960DF9DD2B1930 /* MergeMetadataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeMetadataHandler.swift; sourceTree = "<group>"; };
+		78D3F06B939202490282C90B /* CoverCropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverCropView.swift; sourceTree = "<group>"; };
+		7A7A0F930144BBFC0C23B894 /* AddRecordSharedViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordSharedViews.swift; sourceTree = "<group>"; };
+		7C3AEA7F16CE39C395041749 /* LoadPhotoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPhotoResponse.swift; sourceTree = "<group>"; };
+		7D93702C8AED09BFB63D7BCD /* WishlistAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistAccessor.swift; sourceTree = "<group>"; };
+		7ED0BADE0424C028134A4319 /* AddToWishlistHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToWishlistHandlerTests.swift; sourceTree = "<group>"; };
+		80615DD0244DDA77BF8DD236 /* IMetadataEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMetadataEngine.swift; sourceTree = "<group>"; };
+		8246B207603923DD313A7428 /* IRecordAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRecordAccessor.swift; sourceTree = "<group>"; };
+		82A67A9D0BFE53D3E9C08160 /* SaveWishlistItemHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveWishlistItemHandler.swift; sourceTree = "<group>"; };
+		82C58F1C9210557E378605C1 /* AttachPhotoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachPhotoHandler.swift; sourceTree = "<group>"; };
+		836CE30CAEC4D8BCDF53FD0E /* AddRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordRequest.swift; sourceTree = "<group>"; };
+		8486BF14A3CB3433475E9576 /* IIdentificationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IIdentificationEngine.swift; sourceTree = "<group>"; };
+		85A5616EFFDE0C99004F40CF /* AddToWishlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToWishlistView.swift; sourceTree = "<group>"; };
+		8723E70553E57FA37FEDD816 /* DeepGrooveApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepGrooveApp.swift; sourceTree = "<group>"; };
+		874DB9B8C30F1A80D244BD1D /* ResponseBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseBase.swift; sourceTree = "<group>"; };
+		87AE91F1A286B4BD08590DED /* DiscogsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscogsAPI.swift; sourceTree = "<group>"; };
+		8820A92E478FBF6A0DD7F35A /* IAIVisionAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAIVisionAccessor.swift; sourceTree = "<group>"; };
+		8909C3B9812844B0D50E604C /* GetStatisticsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStatisticsResponse.swift; sourceTree = "<group>"; };
+		89F63DD216BC73B79E543221 /* StringUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtility.swift; sourceTree = "<group>"; };
+		8F387808938D7A9966072232 /* DeepGroove.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = DeepGroove.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9056E63DB53ABC9EA600321F /* DiscogsSearchAPITypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscogsSearchAPITypes.swift; sourceTree = "<group>"; };
+		942C5BD71E00CB2C0728C0FD /* SearchDiscogsByBarcodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDiscogsByBarcodeRequest.swift; sourceTree = "<group>"; };
+		9447A1E3F98CE83C50E7B9BD /* IdentifyRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyRecordHandler.swift; sourceTree = "<group>"; };
+		94539D8C0DC6FB065F67A59F /* GetRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecordResponse.swift; sourceTree = "<group>"; };
+		95467A2B61FCE46E82271613 /* VinylRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VinylRecord.swift; sourceTree = "<group>"; };
+		9795596774BDFF8922440B41 /* LoadAllRecordsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAllRecordsRequest.swift; sourceTree = "<group>"; };
+		9C7D11B1A6889C556DAC9D4E /* LoadAllWishlistItemsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAllWishlistItemsRequest.swift; sourceTree = "<group>"; };
+		9C820EC58E507557569E5021 /* StoreKitAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitAccessor.swift; sourceTree = "<group>"; };
+		9D8BD36C3AD429527EBFA66B /* LoadPhotoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPhotoRequest.swift; sourceTree = "<group>"; };
+		9EAC4FC24E87A962C4211ED7 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		9F395F71A0C66FDDBA981C40 /* IdentifyRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyRecordRequest.swift; sourceTree = "<group>"; };
+		9F9D3818F993AAA21479E3D2 /* SearchRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecordRequest.swift; sourceTree = "<group>"; };
+		9FAB4F465BC38BCAA0F5A8B5 /* SaveRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveRecordHandler.swift; sourceTree = "<group>"; };
+		A111B0F77A8FA339886C21EA /* SearchDiscogsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDiscogsHandler.swift; sourceTree = "<group>"; };
+		A46EA8CB7EA72604EFF0F37B /* SearchDiscogsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDiscogsResponse.swift; sourceTree = "<group>"; };
+		A4E7191C5B694F8E956439B3 /* GetStatisticsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStatisticsRequest.swift; sourceTree = "<group>"; };
+		A5D37E77521D7397B5A0EE88 /* GetStatisticsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStatisticsHandler.swift; sourceTree = "<group>"; };
+		A6E86E298BDEE01BF89A095C /* PurchaseTipProductRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTipProductRequest.swift; sourceTree = "<group>"; };
+		AA564E4D58EFFBBEB8DF34DD /* DeletePhotoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePhotoRequest.swift; sourceTree = "<group>"; };
+		AB352CC5A9880F8526764984 /* AddToWishlistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToWishlistViewModel.swift; sourceTree = "<group>"; };
+		ACFDD85EA52565C1919EA69E /* AddRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordViewModel.swift; sourceTree = "<group>"; };
+		AE5254963254DD4FFD1D3125 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
+		AF17968384AB28DA97D1536A /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		AF3B73739FC62B9233488A51 /* AttachPhotoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachPhotoRequest.swift; sourceTree = "<group>"; };
+		B0C5A114116758090C49774D /* AddToWishlistRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToWishlistRequest.swift; sourceTree = "<group>"; };
+		B18F17CFC02582A8E06868F7 /* RecordDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailViewModel.swift; sourceTree = "<group>"; };
+		B1B0AD0A648366031215FA77 /* DeleteWishlistItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteWishlistItemRequest.swift; sourceTree = "<group>"; };
+		B2E3660067FC73B177E7E157 /* SaveWishlistItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveWishlistItemRequest.swift; sourceTree = "<group>"; };
+		B61130F6199B50D6FF61C026 /* IPhotoAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPhotoAccessor.swift; sourceTree = "<group>"; };
+		B6DDC9801A614C46A01F0A36 /* WishlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistView.swift; sourceTree = "<group>"; };
+		B6FFF3F365CEC7122536E01D /* ComputeStatisticsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputeStatisticsResponse.swift; sourceTree = "<group>"; };
+		B87098D1F203DEAFF3936977 /* IStatisticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStatisticsManager.swift; sourceTree = "<group>"; };
+		B901FEBCBA4CFAFDAD00FAF5 /* ImageUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtility.swift; sourceTree = "<group>"; };
+		BA24C07D898DFA8E5CA58402 /* DeepGroove.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepGroove.entitlements; sourceTree = "<group>"; };
+		BCB9BCC136A37EEE9A3395CC /* BarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeView.swift; sourceTree = "<group>"; };
+		BCE3E2987D5CC0DC7711CAAA /* TipProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipProduct.swift; sourceTree = "<group>"; };
+		BCEC6E594D61ECA842210418 /* LoadRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadRecordRequest.swift; sourceTree = "<group>"; };
+		BD4C75B32A6AA3DBDE8F6521 /* SaveRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveRecordResponse.swift; sourceTree = "<group>"; };
+		C18EFF12D7C6F1C02FB0A707 /* ComputeStatisticsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputeStatisticsHandler.swift; sourceTree = "<group>"; };
+		C24F8DACA20355FC732CA7CA /* LoadDiscogsReleaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDiscogsReleaseHandler.swift; sourceTree = "<group>"; };
+		C73E5E54DD46E81B522E29CD /* LoadAllRecordsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAllRecordsResponse.swift; sourceTree = "<group>"; };
+		C8889A03E9ECE29EA2DD6649 /* RemoveRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveRecordHandler.swift; sourceTree = "<group>"; };
+		CB58E852F37A7D0E642AF11C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CB9F5CD0D4B0DBA4CEE138C4 /* View+ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ErrorAlert.swift"; sourceTree = "<group>"; };
+		CBBCF88292BDDAA4B680D831 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		CBE258646627C2722CC44789 /* MergeMetadataHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeMetadataHandlerTests.swift; sourceTree = "<group>"; };
+		CD383AFE8B8DDFA17231B30B /* SavePhotoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePhotoResponse.swift; sourceTree = "<group>"; };
+		CECD8BE435A1FBCE0BD74CD8 /* SearchRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecordHandler.swift; sourceTree = "<group>"; };
+		CFD89509DDB068889657F66A /* WishlistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistViewModel.swift; sourceTree = "<group>"; };
+		CFE2FB722975834629B9C5AE /* LoadRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadRecordHandler.swift; sourceTree = "<group>"; };
+		D1040457824D7D27A302F2BE /* DeleteRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRecordRequest.swift; sourceTree = "<group>"; };
+		D1103CA520AD14F619FCBE74 /* RemoveRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveRecordResponse.swift; sourceTree = "<group>"; };
+		D50CAC7BED10C40E054396D1 /* ISupportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISupportManager.swift; sourceTree = "<group>"; };
+		D71C5FD1E8F08093E62E1039 /* DeleteWishlistItemHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteWishlistItemHandler.swift; sourceTree = "<group>"; };
+		DC48DB9A352F1162C6CE05B5 /* ParseIdentificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseIdentificationHandler.swift; sourceTree = "<group>"; };
+		E207398F97666C8F3A82493E /* PurchaseTipResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTipResponse.swift; sourceTree = "<group>"; };
+		E35E25D50C5EDDFFD2AB9E48 /* SearchDiscogsByBarcodeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDiscogsByBarcodeHandler.swift; sourceTree = "<group>"; };
+		E7813AFFF3E6F83877B4FF39 /* PurchaseTipProductHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTipProductHandler.swift; sourceTree = "<group>"; };
+		E840D77AF43EED2AF8DEDC90 /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
+		E9ECBB3FE24F0047FC5966F5 /* IDiscogsAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDiscogsAccessor.swift; sourceTree = "<group>"; };
+		ED5EDDEDF7A1EB54850BA7DC /* RequestBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBase.swift; sourceTree = "<group>"; };
+		EDBD1680BB7232F0114172E5 /* IWishlistAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWishlistAccessor.swift; sourceTree = "<group>"; };
+		EE465BB4A0EB81E72A8ABDBD /* ParseIdentificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseIdentificationRequest.swift; sourceTree = "<group>"; };
+		EE601D92C6777EF12D55B544 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
+		F0E476ABB29976E1094F33F1 /* AddRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordResponse.swift; sourceTree = "<group>"; };
+		F113128B30E9AD465B8D4807 /* SavePhotoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePhotoHandler.swift; sourceTree = "<group>"; };
+		F2731F1F31477F7E5D9CB48E /* LoadAllRecordsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAllRecordsHandler.swift; sourceTree = "<group>"; };
+		F2887DAB96DB65523B5866CE /* DeleteWishlistItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteWishlistItemResponse.swift; sourceTree = "<group>"; };
+		F40293669D28774C38DC3AF2 /* IHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IHandler.swift; sourceTree = "<group>"; };
+		F48A8384DBB05943680F47FA /* IStatisticsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStatisticsEngine.swift; sourceTree = "<group>"; };
+		F5D8E655F92DA32684EBF55A /* LoadTipProductsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadTipProductsHandler.swift; sourceTree = "<group>"; };
+		F748E7EEC9F4A770AA98310A /* RemoveRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveRecordRequest.swift; sourceTree = "<group>"; };
+		F827ADE662077ABD1A740D9E /* AddToWishlistHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToWishlistHandler.swift; sourceTree = "<group>"; };
+		F8FF1B2BE32014C848794C09 /* NetworkUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtility.swift; sourceTree = "<group>"; };
+		F9F0AA5634BACA8BDAF9CC0B /* SaveRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveRecordRequest.swift; sourceTree = "<group>"; };
+		FA0F821A37EE167527A784DA /* SupportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewModel.swift; sourceTree = "<group>"; };
+		FB988D26E3DA737BCDC9F732 /* IStoreKitAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStoreKitAccessor.swift; sourceTree = "<group>"; };
+		FBC4B0952ACB560C4AB96903 /* EditRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordRequest.swift; sourceTree = "<group>"; };
+		FCB7E44D9B9D862BB333FFF4 /* RemoveFromWishlistHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFromWishlistHandler.swift; sourceTree = "<group>"; };
+		FE217061F1FE6280491C2E67 /* AddRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FA98D1F5ABE84E8D92E4C25A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E82492AE1E5155D6F9EC0462 /* StoreKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0231D72B4B7C1513A1924053 /* Discogs */ = {
+			isa = PBXGroup;
+			children = (
+				2541DA4EBF19D4BC3CA33AD3 /* LoadDiscogsReleaseRequest.swift */,
+				10EBF3C3F7C32702CD8FBE10 /* LoadDiscogsReleaseResponse.swift */,
+				942C5BD71E00CB2C0728C0FD /* SearchDiscogsByBarcodeRequest.swift */,
+				06B5CC889F30CBFD36B9241F /* SearchDiscogsRequest.swift */,
+				A46EA8CB7EA72604EFF0F37B /* SearchDiscogsResponse.swift */,
+			);
+			path = Discogs;
+			sourceTree = "<group>";
+		};
+		0282359C7EE77247B7FFDB5F /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				13D66973636A155538A91EC6 /* Handlers */,
+			);
+			path = Metadata;
+			sourceTree = "<group>";
+		};
+		02F01D1BEA87E78566EC80BE /* Identification */ = {
+			isa = PBXGroup;
+			children = (
+				3F871952179C9A89653D4672 /* Handlers */,
+			);
+			path = Identification;
+			sourceTree = "<group>";
+		};
+		06DFC6542126A50A03069A06 /* Accessors */ = {
+			isa = PBXGroup;
+			children = (
+				7D843B860264E561FA20A9A7 /* AIVision */,
+				3403E967F78C002D8670DC18 /* Discogs */,
+				302021350FADDD8F19CDD6D2 /* Interfaces */,
+				0F2379F461D355562B567470 /* Photo */,
+				ED1CE2306A0FA74971B36958 /* Record */,
+				E44E343552FFA9CE027599A8 /* StoreKit */,
+				C0A7FABA93531F3F08BAE08F /* Wishlist */,
+			);
+			path = Accessors;
+			sourceTree = "<group>";
+		};
+		080687D8A6066B55932944CB /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				45C5264BDBD9DB06CDFB955A /* SettingsView.swift */,
+				1AE509B196DA728FCCE2C144 /* SupportView.swift */,
+				FA0F821A37EE167527A784DA /* SupportViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		0841A96CA798AF56C2BA2981 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				A17AB78E0F320D954BC89C32 /* Handlers */,
+				447EE59B9FE0D75A10FDACD4 /* SupportManager.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		0F2379F461D355562B567470 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				CDDCD8A5CEDE36E724A7938E /* Handlers */,
+				38F00E6B3AE25F3D885163D9 /* PhotoAccessor.swift */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
+		0F7BA9E0802EABFB30BD4450 /* Identification */ = {
+			isa = PBXGroup;
+			children = (
+				EE465BB4A0EB81E72A8ABDBD /* ParseIdentificationRequest.swift */,
+				5CED52EACA6A390E46E85956 /* ParseIdentificationResponse.swift */,
+			);
+			path = Identification;
+			sourceTree = "<group>";
+		};
+		13D66973636A155538A91EC6 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				CBE258646627C2722CC44789 /* MergeMetadataHandlerTests.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		1406FEB2040C618244DA9E01 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C156E03A84B8BD9AB4961C18 /* Record */,
+				2AD157F5B4C3F5A93BA04F4E /* Support */,
+				A4A2B38A45F6E53DBA7BCE4B /* Wishlist */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		186E610868310E803B41D16D /* Resolver */ = {
+			isa = PBXGroup;
+			children = (
+				5E3915A837814914E5412F9B /* HandlerResolver.swift */,
+				F40293669D28774C38DC3AF2 /* IHandler.swift */,
+			);
+			path = Resolver;
+			sourceTree = "<group>";
+		};
+		1AE903E61D773774DB5DCF49 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				DC48DB9A352F1162C6CE05B5 /* ParseIdentificationHandler.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		1CD36CD599ADC3F819093377 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7773479F8040344944CCFAEC /* Contracts */,
+				E470512EECC2470ECF047B50 /* Extensions */,
+				186E610868310E803B41D16D /* Resolver */,
+				BC822FFE377952EA46AC49A1 /* Utilities */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		20E47D55CE591E564647BD93 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3086B589739B1FD1735BF56C /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		227949B6F64B65B184449A5C /* Wishlist */ = {
+			isa = PBXGroup;
+			children = (
+				945E184DCB676568B94D3BA4 /* Handlers */,
+				374C0725E136A053D7B8E541 /* WishlistManager.swift */,
+			);
+			path = Wishlist;
+			sourceTree = "<group>";
+		};
+		242F9FB646D86C6D3B038874 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				764AD10990960DF9DD2B1930 /* MergeMetadataHandler.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		243298EFFDBCC5971E0FCF0C = {
+			isa = PBXGroup;
+			children = (
+				3F6B2A1C67871FC81A9C6BE9 /* DeepGroove */,
+				6DACBB341B35F648D24A9F83 /* DeepGrooveTests */,
+				20E47D55CE591E564647BD93 /* Frameworks */,
+				EBB01BD998FDED31479A846A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2A3C564B723EDD096C8FA92A /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				8486BF14A3CB3433475E9576 /* IIdentificationEngine.swift */,
+				80615DD0244DDA77BF8DD236 /* IMetadataEngine.swift */,
+				F48A8384DBB05943680F47FA /* IStatisticsEngine.swift */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		2AD157F5B4C3F5A93BA04F4E /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				40DC89F3E82867F38B3BF18B /* Handlers */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		2BD6A69FF8AF33C0C7DE50A4 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				63FB79FABD6BEA0B3C235C21 /* GetTipProductsRequest.swift */,
+				046A5959003B0F4432D517A1 /* GetTipProductsResponse.swift */,
+				57F755EE123FA4EAC1B761B7 /* PurchaseTipRequest.swift */,
+				E207398F97666C8F3A82493E /* PurchaseTipResponse.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		2D74AC66A654C2A7ECCF608C /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				9447A1E3F98CE83C50E7B9BD /* IdentifyRecordHandler.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		302021350FADDD8F19CDD6D2 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				8820A92E478FBF6A0DD7F35A /* IAIVisionAccessor.swift */,
+				E9ECBB3FE24F0047FC5966F5 /* IDiscogsAccessor.swift */,
+				B61130F6199B50D6FF61C026 /* IPhotoAccessor.swift */,
+				8246B207603923DD313A7428 /* IRecordAccessor.swift */,
+				FB988D26E3DA737BCDC9F732 /* IStoreKitAccessor.swift */,
+				EDBD1680BB7232F0114172E5 /* IWishlistAccessor.swift */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		3403E967F78C002D8670DC18 /* Discogs */ = {
+			isa = PBXGroup;
+			children = (
+				FD945B2BCE3F632D560CCD80 /* Handlers */,
+				48CCABC2D4AD430D73895C83 /* DiscogsAccessor.swift */,
+				87AE91F1A286B4BD08590DED /* DiscogsAPI.swift */,
+			);
+			path = Discogs;
+			sourceTree = "<group>";
+		};
+		35553A8E99F82EFE2DBD6198 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				016C42F09DC0D681AB0C65F8 /* SearchRecordHandlerTests.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		3F6B2A1C67871FC81A9C6BE9 /* DeepGroove */ = {
+			isa = PBXGroup;
+			children = (
+				06DFC6542126A50A03069A06 /* Accessors */,
+				F146F26287390826A0157979 /* App */,
+				1CD36CD599ADC3F819093377 /* Common */,
+				D30073AD8718736C2A4F0376 /* Configuration */,
+				42E902F1B44DC3E3AE513DC8 /* Contracts */,
+				D80E9D2378F5C4DA5C65E245 /* Engines */,
+				E353BFC15E30F4DB799F4F3C /* Managers */,
+				52E996AA5293734145DFA521 /* Models */,
+				CD725F9F68DC42A7891BE4E7 /* Views */,
+				54E940707AC85950A664DEAC /* Assets.xcassets */,
+				BA24C07D898DFA8E5CA58402 /* DeepGroove.entitlements */,
+				CB58E852F37A7D0E642AF11C /* Info.plist */,
+				9EAC4FC24E87A962C4211ED7 /* PrivacyInfo.xcprivacy */,
+			);
+			path = DeepGroove;
+			sourceTree = "<group>";
+		};
+		3F871952179C9A89653D4672 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				6A19A278DD030FE1FDAB867D /* ParseIdentificationHandlerTests.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		3FE3EF4CCE2BDC18E80C325F /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				5DECD04ED2E1D67D6A93A76D /* ComputeStatisticsRequest.swift */,
+				B6FFF3F365CEC7122536E01D /* ComputeStatisticsResponse.swift */,
+				A4E7191C5B694F8E956439B3 /* GetStatisticsRequest.swift */,
+				8909C3B9812844B0D50E604C /* GetStatisticsResponse.swift */,
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
+		40DC89F3E82867F38B3BF18B /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				4AA9434E4565176390AA3B0A /* GetTipProductsHandlerTests.swift */,
+				41619988DD496B04D620D9C2 /* PurchaseTipHandlerTests.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		410A0C546943FA0299B171AD /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				6F6007510D8F49479A429D3E /* RecordDetailView.swift */,
+				B18F17CFC02582A8E06868F7 /* RecordDetailViewModel.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		42E902F1B44DC3E3AE513DC8 /* Contracts */ = {
+			isa = PBXGroup;
+			children = (
+				760F9E306E7BD8B352A896D6 /* AIVision */,
+				0231D72B4B7C1513A1924053 /* Discogs */,
+				0F7BA9E0802EABFB30BD4450 /* Identification */,
+				E1C0C4C7BEA74DDA998463C3 /* Metadata */,
+				76E5F729847CE2D34A890ED1 /* Persistence */,
+				951C737EC553BF401BE82676 /* Photo */,
+				B311881905610CAC349FADFE /* Record */,
+				3FE3EF4CCE2BDC18E80C325F /* Statistics */,
+				55D75FB7F3B816FC65049E7B /* StoreKit */,
+				2BD6A69FF8AF33C0C7DE50A4 /* Support */,
+				7CE19F69450889E430E527C4 /* Wishlist */,
+			);
+			path = Contracts;
+			sourceTree = "<group>";
+		};
+		4EB3F6E1B7F40B94E8C76F60 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				7A7A0F930144BBFC0C23B894 /* AddRecordSharedViews.swift */,
+				FE217061F1FE6280491C2E67 /* AddRecordView.swift */,
+				ACFDD85EA52565C1919EA69E /* AddRecordViewModel.swift */,
+				BCB9BCC136A37EEE9A3395CC /* BarcodeView.swift */,
+				CBBCF88292BDDAA4B680D831 /* CameraView.swift */,
+				78D3F06B939202490282C90B /* CoverCropView.swift */,
+				3CF1BCEBA0522D99D2BF7FFC /* DiscogsPickerView.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		52E996AA5293734145DFA521 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				417DDCDEC4E10F75F04EB9B8 /* RecordPhoto.swift */,
+				BCE3E2987D5CC0DC7711CAAA /* TipProduct.swift */,
+				95467A2B61FCE46E82271613 /* VinylRecord.swift */,
+				2E533644434AB907EB4B0475 /* WishlistRecord.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5597EA9E2582C33B5364BA54 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				7ED0BADE0424C028134A4319 /* AddToWishlistHandlerTests.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		55AA62FA373BB30083EE3121 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				AF17968384AB28DA97D1536A /* CollectionView.swift */,
+				EE601D92C6777EF12D55B544 /* CollectionViewModel.swift */,
+				04B1714C36A8298C99085C68 /* FilteredRecordListView.swift */,
+				3E2DF1B605F4FD4C105FB153 /* RecordRowView.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		55D75FB7F3B816FC65049E7B /* StoreKit */ = {
+			isa = PBXGroup;
+			children = (
+				199782E51E144DE5B4B9370C /* LoadTipProductsRequest.swift */,
+				4075EBEC2D15C8892DB497C2 /* LoadTipProductsResponse.swift */,
+				A6E86E298BDEE01BF89A095C /* PurchaseTipProductRequest.swift */,
+				71D78F70B23DFFC80AFFDECD /* PurchaseTipProductResponse.swift */,
+			);
+			path = StoreKit;
+			sourceTree = "<group>";
+		};
+		57E7FEF8B6DE5FE15D189F97 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				F5D8E655F92DA32684EBF55A /* LoadTipProductsHandler.swift */,
+				E7813AFFF3E6F83877B4FF39 /* PurchaseTipProductHandler.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		649CEABAAEC78F2C48E2F788 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				AB3D42D430BCCB1783603359 /* Handlers */,
+				585B42B5FA2EB07395E5490E /* RecordManager.swift */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
+		6D0CEAFDA6602E20C487CE28 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				7E3FC8BFE521F5A12E3E0223 /* Handlers */,
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
+		6DACBB341B35F648D24A9F83 /* DeepGrooveTests */ = {
+			isa = PBXGroup;
+			children = (
+				A602F13227273FE63E343253 /* Common */,
+				D5E767292C200D3FFD94F77A /* Engines */,
+				1406FEB2040C618244DA9E01 /* Managers */,
+			);
+			path = DeepGrooveTests;
+			sourceTree = "<group>";
+		};
+		760F9E306E7BD8B352A896D6 /* AIVision */ = {
+			isa = PBXGroup;
+			children = (
+				9F395F71A0C66FDDBA981C40 /* IdentifyRecordRequest.swift */,
+				044BFB52FD28C4A817776E4B /* IdentifyRecordResponse.swift */,
+			);
+			path = AIVision;
+			sourceTree = "<group>";
+		};
+		76E5F729847CE2D34A890ED1 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				D1040457824D7D27A302F2BE /* DeleteRecordRequest.swift */,
+				6A060D66C2FB38FCC6437D7E /* DeleteRecordResponse.swift */,
+				9795596774BDFF8922440B41 /* LoadAllRecordsRequest.swift */,
+				C73E5E54DD46E81B522E29CD /* LoadAllRecordsResponse.swift */,
+				BCEC6E594D61ECA842210418 /* LoadRecordRequest.swift */,
+				0D0B41532066920EB75B3483 /* LoadRecordResponse.swift */,
+				F9F0AA5634BACA8BDAF9CC0B /* SaveRecordRequest.swift */,
+				BD4C75B32A6AA3DBDE8F6521 /* SaveRecordResponse.swift */,
+				59EC42899AE7AD3BFA6203C2 /* UpdateRecordRequest.swift */,
+				5916BFA414E5FADF96723839 /* UpdateRecordResponse.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		7706116C34F0B4570B15C5B3 /* Identification */ = {
+			isa = PBXGroup;
+			children = (
+				1AE903E61D773774DB5DCF49 /* Handlers */,
+				4E0B4FEC8A63301B6FC84F3D /* IdentificationEngine.swift */,
+			);
+			path = Identification;
+			sourceTree = "<group>";
+		};
+		7755C05D22DE6F6A3597971A /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				C717C4B8229C2CCF5F90BD8C /* Handlers */,
+				35611D5C566B167C708574A9 /* StatisticsManager.swift */,
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
+		7773479F8040344944CCFAEC /* Contracts */ = {
+			isa = PBXGroup;
+			children = (
+				ED5EDDEDF7A1EB54850BA7DC /* RequestBase.swift */,
+				874DB9B8C30F1A80D244BD1D /* ResponseBase.swift */,
+			);
+			path = Contracts;
+			sourceTree = "<group>";
+		};
+		7CE19F69450889E430E527C4 /* Wishlist */ = {
+			isa = PBXGroup;
+			children = (
+				B0C5A114116758090C49774D /* AddToWishlistRequest.swift */,
+				45333BC50FAA8462C9802E76 /* AddToWishlistResponse.swift */,
+				B1B0AD0A648366031215FA77 /* DeleteWishlistItemRequest.swift */,
+				F2887DAB96DB65523B5866CE /* DeleteWishlistItemResponse.swift */,
+				9C7D11B1A6889C556DAC9D4E /* LoadAllWishlistItemsRequest.swift */,
+				64AFE9DD9EC340AECF5D6F99 /* LoadAllWishlistItemsResponse.swift */,
+				0655A2050989B606714C9CDB /* RemoveFromWishlistRequest.swift */,
+				63E3B28121F43A7E7C5446E4 /* RemoveFromWishlistResponse.swift */,
+				B2E3660067FC73B177E7E157 /* SaveWishlistItemRequest.swift */,
+				40AA6FBEB95C862C410EDD9A /* SaveWishlistItemResponse.swift */,
+			);
+			path = Wishlist;
+			sourceTree = "<group>";
+		};
+		7D843B860264E561FA20A9A7 /* AIVision */ = {
+			isa = PBXGroup;
+			children = (
+				2D74AC66A654C2A7ECCF608C /* Handlers */,
+				1851E7DA1D55A8408B0DDDD2 /* AIVisionAccessor.swift */,
+			);
+			path = AIVision;
+			sourceTree = "<group>";
+		};
+		7E3FC8BFE521F5A12E3E0223 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				6D5FB35F8E6A214E776CB519 /* ComputeStatisticsHandlerTests.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		90729FC2709AA726F4149D6E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				59667BC52065D9E2EB5BF235 /* StringUtilityTests.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		945E184DCB676568B94D3BA4 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				F827ADE662077ABD1A740D9E /* AddToWishlistHandler.swift */,
+				FCB7E44D9B9D862BB333FFF4 /* RemoveFromWishlistHandler.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		951C737EC553BF401BE82676 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				AA564E4D58EFFBBEB8DF34DD /* DeletePhotoRequest.swift */,
+				0140C092CD802D10675D9EC8 /* DeletePhotoResponse.swift */,
+				9D8BD36C3AD429527EBFA66B /* LoadPhotoRequest.swift */,
+				7C3AEA7F16CE39C395041749 /* LoadPhotoResponse.swift */,
+				6DD8376BA43533AFC57CF700 /* SavePhotoRequest.swift */,
+				CD383AFE8B8DDFA17231B30B /* SavePhotoResponse.swift */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
+		A17AB78E0F320D954BC89C32 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				2F5C690E13D2754095519FEE /* GetTipProductsHandler.swift */,
+				66071AB842DFCBB2F05E7D49 /* PurchaseTipHandler.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		A4A2B38A45F6E53DBA7BCE4B /* Wishlist */ = {
+			isa = PBXGroup;
+			children = (
+				5597EA9E2582C33B5364BA54 /* Handlers */,
+			);
+			path = Wishlist;
+			sourceTree = "<group>";
+		};
+		A602F13227273FE63E343253 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				90729FC2709AA726F4149D6E /* Utilities */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		A829D587977BF0438304FD02 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				D4347AA222566252AF8030C7 /* Handlers */,
+				5DC62784256142C72F690164 /* StatisticsEngine.swift */,
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
+		AB3D42D430BCCB1783603359 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				5AD16BA820CAFF4E2BD0412C /* AddRecordHandler.swift */,
+				82C58F1C9210557E378605C1 /* AttachPhotoHandler.swift */,
+				64FAAA173B51A796FA68428F /* EditRecordHandler.swift */,
+				58EDCF2F4A4FDC8106D02913 /* GetRecordHandler.swift */,
+				C8889A03E9ECE29EA2DD6649 /* RemoveRecordHandler.swift */,
+				CECD8BE435A1FBCE0BD74CD8 /* SearchRecordHandler.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		B311881905610CAC349FADFE /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				836CE30CAEC4D8BCDF53FD0E /* AddRecordRequest.swift */,
+				F0E476ABB29976E1094F33F1 /* AddRecordResponse.swift */,
+				AF3B73739FC62B9233488A51 /* AttachPhotoRequest.swift */,
+				035F0EC1A9635127B796303E /* AttachPhotoResponse.swift */,
+				FBC4B0952ACB560C4AB96903 /* EditRecordRequest.swift */,
+				672A64F7666EC32A467F9E0C /* EditRecordResponse.swift */,
+				2BB8CAC84721CBDFAC9C4D67 /* GetCollectionRequest.swift */,
+				4423E5D80D37807AB0D3E2CB /* GetRecordRequest.swift */,
+				94539D8C0DC6FB065F67A59F /* GetRecordResponse.swift */,
+				F748E7EEC9F4A770AA98310A /* RemoveRecordRequest.swift */,
+				D1103CA520AD14F619FCBE74 /* RemoveRecordResponse.swift */,
+				9F9D3818F993AAA21479E3D2 /* SearchRecordRequest.swift */,
+				3EED78B38CEB960590859F8E /* SearchRecordResponse.swift */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
+		B535DC36DD8CD50637AEF19B /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				242F9FB646D86C6D3B038874 /* Handlers */,
+				30C75A17FC8B058017AA329A /* MetadataEngine.swift */,
+			);
+			path = Metadata;
+			sourceTree = "<group>";
+		};
+		B80899CB599BCCD6FC31FC00 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				3F61F9A685EB4024A73D7331 /* IRecordManager.swift */,
+				B87098D1F203DEAFF3936977 /* IStatisticsManager.swift */,
+				D50CAC7BED10C40E054396D1 /* ISupportManager.swift */,
+				42B309E5C6F9EA63DD3E9607 /* IWishlistManager.swift */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		BC822FFE377952EA46AC49A1 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				21DAA7339E0D2924047F16E0 /* FileManagerUtility.swift */,
+				B901FEBCBA4CFAFDAD00FAF5 /* ImageUtility.swift */,
+				19406B1EA343EE224BB8F765 /* KeychainUtility.swift */,
+				3C29B5853339235A234E8AC7 /* LogUtility.swift */,
+				F8FF1B2BE32014C848794C09 /* NetworkUtility.swift */,
+				89F63DD216BC73B79E543221 /* StringUtility.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		C0A7FABA93531F3F08BAE08F /* Wishlist */ = {
+			isa = PBXGroup;
+			children = (
+				C7E5B39874F4500A226AE32F /* Handlers */,
+				7D93702C8AED09BFB63D7BCD /* WishlistAccessor.swift */,
+			);
+			path = Wishlist;
+			sourceTree = "<group>";
+		};
+		C156E03A84B8BD9AB4961C18 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				35553A8E99F82EFE2DBD6198 /* Handlers */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
+		C717C4B8229C2CCF5F90BD8C /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				A5D37E77521D7397B5A0EE88 /* GetStatisticsHandler.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		C7E5B39874F4500A226AE32F /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				D71C5FD1E8F08093E62E1039 /* DeleteWishlistItemHandler.swift */,
+				37215563E712E61455E1E94D /* LoadAllWishlistItemsHandler.swift */,
+				82A67A9D0BFE53D3E9C08160 /* SaveWishlistItemHandler.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		CD725F9F68DC42A7891BE4E7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4EB3F6E1B7F40B94E8C76F60 /* Add */,
+				55AA62FA373BB30083EE3121 /* Collection */,
+				410A0C546943FA0299B171AD /* Detail */,
+				080687D8A6066B55932944CB /* Settings */,
+				D270778237746692DDE08836 /* Statistics */,
+				E45FA35B3D6C9FB53072C6BF /* Wishlist */,
+				14DF4C699852DE99B47CB942 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CDDCD8A5CEDE36E724A7938E /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				260771E2908C896ED251D9E8 /* DeletePhotoHandler.swift */,
+				7419FE5A115A2E9E33FF43FF /* LoadPhotoHandler.swift */,
+				F113128B30E9AD465B8D4807 /* SavePhotoHandler.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		D270778237746692DDE08836 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				AE5254963254DD4FFD1D3125 /* StatisticsView.swift */,
+				E840D77AF43EED2AF8DEDC90 /* StatisticsViewModel.swift */,
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
+		D30073AD8718736C2A4F0376 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				2CF2F7395B1609C32176FE44 /* APIConfiguration.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		D4347AA222566252AF8030C7 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				C18EFF12D7C6F1C02FB0A707 /* ComputeStatisticsHandler.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		D5E767292C200D3FFD94F77A /* Engines */ = {
+			isa = PBXGroup;
+			children = (
+				02F01D1BEA87E78566EC80BE /* Identification */,
+				0282359C7EE77247B7FFDB5F /* Metadata */,
+				6D0CEAFDA6602E20C487CE28 /* Statistics */,
+			);
+			path = Engines;
+			sourceTree = "<group>";
+		};
+		D7563AB4A32B87CAC746D101 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				4EDBADC55D585CB16A06AAB1 /* DeleteRecordHandler.swift */,
+				F2731F1F31477F7E5D9CB48E /* LoadAllRecordsHandler.swift */,
+				CFE2FB722975834629B9C5AE /* LoadRecordHandler.swift */,
+				9FAB4F465BC38BCAA0F5A8B5 /* SaveRecordHandler.swift */,
+				00D8D27A97012C3C135104C8 /* UpdateRecordHandler.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		D80E9D2378F5C4DA5C65E245 /* Engines */ = {
+			isa = PBXGroup;
+			children = (
+				7706116C34F0B4570B15C5B3 /* Identification */,
+				2A3C564B723EDD096C8FA92A /* Interfaces */,
+				B535DC36DD8CD50637AEF19B /* Metadata */,
+				A829D587977BF0438304FD02 /* Statistics */,
+			);
+			path = Engines;
+			sourceTree = "<group>";
+		};
+		E1C0C4C7BEA74DDA998463C3 /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				35BCB92A08DAFCF05D7456BE /* MergeMetadataRequest.swift */,
+				0DE5162E586B3B5E794C35E5 /* MergeMetadataResponse.swift */,
+			);
+			path = Metadata;
+			sourceTree = "<group>";
+		};
+		E353BFC15E30F4DB799F4F3C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				B80899CB599BCCD6FC31FC00 /* Interfaces */,
+				649CEABAAEC78F2C48E2F788 /* Record */,
+				7755C05D22DE6F6A3597971A /* Statistics */,
+				0841A96CA798AF56C2BA2981 /* Support */,
+				227949B6F64B65B184449A5C /* Wishlist */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		E44E343552FFA9CE027599A8 /* StoreKit */ = {
+			isa = PBXGroup;
+			children = (
+				57E7FEF8B6DE5FE15D189F97 /* Handlers */,
+				9C820EC58E507557569E5021 /* StoreKitAccessor.swift */,
+			);
+			path = StoreKit;
+			sourceTree = "<group>";
+		};
+		E45FA35B3D6C9FB53072C6BF /* Wishlist */ = {
+			isa = PBXGroup;
+			children = (
+				85A5616EFFDE0C99004F40CF /* AddToWishlistView.swift */,
+				AB352CC5A9880F8526764984 /* AddToWishlistViewModel.swift */,
+				42FACA285A04F0A37FDB1F8E /* WishlistItemRowView.swift */,
+				B6DDC9801A614C46A01F0A36 /* WishlistView.swift */,
+				CFD89509DDB068889657F66A /* WishlistViewModel.swift */,
+			);
+			path = Wishlist;
+			sourceTree = "<group>";
+		};
+		E470512EECC2470ECF047B50 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				064B8FC23E1A7F737312D6A6 /* ModelContext+FetchById.swift */,
+				CB9F5CD0D4B0DBA4CEE138C4 /* View+ErrorAlert.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EBB01BD998FDED31479A846A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8F387808938D7A9966072232 /* DeepGroove.app */,
+				486B5FC6C097727987DA2993 /* DeepGrooveTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED1CE2306A0FA74971B36958 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				D7563AB4A32B87CAC746D101 /* Handlers */,
+				5493545E6A3A247A1A6E7942 /* RecordAccessor.swift */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
+		F146F26287390826A0157979 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8723E70553E57FA37FEDD816 /* DeepGrooveApp.swift */,
+				16BD586B3D4CEE719CC0AA5E /* DependencyContainer.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		FD945B2BCE3F632D560CCD80 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				9056E63DB53ABC9EA600321F /* DiscogsSearchAPITypes.swift */,
+				C24F8DACA20355FC732CA7CA /* LoadDiscogsReleaseHandler.swift */,
+				E35E25D50C5EDDFFD2AB9E48 /* SearchDiscogsByBarcodeHandler.swift */,
+				A111B0F77A8FA339886C21EA /* SearchDiscogsHandler.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		050A387FC7E0D57542454431 /* DeepGrooveTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1BC4DF76574A1C5DADCD623 /* Build configuration list for PBXNativeTarget "DeepGrooveTests" */;
+			buildPhases = (
+				38BBEA0B570A50B6CAC8D466 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				14E3F9060B5C16018127D708 /* PBXTargetDependency */,
+			);
+			name = DeepGrooveTests;
+			packageProductDependencies = (
+			);
+			productName = DeepGrooveTests;
+			productReference = 486B5FC6C097727987DA2993 /* DeepGrooveTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5AFD5BD118321123FD237582 /* DeepGroove */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 216C41AE77B721187B12DF88 /* Build configuration list for PBXNativeTarget "DeepGroove" */;
+			buildPhases = (
+				6260D6A7877EFAC91B803441 /* Sources */,
+				951BE9F24CF532BDCFBA051A /* Resources */,
+				FA98D1F5ABE84E8D92E4C25A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeepGroove;
+			packageProductDependencies = (
+			);
+			productName = DeepGroove;
+			productReference = 8F387808938D7A9966072232 /* DeepGroove.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6E34D75DBA4866C61659B1F9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					050A387FC7E0D57542454431 = {
+						DevelopmentTeam = 9C5WLPGP58;
+					};
+					5AFD5BD118321123FD237582 = {
+						DevelopmentTeam = 9C5WLPGP58;
+					};
+				};
+			};
+			buildConfigurationList = 071B449299A230B9FFA38B40 /* Build configuration list for PBXProject "DeepGroove" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 243298EFFDBCC5971E0FCF0C;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = EBB01BD998FDED31479A846A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5AFD5BD118321123FD237582 /* DeepGroove */,
+				050A387FC7E0D57542454431 /* DeepGrooveTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		951BE9F24CF532BDCFBA051A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2E4F8E9351A22C97E9FD6C3 /* Assets.xcassets in Resources */,
+				CF6FBF52E250B1A5744D611A /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		38BBEA0B570A50B6CAC8D466 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				285EA0CEFF9FAEC038054FE1 /* AddToWishlistHandlerTests.swift in Sources */,
+				025136171692BA58DE072B56 /* ComputeStatisticsHandlerTests.swift in Sources */,
+				8B2B1CCB5E837BA80244668B /* GetTipProductsHandlerTests.swift in Sources */,
+				FCCB67161DDF44FEC13068F5 /* MergeMetadataHandlerTests.swift in Sources */,
+				B1FD1823185FFF31E8459294 /* ParseIdentificationHandlerTests.swift in Sources */,
+				F0559C13D1B02C9DCD2D04E5 /* PurchaseTipHandlerTests.swift in Sources */,
+				AFF124EC5087E2C9A574B316 /* SearchRecordHandlerTests.swift in Sources */,
+				FFD1365C78963F2B58B90345 /* StringUtilityTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6260D6A7877EFAC91B803441 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C5AF1E8BA33CFFE148F56D3 /* AIVisionAccessor.swift in Sources */,
+				C8EE8DC8827897F07DC7B2C7 /* APIConfiguration.swift in Sources */,
+				3FABAEF2AB99807F31BA5912 /* AddRecordHandler.swift in Sources */,
+				722CCF02D1865656A2DCEA93 /* AddRecordRequest.swift in Sources */,
+				14B9B5E97ADEBCF4BB6956F9 /* AddRecordResponse.swift in Sources */,
+				6E13E9F6003B5164C229E4E7 /* AddRecordSharedViews.swift in Sources */,
+				76167485EEB1CFF14517B130 /* AddRecordView.swift in Sources */,
+				B3C144BF045D951F5B895E13 /* AddRecordViewModel.swift in Sources */,
+				C1D4A73091C4F41ED0CD7913 /* AddToWishlistHandler.swift in Sources */,
+				F6CBF9C9A30F242C92669C8A /* AddToWishlistRequest.swift in Sources */,
+				00E3CD9BC2D08BADF9D8AF67 /* AddToWishlistResponse.swift in Sources */,
+				1D5634D4D584032E376226EB /* AddToWishlistView.swift in Sources */,
+				96A3CDAAD6F6AC4617FE8501 /* AddToWishlistViewModel.swift in Sources */,
+				56D8BEAC4F72273BF92FC661 /* AttachPhotoHandler.swift in Sources */,
+				69EF646AC1BA40C342C2280C /* AttachPhotoRequest.swift in Sources */,
+				9F18681A154862F395741CA7 /* AttachPhotoResponse.swift in Sources */,
+				C49365A938E6FB878B8797D6 /* BarcodeView.swift in Sources */,
+				286717165B237E93EFD7B67E /* CameraView.swift in Sources */,
+				D35CB51D70DBF776570AC25C /* CollectionView.swift in Sources */,
+				2120F41D4583E079F335BDB7 /* CollectionViewModel.swift in Sources */,
+				370E2D664893C2ED758045C7 /* ComputeStatisticsHandler.swift in Sources */,
+				1C17D5CEF0334232641CE63A /* ComputeStatisticsRequest.swift in Sources */,
+				C7E005AD0BAA573ACB46220F /* ComputeStatisticsResponse.swift in Sources */,
+				3F458D197F658AF890E24A51 /* ContentView.swift in Sources */,
+				A83CA50E4B8F654DD78CB7E8 /* CoverCropView.swift in Sources */,
+				719BA3D53B7A74C914F67ADD /* DeepGrooveApp.swift in Sources */,
+				8D263BED0C41A24166EA02B0 /* DeletePhotoHandler.swift in Sources */,
+				0CED650580B355AE6F8935B8 /* DeletePhotoRequest.swift in Sources */,
+				1F98E80601FCFB22126F6C6A /* DeletePhotoResponse.swift in Sources */,
+				3525CACDAB2470CAFD7B85F7 /* DeleteRecordHandler.swift in Sources */,
+				47A5753E6EA07F387314578D /* DeleteRecordRequest.swift in Sources */,
+				9B5F3511BCFD50982D161DB6 /* DeleteRecordResponse.swift in Sources */,
+				08DDE78503CF782E2C6CCFC7 /* DeleteWishlistItemHandler.swift in Sources */,
+				B29006AF1CCA693A46D718A3 /* DeleteWishlistItemRequest.swift in Sources */,
+				AE27826A717335EA50A68819 /* DeleteWishlistItemResponse.swift in Sources */,
+				93DFF15A260B28DD2FB8360A /* DependencyContainer.swift in Sources */,
+				C7B0E11B2CAA31DEED3E319B /* DiscogsAPI.swift in Sources */,
+				894EE1A1BA3675293ACE17D8 /* DiscogsAccessor.swift in Sources */,
+				229423FA05462B1506E13C9F /* DiscogsPickerView.swift in Sources */,
+				2924A9182B1F49D9FEE4F498 /* DiscogsSearchAPITypes.swift in Sources */,
+				E22A75202293C6BF80C92772 /* EditRecordHandler.swift in Sources */,
+				2C82087BEEEE0D796B136AD0 /* EditRecordRequest.swift in Sources */,
+				03C303AA6F40C76DB51E2266 /* EditRecordResponse.swift in Sources */,
+				0DEC479B5225F2B73368983B /* FileManagerUtility.swift in Sources */,
+				111B6FBD0449B2E2C2962547 /* FilteredRecordListView.swift in Sources */,
+				7C7A1A66CF2FF08DF5BEE6AF /* GetCollectionRequest.swift in Sources */,
+				C44BDEEB0FE06CFC06A13A87 /* GetRecordHandler.swift in Sources */,
+				4E7093B53658F49D5CC36169 /* GetRecordRequest.swift in Sources */,
+				E9F8D08A5015C134A27B7AA1 /* GetRecordResponse.swift in Sources */,
+				73E54CEFF837FAF12DF61059 /* GetStatisticsHandler.swift in Sources */,
+				C846DB6297221EDAF1FB591F /* GetStatisticsRequest.swift in Sources */,
+				E62061676B2606CCE0946BC0 /* GetStatisticsResponse.swift in Sources */,
+				FF80E7776F5E12D19E4C0B1C /* GetTipProductsHandler.swift in Sources */,
+				4FBD9C47B744947793D895DD /* GetTipProductsRequest.swift in Sources */,
+				04B0D9D7C7F0FBB6020722F5 /* GetTipProductsResponse.swift in Sources */,
+				C68400190896944020B9930D /* HandlerResolver.swift in Sources */,
+				4DC9F3B03A7BC65DE7CFC455 /* IAIVisionAccessor.swift in Sources */,
+				BA23F4F372326D891C239464 /* IDiscogsAccessor.swift in Sources */,
+				07DC01F64641963A270B9AC9 /* IHandler.swift in Sources */,
+				2B8CB770B1120251E16DA0DC /* IIdentificationEngine.swift in Sources */,
+				2ED5B14D6064997EA3DBBD6D /* IMetadataEngine.swift in Sources */,
+				B49FACAA30117F7243AAFCEE /* IPhotoAccessor.swift in Sources */,
+				520BA63DCD0B39DB2239B906 /* IRecordAccessor.swift in Sources */,
+				B97896F36614252FE1FB60E6 /* IRecordManager.swift in Sources */,
+				0E4C01DAC3F3902DBBEF97D3 /* IStatisticsEngine.swift in Sources */,
+				518CD5477256060D3B181E96 /* IStatisticsManager.swift in Sources */,
+				A3246BB99ED492F755AC1784 /* IStoreKitAccessor.swift in Sources */,
+				22C580FC6F1AAA00CC28D58C /* ISupportManager.swift in Sources */,
+				4260206A246C44AD96DCC673 /* IWishlistAccessor.swift in Sources */,
+				177D15E4C0D50844A50FA129 /* IWishlistManager.swift in Sources */,
+				89C581B8B20B967209CF31F0 /* IdentificationEngine.swift in Sources */,
+				760DA6C5570E0C1F4A76B583 /* IdentifyRecordHandler.swift in Sources */,
+				C0E35C8CCE606B1451CDCBFB /* IdentifyRecordRequest.swift in Sources */,
+				C45FA2CE45B893E7E10FAD35 /* IdentifyRecordResponse.swift in Sources */,
+				9FCCB0B82658985AA66FEC21 /* ImageUtility.swift in Sources */,
+				1C4E6D636C8D61F61C634533 /* KeychainUtility.swift in Sources */,
+				6520EFA55773DBDC66F93841 /* LoadAllRecordsHandler.swift in Sources */,
+				0078573A094189AFFAC0111A /* LoadAllRecordsRequest.swift in Sources */,
+				B1043A07D1D0AD71F2459166 /* LoadAllRecordsResponse.swift in Sources */,
+				C9CF4ACB95562D631763A4EA /* LoadAllWishlistItemsHandler.swift in Sources */,
+				A981D4D9D9186B3B061E8F86 /* LoadAllWishlistItemsRequest.swift in Sources */,
+				14494FA8BE85A16E433992DA /* LoadAllWishlistItemsResponse.swift in Sources */,
+				345F92D3DE6D9EFDB9CB80E3 /* LoadDiscogsReleaseHandler.swift in Sources */,
+				6C55AD204A1FD76D919DE183 /* LoadDiscogsReleaseRequest.swift in Sources */,
+				574F5A10604FE6834CDDD1D9 /* LoadDiscogsReleaseResponse.swift in Sources */,
+				8373D29447B1D75F255B537B /* LoadPhotoHandler.swift in Sources */,
+				883B82A59AF529098C63AD7F /* LoadPhotoRequest.swift in Sources */,
+				12E1C009FD2C377AD1FD1118 /* LoadPhotoResponse.swift in Sources */,
+				F6223384BD09448CDB64D869 /* LoadRecordHandler.swift in Sources */,
+				4D209B57ECD9DD1F791E654E /* LoadRecordRequest.swift in Sources */,
+				C73D554570CBC37D00839D04 /* LoadRecordResponse.swift in Sources */,
+				54E650E8CEBC03B20D847087 /* LoadTipProductsHandler.swift in Sources */,
+				40FC803CAF85F6AEB6AAF492 /* LoadTipProductsRequest.swift in Sources */,
+				926C3B14E284B473AD4A5AA9 /* LoadTipProductsResponse.swift in Sources */,
+				586EEAE4E5D7A4656029625F /* LogUtility.swift in Sources */,
+				8F0E69D6D63E560201025834 /* MergeMetadataHandler.swift in Sources */,
+				CB29B8BF42EF704D0BF3749F /* MergeMetadataRequest.swift in Sources */,
+				A4ECAFEAB0F0A81C81B8FBD5 /* MergeMetadataResponse.swift in Sources */,
+				E7FB321F2F71E86B513A4F6D /* MetadataEngine.swift in Sources */,
+				82681088D6F08AED131C6FD3 /* ModelContext+FetchById.swift in Sources */,
+				EC04076A8EF3B4FA5E872BF3 /* NetworkUtility.swift in Sources */,
+				8063091583BDAFF36DD38F23 /* ParseIdentificationHandler.swift in Sources */,
+				F336DA3A5BDC2235A850C855 /* ParseIdentificationRequest.swift in Sources */,
+				2DEFB443A26BAFE459A31554 /* ParseIdentificationResponse.swift in Sources */,
+				918856E188B81FFA974E8DCD /* PhotoAccessor.swift in Sources */,
+				EB456748336DE2AA5E939481 /* PurchaseTipHandler.swift in Sources */,
+				E82928E701F5823546C1FCD4 /* PurchaseTipProductHandler.swift in Sources */,
+				A86701E141AAF021968EF6B1 /* PurchaseTipProductRequest.swift in Sources */,
+				DF83E82BA8B41E4B3142082C /* PurchaseTipProductResponse.swift in Sources */,
+				4531E411BA0A3E1E3CAA571A /* PurchaseTipRequest.swift in Sources */,
+				CC80CA656BF395693F001EE1 /* PurchaseTipResponse.swift in Sources */,
+				1A729606334C16AB78F766F0 /* RecordAccessor.swift in Sources */,
+				481291CF26946D002AADB8C9 /* RecordDetailView.swift in Sources */,
+				CA5CB1F1C9433BB4AA652DA0 /* RecordDetailViewModel.swift in Sources */,
+				F35A3DAC0B52E124D310518E /* RecordManager.swift in Sources */,
+				D37E68338363FCCD4D1E279F /* RecordPhoto.swift in Sources */,
+				6BBFA76E1BDABE75BF5FDEBB /* RecordRowView.swift in Sources */,
+				D8244007986711E64A19D907 /* RemoveFromWishlistHandler.swift in Sources */,
+				F1FF594CD90A4926DC6096FF /* RemoveFromWishlistRequest.swift in Sources */,
+				782EF894FE14E5DDA81FDCFC /* RemoveFromWishlistResponse.swift in Sources */,
+				A4CED452844122EEA2679E5D /* RemoveRecordHandler.swift in Sources */,
+				424B7983CCD14986601131D2 /* RemoveRecordRequest.swift in Sources */,
+				625C5820EBDF8EE9B415ACCE /* RemoveRecordResponse.swift in Sources */,
+				DD002A4C395A2641B5A97853 /* RequestBase.swift in Sources */,
+				050555B92CE21960530E31B8 /* ResponseBase.swift in Sources */,
+				067F8DE4D1F56AEDFEEE11B4 /* SavePhotoHandler.swift in Sources */,
+				DFB2A052B82D977248AB81CE /* SavePhotoRequest.swift in Sources */,
+				53E7FD1A1E6D05C98A2DF02F /* SavePhotoResponse.swift in Sources */,
+				51709C41171B3DB3C01392A8 /* SaveRecordHandler.swift in Sources */,
+				DEA74D06017732014B1DE075 /* SaveRecordRequest.swift in Sources */,
+				E3A5152322107260BBE48ADE /* SaveRecordResponse.swift in Sources */,
+				2AEC3516D5B6E2F9942A6829 /* SaveWishlistItemHandler.swift in Sources */,
+				80CAFFF032101ABF0BDBA94D /* SaveWishlistItemRequest.swift in Sources */,
+				FAE563AC73D78596F7ADA3CA /* SaveWishlistItemResponse.swift in Sources */,
+				E0EC85AD1F7E4FAD2ED3F42A /* SearchDiscogsByBarcodeHandler.swift in Sources */,
+				EB277299804B22269FBBBAC6 /* SearchDiscogsByBarcodeRequest.swift in Sources */,
+				7FEEBC76FBD47D51D5DEB74A /* SearchDiscogsHandler.swift in Sources */,
+				480DB9E3A66CC7600AF8184B /* SearchDiscogsRequest.swift in Sources */,
+				9B4771B67D4237085B621026 /* SearchDiscogsResponse.swift in Sources */,
+				47D962B3BA72EEE41FC24F40 /* SearchRecordHandler.swift in Sources */,
+				9B1880D5E4F06FBC7D29E3E0 /* SearchRecordRequest.swift in Sources */,
+				D24333D439C5EF67CD8908E2 /* SearchRecordResponse.swift in Sources */,
+				A7B808F98ADD98DDD2D76768 /* SettingsView.swift in Sources */,
+				2C7A3E97A130007EF8B89836 /* StatisticsEngine.swift in Sources */,
+				517820DC303CFED53B45AEFF /* StatisticsManager.swift in Sources */,
+				ACB26C5D6D33AD1499A09D51 /* StatisticsView.swift in Sources */,
+				EA67DB9BA0FDBA51242C93E5 /* StatisticsViewModel.swift in Sources */,
+				9240E8DB4AFAB9BFF34E6024 /* StoreKitAccessor.swift in Sources */,
+				4CA0D9A8112698308EC4CF38 /* StringUtility.swift in Sources */,
+				6E70CEB2F0C43D92205A7BC9 /* SupportManager.swift in Sources */,
+				7150F21ECE8DB4A54935C09F /* SupportView.swift in Sources */,
+				F093F3EC80A198812D9527A4 /* SupportViewModel.swift in Sources */,
+				0859D88C8C0DFE4768EC1B12 /* TipProduct.swift in Sources */,
+				950BA8B8EFB4FADFE4816DC9 /* UpdateRecordHandler.swift in Sources */,
+				02876BEB8682560234C74C09 /* UpdateRecordRequest.swift in Sources */,
+				60317C1D3181CEA8E10642A8 /* UpdateRecordResponse.swift in Sources */,
+				6495922828158CCA5A00F3CC /* View+ErrorAlert.swift in Sources */,
+				69F1BB69086297B714CC6368 /* VinylRecord.swift in Sources */,
+				A1D0BB241410D4E79F7AA276 /* WishlistAccessor.swift in Sources */,
+				F32F3FAB14C1DA30B9E71F03 /* WishlistItemRowView.swift in Sources */,
+				AC9FFD17BCA105A25F8030AA /* WishlistManager.swift in Sources */,
+				52392679168673822E57E9D3 /* WishlistRecord.swift in Sources */,
+				C209410610112E3DCD5780C0 /* WishlistView.swift in Sources */,
+				E797F804DB6102A6BA2D4A7A /* WishlistViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		14E3F9060B5C16018127D708 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5AFD5BD118321123FD237582 /* DeepGroove */;
+			targetProxy = 914EE2DE6178864FF65D4579 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2CB7B2DB38B3B86A3961B5C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_VERSION = 5.10;
+			};
+			name = Debug;
+		};
+		4C2F7BB9410132EC82DC754D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_VERSION = 5.10;
+			};
+			name = Release;
+		};
+		7A05F5ABB8470E063A802658 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 9C5WLPGP58;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jdonner.DeepGrooveTests;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeepGroove.app/DeepGroove";
+			};
+			name = Release;
+		};
+		C23192296ACE55C7C7EFB07B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DeepGroove/DeepGroove.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9C5WLPGP58;
+				INFOPLIST_FILE = DeepGroove/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jdonner.deepgroove;
+				PRODUCT_NAME = "Deep Groove";
+				SDKROOT = iphoneos;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		E55DCB0597C654860085F5D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 9C5WLPGP58;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jdonner.DeepGrooveTests;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeepGroove.app/DeepGroove";
+			};
+			name = Debug;
+		};
+		EEB8544843EAB2E57B714E21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DeepGroove/DeepGroove.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9C5WLPGP58;
+				INFOPLIST_FILE = DeepGroove/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jdonner.deepgroove;
+				PRODUCT_NAME = "Deep Groove";
+				SDKROOT = iphoneos;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		071B449299A230B9FFA38B40 /* Build configuration list for PBXProject "DeepGroove" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CB7B2DB38B3B86A3961B5C1 /* Debug */,
+				4C2F7BB9410132EC82DC754D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		216C41AE77B721187B12DF88 /* Build configuration list for PBXNativeTarget "DeepGroove" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEB8544843EAB2E57B714E21 /* Debug */,
+				C23192296ACE55C7C7EFB07B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D1BC4DF76574A1C5DADCD623 /* Build configuration list for PBXNativeTarget "DeepGrooveTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E55DCB0597C654860085F5D5 /* Debug */,
+				7A05F5ABB8470E063A802658 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6E34D75DBA4866C61659B1F9 /* Project object */;
+}

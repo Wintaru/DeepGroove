@@ -1,16 +1,16 @@
-# Privacy Policy — VinylCollector
+# Privacy Policy — Deep Groove
 
 _Last updated: May 2026_
 
 ## Overview
 
-VinylCollector is a personal iOS app for cataloguing your vinyl record collection. This policy describes what data the app accesses and how it is handled.
+Deep Groove is a personal iOS app for cataloguing your vinyl record collection. This policy describes what data the app accesses and how it is handled.
 
 ---
 
 ## Data We Collect
 
-**We do not collect any personal data.** VinylCollector does not transmit any user data to the developer or to any analytics service.
+**We do not collect any personal data.** Deep Groove does not transmit any user data to the developer or to any analytics service.
 
 ---
 
@@ -26,7 +26,7 @@ The following data is stored **locally on your device only**:
 
 ## Third-Party Services
 
-VinylCollector makes requests to the following third-party services **on your behalf**:
+Deep Groove makes requests to the following third-party services **on your behalf**:
 
 | Service | Purpose | Their Privacy Policy |
 |---|---|---|
@@ -47,13 +47,13 @@ If you are signed into iCloud, your collection data and record photos may be syn
 
 ## Camera and Photo Library
 
-VinylCollector requests access to your camera and photo library solely to allow you to photograph records and import existing photos. These images are stored locally on your device and optionally in your personal iCloud account. They are never uploaded to the developer.
+Deep Groove requests access to your camera and photo library solely to allow you to photograph records and import existing photos. These images are stored locally on your device and optionally in your personal iCloud account. They are never uploaded to the developer.
 
 ---
 
 ## Children's Privacy
 
-VinylCollector does not knowingly collect any information from children under 13.
+Deep Groove does not knowingly collect any information from children under 13.
 
 ---
 
