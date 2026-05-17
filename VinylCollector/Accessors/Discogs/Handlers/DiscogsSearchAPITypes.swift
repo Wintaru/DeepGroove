@@ -10,10 +10,7 @@ func performDiscogsSearch(
     components.queryItems = queryItems
     components.queryItems?.append(URLQueryItem(name: "per_page", value: "25"))
     components.queryItems?.append(URLQueryItem(name: "page", value: String(page)))
-    if let token {
-        components.queryItems?.append(URLQueryItem(name: "token", value: token))
-    }
-    let data = try await networkUtility.get(url: components.url!, headers: DiscogsAPI.userAgentHeaders)
+    let data = try await networkUtility.get(url: components.url!, headers: DiscogsAPI.headers(token: token))
     let decoded = try JSONDecoder().decode(DiscogsSearchAPIResponse.self, from: data)
     return (decoded.results.map { $0.toSearchResult() }, decoded.pagination.pages)
 }
