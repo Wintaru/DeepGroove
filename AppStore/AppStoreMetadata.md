@@ -40,7 +40,7 @@ KEY FEATURES
 
 WHAT YOU NEED
 
-To use AI identification, you'll need a free Anthropic API key (anthropic.com). To search Discogs, you'll need a free Discogs developer token (discogs.com). Both are entered in the app's Settings tab and stored only on your device.
+To use AI identification, you'll need an Anthropic API key (anthropic.com) — the key itself is free, but Anthropic charges per use and requires a small credit purchase to get started. To search Discogs, you'll need a free Discogs developer token (discogs.com). Both are entered in the app's Settings tab and stored only on your device.
 
 PRIVACY
 
@@ -50,7 +50,7 @@ Deep Groove collects no personal data and sends nothing to the developer. Your c
 ### Subtitle (max 30 chars)
 
 ```
-Your vinyl collection, catalogued
+Catalogue your vinyl records
 ```
 
 ### Keywords (max 100 chars, comma-separated)

@@ -33,6 +33,27 @@ targets:
     dependencies:
       - target: DeepGroove
 
+  DeepGrooveWidget:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: DeepGrooveWidget
+        excludes:
+          - "**/.DS_Store"
+    settings:
+      base:
+        SWIFT_VERSION: "5.10"
+        SWIFT_STRICT_CONCURRENCY: targeted
+        INFOPLIST_FILE: DeepGrooveWidget/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.jdonner.deepgroove.widget
+        PRODUCT_NAME: DeepGrooveWidget
+        DEVELOPMENT_TEAM: 9C5WLPGP58
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../../Frameworks @executable_path/../Frameworks"
+    dependencies:
+      - sdk: WidgetKit.framework
+      - sdk: SwiftUI.framework
+
   DeepGroove:
     type: application
     platform: iOS
@@ -52,6 +73,9 @@ targets:
         SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
     dependencies:
       - sdk: StoreKit.framework
+      - target: DeepGrooveWidget
+        embed: true
+        codeSign: true
     entitlements:
       path: DeepGroove/DeepGroove.entitlements
       properties:
@@ -66,6 +90,7 @@ schemes:
     build:
       targets:
         DeepGroove: all
+        DeepGrooveWidget: all
     run:
       config: Debug
     test:

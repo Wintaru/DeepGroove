@@ -1,0 +1,63 @@
+{
+  "identifier" : "7A5E2F1B-3C9D-4E6A-8B2F-1D7C5E9A3F0B",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familySharable" : false,
+      "internalID" : "A1B2C3D4-E5F6-7890-ABCD-EF1234567890",
+      "localizations" : [
+        {
+          "description" : "Buy me a pint at Milliways — the restaurant at the end of the universe.",
+          "displayName" : "A Pint at Milliways",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.jdonner.deepgroove.tip.small",
+      "referenceName" : "A Pint at Milliways",
+      "type" : "consumable"
+    },
+    {
+      "displayPrice" : "2.99",
+      "familySharable" : false,
+      "internalID" : "B2C3D4E5-F6A7-8901-BCDE-F12345678901",
+      "localizations" : [
+        {
+          "description" : "Mostly harmless — and mostly appreciated.",
+          "displayName" : "Mostly Harmless",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.jdonner.deepgroove.tip.medium",
+      "referenceName" : "Mostly Harmless",
+      "type" : "consumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familySharable" : false,
+      "internalID" : "C3D4E5F6-A7B8-9012-CDEF-123456789012",
+      "localizations" : [
+        {
+          "description" : "You survived Vogon poetry. This is the least I can do.",
+          "displayName" : "Vogon Poetry Survived",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.jdonner.deepgroove.tip.large",
+      "referenceName" : "Vogon Poetry Survived",
+      "type" : "consumable"
+    }
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

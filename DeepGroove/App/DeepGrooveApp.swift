@@ -11,7 +11,7 @@ struct DeepGrooveApp: App {
         do {
             let schema = Schema([VinylRecord.self, RecordPhoto.self, WishlistRecord.self])
             let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false,
-                                            cloudKitDatabase: .none)
+                                            cloudKitDatabase: .automatic)
             let container = try ModelContainer(for: schema, configurations: [config])
             modelContainer = container
             dependencyContainer = DependencyContainer(modelContext: container.mainContext)

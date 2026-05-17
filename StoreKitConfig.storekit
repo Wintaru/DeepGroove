@@ -1,0 +1,84 @@
+{
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "en_US",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
+  "identifier" : "60267656",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "2.99",
+      "familyShareable" : false,
+      "internalID" : "C62546E0",
+      "localizations" : [
+        {
+          "description" : "A small token of thanks for the developer.",
+          "displayName" : "A Pint at Milliways",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.jdonner.deepgroove.tip.small",
+      "referenceName" : "A Pint at Milliways",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "3.99",
+      "familyShareable" : false,
+      "internalID" : "57A27077",
+      "localizations" : [
+        {
+          "description" : "A generous tip to keep the grooves spinning.",
+          "displayName" : "Mostly Harmless",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.jdonner.deepgroove.tip.medium",
+      "referenceName" : "Mostly Harmless",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "61B9E5A2",
+      "localizations" : [
+        {
+          "description" : "The utlimate tip. You are a true music lover.",
+          "displayName" : "Vogon Poetry Survived",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.jdonner.deepgroove.tip.large",
+      "referenceName" : "Vogon Poetry Survived",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+    "_askToBuyEnabled" : false,
+    "_billingGracePeriodEnabled" : false,
+    "_billingIssuesEnabled" : false,
+    "_disableDialogs" : false,
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_renewalBillingIssuesEnabled" : false,
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+
+    ],
+    "_timeRate" : 0
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 5,
+    "minor" : 0
+  }
+}

@@ -27,6 +27,8 @@ final class SupportViewModel {
         let response = await supportManager.query(GetTipProductsRequest())
         if let result = response as? GetTipProductsResponse, result.success {
             products = result.products
+        } else {
+            print("Failed to load tips: \(response.errorMessage ?? "unknown")")
         }
     }
 

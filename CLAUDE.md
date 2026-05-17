@@ -214,6 +214,25 @@ in `SortDescriptor` generate false-positive errors that have no clean fix.
 - CloudKit container: `iCloud.com.jdonner.deepgroove`
 - Required entitlements: `icloud-services: [CloudKit]`, `icloud-container-identifiers`, `ubiquity-kvstore-identifier`
 - Required Info.plist key: `UIBackgroundModes: [remote-notification]`
+- Sync is active: `cloudKitDatabase: .automatic` in `DeepGrooveApp.swift`
+
+### Development vs Production environments
+Xcode/debug builds sync to the **Development** CloudKit environment. TestFlight and App Store
+builds sync to **Production**. The two environments are completely separate — data does not
+carry over. Scan records using a TestFlight or App Store build to ensure they land in Production.
+
+---
+
+## Widget extension
+
+- Target: `DeepGrooveWidget` (bundle ID `com.jdonner.deepgroove.widget`)
+- Source: `DeepGrooveWidget/` — `DeepGrooveWidgetBundle.swift`, `ScanRecordWidget.swift`, `Info.plist`
+- Supported families: `.systemSmall`, `.accessoryCircular`, `.accessoryRectangular`
+- Tapping any widget fires the deep link `deepgroove://add?source=camera`
+- The app handles this in `ContentView` via `.onOpenURL`, presenting `AddRecordView` with `startFromCamera: true`
+- `AddRecordView(startFromCamera: true)` calls `vm.selectCamera()` before the view appears, skipping source selection
+- The widget is a pure launcher — no shared data or App Groups needed
+- After changing `project.yml`, always run `xcodegen generate` — the widget's `Info.plist` must include `CFBundleIdentifier: $(PRODUCT_BUNDLE_IDENTIFIER)` or Xcode's embedded binary validation will fail
 
 ---
 
@@ -263,6 +282,12 @@ Then reopen `DeepGroove.xcodeproj` in Xcode.
 
 Do not commit `.xcodeproj` — it is gitignored and regenerated from `project.yml`.
 `DeepGroove/Configuration/Secrets.swift` is also gitignored.
+
+## Changelog
+
+`CHANGELOG.md` in the project root tracks every release. Keep it up to date:
+- Add new entries under `## [Unreleased]` as features and fixes land
+- When cutting a release, date the `[Unreleased]` block and open a new `## [Unreleased]` above it
 
 ---
 

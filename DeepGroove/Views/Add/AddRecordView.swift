@@ -4,8 +4,10 @@ struct AddRecordView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var vm: AddRecordViewModel
 
-    init(recordManager: IRecordManager, onSuccess: (() -> Void)? = nil) {
-        _vm = State(initialValue: AddRecordViewModel(recordManager: recordManager, onSuccess: onSuccess))
+    init(recordManager: IRecordManager, startFromCamera: Bool = false, onSuccess: (() -> Void)? = nil) {
+        let vm = AddRecordViewModel(recordManager: recordManager, onSuccess: onSuccess)
+        if startFromCamera { vm.selectCamera() }
+        _vm = State(initialValue: vm)
     }
 
     var body: some View {

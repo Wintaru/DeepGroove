@@ -119,7 +119,8 @@ struct SettingsView: View {
 
                 Section("About") {
                     LabeledContent("Version", value: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "—")
-                    Link("Report an Issue", destination: URL(string: "https://github.com")!)
+                    LabeledContent("Record Data", value: "Discogs")
+                    Link("Report an Issue", destination: URL(string: "https://github.com/Wintaru/DeepGroove/issues")!)
                 }
             }
             .navigationTitle("Settings")

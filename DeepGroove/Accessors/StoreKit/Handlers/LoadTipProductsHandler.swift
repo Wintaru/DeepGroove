@@ -16,6 +16,7 @@ final class LoadTipProductsHandler: IHandler {
 
         do {
             let storeProducts = try await Product.products(for: Self.productIds)
+            print("[StoreKit] fetched \(storeProducts.count) products: \(storeProducts.map(\.id))")
             let tips = storeProducts
                 .sorted { $0.price < $1.price }
                 .map { TipProduct(id: $0.id,
