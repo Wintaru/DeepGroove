@@ -42,7 +42,7 @@ final class ImageUtility: Sendable {
             throw ImageError.compressionFailed
         }
         let fileURL = directory.appendingPathComponent(filename)
-        try data.write(to: fileURL)
+        try data.write(to: fileURL, options: .completeFileProtectionUnlessOpen)
         return fileURL
     }
 

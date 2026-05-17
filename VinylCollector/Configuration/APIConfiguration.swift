@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 final class APIConfiguration: ObservableObject, @unchecked Sendable {
     private enum Keys {
         static let anthropicKey = "vc_anthropic_api_key"

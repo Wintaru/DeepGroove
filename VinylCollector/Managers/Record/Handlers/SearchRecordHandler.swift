@@ -27,27 +27,31 @@ final class SearchRecordHandler: IHandler {
                                            requestType: String(describing: type(of: request)))
         }
 
+        let (anthropicKey, discogsToken) = await MainActor.run {
+            (apiConfiguration.anthropicAPIKey, apiConfiguration.discogsToken)
+        }
+
         switch req.source {
         case .photo(let image):
             if let barcode = imageUtility.detectBarcode(in: image) {
-                let candidates = await searchByBarcode(barcode, correlationId: req.correlationId)
+                let candidates = await searchByBarcode(barcode, token: discogsToken, correlationId: req.correlationId)
                 if !candidates.isEmpty {
                     return SearchRecordResponse(correlationId: req.correlationId,
                                                candidates: candidates, userPhoto: image)
                 }
             }
-            let (identification, aiError) = await identifyViaAI(image: image)
+            let (identification, aiError) = await identifyViaAI(image: image, anthropicKey: anthropicKey)
             if let aiError, identification == nil {
                 return SearchRecordResponse(correlationId: req.correlationId, errorMessage: aiError)
             }
-            let candidates = await searchByIdentification(identification)
+            let candidates = await searchByIdentification(identification, token: discogsToken)
             return SearchRecordResponse(correlationId: req.correlationId,
                                         candidates: candidates,
                                         identification: identification,
                                         userPhoto: image)
 
         case .barcode(let code):
-            let candidates = await searchByBarcode(code, correlationId: req.correlationId)
+            let candidates = await searchByBarcode(code, token: discogsToken, correlationId: req.correlationId)
             return SearchRecordResponse(correlationId: req.correlationId, candidates: candidates)
 
         case .text(let artist, let albumTitle):
@@ -57,7 +61,7 @@ final class SearchRecordHandler: IHandler {
                     releaseTitle: albumTitle.isEmpty ? nil : albumTitle,
                     sort: "have",
                     sortOrder: "desc",
-                    token: apiConfiguration.discogsToken,
+                    token: discogsToken,
                     page: req.page
                 )
             )
@@ -80,12 +84,12 @@ final class SearchRecordHandler: IHandler {
 
     // MARK: - Private
 
-    private func identifyViaAI(image: UIImage) async -> (AIIdentification?, String?) {
-        guard !apiConfiguration.anthropicAPIKey.isEmpty else {
+    private func identifyViaAI(image: UIImage, anthropicKey: String) async -> (AIIdentification?, String?) {
+        guard !anthropicKey.isEmpty else {
             return (nil, "No Anthropic API key set. Add it in Settings.")
         }
         let response = await aiVisionAccessor.load(
-            IdentifyRecordRequest(image: image, apiKey: apiConfiguration.anthropicAPIKey)
+            IdentifyRecordRequest(image: image, apiKey: anthropicKey)
         )
         guard let identified = response as? IdentifyRecordResponse else {
             return (nil, response.errorMessage ?? "AI identification failed.")
@@ -99,14 +103,14 @@ final class SearchRecordHandler: IHandler {
         return ((parseResponse as? ParseIdentificationResponse)?.identification, nil)
     }
 
-    private func searchByBarcode(_ barcode: String, correlationId: UUID) async -> [DiscogsSearchResult] {
+    private func searchByBarcode(_ barcode: String, token: String?, correlationId: UUID) async -> [DiscogsSearchResult] {
         let response = await discogsAccessor.load(
-            SearchDiscogsByBarcodeRequest(barcode: barcode, token: apiConfiguration.discogsToken)
+            SearchDiscogsByBarcodeRequest(barcode: barcode, token: token)
         )
         return (response as? SearchDiscogsResponse)?.results ?? []
     }
 
-    private func searchByIdentification(_ identification: AIIdentification?) async -> [DiscogsSearchResult] {
+    private func searchByIdentification(_ identification: AIIdentification?, token: String?) async -> [DiscogsSearchResult] {
         guard let id = identification, let artist = id.artist, let title = id.albumTitle else {
             return []
         }
@@ -116,7 +120,7 @@ final class SearchRecordHandler: IHandler {
                 releaseTitle: title,
                 sort: "have",
                 sortOrder: "desc",
-                token: apiConfiguration.discogsToken
+                token: token
             )
         )
         return (response as? SearchDiscogsResponse)?.results ?? []
