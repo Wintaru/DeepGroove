@@ -56,24 +56,39 @@ final class SearchRecordHandler: IHandler {
             return SearchRecordResponse(correlationId: req.correlationId, candidates: candidates)
 
         case .text(let artist, let albumTitle):
-            let response = await discogsAccessor.load(
-                SearchDiscogsRequest(
-                    artist: artist.isEmpty ? nil : artist,
-                    releaseTitle: albumTitle.isEmpty ? nil : albumTitle,
-                    sort: "have",
+            let discRequest: SearchDiscogsRequest
+            if !artist.isEmpty {
+                // Fetch a larger batch by artist, then rank by album title similarity
+                discRequest = SearchDiscogsRequest(
+                    artist: artist,
+                    sort: "numhave",
+                    sortOrder: "desc",
+                    token: discogsToken,
+                    page: req.page,
+                    perPage: 40
+                )
+            } else {
+                discRequest = SearchDiscogsRequest(
+                    query: albumTitle.isEmpty ? nil : albumTitle,
+                    sort: "numhave",
                     sortOrder: "desc",
                     token: discogsToken,
                     page: req.page
                 )
-            )
+            }
+            let response = await discogsAccessor.load(discRequest)
             let discogsResponse = response as? SearchDiscogsResponse
+            let rawCandidates = discogsResponse?.results ?? []
+            let candidates = albumTitle.isEmpty
+                ? rawCandidates
+                : rankByAlbumTitle(rawCandidates, target: albumTitle)
             let identification = AIIdentification(
                 artist: artist.isEmpty ? nil : artist,
                 albumTitle: albumTitle.isEmpty ? nil : albumTitle,
                 year: nil, label: nil, catalogNumber: nil, genres: [], country: nil, rawJSON: ""
             )
             return SearchRecordResponse(correlationId: req.correlationId,
-                                        candidates: discogsResponse?.results ?? [],
+                                        candidates: candidates,
                                         identification: identification,
                                         currentPage: req.page,
                                         totalPages: discogsResponse?.totalPages ?? 1)
@@ -117,13 +132,41 @@ final class SearchRecordHandler: IHandler {
         }
         let response = await discogsAccessor.load(
             SearchDiscogsRequest(
-                artist: artist,
-                releaseTitle: title,
-                sort: "have",
+                query: "\(artist) \(title)",
+                sort: "numhave",
                 sortOrder: "desc",
                 token: token
             )
         )
         return (response as? SearchDiscogsResponse)?.results ?? []
+    }
+
+    // Ranks candidates so the best album-title match floats to the top.
+    // Discogs titles are "Artist - Album Title"; we strip to the album part before comparing.
+    private func rankByAlbumTitle(_ candidates: [DiscogsSearchResult], target: String) -> [DiscogsSearchResult] {
+        let normalizedTarget = alphanumericLowercase(target)
+        guard !normalizedTarget.isEmpty else { return candidates }
+        return candidates.sorted { a, b in
+            albumTitleScore(a.title, target: normalizedTarget) > albumTitleScore(b.title, target: normalizedTarget)
+        }
+    }
+
+    private func albumTitleScore(_ discogsTitle: String, target: String) -> Int {
+        // Discogs format: "Artist - Album Title" — take everything after the last " - "
+        let album = discogsTitle.components(separatedBy: " - ").dropFirst().joined(separator: " - ")
+        let normalized = alphanumericLowercase(album.isEmpty ? discogsTitle : album)
+        if normalized == target { return 100 }
+        if normalized.hasPrefix(target) || target.hasPrefix(normalized) { return 80 }
+        if normalized.contains(target) || target.contains(normalized) { return 60 }
+        let targetWords = Set(target.components(separatedBy: CharacterSet.alphanumerics.inverted).filter { !$0.isEmpty })
+        let albumWords = Set(normalized.components(separatedBy: CharacterSet.alphanumerics.inverted).filter { !$0.isEmpty })
+        return targetWords.intersection(albumWords).count * 10
+    }
+
+    private func alphanumericLowercase(_ s: String) -> String {
+        s.lowercased().unicodeScalars
+            .filter { CharacterSet.alphanumerics.contains($0) }
+            .map { String($0) }
+            .joined()
     }
 }

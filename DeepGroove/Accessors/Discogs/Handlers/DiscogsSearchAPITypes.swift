@@ -4,13 +4,14 @@ func performDiscogsSearch(
     queryItems: [URLQueryItem],
     token: String?,
     page: Int = 1,
+    perPage: Int = 25,
     networkUtility: NetworkUtility
 ) async throws -> (results: [DiscogsSearchResult], totalPages: Int) {
     guard var components = URLComponents(string: DiscogsAPI.searchURL) else {
         throw NetworkError.invalidURL
     }
     components.queryItems = queryItems
-    components.queryItems?.append(URLQueryItem(name: "per_page", value: "25"))
+    components.queryItems?.append(URLQueryItem(name: "per_page", value: String(perPage)))
     components.queryItems?.append(URLQueryItem(name: "page", value: String(page)))
     guard let url = components.url else { throw NetworkError.invalidURL }
     let data = try await networkUtility.get(url: url, headers: DiscogsAPI.headers(token: token))

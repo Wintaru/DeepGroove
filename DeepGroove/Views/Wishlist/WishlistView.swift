@@ -40,10 +40,19 @@ struct WishlistView: View {
                 }
             }
             .sheet(isPresented: $vm.showingAddToWishlist) {
-                AddToWishlistView(
-                    recordManager: recordManager,
-                    wishlistManager: wishlistManager
-                )
+                AddToWishlistView(recordManager: recordManager, wishlistManager: wishlistManager)
+            }
+            .sheet(isPresented: $vm.showingLookup, onDismiss: { vm.lookupItem = nil }) {
+                if let item = vm.lookupItem {
+                    AddToWishlistView(
+                        recordManager: recordManager,
+                        wishlistManager: wishlistManager,
+                        artist: item.artist,
+                        albumTitle: item.albumTitle,
+                        year: item.year.map(String.init),
+                        existingItemId: item.id
+                    )
+                }
             }
             .sheet(isPresented: Binding(
                 get: { vm.addedRecord != nil },
@@ -69,11 +78,20 @@ struct WishlistView: View {
                     Task { await vm.foundIt(item) }
                 }
                 .disabled(vm.isAddingToCollection)
-            }
-            .onDelete { indexSet in
-                for index in indexSet {
-                    guard allItems.indices.contains(index) else { continue }
-                    modelContext.delete(allItems[index])
+                .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                    Button {
+                        vm.beginLookup(item)
+                    } label: {
+                        Label("Find on Discogs", systemImage: "magnifyingglass")
+                    }
+                    .tint(.blue)
+                }
+                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                    Button(role: .destructive) {
+                        modelContext.delete(item)
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
                 }
             }
         }

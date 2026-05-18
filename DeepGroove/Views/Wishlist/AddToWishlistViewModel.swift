@@ -32,10 +32,22 @@ final class AddToWishlistViewModel {
     private let recordManager: IRecordManager
     private let wishlistManager: IWishlistManager
     private let imageUtility = ImageUtility()
+    private var existingWishlistItemId: UUID?
 
     init(recordManager: IRecordManager, wishlistManager: IWishlistManager) {
         self.recordManager = recordManager
         self.wishlistManager = wishlistManager
+    }
+
+    init(recordManager: IRecordManager, wishlistManager: IWishlistManager,
+         artist: String, albumTitle: String, year: String?, existingItemId: UUID? = nil) {
+        self.recordManager = recordManager
+        self.wishlistManager = wishlistManager
+        self.manualArtist = artist
+        self.manualAlbumTitle = albumTitle
+        self.manualYear = year ?? ""
+        self.existingWishlistItemId = existingItemId
+        self.state = .showingManualEntry
     }
 
     // MARK: - Source selection
@@ -98,6 +110,9 @@ final class AddToWishlistViewModel {
     func confirmResult(_ chosen: DiscogsSearchResult) async {
         state = .searching
         let response = await wishlistManager.execute(AddToWishlistRequest(chosenResult: chosen))
+        if response.success, let id = existingWishlistItemId {
+            _ = await wishlistManager.execute(RemoveFromWishlistRequest(itemId: id))
+        }
         handleSaveResponse(response)
     }
 
@@ -113,6 +128,9 @@ final class AddToWishlistViewModel {
             yearOverride: Int(manualYear),
             labelOverride: manualLabel.isEmpty ? nil : manualLabel
         ))
+        if response.success, let id = existingWishlistItemId {
+            _ = await wishlistManager.execute(RemoveFromWishlistRequest(itemId: id))
+        }
         handleSaveResponse(response)
     }
 
@@ -152,15 +170,8 @@ final class AddToWishlistViewModel {
                 currentPage: result.currentPage,
                 totalPages: result.totalPages
             )
-        } else if let id = result.identification,
-                  id.artist != nil || id.albumTitle != nil {
-            manualArtist = id.artist ?? ""
-            manualAlbumTitle = id.albumTitle ?? ""
-            manualYear = id.year.map { String($0) } ?? ""
-            manualLabel = id.label ?? ""
-            state = .showingManualEntry
         } else {
-            state = .noResults(response.errorMessage ?? "No results found. Try adding it manually.")
+            state = .noResults(response.errorMessage ?? "No results found. Try editing the artist or album title.")
         }
     }
 

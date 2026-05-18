@@ -24,6 +24,7 @@ final class SearchDiscogsHandler: IHandler {
                 queryItems: queryItems,
                 token: req.token,
                 page: req.page,
+                perPage: req.perPage,
                 networkUtility: networkUtility
             )
             return SearchDiscogsResponse(correlationId: req.correlationId, results: results,

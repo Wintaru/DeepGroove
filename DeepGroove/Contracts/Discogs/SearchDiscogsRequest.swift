@@ -4,10 +4,11 @@ final class SearchDiscogsRequest: RequestBase, @unchecked Sendable {
     let query: String?        // general q= (fallback)
     let artist: String?       // artist= field search
     let releaseTitle: String? // release_title= field search
-    let sort: String?         // e.g. "have"
+    let sort: String?         // e.g. "numhave"
     let sortOrder: String?    // "asc" or "desc"
     let token: String?
     let page: Int
+    let perPage: Int
 
     init(
         query: String? = nil,
@@ -16,7 +17,8 @@ final class SearchDiscogsRequest: RequestBase, @unchecked Sendable {
         sort: String? = nil,
         sortOrder: String? = nil,
         token: String? = nil,
-        page: Int = 1
+        page: Int = 1,
+        perPage: Int = 25
     ) {
         self.query = query
         self.artist = artist
@@ -25,6 +27,7 @@ final class SearchDiscogsRequest: RequestBase, @unchecked Sendable {
         self.sortOrder = sortOrder
         self.token = token
         self.page = page
+        self.perPage = perPage
         super.init()
     }
 }

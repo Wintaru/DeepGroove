@@ -11,6 +11,18 @@ struct AddToWishlistView: View {
         ))
     }
 
+    init(recordManager: IRecordManager, wishlistManager: IWishlistManager,
+         artist: String, albumTitle: String, year: String?, existingItemId: UUID? = nil) {
+        _vm = State(initialValue: AddToWishlistViewModel(
+            recordManager: recordManager,
+            wishlistManager: wishlistManager,
+            artist: artist,
+            albumTitle: albumTitle,
+            year: year,
+            existingItemId: existingItemId
+        ))
+    }
+
     var body: some View {
         @Bindable var model = vm
         NavigationStack {

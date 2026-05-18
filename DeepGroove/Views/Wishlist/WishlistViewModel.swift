@@ -3,6 +3,13 @@ import Foundation
 @Observable
 final class WishlistViewModel {
     var showingAddToWishlist = false
+    var showingLookup = false
+    var lookupItem: WishlistRecord?
+
+    func beginLookup(_ item: WishlistRecord) {
+        lookupItem = item
+        showingLookup = true
+    }
     var addedRecord: VinylRecord?
     var isAddingToCollection = false
     var errorMessage: String?

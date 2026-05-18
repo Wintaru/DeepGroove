@@ -15,10 +15,13 @@ final class APIConfiguration: ObservableObject, @unchecked Sendable {
 
     @Published var discogsToken: String? {
         didSet {
+            let appGroup = UserDefaults(suiteName: "group.com.jdonner.deepgroove")
             if let token = discogsToken {
                 keychain.set(token, forKey: Keys.discogsToken)
+                appGroup?.set(token, forKey: "discogsToken")
             } else {
                 keychain.delete(forKey: Keys.discogsToken)
+                appGroup?.removeObject(forKey: "discogsToken")
             }
         }
     }
@@ -38,13 +41,16 @@ final class APIConfiguration: ObservableObject, @unchecked Sendable {
             self.anthropicAPIKey = ""
         }
 
-        // Discogs token — read from Keychain, migrate from UserDefaults if present
+        // Discogs token — read from Keychain, mirror to App Group for share extension
+        let appGroup = UserDefaults(suiteName: "group.com.jdonner.deepgroove")
         if let token = keychain.get(forKey: Keys.discogsToken) {
             self.discogsToken = token
+            appGroup?.set(token, forKey: "discogsToken")
         } else if let token = UserDefaults.standard.string(forKey: Keys.discogsToken) {
             keychain.set(token, forKey: Keys.discogsToken)
             UserDefaults.standard.removeObject(forKey: Keys.discogsToken)
             self.discogsToken = token
+            appGroup?.set(token, forKey: "discogsToken")
         } else {
             self.discogsToken = nil
         }
