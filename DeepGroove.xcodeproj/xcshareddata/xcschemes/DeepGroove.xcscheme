@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1540"
+   LastUpgradeVersion = "2650"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -17,6 +17,20 @@
                BlueprintIdentifier = "5AFD5BD118321123FD237582"
                BuildableName = "Deep Groove.app"
                BlueprintName = "DeepGroove"
+               ReferencedContainer = "container:DeepGroove.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "73640464B95F0A69BF137BAF"
+               BuildableName = "DeepGrooveShareExtension.appex"
+               BlueprintName = "DeepGrooveShareExtension"
                ReferencedContainer = "container:DeepGroove.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

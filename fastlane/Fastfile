@@ -2,6 +2,7 @@ opt_out_usage
 
 APP_PLIST    = "DeepGroove/Info.plist"
 WIDGET_PLIST = "DeepGrooveWidget/Info.plist"
+SHARE_PLIST  = "DeepGrooveShareExtension/Info.plist"
 SCHEME       = "DeepGroove"
 
 default_platform(:ios)
@@ -26,7 +27,7 @@ platform :ios do
 
     version = get_info_plist_value(path: APP_PLIST, key: "CFBundleShortVersionString")
     git_commit(
-      path: [APP_PLIST, WIDGET_PLIST],
+      path: [APP_PLIST, WIDGET_PLIST, SHARE_PLIST],
       message: "Bump build to #{new_build} [beta]"
     )
     add_git_tag(tag: "beta/#{version}-#{new_build}")
@@ -47,6 +48,7 @@ platform :ios do
 
     set_info_plist_value(path: APP_PLIST,    key: "CFBundleShortVersionString", value: new_version)
     set_info_plist_value(path: WIDGET_PLIST, key: "CFBundleShortVersionString", value: new_version)
+    set_info_plist_value(path: SHARE_PLIST,  key: "CFBundleShortVersionString", value: new_version)
 
     new_build = bump_build_number
     sh("cd .. && xcodegen generate")
@@ -60,7 +62,7 @@ platform :ios do
     )
 
     git_commit(
-      path: [APP_PLIST, WIDGET_PLIST],
+      path: [APP_PLIST, WIDGET_PLIST, SHARE_PLIST],
       message: "Release #{new_version} (build #{new_build})"
     )
     add_git_tag(tag: "release/#{new_version}")
@@ -84,9 +86,10 @@ platform :ios do
     FileUtils.rm_rf(archive_path)
     FileUtils.mkdir_p(export_path)
 
-    # Archive via gym — automatic signing, already works
+    # Release config → com.jdonner.deepgroove + CloudKit (Debug config uses .debug bundle ID, no CloudKit)
     build_app(
       scheme: SCHEME,
+      configuration: "Release",
       skip_package_ipa: true,
       archive_path: archive_path,
       clean: true
@@ -112,6 +115,7 @@ platform :ios do
     new_build = (current + 1).to_s
     set_info_plist_value(path: APP_PLIST,    key: "CFBundleVersion", value: new_build)
     set_info_plist_value(path: WIDGET_PLIST, key: "CFBundleVersion", value: new_build)
+    set_info_plist_value(path: SHARE_PLIST,  key: "CFBundleVersion", value: new_build)
     new_build
   end
 
