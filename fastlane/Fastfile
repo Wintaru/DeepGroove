@@ -74,10 +74,6 @@ platform :ios do
   # ── Helpers ───────────────────────────────────────────────────────────────
 
   def archive_and_export
-    key_id      = ENV.fetch("ASC_KEY_ID")
-    key_issuer  = ENV.fetch("ASC_ISSUER_ID")
-    key_path    = File.expand_path(ENV.fetch("ASC_KEY_FILEPATH"))
-
     # Dir.pwd in Fastlane Ruby context is the fastlane/ subdirectory
     archive_path = File.expand_path("build/DeepGroove.xcarchive")
     export_path  = File.expand_path("build/export")
@@ -95,17 +91,13 @@ platform :ios do
       clean: true
     )
 
-    # Export manually so we can pass -allowProvisioningUpdates + API key auth,
-    # which lets xcodebuild create/download App Store distribution profiles for
-    # both com.jdonner.deepgroove and com.jdonner.deepgroove.widget on demand
+    # Export using the Xcode session (logged-in Apple ID) for provisioning updates.
+    # API key auth for -allowProvisioningUpdates is broken in Xcode 26 beta.
     sh("xcodebuild -exportArchive " \
        "-archivePath '#{archive_path}' " \
        "-exportPath '#{export_path}' " \
        "-exportOptionsPlist '#{export_plist}' " \
-       "-allowProvisioningUpdates " \
-       "-authenticationKeyPath '#{key_path}' " \
-       "-authenticationKeyID #{key_id} " \
-       "-authenticationKeyIssuerID #{key_issuer}")
+       "-allowProvisioningUpdates")
 
     Dir.glob("#{export_path}/*.ipa").first
   end
