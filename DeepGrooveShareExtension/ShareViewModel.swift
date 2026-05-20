@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import Security
 
 struct ShareDiscogsResult: Identifiable, Sendable {
     let id: Int
@@ -40,6 +41,21 @@ final class ShareViewModel: @unchecked Sendable {
     init(url: URL?, extensionContext: NSExtensionContext?) {
         self.extensionContext = extensionContext
         Task { await resolve(url: url) }
+    }
+
+    private func discogsToken() -> String? {
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrService: "com.jdonner.deepgroove",
+            kSecAttrAccount: "vc_discogs_token",
+            kSecAttrAccessGroup: "group.com.jdonner.deepgroove",
+            kSecReturnData: true,
+            kSecMatchLimit: kSecMatchLimitOne
+        ]
+        var result: AnyObject?
+        guard SecItemCopyMatching(query as CFDictionary, &result) == errSecSuccess,
+              let data = result as? Data else { return nil }
+        return String(data: data, encoding: .utf8)
     }
 
     func confirmResult(_ result: ShareDiscogsResult) {
@@ -144,7 +160,7 @@ final class ShareViewModel: @unchecked Sendable {
         guard let url = components.url else { return [] }
         var request = URLRequest(url: url)
         request.setValue("DeepGroove/1.0", forHTTPHeaderField: "User-Agent")
-        if let token = UserDefaults(suiteName: "group.com.jdonner.deepgroove")?.string(forKey: "discogsToken") {
+        if let token = discogsToken() {
             request.setValue("Discogs token=\(token)", forHTTPHeaderField: "Authorization")
         }
         guard let (data, _) = try? await URLSession.shared.data(for: request),
