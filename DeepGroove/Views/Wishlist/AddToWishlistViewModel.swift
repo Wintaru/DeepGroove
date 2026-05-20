@@ -6,7 +6,7 @@ enum AddToWishlistState {
     case showingPhotoLibrary
     case showingBarcodeScanner
     case showingManualEntry
-    case confirmingCrop(image: UIImage, detectedRect: CGRect?)
+    case confirmingCrop(image: UIImage)
     case searching
     case showingDiscogsResults(
             candidates: [DiscogsSearchResult],
@@ -68,8 +68,7 @@ final class AddToWishlistViewModel {
     // MARK: - Search
 
     func photoSelected(_ image: UIImage) {
-        let rect = imageUtility.detectCoverRect(in: image)
-        state = .confirmingCrop(image: image, detectedRect: rect)
+        state = .confirmingCrop(image: image)
     }
 
     func searchWithCrop(_ image: UIImage, rect: CGRect?) async {

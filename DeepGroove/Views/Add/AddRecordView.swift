@@ -25,8 +25,8 @@ struct AddRecordView: View {
                     barcodeScannerSheet
                 case .showingManualEntry:
                     manualEntryView(model: $model)
-                case .confirmingCrop(let image, let detectedRect):
-                    CoverCropView(image: image, detectedRect: detectedRect) { rect in
+                case .confirmingCrop(let image):
+                    CoverCropView(image: image) { rect in
                         Task { await vm.searchWithCrop(image, rect: rect) }
                     }
                 case .identifying:

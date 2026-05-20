@@ -2,10 +2,9 @@ import SwiftUI
 
 struct CoverCropView: View {
     let image: UIImage
-    let detectedRect: CGRect?
     let onConfirm: (CGRect?) -> Void
 
-    @State private var cropRect: CGRect = CGRect(x: 0, y: 0, width: 1, height: 1)
+    @State private var cropRect: CGRect = CGRect(x: 0.1, y: 0.1, width: 0.8, height: 0.8)
 
     var body: some View {
         VStack(spacing: 0) {
@@ -16,62 +15,35 @@ struct CoverCropView: View {
                         .scaledToFit()
                         .frame(width: geo.size.width, height: geo.size.height)
 
-                    if let rect = detectedRect {
-                        StaticCropOverlay(
-                            normalizedRect: rect,
-                            imageSize: image.size,
-                            containerSize: geo.size
-                        )
-                    } else {
-                        DraggableCropOverlay(
-                            normalizedRect: $cropRect,
-                            imageSize: image.size,
-                            containerSize: geo.size
-                        )
-                    }
+                    DraggableCropOverlay(
+                        normalizedRect: $cropRect,
+                        imageSize: image.size,
+                        containerSize: geo.size
+                    )
+
+
                 }
             }
 
             VStack(spacing: 14) {
-                if let rect = detectedRect {
-                    Text("Album cover detected")
-                        .font(.headline)
-                    Text("Send just the highlighted region to improve identification?")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
+                Text("Drag corners to crop")
+                    .font(.headline)
+                Text("Adjust the selection to the album cover, then search.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
 
-                    Button {
-                        onConfirm(rect)
-                    } label: {
-                        Label("Search with Crop", systemImage: "crop")
-                            .frame(maxWidth: .infinity)
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-
-                    Button("Use Full Photo") { onConfirm(nil) }
-                        .foregroundStyle(.secondary)
-                } else {
-                    Text("Drag corners to crop")
-                        .font(.headline)
-                    Text("Adjust the selection to the album cover, then search.")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-
-                    Button {
-                        onConfirm(cropRect)
-                    } label: {
-                        Label("Search with Crop", systemImage: "crop")
-                            .frame(maxWidth: .infinity)
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-
-                    Button("Use Full Photo") { onConfirm(nil) }
-                        .foregroundStyle(.secondary)
+                Button {
+                    onConfirm(cropRect)
+                } label: {
+                    Label("Search with Crop", systemImage: "crop")
+                        .frame(maxWidth: .infinity)
                 }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.large)
+
+                Button("Use Full Photo") { onConfirm(nil) }
+                    .foregroundStyle(.secondary)
             }
             .padding(24)
             .background(Color(.systemBackground))
@@ -80,30 +52,7 @@ struct CoverCropView: View {
     }
 }
 
-// MARK: - Static overlay (detected rect, not interactive)
-
-private struct StaticCropOverlay: View {
-    let normalizedRect: CGRect
-    let imageSize: CGSize
-    let containerSize: CGSize
-
-    private var cropFrame: CGRect {
-        displayFrame(for: normalizedRect, imageSize: imageSize, containerSize: containerSize)
-    }
-
-    var body: some View {
-        Canvas { context, size in
-            var mask = Path()
-            mask.addRect(CGRect(origin: .zero, size: size))
-            mask.addRect(cropFrame)
-            context.fill(mask, with: .color(.black.opacity(0.5)), style: FillStyle(eoFill: true))
-            context.stroke(Path(cropFrame), with: .color(.white),
-                           style: StrokeStyle(lineWidth: 2, dash: [8, 4]))
-        }
-    }
-}
-
-// MARK: - Draggable overlay (no detection, user adjusts manually)
+// MARK: - Draggable overlay
 
 private struct DraggableCropOverlay: View {
     @Binding var normalizedRect: CGRect

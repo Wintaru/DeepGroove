@@ -5,21 +5,6 @@ private extension CGRect {
     var area: CGFloat { width * height }
 }
 
-private extension CGImagePropertyOrientation {
-    init(_ uiOrientation: UIImage.Orientation) {
-        switch uiOrientation {
-        case .up: self = .up
-        case .down: self = .down
-        case .left: self = .left
-        case .right: self = .right
-        case .upMirrored: self = .upMirrored
-        case .downMirrored: self = .downMirrored
-        case .leftMirrored: self = .leftMirrored
-        case .rightMirrored: self = .rightMirrored
-        @unknown default: self = .up
-        }
-    }
-}
 
 final class ImageUtility: Sendable {
     func compress(_ image: UIImage, maxDimension: CGFloat = 1024, quality: CGFloat = 0.8) -> Data? {
@@ -60,25 +45,6 @@ final class ImageUtility: Sendable {
               let cgImage = CGImageSourceCreateThumbnailAtIndex(source, 0, options as CFDictionary)
         else { return nil }
         return UIImage(cgImage: cgImage)
-    }
-
-    // Detects the most prominent rectangular region (e.g. an album cover) in the image.
-    // Returns a normalized CGRect in UIKit coordinates (origin top-left), or nil if none found.
-    func detectCoverRect(in image: UIImage) -> CGRect? {
-        guard let cgImage = image.cgImage else { return nil }
-        let orientation = CGImagePropertyOrientation(image.imageOrientation)
-        let request = VNDetectRectanglesRequest()
-        request.minimumSize = 0.2
-        request.minimumConfidence = 0.4
-        request.maximumObservations = 5
-        request.quadratureTolerance = 30
-        let handler = VNImageRequestHandler(cgImage: cgImage, orientation: orientation, options: [:])
-        try? handler.perform([request])
-        guard let observation = request.results?.max(by: { $0.boundingBox.area < $1.boundingBox.area })
-        else { return nil }
-        let box = observation.boundingBox
-        // Vision uses bottom-left origin; convert to top-left
-        return CGRect(x: box.minX, y: 1 - box.maxY, width: box.width, height: box.height)
     }
 
     // Crops an image to a normalized rect (UIKit coordinates, origin top-left).
