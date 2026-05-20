@@ -5,21 +5,13 @@ struct ShareView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            handle
             content
                 .padding(.horizontal, 24)
                 .padding(.bottom, 32)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .padding(.top, 56)
         .background(Color(.systemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-    }
-
-    private var handle: some View {
-        Capsule()
-            .fill(Color(.systemFill))
-            .frame(width: 36, height: 5)
-            .padding(.top, 12)
-            .padding(.bottom, 20)
     }
 
     @ViewBuilder
@@ -111,7 +103,7 @@ struct ShareView: View {
     private func pickingView(candidates: [ShareDiscogsResult]) -> some View {
         VStack(spacing: 16) {
             Text("Select the right release")
-                .font(.headline)
+                .font(.title3).fontWeight(.semibold)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             ScrollView {
@@ -140,7 +132,7 @@ struct ShareView: View {
                                 Image(systemName: "plus.circle")
                                     .foregroundStyle(.blue)
                             }
-                            .padding(.vertical, 8)
+                            .padding(.vertical, 10)
                             .padding(.horizontal, 4)
                         }
                         .foregroundStyle(.primary)
@@ -148,15 +140,13 @@ struct ShareView: View {
                     }
                 }
             }
-            .frame(maxHeight: 280)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color(.separator), lineWidth: 0.5))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
 
             Button("Cancel") { vm.cancel() }
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     }
 
     // MARK: - Fallback (no Discogs results)

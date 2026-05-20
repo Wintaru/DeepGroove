@@ -7,17 +7,18 @@ final class ShareViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .clear
+        view.backgroundColor = UIColor.systemBackground
         extractURL { [weak self] url in
             guard let self else { return }
             let viewModel = ShareViewModel(url: url, extensionContext: self.extensionContext)
             self.vm = viewModel
             let hostingController = UIHostingController(rootView: ShareView(vm: viewModel))
-            hostingController.view.backgroundColor = .clear
+            hostingController.view.backgroundColor = UIColor.systemBackground
             self.addChild(hostingController)
             self.view.addSubview(hostingController.view)
             hostingController.view.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
+                hostingController.view.topAnchor.constraint(equalTo: self.view.topAnchor),
                 hostingController.view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
                 hostingController.view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
                 hostingController.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)

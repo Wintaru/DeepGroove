@@ -15,6 +15,41 @@ struct RecordCandidate: Sendable {
     let condition: RecordCondition
     let artworkSource: ArtworkSource
     let notes: String?
+    let appleMusicURL: String?
+
+    init(
+        artist: String,
+        albumTitle: String,
+        year: Int? = nil,
+        label: String? = nil,
+        catalogNumber: String? = nil,
+        genres: [String] = [],
+        styles: [String] = [],
+        country: String? = nil,
+        discogsId: Int? = nil,
+        artworkURL: String? = nil,
+        estimatedValue: Double? = nil,
+        condition: RecordCondition = .veryGoodPlus,
+        artworkSource: ArtworkSource = .downloaded,
+        notes: String? = nil,
+        appleMusicURL: String? = nil
+    ) {
+        self.artist = artist
+        self.albumTitle = albumTitle
+        self.year = year
+        self.label = label
+        self.catalogNumber = catalogNumber
+        self.genres = genres
+        self.styles = styles
+        self.country = country
+        self.discogsId = discogsId
+        self.artworkURL = artworkURL
+        self.estimatedValue = estimatedValue
+        self.condition = condition
+        self.artworkSource = artworkSource
+        self.notes = notes
+        self.appleMusicURL = appleMusicURL
+    }
 }
 
 final class MergeMetadataResponse: ResponseBase, @unchecked Sendable {

@@ -24,6 +24,9 @@ struct RecordDetailView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     artistAlbumSection
                     metadataSection
+                    if let urlString = record.appleMusicURL, let url = URL(string: urlString) {
+                        appleMusicLink(url: url)
+                    }
                     if !record.genres.isEmpty { genreSection }
                     if let notes = record.notes, !notes.isEmpty { notesSection(notes) }
                 }
@@ -153,6 +156,29 @@ struct RecordDetailView: View {
         .padding()
         .background(Color(.systemGray6))
         .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+
+    private func appleMusicLink(url: URL) -> some View {
+        Link(destination: url) {
+            HStack {
+                Image(systemName: "music.note")
+                    .foregroundStyle(.white)
+                    .frame(width: 28, height: 28)
+                    .background(Color(red: 0.98, green: 0.27, blue: 0.45))
+                    .clipShape(RoundedRectangle(cornerRadius: 6))
+                Text("Open in Apple Music")
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .foregroundStyle(.primary)
+                Spacer()
+                Image(systemName: "arrow.up.right")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            .padding()
+            .background(Color(.systemGray6))
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+        }
     }
 
     private func metadataRow(label: String, value: String) -> some View {

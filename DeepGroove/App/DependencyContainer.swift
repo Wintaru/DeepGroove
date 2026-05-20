@@ -79,6 +79,12 @@ final class DependencyContainer: ObservableObject {
                 .build()
         )
 
+        let iTunesAccessor = ITunesAccessor(
+            loadResolver: HandlerResolverBuilder()
+                .register(SearchITunesHandler(networkUtility: network), for: SearchITunesRequest.self)
+                .build()
+        )
+
         // ── Engines ────────────────────────────────────────────────────────────
 
         let identificationEngine = IdentificationEngine(
@@ -103,6 +109,7 @@ final class DependencyContainer: ObservableObject {
 
         let addHandler = AddRecordHandler(
             discogsAccessor: discogsAccessor,
+            iTunesAccessor: iTunesAccessor,
             metadataEngine: metadataEngine,
             recordAccessor: recordAccessor,
             photoAccessor: photoAccessor,

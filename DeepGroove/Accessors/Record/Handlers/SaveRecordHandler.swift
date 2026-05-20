@@ -30,6 +30,7 @@ final class SaveRecordHandler: IHandler {
             artworkSource: c.artworkSource,
             estimatedValue: c.estimatedValue
         )
+        record.appleMusicURL = c.appleMusicURL
         do {
             modelContext.insert(record)
             try modelContext.save()

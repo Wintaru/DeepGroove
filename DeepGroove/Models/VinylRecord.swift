@@ -18,6 +18,7 @@ final class VinylRecord: ModelWithUUID {
     var condition: RecordCondition = RecordCondition.veryGoodPlus
     var artworkSource: ArtworkSource = ArtworkSource.downloaded
     var estimatedValue: Double?
+    var appleMusicURL: String?
     var dateAdded: Date = Date()
     var lastModified: Date = Date()
 

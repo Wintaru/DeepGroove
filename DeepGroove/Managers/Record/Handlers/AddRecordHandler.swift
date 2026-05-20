@@ -3,6 +3,7 @@ import UIKit
 @MainActor
 final class AddRecordHandler: IHandler {
     private let discogsAccessor: IDiscogsAccessor
+    private let iTunesAccessor: IITunesAccessor
     private let metadataEngine: IMetadataEngine
     private let recordAccessor: IRecordAccessor
     private let photoAccessor: IPhotoAccessor
@@ -12,6 +13,7 @@ final class AddRecordHandler: IHandler {
 
     init(
         discogsAccessor: IDiscogsAccessor,
+        iTunesAccessor: IITunesAccessor,
         metadataEngine: IMetadataEngine,
         recordAccessor: IRecordAccessor,
         photoAccessor: IPhotoAccessor,
@@ -20,6 +22,7 @@ final class AddRecordHandler: IHandler {
         apiConfiguration: APIConfiguration
     ) {
         self.discogsAccessor = discogsAccessor
+        self.iTunesAccessor = iTunesAccessor
         self.metadataEngine = metadataEngine
         self.recordAccessor = recordAccessor
         self.photoAccessor = photoAccessor
@@ -66,7 +69,30 @@ final class AddRecordHandler: IHandler {
             )
         }
 
-        let saveResponse = await recordAccessor.store(SaveRecordRequest(candidate: candidate))
+        // Look up Apple Music URL by artist + album; silently skipped if not found
+        let iTunesResponse = await iTunesAccessor.load(
+            SearchITunesRequest(artist: candidate.artist, albumTitle: candidate.albumTitle)
+        )
+        let appleMusicURL = (iTunesResponse as? SearchITunesResponse)?.url
+        let enrichedCandidate = RecordCandidate(
+            artist: candidate.artist,
+            albumTitle: candidate.albumTitle,
+            year: candidate.year,
+            label: candidate.label,
+            catalogNumber: candidate.catalogNumber,
+            genres: candidate.genres,
+            styles: candidate.styles,
+            country: candidate.country,
+            discogsId: candidate.discogsId,
+            artworkURL: candidate.artworkURL,
+            estimatedValue: candidate.estimatedValue,
+            condition: candidate.condition,
+            artworkSource: candidate.artworkSource,
+            notes: candidate.notes,
+            appleMusicURL: appleMusicURL
+        )
+
+        let saveResponse = await recordAccessor.store(SaveRecordRequest(candidate: enrichedCandidate))
         guard saveResponse.success, let recordId = (saveResponse as? SaveRecordResponse)?.recordId else {
             return AddRecordResponse(
                 correlationId: req.correlationId,
