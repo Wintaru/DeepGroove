@@ -15,6 +15,17 @@ platform :ios do
     xcode_select("/Applications/Xcode-26.3.0.app")
     ensure_git_status_clean
 
+    current_version = get_info_plist_value(path: APP_PLIST, key: "CFBundleShortVersionString")
+    parts = current_version.split(".")
+    suggested = "#{parts[0]}.#{parts[1].to_i + 1}"
+    input = UI.input("Marketing version (current: #{current_version}, suggested: #{suggested}, blank to keep): ").strip
+    unless input.empty?
+      new_version = input
+      set_info_plist_value(path: APP_PLIST,    key: "CFBundleShortVersionString", value: new_version)
+      set_info_plist_value(path: WIDGET_PLIST, key: "CFBundleShortVersionString", value: new_version)
+      set_info_plist_value(path: SHARE_PLIST,  key: "CFBundleShortVersionString", value: new_version)
+    end
+
     new_build = bump_build_number
     sh("cd .. && xcodegen generate")
     ipa_path = archive_and_export
