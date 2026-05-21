@@ -17,7 +17,7 @@ struct DeepGrooveApp: App {
             #endif
             let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false,
                                             cloudKitDatabase: cloudKitDB)
-            let container = try ModelContainer(for: schema, configurations: [config])
+            let container = try ModelContainer(for: schema, migrationPlan: AppMigrationPlan.self, configurations: [config])
             modelContainer = container
             dependencyContainer = DependencyContainer(modelContext: container.mainContext)
             storeError = nil

@@ -51,6 +51,7 @@
 		3C5AF1E8BA33CFFE148F56D3 /* AIVisionAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851E7DA1D55A8408B0DDDD2 /* AIVisionAccessor.swift */; };
 		3F458D197F658AF890E24A51 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF4C699852DE99B47CB942 /* ContentView.swift */; };
 		3FABAEF2AB99807F31BA5912 /* AddRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD16BA820CAFF4E2BD0412C /* AddRecordHandler.swift */; };
+		405540D73B11DDE595BC5399 /* AppSchemaV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F23DA93E91374F1680891E /* AppSchemaV1.swift */; };
 		40FC803CAF85F6AEB6AAF492 /* LoadTipProductsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199782E51E144DE5B4B9370C /* LoadTipProductsRequest.swift */; };
 		424B7983CCD14986601131D2 /* RemoveRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748E7EEC9F4A770AA98310A /* RemoveRecordRequest.swift */; };
 		4260206A246C44AD96DCC673 /* IWishlistAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBD1680BB7232F0114172E5 /* IWishlistAccessor.swift */; };
@@ -103,6 +104,7 @@
 		82681088D6F08AED131C6FD3 /* ModelContext+FetchById.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064B8FC23E1A7F737312D6A6 /* ModelContext+FetchById.swift */; };
 		8373D29447B1D75F255B537B /* LoadPhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419FE5A115A2E9E33FF43FF /* LoadPhotoHandler.swift */; };
 		883B82A59AF529098C63AD7F /* LoadPhotoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BD36C3AD429527EBFA66B /* LoadPhotoRequest.swift */; };
+		892010AEA3352BCE1EC621CE /* AppMigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51AE2725201ECDBC92FE75B /* AppMigrationPlan.swift */; };
 		894EE1A1BA3675293ACE17D8 /* DiscogsAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CCABC2D4AD430D73895C83 /* DiscogsAccessor.swift */; };
 		89C581B8B20B967209CF31F0 /* IdentificationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0B4FEC8A63301B6FC84F3D /* IdentificationEngine.swift */; };
 		8B2B1CCB5E837BA80244668B /* GetTipProductsHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9434E4565176390AA3B0A /* GetTipProductsHandlerTests.swift */; };
@@ -195,6 +197,7 @@
 		F6CBF9C9A30F242C92669C8A /* AddToWishlistRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5A114116758090C49774D /* AddToWishlistRequest.swift */; };
 		F993DAB2469A93C8205FFA1D /* DeepGrooveShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6872795DD0496795373500DE /* DeepGrooveShareExtension.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FAE563AC73D78596F7ADA3CA /* SaveWishlistItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AA6FBEB95C862C410EDD9A /* SaveWishlistItemResponse.swift */; };
+		FB295DE2615B7E90D1A87549 /* AppSchemaV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F810C26D78D70446A4C08 /* AppSchemaV2.swift */; };
 		FCCB67161DDF44FEC13068F5 /* MergeMetadataHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE258646627C2722CC44789 /* MergeMetadataHandlerTests.swift */; };
 		FF80E7776F5E12D19E4C0B1C /* GetTipProductsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C690E13D2754095519FEE /* GetTipProductsHandler.swift */; };
 		FFD1365C78963F2B58B90345 /* StringUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59667BC52065D9E2EB5BF235 /* StringUtilityTests.swift */; };
@@ -398,6 +401,7 @@
 		C4E19F48974B3EEC013DD46B /* ITunesAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunesAccessor.swift; sourceTree = "<group>"; };
 		C73E5E54DD46E81B522E29CD /* LoadAllRecordsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAllRecordsResponse.swift; sourceTree = "<group>"; };
 		C8889A03E9ECE29EA2DD6649 /* RemoveRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveRecordHandler.swift; sourceTree = "<group>"; };
+		C9F23DA93E91374F1680891E /* AppSchemaV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSchemaV1.swift; sourceTree = "<group>"; };
 		CB58E852F37A7D0E642AF11C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CB9F5CD0D4B0DBA4CEE138C4 /* View+ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ErrorAlert.swift"; sourceTree = "<group>"; };
 		CBBCF88292BDDAA4B680D831 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
@@ -409,6 +413,7 @@
 		D1040457824D7D27A302F2BE /* DeleteRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRecordRequest.swift; sourceTree = "<group>"; };
 		D1103CA520AD14F619FCBE74 /* RemoveRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveRecordResponse.swift; sourceTree = "<group>"; };
 		D50CAC7BED10C40E054396D1 /* ISupportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISupportManager.swift; sourceTree = "<group>"; };
+		D51AE2725201ECDBC92FE75B /* AppMigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMigrationPlan.swift; sourceTree = "<group>"; };
 		D71C5FD1E8F08093E62E1039 /* DeleteWishlistItemHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteWishlistItemHandler.swift; sourceTree = "<group>"; };
 		DC48DB9A352F1162C6CE05B5 /* ParseIdentificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseIdentificationHandler.swift; sourceTree = "<group>"; };
 		E207398F97666C8F3A82493E /* PurchaseTipResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTipResponse.swift; sourceTree = "<group>"; };
@@ -425,6 +430,7 @@
 		F2731F1F31477F7E5D9CB48E /* LoadAllRecordsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAllRecordsHandler.swift; sourceTree = "<group>"; };
 		F2887DAB96DB65523B5866CE /* DeleteWishlistItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteWishlistItemResponse.swift; sourceTree = "<group>"; };
 		F40293669D28774C38DC3AF2 /* IHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IHandler.swift; sourceTree = "<group>"; };
+		F45F810C26D78D70446A4C08 /* AppSchemaV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSchemaV2.swift; sourceTree = "<group>"; };
 		F48A8384DBB05943680F47FA /* IStatisticsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStatisticsEngine.swift; sourceTree = "<group>"; };
 		F5D8E655F92DA32684EBF55A /* LoadTipProductsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadTipProductsHandler.swift; sourceTree = "<group>"; };
 		F6FE1149E24AFB9AB2E6ED30 /* ScanRecordWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanRecordWidget.swift; sourceTree = "<group>"; };
@@ -705,6 +711,16 @@
 			path = Handlers;
 			sourceTree = "<group>";
 		};
+		3BC66DD8A19AC918B13C1655 /* Schema */ = {
+			isa = PBXGroup;
+			children = (
+				D51AE2725201ECDBC92FE75B /* AppMigrationPlan.swift */,
+				C9F23DA93E91374F1680891E /* AppSchemaV1.swift */,
+				F45F810C26D78D70446A4C08 /* AppSchemaV2.swift */,
+			);
+			path = Schema;
+			sourceTree = "<group>";
+		};
 		3F6B2A1C67871FC81A9C6BE9 /* DeepGroove */ = {
 			isa = PBXGroup;
 			children = (
@@ -799,6 +815,7 @@
 		52E996AA5293734145DFA521 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3BC66DD8A19AC918B13C1655 /* Schema */,
 				417DDCDEC4E10F75F04EB9B8 /* RecordPhoto.swift */,
 				BCE3E2987D5CC0DC7711CAAA /* TipProduct.swift */,
 				95467A2B61FCE46E82271613 /* VinylRecord.swift */,
@@ -1527,6 +1544,9 @@
 				00E3CD9BC2D08BADF9D8AF67 /* AddToWishlistResponse.swift in Sources */,
 				1D5634D4D584032E376226EB /* AddToWishlistView.swift in Sources */,
 				96A3CDAAD6F6AC4617FE8501 /* AddToWishlistViewModel.swift in Sources */,
+				892010AEA3352BCE1EC621CE /* AppMigrationPlan.swift in Sources */,
+				405540D73B11DDE595BC5399 /* AppSchemaV1.swift in Sources */,
+				FB295DE2615B7E90D1A87549 /* AppSchemaV2.swift in Sources */,
 				56D8BEAC4F72273BF92FC661 /* AttachPhotoHandler.swift in Sources */,
 				69EF646AC1BA40C342C2280C /* AttachPhotoRequest.swift in Sources */,
 				9F18681A154862F395741CA7 /* AttachPhotoResponse.swift in Sources */,

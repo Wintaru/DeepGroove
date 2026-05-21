@@ -18,6 +18,45 @@ All wiring is in `App/DependencyContainer.swift`. Never register handlers anywhe
 
 ---
 
+## SwiftData schema versioning — critical
+
+Every time any `@Model` class changes (new property, removed property, new model type, renamed
+property), you **must** version the schema or users will lose their data on update.
+
+### The pattern (files live in `Models/Schema/`)
+
+1. **Add a new `AppSchemaVN.swift`** — snapshot of the model state for the new version:
+   ```swift
+   enum AppSchemaV3: VersionedSchema {
+       static var versionIdentifier = Schema.Version(1, 2, 0)
+       static var models: [any PersistentModel.Type] = [VinylRecord.self, RecordPhoto.self, WishlistRecord.self]
+   }
+   ```
+2. **Add a migration stage in `AppMigrationPlan.swift`**:
+   ```swift
+   static var schemas: [any VersionedSchema.Type] = [AppSchemaV1.self, AppSchemaV2.self, AppSchemaV3.self]
+   static var stages: [MigrationStage] = [migrateV1toV2, migrateV2toV3]
+
+   static let migrateV2toV3 = MigrationStage.lightweight(
+       fromVersion: AppSchemaV2.self,
+       toVersion: AppSchemaV3.self
+   )
+   ```
+3. The **previous terminal schema** (`AppSchemaV2` in this example) must be updated to list
+   the model state **as it was** at that version — copy the current model definitions into it
+   as nested `@Model` types with `init() {}`, mirroring what `AppSchemaV1` does for V1.
+
+`MigrationStage.lightweight` handles: adding optional properties, adding new entities, removing
+properties. Use `MigrationStage.custom` only when data must be transformed during migration.
+
+### Current schema history
+| Version | App version | Changes |
+|---|---|---|
+| `AppSchemaV1` (1.0.0) | 1.0 | Initial schema |
+| `AppSchemaV2` (1.1.0) | 1.1 | Added `appleMusicURL: String?` to `VinylRecord` |
+
+---
+
 ## SwiftData rules — critical
 
 ### @MainActor isolation
