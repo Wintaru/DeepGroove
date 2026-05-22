@@ -57,17 +57,19 @@ final class SearchRecordHandler: IHandler {
 
         case .text(let artist, let albumTitle):
             let country = localDiscogsCountry()
+            let artistOnlyBrowse = !artist.isEmpty && albumTitle.isEmpty
             let discRequest: SearchDiscogsRequest
             if !artist.isEmpty {
-                // Fetch a larger batch by artist, then deduplicate by master and rank by album title
                 discRequest = SearchDiscogsRequest(
                     artist: artist,
+                    releaseTitle: albumTitle.isEmpty ? nil : albumTitle,
                     sort: "numhave",
                     sortOrder: "desc",
                     country: country,
+                    format: artistOnlyBrowse ? "Album" : nil,
                     token: discogsToken,
                     page: req.page,
-                    perPage: 40
+                    perPage: 50
                 )
             } else {
                 discRequest = SearchDiscogsRequest(
@@ -133,55 +135,49 @@ final class SearchRecordHandler: IHandler {
         guard let id = identification, let artist = id.artist, let title = id.albumTitle else {
             return []
         }
+        let country = localDiscogsCountry()
         let response = await discogsAccessor.load(
             SearchDiscogsRequest(
                 query: "\(artist) \(title)",
                 sort: "numhave",
                 sortOrder: "desc",
-                country: localDiscogsCountry(),
-                token: token
+                country: country,
+                format: "Album",
+                token: token,
+                perPage: 50
             )
         )
-        return deduplicateByMaster((response as? SearchDiscogsResponse)?.results ?? [])
-    }
-
-    // Keeps the highest-numhave pressing per master release so each album appears once.
-    // Results from Discogs are already sorted by numhave desc, so the first occurrence wins.
-    private func deduplicateByMaster(_ results: [DiscogsSearchResult]) -> [DiscogsSearchResult] {
-        var seen = Set<Int>()
-        return results.filter { result in
-            guard let masterId = result.masterId else { return true }
-            return seen.insert(masterId).inserted
-        }
+        let results = (response as? SearchDiscogsResponse)?.results ?? []
+        return deduplicateByMaster(results)
     }
 
     private func localDiscogsCountry() -> String? {
         guard let regionCode = Locale.current.region?.identifier else { return nil }
-        // Discogs uses country names/codes that don't always match ISO 3166-1 alpha-2
-        let isoToDiscogs: [String: String] = [
-            "GB": "UK",
-            "DE": "Germany",
-            "FR": "France",
-            "JP": "Japan",
-            "CA": "Canada",
-            "AU": "Australia",
-            "IT": "Italy",
-            "NL": "Netherlands",
-            "ES": "Spain",
-            "SE": "Sweden",
-            "NO": "Norway",
-            "DK": "Denmark",
-            "FI": "Finland",
-            "BR": "Brazil",
-            "MX": "Mexico",
-            "PL": "Poland",
-            "CH": "Switzerland",
-            "AT": "Austria",
-            "BE": "Belgium",
-            "PT": "Portugal",
+        let map: [String: String] = [
+            "US": "US", "GB": "UK", "CA": "Canada", "AU": "Australia",
+            "DE": "Germany", "FR": "France", "JP": "Japan", "IT": "Italy",
+            "ES": "Spain", "NL": "Netherlands", "SE": "Sweden", "NO": "Norway",
+            "DK": "Denmark", "FI": "Finland", "BE": "Belgium", "CH": "Switzerland",
+            "AT": "Austria", "NZ": "New Zealand", "BR": "Brazil", "MX": "Mexico"
         ]
-        return isoToDiscogs[regionCode] ?? regionCode
+        return map[regionCode]
     }
+
+    private func deduplicateByMaster(_ results: [DiscogsSearchResult]) -> [DiscogsSearchResult] {
+        var seen = Set<Int>()
+        var deduplicated: [DiscogsSearchResult] = []
+        for result in results {
+            if let masterId = result.masterId {
+                if seen.insert(masterId).inserted {
+                    deduplicated.append(result)
+                }
+            } else {
+                deduplicated.append(result)
+            }
+        }
+        return deduplicated
+    }
+
 
     // Ranks candidates so the best album-title match floats to the top.
     // Discogs titles are "Artist - Album Title"; we strip to the album part before comparing.

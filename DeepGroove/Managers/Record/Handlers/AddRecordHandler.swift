@@ -37,11 +37,23 @@ final class AddRecordHandler: IHandler {
                                            requestType: String(describing: type(of: request)))
         }
 
-        // Load full Discogs release for the chosen search result
+        // Load full Discogs release for the chosen search result.
+        // Master results first resolve to their canonical release via the master endpoint.
         let discogsRelease: DiscogsRelease?
-        if let resultId = req.chosenResult?.id {
+        if let chosenResult = req.chosenResult {
+            let releaseId: Int
+            if chosenResult.isMaster {
+                let masterResponse = await discogsAccessor.load(
+                    LoadDiscogsMasterRequest(masterId: chosenResult.id,
+                                            token: apiConfiguration.discogsToken)
+                )
+                releaseId = (masterResponse as? LoadDiscogsMasterResponse)?.mainReleaseId
+                    ?? chosenResult.id
+            } else {
+                releaseId = chosenResult.id
+            }
             let releaseResponse = await discogsAccessor.load(
-                LoadDiscogsReleaseRequest(releaseId: resultId, token: apiConfiguration.discogsToken)
+                LoadDiscogsReleaseRequest(releaseId: releaseId, token: apiConfiguration.discogsToken)
             )
             discogsRelease = (releaseResponse as? LoadDiscogsReleaseResponse)?.release
         } else {

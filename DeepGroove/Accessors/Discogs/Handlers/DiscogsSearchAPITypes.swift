@@ -31,6 +31,7 @@ fileprivate struct DiscogsSearchAPIResponse: Decodable {
 struct DiscogsSearchAPIResult: Decodable {
     let id: Int
     let masterId: Int?
+    let type: String?
     let title: String
     let year: String?
     let label: [String]?
@@ -43,7 +44,7 @@ struct DiscogsSearchAPIResult: Decodable {
     let barcode: [String]?
 
     enum CodingKeys: String, CodingKey {
-        case id, title, year, label, catno, genre, style, country, thumb, barcode
+        case id, title, year, label, catno, genre, style, country, thumb, barcode, type
         case masterId = "master_id"
         case coverImage = "cover_image"
     }
@@ -52,6 +53,7 @@ struct DiscogsSearchAPIResult: Decodable {
         DiscogsSearchResult(
             id: id,
             masterId: masterId,
+            isMaster: type == "master",
             title: title,
             year: year,
             labels: label ?? [],

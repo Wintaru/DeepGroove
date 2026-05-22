@@ -129,16 +129,7 @@ struct DiscogsPickerView: View {
     }
 
     private func albumArt(url: String?) -> some View {
-        AsyncImage(url: URL(string: url ?? "")) { image in
-            image.resizable().scaledToFill()
-        } placeholder: {
-            Image(systemName: "record.circle")
-                .font(.title2)
-                .foregroundStyle(.secondary)
-        }
-        .frame(width: 56, height: 56)
-        .clipShape(RoundedRectangle(cornerRadius: 6))
-        .background(Color(.systemGray5).clipShape(RoundedRectangle(cornerRadius: 6)))
+        DiscogsImageView(url: url, size: 56)
     }
 }
 
@@ -169,16 +160,7 @@ private struct ReleaseListView: View {
     private func releaseRow(_ result: DiscogsSearchResult) -> some View {
         Button { onSelect(result) } label: {
             HStack(spacing: 12) {
-                AsyncImage(url: URL(string: result.thumbURL ?? "")) { image in
-                    image.resizable().scaledToFill()
-                } placeholder: {
-                    Image(systemName: "record.circle")
-                        .font(.title2)
-                        .foregroundStyle(.secondary)
-                }
-                .frame(width: 56, height: 56)
-                .clipShape(RoundedRectangle(cornerRadius: 6))
-                .background(Color(.systemGray5).clipShape(RoundedRectangle(cornerRadius: 6)))
+                DiscogsImageView(url: result.thumbURL, size: 56)
 
                 VStack(alignment: .leading, spacing: 4) {
                     HStack(spacing: 8) {

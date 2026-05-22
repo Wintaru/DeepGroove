@@ -54,6 +54,7 @@ struct ContentView: View {
             let chosenResult = DiscogsSearchResult(
                 id: discogsId,
                 masterId: nil,
+                isMaster: false,
                 title: item["discogsTitle"] ?? "\(artist) - \(album)",
                 year: item["year"],
                 labels: item["label"].map { [$0] } ?? [],

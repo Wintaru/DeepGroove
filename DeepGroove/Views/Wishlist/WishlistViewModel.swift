@@ -29,6 +29,7 @@ final class WishlistViewModel {
             DiscogsSearchResult(
                 id: id,
                 masterId: nil,
+                isMaster: false,
                 title: "\(item.artist) - \(item.albumTitle)",
                 year: item.year.map { String($0) },
                 labels: item.label.map { [$0] } ?? [],

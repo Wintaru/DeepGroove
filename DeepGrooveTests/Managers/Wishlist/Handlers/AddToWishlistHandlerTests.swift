@@ -39,7 +39,7 @@ private func makeResult(
     genres: [String] = ["Rock"]
 ) -> DiscogsSearchResult {
     DiscogsSearchResult(
-        id: id, masterId: nil, title: title, year: year, labels: labels,
+        id: id, masterId: nil, isMaster: false, title: title, year: year, labels: labels,
         catalogNumber: nil, genres: genres, styles: [],
         country: nil, thumbURL: nil, coverImageURL: nil, barcodes: []
     )

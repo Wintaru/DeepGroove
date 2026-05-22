@@ -69,6 +69,8 @@ final class DependencyContainer: ObservableObject {
                           for: SearchDiscogsByBarcodeRequest.self)
                 .register(LoadDiscogsReleaseHandler(networkUtility: network),
                           for: LoadDiscogsReleaseRequest.self)
+                .register(LoadDiscogsMasterHandler(networkUtility: network),
+                          for: LoadDiscogsMasterRequest.self)
                 .build()
         )
 

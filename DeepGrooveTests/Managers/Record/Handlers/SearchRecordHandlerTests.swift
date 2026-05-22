@@ -33,7 +33,7 @@ private final class MockIdentificationEngine: IIdentificationEngine, @unchecked 
 private func makeCandidate(id: Int = 1, title: String = "Pink Floyd - The Wall")
 -> DiscogsSearchResult {
     DiscogsSearchResult(
-        id: id, masterId: nil, title: title, year: "1979", labels: ["Harvest"],
+        id: id, masterId: nil, isMaster: false, title: title, year: "1979", labels: ["Harvest"],
         catalogNumber: nil, genres: ["Rock"], styles: [],
         country: "UK", thumbURL: nil, coverImageURL: nil, barcodes: []
     )
