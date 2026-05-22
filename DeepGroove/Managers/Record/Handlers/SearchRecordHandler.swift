@@ -56,6 +56,7 @@ final class SearchRecordHandler: IHandler {
             return SearchRecordResponse(correlationId: req.correlationId, candidates: candidates)
 
         case .text(let artist, let albumTitle):
+            let country = localDiscogsCountry()
             let discRequest: SearchDiscogsRequest
             if !artist.isEmpty {
                 // Fetch a larger batch by artist, then deduplicate by master and rank by album title
@@ -63,6 +64,7 @@ final class SearchRecordHandler: IHandler {
                     artist: artist,
                     sort: "numhave",
                     sortOrder: "desc",
+                    country: country,
                     token: discogsToken,
                     page: req.page,
                     perPage: 40
@@ -72,6 +74,7 @@ final class SearchRecordHandler: IHandler {
                     query: albumTitle.isEmpty ? nil : albumTitle,
                     sort: "numhave",
                     sortOrder: "desc",
+                    country: country,
                     token: discogsToken,
                     page: req.page
                 )
@@ -135,6 +138,7 @@ final class SearchRecordHandler: IHandler {
                 query: "\(artist) \(title)",
                 sort: "numhave",
                 sortOrder: "desc",
+                country: localDiscogsCountry(),
                 token: token
             )
         )
