@@ -56,6 +56,7 @@ final class SearchRecordHandler: IHandler {
             return SearchRecordResponse(correlationId: req.correlationId, candidates: candidates)
 
         case .text(let artist, let albumTitle):
+            let country = localDiscogsCountry()
             let discRequest: SearchDiscogsRequest
             if !artist.isEmpty {
                 // Fetch a larger batch by artist, then rank by album title similarity
@@ -63,6 +64,7 @@ final class SearchRecordHandler: IHandler {
                     artist: artist,
                     sort: "numhave",
                     sortOrder: "desc",
+                    country: country,
                     token: discogsToken,
                     page: req.page,
                     perPage: 40
@@ -72,6 +74,7 @@ final class SearchRecordHandler: IHandler {
                     query: albumTitle.isEmpty ? nil : albumTitle,
                     sort: "numhave",
                     sortOrder: "desc",
+                    country: country,
                     token: discogsToken,
                     page: req.page
                 )
@@ -135,10 +138,39 @@ final class SearchRecordHandler: IHandler {
                 query: "\(artist) \(title)",
                 sort: "numhave",
                 sortOrder: "desc",
+                country: localDiscogsCountry(),
                 token: token
             )
         )
         return (response as? SearchDiscogsResponse)?.results ?? []
+    }
+
+    private func localDiscogsCountry() -> String? {
+        guard let regionCode = Locale.current.region?.identifier else { return nil }
+        // Discogs uses country names/codes that don't always match ISO 3166-1 alpha-2
+        let isoToDiscogs: [String: String] = [
+            "GB": "UK",
+            "DE": "Germany",
+            "FR": "France",
+            "JP": "Japan",
+            "CA": "Canada",
+            "AU": "Australia",
+            "IT": "Italy",
+            "NL": "Netherlands",
+            "ES": "Spain",
+            "SE": "Sweden",
+            "NO": "Norway",
+            "DK": "Denmark",
+            "FI": "Finland",
+            "BR": "Brazil",
+            "MX": "Mexico",
+            "PL": "Poland",
+            "CH": "Switzerland",
+            "AT": "Austria",
+            "BE": "Belgium",
+            "PT": "Portugal",
+        ]
+        return isoToDiscogs[regionCode] ?? regionCode
     }
 
     // Ranks candidates so the best album-title match floats to the top.

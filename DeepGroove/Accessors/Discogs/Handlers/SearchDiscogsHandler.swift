@@ -19,6 +19,7 @@ final class SearchDiscogsHandler: IHandler {
             if let t = req.releaseTitle   { queryItems.append(.init(name: "release_title",  value: t)) }
             if let s = req.sort           { queryItems.append(.init(name: "sort",           value: s)) }
             if let o = req.sortOrder      { queryItems.append(.init(name: "sort_order",     value: o)) }
+            if let c = req.country        { queryItems.append(.init(name: "country",        value: c)) }
 
             let (results, totalPages) = try await performDiscogsSearch(
                 queryItems: queryItems,
