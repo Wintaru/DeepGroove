@@ -56,15 +56,13 @@ final class SearchRecordHandler: IHandler {
             return SearchRecordResponse(correlationId: req.correlationId, candidates: candidates)
 
         case .text(let artist, let albumTitle):
-            let country = localDiscogsCountry()
             let discRequest: SearchDiscogsRequest
             if !artist.isEmpty {
-                // Fetch a larger batch by artist, then rank by album title similarity
+                // Fetch a larger batch by artist, then deduplicate by master and rank by album title
                 discRequest = SearchDiscogsRequest(
                     artist: artist,
                     sort: "numhave",
                     sortOrder: "desc",
-                    country: country,
                     token: discogsToken,
                     page: req.page,
                     perPage: 40
@@ -74,14 +72,13 @@ final class SearchRecordHandler: IHandler {
                     query: albumTitle.isEmpty ? nil : albumTitle,
                     sort: "numhave",
                     sortOrder: "desc",
-                    country: country,
                     token: discogsToken,
                     page: req.page
                 )
             }
             let response = await discogsAccessor.load(discRequest)
             let discogsResponse = response as? SearchDiscogsResponse
-            let rawCandidates = discogsResponse?.results ?? []
+            let rawCandidates = deduplicateByMaster(discogsResponse?.results ?? [])
             let candidates = albumTitle.isEmpty
                 ? rawCandidates
                 : rankByAlbumTitle(rawCandidates, target: albumTitle)
@@ -138,11 +135,20 @@ final class SearchRecordHandler: IHandler {
                 query: "\(artist) \(title)",
                 sort: "numhave",
                 sortOrder: "desc",
-                country: localDiscogsCountry(),
                 token: token
             )
         )
-        return (response as? SearchDiscogsResponse)?.results ?? []
+        return deduplicateByMaster((response as? SearchDiscogsResponse)?.results ?? [])
+    }
+
+    // Keeps the highest-numhave pressing per master release so each album appears once.
+    // Results from Discogs are already sorted by numhave desc, so the first occurrence wins.
+    private func deduplicateByMaster(_ results: [DiscogsSearchResult]) -> [DiscogsSearchResult] {
+        var seen = Set<Int>()
+        return results.filter { result in
+            guard let masterId = result.masterId else { return true }
+            return seen.insert(masterId).inserted
+        }
     }
 
     private func localDiscogsCountry() -> String? {

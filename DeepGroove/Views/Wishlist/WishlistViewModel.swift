@@ -28,6 +28,7 @@ final class WishlistViewModel {
         let searchResult: DiscogsSearchResult? = item.discogsId.map { id in
             DiscogsSearchResult(
                 id: id,
+                masterId: nil,
                 title: "\(item.artist) - \(item.albumTitle)",
                 year: item.year.map { String($0) },
                 labels: item.label.map { [$0] } ?? [],

@@ -30,6 +30,7 @@ fileprivate struct DiscogsSearchAPIResponse: Decodable {
 
 struct DiscogsSearchAPIResult: Decodable {
     let id: Int
+    let masterId: Int?
     let title: String
     let year: String?
     let label: [String]?
@@ -43,12 +44,14 @@ struct DiscogsSearchAPIResult: Decodable {
 
     enum CodingKeys: String, CodingKey {
         case id, title, year, label, catno, genre, style, country, thumb, barcode
+        case masterId = "master_id"
         case coverImage = "cover_image"
     }
 
     func toSearchResult() -> DiscogsSearchResult {
         DiscogsSearchResult(
             id: id,
+            masterId: masterId,
             title: title,
             year: year,
             labels: label ?? [],

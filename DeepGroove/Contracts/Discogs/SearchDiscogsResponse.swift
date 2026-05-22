@@ -2,6 +2,7 @@ import Foundation
 
 struct DiscogsSearchResult: Sendable, Hashable {
     let id: Int
+    let masterId: Int?
     let title: String
     let year: String?
     let labels: [String]
