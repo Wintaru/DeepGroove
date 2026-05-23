@@ -22,6 +22,14 @@ enum RecordInputMethod {
     }
 }
 
+struct SearchSnapshot {
+    let candidates: [DiscogsSearchResult]
+    let identification: AIIdentification?
+    let currentPage: Int
+    let totalPages: Int
+    let correctedArtist: String?
+}
+
 enum AddRecordState {
     case selectSource
     case showingCamera
@@ -55,7 +63,8 @@ final class AddRecordViewModel {
 
     // Photo captured during the search phase — kept so manual entry can still attach it
     var pendingUserPhoto: UIImage?
-    private(set) var lastUsedMethod: RecordInputMethod?
+    var lastUsedMethod: RecordInputMethod?
+    var lastSearchSnapshot: SearchSnapshot?
 
     var addAnotherLabel: String { lastUsedMethod?.addAnotherLabel ?? "Add Another" }
     var isLoadingMore = false
@@ -181,6 +190,22 @@ final class AddRecordViewModel {
         manualYear = ""
         manualLabel = ""
         pendingUserPhoto = nil
+        lastSearchSnapshot = nil
+    }
+
+    func resumeLastResults() {
+        guard let snap = lastSearchSnapshot else { return }
+        state = .showingDiscogsResults(
+            candidates: snap.candidates,
+            identification: snap.identification,
+            currentPage: snap.currentPage,
+            totalPages: snap.totalPages
+        )
+    }
+
+    func newSearch() {
+        lastSearchSnapshot = nil
+        state = .showingManualEntry
     }
 
     // MARK: - Private
@@ -198,9 +223,12 @@ final class AddRecordViewModel {
         ))
         isLoadingMore = false
         guard let result = response as? SearchRecordResponse, result.success else { return }
-        let combined = (existing + result.candidates).prefix(maxCandidates)
+        let combined = Array((existing + result.candidates).prefix(maxCandidates))
+        lastSearchSnapshot = SearchSnapshot(candidates: combined, identification: identification,
+                                            currentPage: result.currentPage, totalPages: result.totalPages,
+                                            correctedArtist: lastSearchSnapshot?.correctedArtist)
         state = .showingDiscogsResults(
-            candidates: Array(combined),
+            candidates: combined,
             identification: identification,
             currentPage: result.currentPage,
             totalPages: result.totalPages
@@ -216,6 +244,9 @@ final class AddRecordViewModel {
             pendingUserPhoto = photo
         }
         if !result.candidates.isEmpty {
+            lastSearchSnapshot = SearchSnapshot(candidates: result.candidates, identification: result.identification,
+                                                currentPage: result.currentPage, totalPages: result.totalPages,
+                                                correctedArtist: result.correctedArtist)
             state = .showingDiscogsResults(
                 candidates: result.candidates,
                 identification: result.identification,

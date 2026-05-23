@@ -37,6 +37,7 @@ struct AddRecordView: View {
                         candidates: candidates,
                         hasMore: currentPage < totalPages,
                         isLoadingMore: vm.isLoadingMore,
+                        correctedArtist: vm.lastSearchSnapshot?.correctedArtist,
                         onSelect: { result in
                             Task { await vm.confirmResult(result, identification: identification,
                                                          userPhoto: vm.pendingUserPhoto) }
@@ -60,6 +61,11 @@ struct AddRecordView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
+                }
+                if case .showingDiscogsResults = vm.state {
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("New Search") { vm.newSearch() }
+                    }
                 }
             }
         }
@@ -204,7 +210,11 @@ struct AddRecordView: View {
                     .multilineTextAlignment(.center)
             }
             Button("Done") { dismiss() }.buttonStyle(.borderedProminent).controlSize(.large)
-            Button(vm.addAnotherLabel) { vm.reset() }.foregroundStyle(.secondary)
+            if vm.lastSearchSnapshot != nil {
+                Button("Back to Results") { vm.resumeLastResults() }.foregroundStyle(.secondary)
+            } else {
+                Button(vm.addAnotherLabel) { vm.reset() }.foregroundStyle(.secondary)
+            }
             if vm.lastUsedMethod != nil {
                 Button("Choose different method") { vm.chooseDifferentMethod() }
                     .font(.caption)

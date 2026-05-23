@@ -50,6 +50,7 @@ struct AddToWishlistView: View {
                         candidates: candidates,
                         hasMore: currentPage < totalPages,
                         isLoadingMore: vm.isLoadingMore,
+                        correctedArtist: vm.lastSearchSnapshot?.correctedArtist,
                         onSelect: { result in Task { await vm.confirmResult(result) } },
                         onNoMatch: { vm.selectNoMatch(identification: identification) },
                         onLoadMore: { Task { await vm.loadMoreResults() } }

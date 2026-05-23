@@ -20,6 +20,7 @@ struct DiscogsPickerView: View {
     let candidates: [DiscogsSearchResult]
     let hasMore: Bool
     let isLoadingMore: Bool
+    let correctedArtist: String?
     let onSelect: (DiscogsSearchResult) -> Void
     let onNoMatch: () -> Void
     let onLoadMore: () -> Void
@@ -58,10 +59,18 @@ struct DiscogsPickerView: View {
                     }
                 }
             } header: {
-                Text("Select the correct release")
-                    .textCase(nil)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Select the correct release")
+                        .textCase(nil)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                    if let corrected = correctedArtist {
+                        Text("Showing results for \"\(corrected)\"")
+                            .textCase(nil)
+                            .font(.caption)
+                            .foregroundStyle(.orange)
+                    }
+                }
             }
 
             if hasMore || isLoadingMore {

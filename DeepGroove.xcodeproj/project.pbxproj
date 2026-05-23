@@ -25,6 +25,7 @@
 		0E4C01DAC3F3902DBBEF97D3 /* IStatisticsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48A8384DBB05943680F47FA /* IStatisticsEngine.swift */; };
 		111B6FBD0449B2E2C2962547 /* FilteredRecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B1714C36A8298C99085C68 /* FilteredRecordListView.swift */; };
 		12E1C009FD2C377AD1FD1118 /* LoadPhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3AEA7F16CE39C395041749 /* LoadPhotoResponse.swift */; };
+		137535403D755599236D791C /* CorrectArtistNameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97F4A30DA7E0E556B7A1401 /* CorrectArtistNameRequest.swift */; };
 		14494FA8BE85A16E433992DA /* LoadAllWishlistItemsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AFE9DD9EC340AECF5D6F99 /* LoadAllWishlistItemsResponse.swift */; };
 		14B9B5E97ADEBCF4BB6956F9 /* AddRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E476ABB29976E1094F33F1 /* AddRecordResponse.swift */; };
 		177D15E4C0D50844A50FA129 /* IWishlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B309E5C6F9EA63DD3E9607 /* IWishlistManager.swift */; };
@@ -109,6 +110,7 @@
 		892010AEA3352BCE1EC621CE /* AppMigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51AE2725201ECDBC92FE75B /* AppMigrationPlan.swift */; };
 		894EE1A1BA3675293ACE17D8 /* DiscogsAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CCABC2D4AD430D73895C83 /* DiscogsAccessor.swift */; };
 		89C581B8B20B967209CF31F0 /* IdentificationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0B4FEC8A63301B6FC84F3D /* IdentificationEngine.swift */; };
+		8A53791188337DD7BE6B6545 /* CorrectArtistNameResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74912D3548F5D88E590CB28 /* CorrectArtistNameResponse.swift */; };
 		8B2B1CCB5E837BA80244668B /* GetTipProductsHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9434E4565176390AA3B0A /* GetTipProductsHandlerTests.swift */; };
 		8C81B43B3B95F9E7E948FCDB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD85C8E1E008B32CA3D0675 /* ShareViewController.swift */; };
 		8D263BED0C41A24166EA02B0 /* DeletePhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260771E2908C896ED251D9E8 /* DeletePhotoHandler.swift */; };
@@ -154,6 +156,7 @@
 		C44BDEEB0FE06CFC06A13A87 /* GetRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EDCF2F4A4FDC8106D02913 /* GetRecordHandler.swift */; };
 		C45FA2CE45B893E7E10FAD35 /* IdentifyRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BFB52FD28C4A817776E4B /* IdentifyRecordResponse.swift */; };
 		C49365A938E6FB878B8797D6 /* BarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB9BCC136A37EEE9A3395CC /* BarcodeView.swift */; };
+		C5F595AC75B478AB96E67751 /* CorrectArtistNameHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AB2871FA0EB466DA32DFBD /* CorrectArtistNameHandler.swift */; };
 		C62990DA672B8AF9A0F9162E /* SearchITunesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A178AA980C0EDD288B303E3 /* SearchITunesHandler.swift */; };
 		C68400190896944020B9930D /* HandlerResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3915A837814914E5412F9B /* HandlerResolver.swift */; };
 		C73D554570CBC37D00839D04 /* LoadRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0B41532066920EB75B3483 /* LoadRecordResponse.swift */; };
@@ -254,14 +257,14 @@
 		0392278C06B0073633B912CD /* DeepGrooveWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepGrooveWidgetBundle.swift; sourceTree = "<group>"; };
 		044BFB52FD28C4A817776E4B /* IdentifyRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyRecordResponse.swift; sourceTree = "<group>"; };
 		046A5959003B0F4432D517A1 /* GetTipProductsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTipProductsResponse.swift; sourceTree = "<group>"; };
-		049228781C04A879FEB8AD5F /* DeepGrooveWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = DeepGrooveWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		049228781C04A879FEB8AD5F /* DeepGrooveWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeepGrooveWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B1714C36A8298C99085C68 /* FilteredRecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredRecordListView.swift; sourceTree = "<group>"; };
 		064B8FC23E1A7F737312D6A6 /* ModelContext+FetchById.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelContext+FetchById.swift"; sourceTree = "<group>"; };
 		0655A2050989B606714C9CDB /* RemoveFromWishlistRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFromWishlistRequest.swift; sourceTree = "<group>"; };
 		06B5CC889F30CBFD36B9241F /* SearchDiscogsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDiscogsRequest.swift; sourceTree = "<group>"; };
 		0D0B41532066920EB75B3483 /* LoadRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadRecordResponse.swift; sourceTree = "<group>"; };
 		0DE5162E586B3B5E794C35E5 /* MergeMetadataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeMetadataResponse.swift; sourceTree = "<group>"; };
-		0DEE91FFDB70EBD25C4F26C3 /* StoreKitConfig.storekit */ = {isa = PBXFileReference; path = StoreKitConfig.storekit; sourceTree = "<group>"; };
+		0DEE91FFDB70EBD25C4F26C3 /* StoreKitConfig.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreKitConfig.storekit; sourceTree = "<group>"; };
 		10EBF3C3F7C32702CD8FBE10 /* LoadDiscogsReleaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDiscogsReleaseResponse.swift; sourceTree = "<group>"; };
 		14DF4C699852DE99B47CB942 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		16BD586B3D4CEE719CC0AA5E /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
@@ -303,7 +306,7 @@
 		447EE59B9FE0D75A10FDACD4 /* SupportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportManager.swift; sourceTree = "<group>"; };
 		45333BC50FAA8462C9802E76 /* AddToWishlistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToWishlistResponse.swift; sourceTree = "<group>"; };
 		45C5264BDBD9DB06CDFB955A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		486B5FC6C097727987DA2993 /* DeepGrooveTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = DeepGrooveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		486B5FC6C097727987DA2993 /* DeepGrooveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeepGrooveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		48CCABC2D4AD430D73895C83 /* DiscogsAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscogsAccessor.swift; sourceTree = "<group>"; };
 		4AA9434E4565176390AA3B0A /* GetTipProductsHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTipProductsHandlerTests.swift; sourceTree = "<group>"; };
 		4E0B4FEC8A63301B6FC84F3D /* IdentificationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationEngine.swift; sourceTree = "<group>"; };
@@ -330,7 +333,7 @@
 		64FAAA173B51A796FA68428F /* EditRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordHandler.swift; sourceTree = "<group>"; };
 		66071AB842DFCBB2F05E7D49 /* PurchaseTipHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTipHandler.swift; sourceTree = "<group>"; };
 		672A64F7666EC32A467F9E0C /* EditRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordResponse.swift; sourceTree = "<group>"; };
-		6872795DD0496795373500DE /* DeepGrooveShareExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = DeepGrooveShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6872795DD0496795373500DE /* DeepGrooveShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeepGrooveShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A060D66C2FB38FCC6437D7E /* DeleteRecordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRecordResponse.swift; sourceTree = "<group>"; };
 		6A19A278DD030FE1FDAB867D /* ParseIdentificationHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseIdentificationHandlerTests.swift; sourceTree = "<group>"; };
 		6D5FB35F8E6A214E776CB519 /* ComputeStatisticsHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputeStatisticsHandlerTests.swift; sourceTree = "<group>"; };
@@ -360,7 +363,7 @@
 		8909C3B9812844B0D50E604C /* GetStatisticsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStatisticsResponse.swift; sourceTree = "<group>"; };
 		89F63DD216BC73B79E543221 /* StringUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtility.swift; sourceTree = "<group>"; };
 		8C9E820B6B0AA36769CC3645 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8F387808938D7A9966072232 /* DeepGroove.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = DeepGroove.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F387808938D7A9966072232 /* Deep Groove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Deep Groove.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9056E63DB53ABC9EA600321F /* DiscogsSearchAPITypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscogsSearchAPITypes.swift; sourceTree = "<group>"; };
 		942C5BD71E00CB2C0728C0FD /* SearchDiscogsByBarcodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDiscogsByBarcodeRequest.swift; sourceTree = "<group>"; };
 		9447A1E3F98CE83C50E7B9BD /* IdentifyRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyRecordHandler.swift; sourceTree = "<group>"; };
@@ -370,7 +373,7 @@
 		9C7D11B1A6889C556DAC9D4E /* LoadAllWishlistItemsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAllWishlistItemsRequest.swift; sourceTree = "<group>"; };
 		9C820EC58E507557569E5021 /* StoreKitAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitAccessor.swift; sourceTree = "<group>"; };
 		9D8BD36C3AD429527EBFA66B /* LoadPhotoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPhotoRequest.swift; sourceTree = "<group>"; };
-		9EAC4FC24E87A962C4211ED7 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		9EAC4FC24E87A962C4211ED7 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		9F395F71A0C66FDDBA981C40 /* IdentifyRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyRecordRequest.swift; sourceTree = "<group>"; };
 		9F9D3818F993AAA21479E3D2 /* SearchRecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecordRequest.swift; sourceTree = "<group>"; };
 		9FAB4F465BC38BCAA0F5A8B5 /* SaveRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveRecordHandler.swift; sourceTree = "<group>"; };
@@ -380,6 +383,8 @@
 		A4E7191C5B694F8E956439B3 /* GetStatisticsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStatisticsRequest.swift; sourceTree = "<group>"; };
 		A5D37E77521D7397B5A0EE88 /* GetStatisticsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStatisticsHandler.swift; sourceTree = "<group>"; };
 		A6E86E298BDEE01BF89A095C /* PurchaseTipProductRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTipProductRequest.swift; sourceTree = "<group>"; };
+		A74912D3548F5D88E590CB28 /* CorrectArtistNameResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectArtistNameResponse.swift; sourceTree = "<group>"; };
+		A7AB2871FA0EB466DA32DFBD /* CorrectArtistNameHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectArtistNameHandler.swift; sourceTree = "<group>"; };
 		A8679D1A3D83D981E5FB7BD6 /* LoadDiscogsMasterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDiscogsMasterRequest.swift; sourceTree = "<group>"; };
 		AA564E4D58EFFBBEB8DF34DD /* DeletePhotoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePhotoRequest.swift; sourceTree = "<group>"; };
 		AB0EEEF74FA288BEC7FDFFD6 /* LoadDiscogsMasterHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDiscogsMasterHandler.swift; sourceTree = "<group>"; };
@@ -409,6 +414,7 @@
 		C4E19F48974B3EEC013DD46B /* ITunesAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunesAccessor.swift; sourceTree = "<group>"; };
 		C73E5E54DD46E81B522E29CD /* LoadAllRecordsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAllRecordsResponse.swift; sourceTree = "<group>"; };
 		C8889A03E9ECE29EA2DD6649 /* RemoveRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveRecordHandler.swift; sourceTree = "<group>"; };
+		C97F4A30DA7E0E556B7A1401 /* CorrectArtistNameRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectArtistNameRequest.swift; sourceTree = "<group>"; };
 		C9F23DA93E91374F1680891E /* AppSchemaV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSchemaV1.swift; sourceTree = "<group>"; };
 		CB58E852F37A7D0E642AF11C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CB9F5CD0D4B0DBA4CEE138C4 /* View+ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ErrorAlert.swift"; sourceTree = "<group>"; };
@@ -675,6 +681,7 @@
 		2D74AC66A654C2A7ECCF608C /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
+				A7AB2871FA0EB466DA32DFBD /* CorrectArtistNameHandler.swift */,
 				9447A1E3F98CE83C50E7B9BD /* IdentifyRecordHandler.swift */,
 			);
 			path = Handlers;
@@ -926,6 +933,8 @@
 		760F9E306E7BD8B352A896D6 /* AIVision */ = {
 			isa = PBXGroup;
 			children = (
+				C97F4A30DA7E0E556B7A1401 /* CorrectArtistNameRequest.swift */,
+				A74912D3548F5D88E590CB28 /* CorrectArtistNameResponse.swift */,
 				9F395F71A0C66FDDBA981C40 /* IdentifyRecordRequest.swift */,
 				044BFB52FD28C4A817776E4B /* IdentifyRecordResponse.swift */,
 			);
@@ -1330,7 +1339,7 @@
 		EBB01BD998FDED31479A846A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8F387808938D7A9966072232 /* DeepGroove.app */,
+				8F387808938D7A9966072232 /* Deep Groove.app */,
 				6872795DD0496795373500DE /* DeepGrooveShareExtension.appex */,
 				486B5FC6C097727987DA2993 /* DeepGrooveTests.xctest */,
 				049228781C04A879FEB8AD5F /* DeepGrooveWidget.appex */,
@@ -1416,7 +1425,7 @@
 			packageProductDependencies = (
 			);
 			productName = DeepGroove;
-			productReference = 8F387808938D7A9966072232 /* DeepGroove.app */;
+			productReference = 8F387808938D7A9966072232 /* Deep Groove.app */;
 			productType = "com.apple.product-type.application";
 		};
 		73640464B95F0A69BF137BAF /* DeepGrooveShareExtension */ = {
@@ -1462,7 +1471,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 2650;
 				TargetAttributes = {
 					050A387FC7E0D57542454431 = {
 						DevelopmentTeam = 9C5WLPGP58;
@@ -1578,6 +1587,9 @@
 				1C17D5CEF0334232641CE63A /* ComputeStatisticsRequest.swift in Sources */,
 				C7E005AD0BAA573ACB46220F /* ComputeStatisticsResponse.swift in Sources */,
 				3F458D197F658AF890E24A51 /* ContentView.swift in Sources */,
+				C5F595AC75B478AB96E67751 /* CorrectArtistNameHandler.swift in Sources */,
+				137535403D755599236D791C /* CorrectArtistNameRequest.swift in Sources */,
+				8A53791188337DD7BE6B6545 /* CorrectArtistNameResponse.swift in Sources */,
 				A83CA50E4B8F654DD78CB7E8 /* CoverCropView.swift in Sources */,
 				719BA3D53B7A74C914F67ADD /* DeepGrooveApp.swift in Sources */,
 				8D263BED0C41A24166EA02B0 /* DeletePhotoHandler.swift in Sources */,
@@ -1764,10 +1776,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = DeepGrooveShareExtension/DeepGrooveShareExtension.entitlements;
-				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				INFOPLIST_FILE = DeepGrooveShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../../Frameworks @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jdonner.deepgroove.debug.shareextension;
 				PRODUCT_NAME = DeepGrooveShareExtension;
 				SDKROOT = iphoneos;
@@ -1781,10 +1796,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = DeepGrooveShareExtension/DeepGrooveShareExtension.entitlements;
-				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				INFOPLIST_FILE = DeepGrooveShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../../Frameworks @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jdonner.deepgroove.shareextension;
 				PRODUCT_NAME = DeepGrooveShareExtension;
 				SDKROOT = iphoneos;
@@ -1798,6 +1816,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1829,9 +1848,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1852,6 +1873,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = targeted;
@@ -1863,6 +1885,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1894,9 +1917,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1910,6 +1935,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_STRICT_CONCURRENCY = targeted;
@@ -1921,7 +1947,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1941,10 +1966,13 @@
 		9448AEBEA035A1997DA6917F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				INFOPLIST_FILE = DeepGrooveWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../../Frameworks @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jdonner.deepgroove.widget;
 				PRODUCT_NAME = DeepGrooveWidget;
 				SDKROOT = iphoneos;
@@ -1961,7 +1989,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = DeepGroove/DeepGroove.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				INFOPLIST_FILE = DeepGroove/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1979,10 +2006,13 @@
 		E489031331D1C67A457EE690 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				INFOPLIST_FILE = DeepGrooveWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../../Frameworks @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jdonner.deepgroove.debug.widget;
 				PRODUCT_NAME = DeepGrooveWidget;
 				SDKROOT = iphoneos;
@@ -1996,7 +2026,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2020,7 +2049,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = DeepGroove/DeepGroove.Debug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9C5WLPGP58;
 				INFOPLIST_FILE = DeepGroove/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (

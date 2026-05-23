@@ -78,6 +78,8 @@ final class DependencyContainer: ObservableObject {
             loadResolver: HandlerResolverBuilder()
                 .register(IdentifyRecordHandler(networkUtility: network, imageUtility: images),
                           for: IdentifyRecordRequest.self)
+                .register(CorrectArtistNameHandler(networkUtility: network),
+                          for: CorrectArtistNameRequest.self)
                 .build()
         )
 

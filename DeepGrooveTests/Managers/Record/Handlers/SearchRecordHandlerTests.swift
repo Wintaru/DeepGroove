@@ -30,10 +30,10 @@ private final class MockIdentificationEngine: IIdentificationEngine, @unchecked 
 
 // MARK: - Helpers
 
-private func makeCandidate(id: Int = 1, title: String = "Pink Floyd - The Wall")
--> DiscogsSearchResult {
+private func makeCandidate(id: Int = 1, title: String = "Pink Floyd - The Wall",
+                           year: String? = "1979") -> DiscogsSearchResult {
     DiscogsSearchResult(
-        id: id, masterId: nil, isMaster: false, title: title, year: "1979", labels: ["Harvest"],
+        id: id, masterId: nil, isMaster: false, title: title, year: year, labels: ["Harvest"],
         catalogNumber: nil, genres: ["Rock"], styles: [],
         country: "UK", thumbURL: nil, coverImageURL: nil, barcodes: []
     )
@@ -121,6 +121,32 @@ struct SearchRecordHandlerTests {
         ) as? SearchRecordResponse
         #expect(response?.candidates.isEmpty == true)
         #expect(response?.success == true)
+    }
+
+    @Test func textSource_filtersOutNonArtistResults() async {
+        let pinkFloyd = makeCandidate(id: 1, title: "Pink Floyd - The Wall")
+        let tribute = makeCandidate(id: 2, title: "Various - Tribute To Pink Floyd")
+        let orchestra = makeCandidate(id: 3, title: "London Symphony Orchestra - Music Of Pink Floyd")
+        let discogs = MockDiscogsAccessor(
+            response: makeDiscogsResponse(results: [pinkFloyd, tribute, orchestra])
+        )
+        let response = await makeHandler(discogs: discogs).handle(
+            SearchRecordRequest(source: .text(artist: "Pink Floyd", albumTitle: ""))
+        ) as? SearchRecordResponse
+        #expect(response?.candidates.count == 1)
+        #expect(response?.candidates.first?.id == 1)
+    }
+
+    @Test func textSource_partialArtistNamePassesThroughFilter() async {
+        let pinkFloyd = makeCandidate(id: 1, title: "Pink Floyd - Animals")
+        let discogs = MockDiscogsAccessor(
+            response: makeDiscogsResponse(results: [pinkFloyd])
+        )
+        let response = await makeHandler(discogs: discogs).handle(
+            SearchRecordRequest(source: .text(artist: "Pink Flo", albumTitle: ""))
+        ) as? SearchRecordResponse
+        // "pink floyd".contains("pink flo") → passes filter
+        #expect(response?.candidates.count == 1)
     }
 
     @Test func barcodeSource_returnsCandidates() async {

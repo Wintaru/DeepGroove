@@ -28,6 +28,7 @@ final class AddToWishlistViewModel {
     var manualLabel = ""
 
     var isLoadingMore = false
+    var lastSearchSnapshot: SearchSnapshot?
 
     private let recordManager: IRecordManager
     private let wishlistManager: IWishlistManager
@@ -163,6 +164,9 @@ final class AddToWishlistViewModel {
             return
         }
         if !result.candidates.isEmpty {
+            lastSearchSnapshot = SearchSnapshot(candidates: result.candidates, identification: result.identification,
+                                                currentPage: result.currentPage, totalPages: result.totalPages,
+                                                correctedArtist: result.correctedArtist)
             state = .showingDiscogsResults(
                 candidates: result.candidates,
                 identification: result.identification,

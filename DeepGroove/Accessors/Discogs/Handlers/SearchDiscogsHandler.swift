@@ -29,11 +29,6 @@ final class SearchDiscogsHandler: IHandler {
                 perPage: req.perPage,
                 networkUtility: networkUtility
             )
-            #if DEBUG
-            let paramString = queryItems.map { "\($0.name)=\($0.value ?? "")" }.joined(separator: "&")
-            print("[Discogs Search] \(paramString) → \(results.count) results")
-            results.prefix(5).forEach { print("  [\($0.isMaster ? "master" : "release")] \($0.title)") }
-            #endif
             return SearchDiscogsResponse(correlationId: req.correlationId, results: results,
                                          totalPages: totalPages)
         } catch {
