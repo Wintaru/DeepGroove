@@ -1,5 +1,16 @@
 import SwiftUI
 
+// Display-only shaping of the shared DiscogsSearchResult; DiscogsSearchResult stays a
+// plain data contract with no SwiftUI/presentation concerns of its own.
+private extension DiscogsSearchResult {
+    var albumTitle: String {
+        let album = StringUtility().splitDiscogsTitle(title).album
+        return album.isEmpty ? title : album
+    }
+
+    var label: String? { labels.first }
+}
+
 struct ShareView: View {
     let vm: ShareViewModel
 
@@ -46,7 +57,7 @@ struct ShareView: View {
 
     // MARK: - Confirming top match
 
-    private func confirmingView(result: ShareDiscogsResult, artist: String) -> some View {
+    private func confirmingView(result: DiscogsSearchResult, artist: String) -> some View {
         VStack(spacing: 20) {
             HStack(spacing: 14) {
                 thumbnailView(url: result.thumbURL, size: 64)
@@ -100,7 +111,7 @@ struct ShareView: View {
 
     // MARK: - Picker list
 
-    private func pickingView(candidates: [ShareDiscogsResult]) -> some View {
+    private func pickingView(candidates: [DiscogsSearchResult]) -> some View {
         VStack(spacing: 16) {
             Text("Select the right release")
                 .font(.title3).fontWeight(.semibold)
@@ -108,7 +119,7 @@ struct ShareView: View {
 
             ScrollView {
                 LazyVStack(spacing: 0) {
-                    ForEach(candidates) { result in
+                    ForEach(candidates, id: \.self) { result in
                         Button {
                             vm.confirmResult(result)
                         } label: {
@@ -179,10 +190,13 @@ struct ShareView: View {
         VStack(spacing: 16) {
             Image(systemName: "checkmark.circle.fill")
                 .font(.system(size: 48)).foregroundStyle(.green)
-            Text("Added to Wishlist")
+            Text("Queued for Your Wishlist")
                 .font(.headline)
             Text(album)
                 .font(.subheadline).foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+            Text("It'll be added next time you open Deep Groove.")
+                .font(.caption).foregroundStyle(.tertiary)
                 .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity)

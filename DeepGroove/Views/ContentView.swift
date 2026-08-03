@@ -5,6 +5,7 @@ struct ContentView: View {
     @Environment(\.scenePhase) private var scenePhase
     @State private var selectedTab = 0
     @State private var showingCameraAdd = false
+    @State private var wishlistFailureMessage: String?
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -27,8 +28,16 @@ struct ContentView: View {
         }
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active {
-                Task { await checkPendingWishlistItem() }
+                Task { await processPendingWishlistItems() }
             }
+        }
+        .alert("Couldn't Add to Wishlist", isPresented: Binding(
+            get: { wishlistFailureMessage != nil },
+            set: { if !$0 { wishlistFailureMessage = nil } }
+        )) {
+            Button("OK") { wishlistFailureMessage = nil }
+        } message: {
+            Text(wishlistFailureMessage ?? "")
         }
         .onOpenURL { url in
             guard url.scheme == "deepgroove",
@@ -42,37 +51,40 @@ struct ContentView: View {
         }
     }
 
-    private func checkPendingWishlistItem() async {
-        let defaults = UserDefaults(suiteName: "group.com.jdonner.deepgroove")
-        guard let item = defaults?.dictionary(forKey: "pendingWishlistItem") as? [String: String],
-              let artist = item["artist"], let album = item["album"],
-              !artist.isEmpty, !album.isEmpty else { return }
-        defaults?.removeObject(forKey: "pendingWishlistItem")
-        let yearInt = item["year"].flatMap(Int.init)
-        let request: AddToWishlistRequest
-        if let discogsIdStr = item["discogsId"], let discogsId = Int(discogsIdStr) {
-            let chosenResult = DiscogsSearchResult(
-                id: discogsId,
-                masterId: nil,
-                isMaster: false,
-                title: item["discogsTitle"] ?? "\(artist) - \(album)",
-                year: item["year"],
-                labels: item["label"].map { [$0] } ?? [],
-                catalogNumber: nil,
-                genres: item["genres"].map { $0.components(separatedBy: ",") } ?? [],
-                styles: [],
-                country: nil,
-                thumbURL: item["thumb"],
-                coverImageURL: nil,
-                barcodes: []
+    // Reads UserDefaults directly rather than through an Accessor — this is the one place
+    // in the app that has to bridge state handed off by DeepGrooveShareExtension, a
+    // separate process the DI container doesn't reach into.
+    private func processPendingWishlistItems() async {
+        let items = PendingWishlistQueue.drainAll()
+        guard !items.isEmpty else { return }
+
+        // Each execute() re-fetches the whole wishlist for its duplicate check (see
+        // AddToWishlistHandler), so this is an N+1 across the drained queue. Accepted:
+        // the queue only grows across shares made before the app is reopened, so N is
+        // realistically 1-2, not worth a batch-add Manager operation for.
+        var failures: [String] = []
+        var anySucceeded = false
+        for item in items {
+            let request = AddToWishlistRequest(
+                chosenResult: item.chosenResult,
+                artistOverride: item.artistOverride,
+                albumTitleOverride: item.albumTitleOverride,
+                yearOverride: item.yearOverride,
+                labelOverride: item.labelOverride
             )
-            request = AddToWishlistRequest(chosenResult: chosenResult)
-        } else {
-            request = AddToWishlistRequest(artistOverride: artist, albumTitleOverride: album, yearOverride: yearInt)
+            let response = await container.wishlistManager.execute(request)
+            if response.success {
+                anySucceeded = true
+            } else {
+                failures.append("\(item.displayTitle): \(response.errorMessage ?? "unknown error")")
+            }
         }
-        let response = await container.wishlistManager.execute(request)
-        if response.success {
+
+        if anySucceeded {
             selectedTab = 1
+        }
+        if !failures.isEmpty {
+            wishlistFailureMessage = failures.joined(separator: "\n")
         }
     }
 }

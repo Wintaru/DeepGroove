@@ -24,6 +24,58 @@ targets:
       - path: DeepGrooveShareExtension
         excludes:
           - "**/.DS_Store"
+      # Shared with the DeepGroove app target so the extension can enqueue a
+      # PendingWishlistItem/DiscogsSearchResult the main app decodes losslessly.
+      - path: DeepGroove/Common/Contracts/PendingWishlistItem.swift
+      - path: DeepGroove/Contracts/Discogs/DiscogsSearchResult.swift
+      - path: DeepGroove/Common/Contracts/AppGroup.swift
+      # Shared so the extension's Apple Music -> Discogs lookup runs through the same
+      # SearchRecordHandler pipeline (search, ranking, artist-name correction) as the
+      # in-app search, instead of a second hand-rolled implementation. None of these
+      # touch SwiftData/@MainActor — see the "safe off main actor" list in CLAUDE.md.
+      - path: DeepGroove/Common/Contracts/RequestBase.swift
+      - path: DeepGroove/Common/Contracts/ResponseBase.swift
+      - path: DeepGroove/Common/Resolver/IHandler.swift
+      - path: DeepGroove/Common/Resolver/HandlerResolver.swift
+      - path: DeepGroove/Common/Resolver/HandlerResolverBuilder.swift
+      - path: DeepGroove/Common/Utilities/NetworkUtility.swift
+      - path: DeepGroove/Common/Utilities/ImageUtility.swift
+      - path: DeepGroove/Common/Utilities/StringUtility.swift
+      - path: DeepGroove/Common/Utilities/KeychainUtility.swift
+      - path: DeepGroove/Configuration/APIConfiguration.swift
+      - path: DeepGroove/Contracts/Record/AddRecordSource.swift
+      - path: DeepGroove/Contracts/Record/SearchRecordRequest.swift
+      - path: DeepGroove/Contracts/Record/SearchRecordResponse.swift
+      - path: DeepGroove/Contracts/AIVision/IdentifyRecordRequest.swift
+      - path: DeepGroove/Contracts/AIVision/IdentifyRecordResponse.swift
+      - path: DeepGroove/Contracts/AIVision/CorrectArtistNameRequest.swift
+      - path: DeepGroove/Contracts/AIVision/CorrectArtistNameResponse.swift
+      - path: DeepGroove/Contracts/Discogs/SearchDiscogsRequest.swift
+      - path: DeepGroove/Contracts/Discogs/SearchDiscogsResponse.swift
+      - path: DeepGroove/Contracts/Discogs/SearchDiscogsByBarcodeRequest.swift
+      - path: DeepGroove/Contracts/Discogs/LoadDiscogsReleaseRequest.swift
+      - path: DeepGroove/Contracts/Discogs/LoadDiscogsReleaseResponse.swift
+      - path: DeepGroove/Contracts/Discogs/LoadDiscogsMasterRequest.swift
+      - path: DeepGroove/Contracts/Discogs/LoadDiscogsMasterResponse.swift
+      - path: DeepGroove/Contracts/Identification/ParseIdentificationRequest.swift
+      - path: DeepGroove/Contracts/Identification/ParseIdentificationResponse.swift
+      - path: DeepGroove/Accessors/Interfaces/IDiscogsAccessor.swift
+      - path: DeepGroove/Accessors/Interfaces/IAIVisionAccessor.swift
+      - path: DeepGroove/Accessors/Discogs/DiscogsAccessor.swift
+      - path: DeepGroove/Accessors/Discogs/Handlers/SearchDiscogsHandler.swift
+      - path: DeepGroove/Accessors/Discogs/Handlers/SearchDiscogsByBarcodeHandler.swift
+      - path: DeepGroove/Accessors/Discogs/Handlers/LoadDiscogsReleaseHandler.swift
+      - path: DeepGroove/Accessors/Discogs/Handlers/LoadDiscogsMasterHandler.swift
+      - path: DeepGroove/Accessors/Discogs/Handlers/DiscogsSearchAPITypes.swift
+      - path: DeepGroove/Accessors/Discogs/DiscogsAPI.swift
+      - path: DeepGroove/Accessors/AIVision/AIVisionAccessor.swift
+      - path: DeepGroove/Accessors/AIVision/Handlers/CorrectArtistNameHandler.swift
+      - path: DeepGroove/Accessors/AIVision/Handlers/IdentifyRecordHandler.swift
+      - path: DeepGroove/Engines/Interfaces/IIdentificationEngine.swift
+      - path: DeepGroove/Engines/Identification/IdentificationEngine.swift
+      - path: DeepGroove/Engines/Identification/Handlers/ParseIdentificationHandler.swift
+      - path: DeepGroove/Managers/Record/Handlers/SearchRecordHandler.swift
+      - path: DeepGroove/Managers/Record/SearchRecordHandlerFactory.swift
     settings:
       base:
         SWIFT_VERSION: "5.10"

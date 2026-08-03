@@ -1,28 +1,17 @@
 import Foundation
 import Observation
-import Security
-
-struct ShareDiscogsResult: Identifiable, Sendable {
-    let id: Int
-    let discogsTitle: String    // full "Artist - Album" from Discogs
-    let albumTitle: String      // just the album part
-    let year: String?
-    let label: String?
-    let thumbURL: String?
-    let genres: [String]
-}
 
 enum ShareState {
     case loading
     case confirming(
-        topMatch: ShareDiscogsResult,
-        candidates: [ShareDiscogsResult],
+        topMatch: DiscogsSearchResult,
+        candidates: [DiscogsSearchResult],
         artist: String,
         album: String,
         year: String?
     )
     case picking(
-        candidates: [ShareDiscogsResult],
+        candidates: [DiscogsSearchResult],
         artist: String,
         album: String,
         year: String?
@@ -43,43 +32,28 @@ final class ShareViewModel: @unchecked Sendable {
         Task { await resolve(url: url) }
     }
 
-    private func discogsToken() -> String? {
-        let query: [CFString: Any] = [
-            kSecClass: kSecClassGenericPassword,
-            kSecAttrService: "com.jdonner.deepgroove",
-            kSecAttrAccount: "vc_discogs_token",
-            kSecAttrAccessGroup: "group.com.jdonner.deepgroove",
-            kSecReturnData: true,
-            kSecMatchLimit: kSecMatchLimitOne
-        ]
-        var result: AnyObject?
-        guard SecItemCopyMatching(query as CFDictionary, &result) == errSecSuccess,
-              let data = result as? Data else { return nil }
-        return String(data: data, encoding: .utf8)
-    }
-
-    func confirmResult(_ result: ShareDiscogsResult) {
-        var item: [String: String] = [
-            "artist": extractArtist(from: result.discogsTitle),
-            "album": result.albumTitle,
-            "discogsId": String(result.id),
-            "discogsTitle": result.discogsTitle
-        ]
-        if let year = result.year { item["year"] = year }
-        if let label = result.label { item["label"] = label }
-        if let thumb = result.thumbURL { item["thumb"] = thumb }
-        if !result.genres.isEmpty { item["genres"] = result.genres.joined(separator: ",") }
-        UserDefaults(suiteName: "group.com.jdonner.deepgroove")?.set(item, forKey: "pendingWishlistItem")
-        state = .queued(album: result.albumTitle)
+    func confirmResult(_ result: DiscogsSearchResult) {
+        guard PendingWishlistQueue.enqueue(PendingWishlistItem(chosenResult: result)) else {
+            state = .error("Couldn't queue this for your wishlist. Try again.")
+            return
+        }
+        let album = StringUtility().splitDiscogsTitle(result.title).album
+        state = .queued(album: album.isEmpty ? result.title : album)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
             self.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
         }
     }
 
     func confirmFallback(artist: String, album: String, year: String?) {
-        var item: [String: String] = ["artist": artist, "album": album]
-        if let year { item["year"] = year }
-        UserDefaults(suiteName: "group.com.jdonner.deepgroove")?.set(item, forKey: "pendingWishlistItem")
+        let queued = PendingWishlistQueue.enqueue(PendingWishlistItem(
+            artistOverride: artist,
+            albumTitleOverride: album,
+            yearOverride: year.flatMap(Int.init)
+        ))
+        guard queued else {
+            state = .error("Couldn't queue this for your wishlist. Try again.")
+            return
+        }
         state = .queued(album: album)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
             self.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
@@ -133,6 +107,9 @@ final class ShareViewModel: @unchecked Sendable {
         return id.isEmpty || Int(id) == nil ? nil : id
     }
 
+    // No shared handler covers Apple Music ID -> metadata lookup (SearchITunesHandler goes the
+    // other direction: artist+album -> Apple Music URL, for enriching an already-chosen record).
+    // This one has no in-app counterpart to converge with.
     private func lookupiTunes(albumId: String) async throws -> (String, String, String?) {
         var components = URLComponents(string: "https://itunes.apple.com/lookup")!
         components.queryItems = [
@@ -147,77 +124,37 @@ final class ShareViewModel: @unchecked Sendable {
         return (result.artistName, result.collectionName ?? result.trackName ?? "Unknown Album", year)
     }
 
-    private func searchDiscogs(artist: String, album: String) async -> [ShareDiscogsResult] {
-        var components = URLComponents(string: "https://api.discogs.com/database/search")!
-        components.queryItems = [
-            URLQueryItem(name: "type", value: "release"),
-            URLQueryItem(name: "artist", value: artist),
-            URLQueryItem(name: "sort", value: "numhave"),
-            URLQueryItem(name: "sort_order", value: "desc"),
-            URLQueryItem(name: "per_page", value: "40"),
-            URLQueryItem(name: "page", value: "1")
-        ]
-        guard let url = components.url else { return [] }
-        var request = URLRequest(url: url)
-        request.setValue("DeepGroove/1.0", forHTTPHeaderField: "User-Agent")
-        if let token = discogsToken() {
-            request.setValue("Discogs token=\(token)", forHTTPHeaderField: "Authorization")
-        }
-        guard let (data, _) = try? await URLSession.shared.data(for: request),
-              let parsed = try? JSONDecoder().decode(DiscogsSearchAPIResponse.self, from: data) else {
-            return []
-        }
-        let results = parsed.results.map { r -> ShareDiscogsResult in
-            let parts = r.title.components(separatedBy: " - ")
-            let albumPart = parts.count > 1 ? parts.dropFirst().joined(separator: " - ") : r.title
-            return ShareDiscogsResult(
-                id: r.id,
-                discogsTitle: r.title,
-                albumTitle: albumPart,
-                year: r.year,
-                label: r.label?.first,
-                thumbURL: r.thumb,
-                genres: r.genre ?? []
-            )
-        }
-        return rankByAlbumTitle(results, target: album)
+    // Runs through the same SearchRecordHandler the in-app search uses (field-based
+    // artist+title search, album-title ranking, AI artist-name correction on zero results)
+    // instead of a separate hand-rolled Discogs query + ranking implementation.
+    private func searchDiscogs(artist: String, album: String) async -> [DiscogsSearchResult] {
+        let handler = await makeSearchRecordHandler()
+        let response = await handler.handle(SearchRecordRequest(source: .text(artist: artist, albumTitle: album)))
+        return (response as? SearchRecordResponse)?.candidates ?? []
+    }
+
+    // The extension's own composition root — a separate process, so it can't reach
+    // App/DependencyContainer.swift. Uses the same SearchRecordHandlerFactory the app
+    // does so the two never register a different handler set for the same dependencies.
+    private func makeSearchRecordHandler() async -> SearchRecordHandler {
+        let apiConfiguration = await MainActor.run { APIConfiguration() }
+        let network = NetworkUtility()
+        let images = ImageUtility()
+        return SearchRecordHandlerFactory.makeSearchRecordHandler(
+            discogsAccessor: SearchRecordHandlerFactory.makeDiscogsAccessor(networkUtility: network),
+            aiVisionAccessor: SearchRecordHandlerFactory.makeAIVisionAccessor(
+                networkUtility: network, imageUtility: images
+            ),
+            identificationEngine: SearchRecordHandlerFactory.makeIdentificationEngine(),
+            imageUtility: images,
+            apiConfiguration: apiConfiguration
+        )
     }
 
     private func extractYear(from dateString: String) -> String? {
         let parts = dateString.split(separator: "-")
         guard let yearPart = parts.first, yearPart.count == 4 else { return nil }
         return String(yearPart)
-    }
-
-    private func extractArtist(from discogsTitle: String) -> String {
-        discogsTitle.components(separatedBy: " - ").first ?? discogsTitle
-    }
-
-    // MARK: - Album title ranking (mirrors SearchRecordHandler logic)
-
-    private func rankByAlbumTitle(_ candidates: [ShareDiscogsResult], target: String) -> [ShareDiscogsResult] {
-        let normalizedTarget = alphanumericLowercase(target)
-        guard !normalizedTarget.isEmpty else { return candidates }
-        return candidates.sorted { a, b in
-            albumTitleScore(a.albumTitle, target: normalizedTarget) > albumTitleScore(b.albumTitle, target: normalizedTarget)
-        }
-    }
-
-    private func albumTitleScore(_ albumTitle: String, target: String) -> Int {
-        let normalized = alphanumericLowercase(albumTitle)
-        if normalized == target { return 100 }
-        if normalized.hasPrefix(target) || target.hasPrefix(normalized) { return 80 }
-        if normalized.contains(target) || target.contains(normalized) { return 60 }
-        let targetWords = Set(target.components(separatedBy: CharacterSet.alphanumerics.inverted).filter { !$0.isEmpty })
-        let albumWords = Set(normalized.components(separatedBy: CharacterSet.alphanumerics.inverted).filter { !$0.isEmpty })
-        return targetWords.intersection(albumWords).count * 10
-    }
-
-    private func alphanumericLowercase(_ s: String) -> String {
-        s.lowercased().unicodeScalars
-            .filter { CharacterSet.alphanumerics.contains($0) }
-            .map { String($0) }
-            .joined()
     }
 }
 
@@ -232,17 +169,4 @@ private struct ITunesResult: Decodable {
     let collectionName: String?
     let trackName: String?
     let releaseDate: String?
-}
-
-private struct DiscogsSearchAPIResponse: Decodable {
-    let results: [DiscogsResult]
-
-    struct DiscogsResult: Decodable {
-        let id: Int
-        let title: String
-        let year: String?
-        let label: [String]?
-        let genre: [String]?
-        let thumb: String?
-    }
 }

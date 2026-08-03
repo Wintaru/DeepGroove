@@ -7,8 +7,6 @@ final class APIConfiguration: ObservableObject, @unchecked Sendable {
         static let discogsToken = "vc_discogs_token"
     }
 
-    private static let appGroupID = "group.com.jdonner.deepgroove"
-
     private let keychain: KeychainUtility
     private let sharedKeychain: KeychainUtility
 
@@ -28,7 +26,7 @@ final class APIConfiguration: ObservableObject, @unchecked Sendable {
 
     init() {
         let keychain = KeychainUtility()
-        let sharedKeychain = KeychainUtility(accessGroup: APIConfiguration.appGroupID)
+        let sharedKeychain = KeychainUtility(accessGroup: AppGroup.id)
         self.keychain = keychain
         self.sharedKeychain = sharedKeychain
 
@@ -45,7 +43,7 @@ final class APIConfiguration: ObservableObject, @unchecked Sendable {
 
         // Discogs token — read from shared Keychain (access group), migrating from older
         // storage locations (private Keychain, then UserDefaults) if not yet migrated.
-        let appGroup = UserDefaults(suiteName: APIConfiguration.appGroupID)
+        let appGroup = UserDefaults(suiteName: AppGroup.id)
         if let token = sharedKeychain.get(forKey: Keys.discogsToken) {
             self.discogsToken = token
         } else if let token = keychain.get(forKey: Keys.discogsToken) {

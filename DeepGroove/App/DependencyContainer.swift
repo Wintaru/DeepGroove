@@ -62,25 +62,9 @@ final class DependencyContainer: ObservableObject {
                 .build()
         )
 
-        let discogsAccessor = DiscogsAccessor(
-            loadResolver: HandlerResolverBuilder()
-                .register(SearchDiscogsHandler(networkUtility: network), for: SearchDiscogsRequest.self)
-                .register(SearchDiscogsByBarcodeHandler(networkUtility: network),
-                          for: SearchDiscogsByBarcodeRequest.self)
-                .register(LoadDiscogsReleaseHandler(networkUtility: network),
-                          for: LoadDiscogsReleaseRequest.self)
-                .register(LoadDiscogsMasterHandler(networkUtility: network),
-                          for: LoadDiscogsMasterRequest.self)
-                .build()
-        )
-
-        let aiVisionAccessor = AIVisionAccessor(
-            loadResolver: HandlerResolverBuilder()
-                .register(IdentifyRecordHandler(networkUtility: network, imageUtility: images),
-                          for: IdentifyRecordRequest.self)
-                .register(CorrectArtistNameHandler(networkUtility: network),
-                          for: CorrectArtistNameRequest.self)
-                .build()
+        let discogsAccessor = SearchRecordHandlerFactory.makeDiscogsAccessor(networkUtility: network)
+        let aiVisionAccessor = SearchRecordHandlerFactory.makeAIVisionAccessor(
+            networkUtility: network, imageUtility: images
         )
 
         let iTunesAccessor = ITunesAccessor(
@@ -91,11 +75,7 @@ final class DependencyContainer: ObservableObject {
 
         // ── Engines ────────────────────────────────────────────────────────────
 
-        let identificationEngine = IdentificationEngine(
-            evaluateResolver: HandlerResolverBuilder()
-                .register(ParseIdentificationHandler(), for: ParseIdentificationRequest.self)
-                .build()
-        )
+        let identificationEngine = SearchRecordHandlerFactory.makeIdentificationEngine()
 
         let metadataEngine = MetadataEngine(
             transformResolver: HandlerResolverBuilder()
@@ -122,9 +102,9 @@ final class DependencyContainer: ObservableObject {
             apiConfiguration: apiConfiguration
         )
 
-        let searchHandler = SearchRecordHandler(
-            aiVisionAccessor: aiVisionAccessor,
+        let searchHandler = SearchRecordHandlerFactory.makeSearchRecordHandler(
             discogsAccessor: discogsAccessor,
+            aiVisionAccessor: aiVisionAccessor,
             identificationEngine: identificationEngine,
             imageUtility: images,
             apiConfiguration: apiConfiguration
