@@ -104,12 +104,17 @@ platform :ios do
     FileUtils.mkdir_p(export_path)
 
     # Release config → com.jdonner.deepgroove + CloudKit (Debug config uses .debug bundle ID, no CloudKit)
+    # -allowProvisioningUpdates: on a machine with no locally cached profiles yet
+    # (nothing built from Xcode's GUI there before), xcodebuild otherwise refuses to
+    # generate/renew one via the developer portal. No api_key: passed here, so this
+    # relies on the Xcode session's logged-in Apple ID, same as the export step below.
     build_app(
       scheme: SCHEME,
       configuration: "Release",
       skip_package_ipa: true,
       archive_path: archive_path,
-      clean: true
+      clean: true,
+      xcargs: "-allowProvisioningUpdates"
     )
 
     # Export using the Xcode session (logged-in Apple ID) for provisioning updates.
