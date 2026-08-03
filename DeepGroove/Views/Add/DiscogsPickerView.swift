@@ -130,9 +130,11 @@ struct DiscogsPickerView: View {
                 }
             }
             Spacer()
-            Image(systemName: group.releases.count > 1 ? "chevron.right" : "chevron.right")
-                .foregroundStyle(.tertiary)
-                .font(.caption)
+            if group.releases.count > 1 {
+                Image(systemName: "chevron.right")
+                    .foregroundStyle(.tertiary)
+                    .font(.caption)
+            }
         }
         .padding(.vertical, 2)
     }

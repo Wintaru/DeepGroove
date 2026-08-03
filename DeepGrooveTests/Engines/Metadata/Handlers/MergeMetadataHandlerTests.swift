@@ -148,7 +148,7 @@ struct MergeMetadataHandlerTests {
             ai: makeAI(albumTitle: nil),
             discogs: makeDiscogs(title: "")
         )
-        let response = await handler.handle(request) as! MergeMetadataResponse
+        _ = await handler.handle(request) as! MergeMetadataResponse
 
         // DiscogsRelease.title is non-optional, so even an empty string resolves.
         // Test with nil AI title and no Discogs to confirm AI-only nil title errors.

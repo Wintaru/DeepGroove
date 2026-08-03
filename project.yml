@@ -93,7 +93,7 @@ targets:
       base:
         INFOPLIST_FILE: DeepGroove/Info.plist
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-        PRODUCT_NAME: "Deep Groove"
+        PRODUCT_NAME: DeepGroove
         DEVELOPMENT_TEAM: 9C5WLPGP58
         TARGETED_DEVICE_FAMILY: "1"
         SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
