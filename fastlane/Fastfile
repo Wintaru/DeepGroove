@@ -12,7 +12,7 @@ platform :ios do
   # ── Beta ──────────────────────────────────────────────────────────────────
   desc "Bump build number, archive, and upload to TestFlight"
   lane :beta do
-    xcode_select("/Applications/Xcode-26.3.0.app")
+    select_xcode_if_pinned
     ensure_git_status_clean
 
     current_version = get_info_plist_value(path: APP_PLIST, key: "CFBundleShortVersionString")
@@ -50,7 +50,7 @@ platform :ios do
   # ── Release ───────────────────────────────────────────────────────────────
   desc "Bump version and build, archive, and upload to App Store (review not auto-submitted)"
   lane :release do
-    xcode_select("/Applications/Xcode-26.3.0.app")
+    select_xcode_if_pinned
     ensure_git_status_clean
 
     current_version = get_info_plist_value(path: APP_PLIST, key: "CFBundleShortVersionString")
@@ -84,6 +84,15 @@ platform :ios do
   end
 
   # ── Helpers ───────────────────────────────────────────────────────────────
+
+  # Uses whatever Xcode `xcode-select` already points at by default. Only forces a
+  # specific install when XCODE_APP_PATH is set (e.g. a beta/older Xcode needed for a
+  # one-off reason) — set it for a single run with:
+  #   XCODE_APP_PATH=/Applications/Xcode-16.app bundle exec fastlane beta
+  def select_xcode_if_pinned
+    path = ENV["XCODE_APP_PATH"]
+    xcode_select(path) if path
+  end
 
   def archive_and_export
     # Dir.pwd in Fastlane Ruby context is the fastlane/ subdirectory
