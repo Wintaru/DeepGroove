@@ -42,7 +42,8 @@ enum AddRecordState {
             candidates: [DiscogsSearchResult],
             identification: AIIdentification?,
             currentPage: Int,
-            totalPages: Int)
+            totalPages: Int,
+            correctedArtist: String?)
     case success(String)
     case noResults(String)
     case failure(String)
@@ -151,6 +152,20 @@ final class AddRecordViewModel {
     func confirmResult(_ chosen: DiscogsSearchResult?,
                        identification: AIIdentification?,
                        userPhoto: UIImage?) async {
+        // Captured fresh from whatever's actually on screen right now, rather than
+        // tracked as a separately-mutated field — this is the only place a save can be
+        // confirmed from the results picker, so it can't go stale the way a field updated
+        // in multiple places (search response, pagination, "no match", manual entry...)
+        // reliably would. "Back to Results" on the success screen only makes sense when
+        // there was more than one candidate to pick between.
+        if case let .showingDiscogsResults(candidates, _, currentPage, totalPages,
+                                           correctedArtist) = state, candidates.count > 1 {
+            lastSearchSnapshot = SearchSnapshot(candidates: candidates, identification: identification,
+                                                currentPage: currentPage, totalPages: totalPages,
+                                                correctedArtist: correctedArtist)
+        } else {
+            lastSearchSnapshot = nil
+        }
         state = .identifying
         let response = await recordManager.execute(AddRecordRequest(
             chosenResult: chosen,
@@ -168,6 +183,8 @@ final class AddRecordViewModel {
             state = .failure("Artist and album title are required.")
             return
         }
+        // No candidate list behind a manual save — nothing to offer "Back to Results" to.
+        lastSearchSnapshot = nil
         state = .identifying
         let response = await recordManager.execute(AddRecordRequest(
             userPhoto: pendingUserPhoto,
@@ -199,7 +216,8 @@ final class AddRecordViewModel {
             candidates: snap.candidates,
             identification: snap.identification,
             currentPage: snap.currentPage,
-            totalPages: snap.totalPages
+            totalPages: snap.totalPages,
+            correctedArtist: snap.correctedArtist
         )
     }
 
@@ -212,7 +230,8 @@ final class AddRecordViewModel {
 
     func loadMoreResults() async {
         let maxCandidates = 40
-        guard case let .showingDiscogsResults(existing, identification, currentPage, totalPages) = state,
+        guard case let .showingDiscogsResults(existing, identification, currentPage, totalPages,
+                                              correctedArtist) = state,
               currentPage < totalPages,
               existing.count < maxCandidates,
               !manualArtist.isEmpty || !manualAlbumTitle.isEmpty else { return }
@@ -224,14 +243,12 @@ final class AddRecordViewModel {
         isLoadingMore = false
         guard let result = response as? SearchRecordResponse, result.success else { return }
         let combined = Array((existing + result.candidates).prefix(maxCandidates))
-        lastSearchSnapshot = SearchSnapshot(candidates: combined, identification: identification,
-                                            currentPage: result.currentPage, totalPages: result.totalPages,
-                                            correctedArtist: lastSearchSnapshot?.correctedArtist)
         state = .showingDiscogsResults(
             candidates: combined,
             identification: identification,
             currentPage: result.currentPage,
-            totalPages: result.totalPages
+            totalPages: result.totalPages,
+            correctedArtist: correctedArtist
         )
     }
 
@@ -244,14 +261,12 @@ final class AddRecordViewModel {
             pendingUserPhoto = photo
         }
         if !result.candidates.isEmpty {
-            lastSearchSnapshot = SearchSnapshot(candidates: result.candidates, identification: result.identification,
-                                                currentPage: result.currentPage, totalPages: result.totalPages,
-                                                correctedArtist: result.correctedArtist)
             state = .showingDiscogsResults(
                 candidates: result.candidates,
                 identification: result.identification,
                 currentPage: result.currentPage,
-                totalPages: result.totalPages
+                totalPages: result.totalPages,
+                correctedArtist: result.correctedArtist
             )
         } else if let id = result.identification,
                   id.artist != nil || id.albumTitle != nil {

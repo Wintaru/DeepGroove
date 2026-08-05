@@ -32,12 +32,12 @@ struct AddRecordView: View {
                 case .identifying:
                     searchingView()
                 case .showingDiscogsResults(let candidates, let identification,
-                                            let currentPage, let totalPages):
+                                            let currentPage, let totalPages, let correctedArtist):
                     DiscogsPickerView(
                         candidates: candidates,
                         hasMore: currentPage < totalPages,
                         isLoadingMore: vm.isLoadingMore,
-                        correctedArtist: vm.lastSearchSnapshot?.correctedArtist,
+                        correctedArtist: correctedArtist,
                         onSelect: { result in
                             Task { await vm.confirmResult(result, identification: identification,
                                                          userPhoto: vm.pendingUserPhoto) }
