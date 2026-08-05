@@ -137,6 +137,30 @@ struct SearchRecordHandlerTests {
         #expect(response?.candidates.first?.id == 1)
     }
 
+    @Test func textSource_deprioritizesNonLatinScriptTitles() async {
+        let korean = makeCandidate(id: 1, title: "White Zombie = 화이트 좀비* - La Sexorcisto: Devil Music Vol. 1")
+        let english = makeCandidate(id: 2, title: "White Zombie - La Sexorcisto: Devil Music Vol. 1")
+        let discogs = MockDiscogsAccessor(
+            response: makeDiscogsResponse(results: [korean, english])
+        )
+        let response = await makeHandler(discogs: discogs).handle(
+            SearchRecordRequest(source: .text(artist: "White Zombie", albumTitle: "La Sexorcisto"))
+        ) as? SearchRecordResponse
+        #expect(response?.candidates.map(\.id) == [2, 1])
+    }
+
+    @Test func textSource_nonLatinScriptTitle_stillReturnedWhenOnlyMatch() async {
+        let korean = makeCandidate(id: 1, title: "White Zombie = 화이트 좀비* - La Sexorcisto: Devil Music Vol. 1")
+        let discogs = MockDiscogsAccessor(
+            response: makeDiscogsResponse(results: [korean])
+        )
+        let response = await makeHandler(discogs: discogs).handle(
+            SearchRecordRequest(source: .text(artist: "White Zombie", albumTitle: "La Sexorcisto"))
+        ) as? SearchRecordResponse
+        #expect(response?.candidates.count == 1)
+        #expect(response?.candidates.first?.id == 1)
+    }
+
     @Test func textSource_partialArtistNamePassesThroughFilter() async {
         let pinkFloyd = makeCandidate(id: 1, title: "Pink Floyd - Animals")
         let discogs = MockDiscogsAccessor(

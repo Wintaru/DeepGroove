@@ -149,7 +149,8 @@ final class SearchRecordHandler: IHandler {
         let raw = discogsResponse?.results ?? []
         let filtered = artist.isEmpty ? raw : filterByArtist(raw, artist: artist)
         let ranked = albumTitle.isEmpty ? filtered : rankByAlbumTitle(filtered, target: albumTitle)
-        return (ranked, discogsResponse?.totalPages ?? 1)
+        let prioritized = preferLatinScriptTitles(preferLocalCountry(ranked))
+        return (prioritized, discogsResponse?.totalPages ?? 1)
     }
 
     private func localDiscogsCountry() -> String? {
@@ -175,6 +176,31 @@ final class SearchRecordHandler: IHandler {
             else { other.append(result) }
         }
         return local + other
+    }
+
+    // Stable sort: releases whose title contains Korean/Japanese/Chinese script (a strong,
+    // self-contained signal of a region-specific pressing with a bilingual or transliterated
+    // artist/album credit, e.g. "White Zombie = 화이트 좀비* - La Sexorcisto") sink below
+    // plain-script matches, preserving relative order within each tier. Doesn't exclude them
+    // — a regional pressing is still shown if it's the only match found.
+    private func preferLatinScriptTitles(_ results: [DiscogsSearchResult]) -> [DiscogsSearchResult] {
+        var plain: [DiscogsSearchResult] = []
+        var nonLatin: [DiscogsSearchResult] = []
+        for result in results {
+            if containsCJKOrHangul(result.title) { nonLatin.append(result) }
+            else { plain.append(result) }
+        }
+        return plain + nonLatin
+    }
+
+    private func containsCJKOrHangul(_ text: String) -> Bool {
+        text.unicodeScalars.contains { scalar in
+            (0x4E00...0x9FFF).contains(scalar.value) ||   // CJK Unified Ideographs
+            (0x3400...0x4DBF).contains(scalar.value) ||   // CJK Extension A
+            (0xAC00...0xD7A3).contains(scalar.value) ||   // Hangul Syllables
+            (0x3040...0x309F).contains(scalar.value) ||   // Hiragana
+            (0x30A0...0x30FF).contains(scalar.value)      // Katakana
+        }
     }
 
     // Keeps only results whose Discogs artist portion (everything before " - ") matches the query.
@@ -229,7 +255,7 @@ final class SearchRecordHandler: IHandler {
             )
         )
         let raw = (response as? SearchDiscogsResponse)?.results ?? []
-        return preferLocalCountry(filterByArtist(raw, artist: artist))
+        return preferLatinScriptTitles(preferLocalCountry(filterByArtist(raw, artist: artist)))
     }
 
     // Ranks candidates so the best album-title match floats to the top.
