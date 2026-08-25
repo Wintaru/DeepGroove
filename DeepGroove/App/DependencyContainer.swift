@@ -83,6 +83,13 @@ final class DependencyContainer: ObservableObject {
                 .build()
         )
 
+        let discogsEngine = DiscogsEngine(
+            transformResolver: HandlerResolverBuilder()
+                .register(ResolveDiscogsReleaseHandler(discogsAccessor: discogsAccessor),
+                          for: ResolveDiscogsReleaseRequest.self)
+                .build()
+        )
+
         let statisticsEngine = StatisticsEngine(
             evaluateResolver: HandlerResolverBuilder()
                 .register(ComputeStatisticsHandler(), for: ComputeStatisticsRequest.self)
@@ -92,7 +99,7 @@ final class DependencyContainer: ObservableObject {
         // ── Managers ───────────────────────────────────────────────────────────
 
         let addHandler = AddRecordHandler(
-            discogsAccessor: discogsAccessor,
+            discogsEngine: discogsEngine,
             iTunesAccessor: iTunesAccessor,
             metadataEngine: metadataEngine,
             recordAccessor: recordAccessor,

@@ -2,7 +2,7 @@ import UIKit
 
 @MainActor
 final class AddRecordHandler: IHandler {
-    private let discogsAccessor: IDiscogsAccessor
+    private let discogsEngine: IDiscogsEngine
     private let iTunesAccessor: IITunesAccessor
     private let metadataEngine: IMetadataEngine
     private let recordAccessor: IRecordAccessor
@@ -12,7 +12,7 @@ final class AddRecordHandler: IHandler {
     private let apiConfiguration: APIConfiguration
 
     init(
-        discogsAccessor: IDiscogsAccessor,
+        discogsEngine: IDiscogsEngine,
         iTunesAccessor: IITunesAccessor,
         metadataEngine: IMetadataEngine,
         recordAccessor: IRecordAccessor,
@@ -21,7 +21,7 @@ final class AddRecordHandler: IHandler {
         imageUtility: ImageUtility,
         apiConfiguration: APIConfiguration
     ) {
-        self.discogsAccessor = discogsAccessor
+        self.discogsEngine = discogsEngine
         self.iTunesAccessor = iTunesAccessor
         self.metadataEngine = metadataEngine
         self.recordAccessor = recordAccessor
@@ -38,22 +38,10 @@ final class AddRecordHandler: IHandler {
         }
 
         // Load full Discogs release for the chosen search result.
-        // Master results first resolve to their canonical release via the master endpoint.
         let discogsRelease: DiscogsRelease?
         if let chosenResult = req.chosenResult {
-            let releaseId: Int
-            if chosenResult.isMaster {
-                let masterResponse = await discogsAccessor.load(
-                    LoadDiscogsMasterRequest(masterId: chosenResult.id,
-                                            token: apiConfiguration.discogsToken)
-                )
-                releaseId = (masterResponse as? LoadDiscogsMasterResponse)?.mainReleaseId
-                    ?? chosenResult.id
-            } else {
-                releaseId = chosenResult.id
-            }
-            let releaseResponse = await discogsAccessor.load(
-                LoadDiscogsReleaseRequest(releaseId: releaseId, token: apiConfiguration.discogsToken)
+            let releaseResponse = await discogsEngine.transform(
+                ResolveDiscogsReleaseRequest(chosenResult: chosenResult, token: apiConfiguration.discogsToken)
             )
             discogsRelease = (releaseResponse as? LoadDiscogsReleaseResponse)?.release
         } else {

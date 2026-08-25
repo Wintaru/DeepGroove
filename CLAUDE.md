@@ -74,7 +74,7 @@ Current `@MainActor` handlers:
 
 Handlers that are safe off main actor (no SwiftData contact):
 - `SearchRecordHandler`, `IdentifyRecordHandler`, `ParseIdentificationHandler`
-- `MergeMetadataHandler`, `ComputeStatisticsHandler`
+- `MergeMetadataHandler`, `ComputeStatisticsHandler`, `ResolveDiscogsReleaseHandler`
 - All Discogs accessor handlers
 
 ### Deleting records from SwiftUI views
