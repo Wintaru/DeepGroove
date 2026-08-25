@@ -33,6 +33,7 @@ final class AddToWishlistViewModel {
     private let recordManager: IRecordManager
     private let wishlistManager: IWishlistManager
     private let imageUtility = ImageUtility()
+    private let discogsResultsUtility = DiscogsResultsUtility()
     private var existingWishlistItemId: UUID?
 
     init(recordManager: IRecordManager, wishlistManager: IWishlistManager) {
@@ -149,9 +150,10 @@ final class AddToWishlistViewModel {
         ))
         isLoadingMore = false
         guard let result = response as? SearchRecordResponse, result.success else { return }
-        let combined = (existing + result.candidates).prefix(maxCandidates)
+        let combined = discogsResultsUtility.appendingPage(to: existing, newResults: result.candidates,
+                                                           maxCandidates: maxCandidates)
         state = .showingDiscogsResults(
-            candidates: Array(combined),
+            candidates: combined,
             identification: identification,
             currentPage: result.currentPage,
             totalPages: result.totalPages

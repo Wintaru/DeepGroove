@@ -72,6 +72,7 @@ final class AddRecordViewModel {
 
     private let recordManager: IRecordManager
     private let imageUtility = ImageUtility()
+    private let discogsResultsUtility = DiscogsResultsUtility()
     private let onSuccess: (() -> Void)?
 
     init(recordManager: IRecordManager, onSuccess: (() -> Void)? = nil) {
@@ -242,7 +243,8 @@ final class AddRecordViewModel {
         ))
         isLoadingMore = false
         guard let result = response as? SearchRecordResponse, result.success else { return }
-        let combined = Array((existing + result.candidates).prefix(maxCandidates))
+        let combined = discogsResultsUtility.appendingPage(to: existing, newResults: result.candidates,
+                                                           maxCandidates: maxCandidates)
         state = .showingDiscogsResults(
             candidates: combined,
             identification: identification,
