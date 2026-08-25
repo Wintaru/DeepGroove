@@ -69,7 +69,7 @@ thread and causes the crash:
 Current `@MainActor` handlers:
 - `SaveRecordHandler`, `LoadRecordHandler`, `LoadAllRecordsHandler`, `DeleteRecordHandler`
 - `SavePhotoHandler`, `LoadPhotoHandler`, `DeletePhotoHandler`
-- `AddRecordHandler`, `EditRecordHandler`, `RemoveRecordHandler`
+- `AddRecordHandler`, `EditRecordHandler`, `RemoveRecordHandler`, `RematchRecordHandler`
 - `GetStatisticsHandler`
 
 Handlers that are safe off main actor (no SwiftData contact):

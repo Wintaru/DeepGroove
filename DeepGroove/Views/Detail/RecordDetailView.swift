@@ -3,6 +3,7 @@ import SwiftData
 
 struct RecordDetailView: View {
     let record: VinylRecord
+    private let recordManager: IRecordManager
     private let imageUtility = ImageUtility()
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
@@ -11,6 +12,7 @@ struct RecordDetailView: View {
 
     init(record: VinylRecord, recordManager: IRecordManager) {
         self.record = record
+        self.recordManager = recordManager
         _vm = State(initialValue: RecordDetailViewModel(recordManager: recordManager))
     }
 
@@ -41,6 +43,9 @@ struct RecordDetailView: View {
                     shareButton
                     Menu {
                         Button("Edit") { vm.beginEditing(record: record) }
+                        Button { vm.isRematching = true } label: {
+                            Label("Fix Match on Discogs", systemImage: "arrow.triangle.2.circlepath")
+                        }
                         Button { vm.showingAddPhotoSource = true } label: {
                             Label("Add Photo", systemImage: "photo.badge.plus")
                         }
@@ -78,6 +83,9 @@ struct RecordDetailView: View {
         }
         .sheet(isPresented: $vm.isEditing) {
             EditRecordView(record: record, vm: vm)
+        }
+        .sheet(isPresented: $vm.isRematching) {
+            RematchRecordView(record: record, recordManager: recordManager)
         }
         .confirmationDialog("Delete this record?", isPresented: $vm.showingDeleteConfirm,
                             titleVisibility: .visible) {

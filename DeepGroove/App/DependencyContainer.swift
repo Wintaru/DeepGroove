@@ -117,6 +117,16 @@ final class DependencyContainer: ObservableObject {
             apiConfiguration: apiConfiguration
         )
 
+        let rematchHandler = RematchRecordHandler(
+            discogsEngine: discogsEngine,
+            iTunesAccessor: iTunesAccessor,
+            metadataEngine: metadataEngine,
+            recordAccessor: recordAccessor,
+            photoAccessor: photoAccessor,
+            networkUtility: network,
+            apiConfiguration: apiConfiguration
+        )
+
         self.recordManager = RecordManager(
             executeResolver: HandlerResolverBuilder()
                 .register(addHandler, for: AddRecordRequest.self)
@@ -124,6 +134,7 @@ final class DependencyContainer: ObservableObject {
                 .register(RemoveRecordHandler(recordAccessor: recordAccessor),
                           for: RemoveRecordRequest.self)
                 .register(AttachPhotoHandler(photoAccessor: photoAccessor), for: AttachPhotoRequest.self)
+                .register(rematchHandler, for: RematchRecordRequest.self)
                 .build(),
             queryResolver: HandlerResolverBuilder()
                 .register(GetRecordHandler(recordAccessor: recordAccessor), for: GetRecordRequest.self)

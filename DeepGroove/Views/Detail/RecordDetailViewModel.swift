@@ -3,6 +3,7 @@ import UIKit
 @Observable
 final class RecordDetailViewModel {
     var isEditing = false
+    var isRematching = false
     var showingDeleteConfirm = false
     var showingAddPhotoSource = false
     var showingCamera = false
