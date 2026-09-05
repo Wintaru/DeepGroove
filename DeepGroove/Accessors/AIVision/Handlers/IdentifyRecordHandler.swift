@@ -79,7 +79,7 @@ final class IdentifyRecordHandler: IHandler {
             return IdentifyRecordResponse(correlationId: req.correlationId, rawJSON: text)
         } catch {
             return IdentifyRecordResponse(correlationId: req.correlationId,
-                                          errorMessage: "AI identification failed: \(error.localizedDescription)")
+                                          errorMessage: "AI identification failed: \(AnthropicAPIError.message(for: error))")
         }
     }
 

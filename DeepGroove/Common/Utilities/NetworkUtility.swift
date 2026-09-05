@@ -12,7 +12,7 @@ final class NetworkUtility: Sendable {
         request.httpMethod = "GET"
         headers.forEach { request.setValue($1, forHTTPHeaderField: $0) }
         let (data, response) = try await session.data(for: request)
-        try validate(response: response)
+        try validate(response: response, body: data)
         return data
     }
 
@@ -22,16 +22,16 @@ final class NetworkUtility: Sendable {
         request.httpBody = body
         headers.forEach { request.setValue($1, forHTTPHeaderField: $0) }
         let (data, response) = try await session.data(for: request)
-        try validate(response: response)
+        try validate(response: response, body: data)
         return data
     }
 
-    private func validate(response: URLResponse) throws {
+    private func validate(response: URLResponse, body: Data) throws {
         guard let http = response as? HTTPURLResponse else {
             throw NetworkError.invalidResponse
         }
         guard (200..<300).contains(http.statusCode) else {
-            throw NetworkError.httpError(statusCode: http.statusCode)
+            throw NetworkError.httpError(statusCode: http.statusCode, body: body)
         }
     }
 }
@@ -39,13 +39,13 @@ final class NetworkUtility: Sendable {
 enum NetworkError: Error, LocalizedError {
     case invalidResponse
     case invalidURL
-    case httpError(statusCode: Int)
+    case httpError(statusCode: Int, body: Data?)
 
     var errorDescription: String? {
         switch self {
         case .invalidResponse: "Invalid server response."
         case .invalidURL: "Invalid URL."
-        case .httpError(let code): "HTTP error \(code)."
+        case .httpError(let code, _): "HTTP error \(code)."
         }
     }
 }

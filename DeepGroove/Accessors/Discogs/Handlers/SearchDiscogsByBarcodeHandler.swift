@@ -26,7 +26,7 @@ final class SearchDiscogsByBarcodeHandler: IHandler {
                                           totalPages: totalPages)
         } catch {
             return SearchDiscogsResponse(correlationId: req.correlationId,
-                                          errorMessage: error.localizedDescription)
+                                          errorMessage: DiscogsAPIError.message(for: error))
         }
     }
 }

@@ -26,7 +26,7 @@ final class LoadDiscogsReleaseHandler: IHandler {
             return LoadDiscogsReleaseResponse(correlationId: req.correlationId, release: release)
         } catch {
             return LoadDiscogsReleaseResponse(correlationId: req.correlationId,
-                                               errorMessage: error.localizedDescription)
+                                               errorMessage: DiscogsAPIError.message(for: error))
         }
     }
 }

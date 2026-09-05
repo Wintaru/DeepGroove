@@ -73,6 +73,7 @@
 		4260206A246C44AD96DCC673 /* IWishlistAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBD1680BB7232F0114172E5 /* IWishlistAccessor.swift */; };
 		4285E0AB396B5EEE2C9A3F9B /* AIVisionAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851E7DA1D55A8408B0DDDD2 /* AIVisionAccessor.swift */; };
 		4531E411BA0A3E1E3CAA571A /* PurchaseTipRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F755EE123FA4EAC1B761B7 /* PurchaseTipRequest.swift */; };
+		4785C56D12047412F9A45983 /* AnthropicAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7272A0525D3B8BED601547 /* AnthropicAPIError.swift */; };
 		47A5753E6EA07F387314578D /* DeleteRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1040457824D7D27A302F2BE /* DeleteRecordRequest.swift */; };
 		47B2E2E06DA41F0993650E7B /* DeepGrooveWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 049228781C04A879FEB8AD5F /* DeepGrooveWidget.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		47D1205EB2196A75A42C3748 /* StringUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F63DD216BC73B79E543221 /* StringUtility.swift */; };
@@ -127,6 +128,7 @@
 		760DA6C5570E0C1F4A76B583 /* IdentifyRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9447A1E3F98CE83C50E7B9BD /* IdentifyRecordHandler.swift */; };
 		76167485EEB1CFF14517B130 /* AddRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE217061F1FE6280491C2E67 /* AddRecordView.swift */; };
 		782EF894FE14E5DDA81FDCFC /* RemoveFromWishlistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E3B28121F43A7E7C5446E4 /* RemoveFromWishlistResponse.swift */; };
+		7919EF43FCF75C18B7F954C2 /* AnthropicAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7272A0525D3B8BED601547 /* AnthropicAPIError.swift */; };
 		7B566DBDB9E710885FE4C38F /* LoadDiscogsReleaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EBF3C3F7C32702CD8FBE10 /* LoadDiscogsReleaseResponse.swift */; };
 		7C7A1A66CF2FF08DF5BEE6AF /* GetCollectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8CAC84721CBDFAC9C4D67 /* GetCollectionRequest.swift */; };
 		7FEEBC76FBD47D51D5DEB74A /* SearchDiscogsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A111B0F77A8FA339886C21EA /* SearchDiscogsHandler.swift */; };
@@ -154,6 +156,7 @@
 		94DB6CC0018219C484055690 /* RematchRecordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F61BB8A4D91A82B3DEACE12 /* RematchRecordResponse.swift */; };
 		950BA8B8EFB4FADFE4816DC9 /* UpdateRecordHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D8D27A97012C3C135104C8 /* UpdateRecordHandler.swift */; };
 		968296766152D1E16B8DBF13 /* DiscogsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39303B03BDC3C97B08C1CB5 /* DiscogsEngine.swift */; };
+		96999B96E18F7E2AD2EECD71 /* DiscogsAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0DCB3FB9145A8CBFF2102 /* DiscogsAPIError.swift */; };
 		96A3CDAAD6F6AC4617FE8501 /* AddToWishlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB352CC5A9880F8526764984 /* AddToWishlistViewModel.swift */; };
 		997B74250C33EDD5901535F2 /* LoadDiscogsReleaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24F8DACA20355FC732CA7CA /* LoadDiscogsReleaseHandler.swift */; };
 		9A1170E39A423658C0B8945E /* DiscogsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AE91F1A286B4BD08590DED /* DiscogsAPI.swift */; };
@@ -195,6 +198,7 @@
 		B6396A941AB398B9D3FCA347 /* DiscogsAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CCABC2D4AD430D73895C83 /* DiscogsAccessor.swift */; };
 		B97896F36614252FE1FB60E6 /* IRecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F61F9A685EB4024A73D7331 /* IRecordManager.swift */; };
 		BA23F4F372326D891C239464 /* IDiscogsAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ECBB3FE24F0047FC5966F5 /* IDiscogsAccessor.swift */; };
+		BE5347B1478637037F8938D4 /* AnthropicAPIErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E6BD59D80EB81321D1009B /* AnthropicAPIErrorTests.swift */; };
 		C060C83A751C531608E28EDA /* IdentifyRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F395F71A0C66FDDBA981C40 /* IdentifyRecordRequest.swift */; };
 		C0C28AF59D8A1B8C370F5987 /* LoadDiscogsMasterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8679D1A3D83D981E5FB7BD6 /* LoadDiscogsMasterRequest.swift */; };
 		C0E35C8CCE606B1451CDCBFB /* IdentifyRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F395F71A0C66FDDBA981C40 /* IdentifyRecordRequest.swift */; };
@@ -218,6 +222,7 @@
 		C9CF4ACB95562D631763A4EA /* LoadAllWishlistItemsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37215563E712E61455E1E94D /* LoadAllWishlistItemsHandler.swift */; };
 		CA5CB1F1C9433BB4AA652DA0 /* RecordDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F17CFC02582A8E06868F7 /* RecordDetailViewModel.swift */; };
 		CB29B8BF42EF704D0BF3749F /* MergeMetadataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BCB92A08DAFCF05D7456BE /* MergeMetadataRequest.swift */; };
+		CB4F673AEB14CE1C1F868577 /* DiscogsAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0DCB3FB9145A8CBFF2102 /* DiscogsAPIError.swift */; };
 		CC80CA656BF395693F001EE1 /* PurchaseTipResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E207398F97666C8F3A82493E /* PurchaseTipResponse.swift */; };
 		CF6FBF52E250B1A5744D611A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 9EAC4FC24E87A962C4211ED7 /* PrivacyInfo.xcprivacy */; };
 		CFDE4211499B9499CB53C634 /* RematchRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD61561E865BF064CA1D4F8 /* RematchRecordViewModel.swift */; };
@@ -228,6 +233,7 @@
 		D37E68338363FCCD4D1E279F /* RecordPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417DDCDEC4E10F75F04EB9B8 /* RecordPhoto.swift */; };
 		D8244007986711E64A19D907 /* RemoveFromWishlistHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB7E44D9B9D862BB333FFF4 /* RemoveFromWishlistHandler.swift */; };
 		D83A172A123ACF4BB3BE53D2 /* SearchRecordHandlerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D669E92D06E46AF670C29E1 /* SearchRecordHandlerFactory.swift */; };
+		DBE2F8E3B1FBDD1DF2D6F084 /* APIConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED17F6DAC1591FC2C3A50154 /* APIConfigurationTests.swift */; };
 		DD002A4C395A2641B5A97853 /* RequestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5EDDEDF7A1EB54850BA7DC /* RequestBase.swift */; };
 		DEA74D06017732014B1DE075 /* SaveRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F0AA5634BACA8BDAF9CC0B /* SaveRecordRequest.swift */; };
 		DF83E82BA8B41E4B3142082C /* PurchaseTipProductResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D78F70B23DFFC80AFFDECD /* PurchaseTipProductResponse.swift */; };
@@ -252,6 +258,7 @@
 		EB456748336DE2AA5E939481 /* PurchaseTipHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66071AB842DFCBB2F05E7D49 /* PurchaseTipHandler.swift */; };
 		EC04076A8EF3B4FA5E872BF3 /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FF1B2BE32014C848794C09 /* NetworkUtility.swift */; };
 		EE222268CB1441FE87864693 /* RematchRecordHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E6B825D295F930680131AA /* RematchRecordHandlerTests.swift */; };
+		EEB6B01348FCB424C3CB0CF8 /* DiscogsAPIErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F91CABF8621172CF86936A8 /* DiscogsAPIErrorTests.swift */; };
 		EF3B2D6485DF66D8145BE071 /* HandlerResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3915A837814914E5412F9B /* HandlerResolver.swift */; };
 		EFF0783409C83162F5CD012A /* RequestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5EDDEDF7A1EB54850BA7DC /* RequestBase.swift */; };
 		F022483510D46E51D1E5B447 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8708A9BE4BA672D3A860F559 /* Assets.xcassets */; };
@@ -384,6 +391,7 @@
 		4E0B4FEC8A63301B6FC84F3D /* IdentificationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationEngine.swift; sourceTree = "<group>"; };
 		4E89A0573766D96D6778D849 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		4EDBADC55D585CB16A06AAB1 /* DeleteRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRecordHandler.swift; sourceTree = "<group>"; };
+		4F91CABF8621172CF86936A8 /* DiscogsAPIErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscogsAPIErrorTests.swift; sourceTree = "<group>"; };
 		50DB5DF0200C88F7DF1A1107 /* ResolveDiscogsReleaseHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveDiscogsReleaseHandlerTests.swift; sourceTree = "<group>"; };
 		5493545E6A3A247A1A6E7942 /* RecordAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAccessor.swift; sourceTree = "<group>"; };
 		54E940707AC85950A664DEAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -438,6 +446,7 @@
 		884AEFEC1ED489B371B934B8 /* DeepGroove.Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepGroove.Debug.entitlements; sourceTree = "<group>"; };
 		8909C3B9812844B0D50E604C /* GetStatisticsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStatisticsResponse.swift; sourceTree = "<group>"; };
 		89F63DD216BC73B79E543221 /* StringUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtility.swift; sourceTree = "<group>"; };
+		8A7272A0525D3B8BED601547 /* AnthropicAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicAPIError.swift; sourceTree = "<group>"; };
 		8C9E820B6B0AA36769CC3645 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8F387808938D7A9966072232 /* DeepGroove.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = DeepGroove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9056E63DB53ABC9EA600321F /* DiscogsSearchAPITypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscogsSearchAPITypes.swift; sourceTree = "<group>"; };
@@ -503,6 +512,7 @@
 		CB9F5CD0D4B0DBA4CEE138C4 /* View+ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ErrorAlert.swift"; sourceTree = "<group>"; };
 		CBBCF88292BDDAA4B680D831 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		CBE258646627C2722CC44789 /* MergeMetadataHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeMetadataHandlerTests.swift; sourceTree = "<group>"; };
+		CCD0DCB3FB9145A8CBFF2102 /* DiscogsAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscogsAPIError.swift; sourceTree = "<group>"; };
 		CD383AFE8B8DDFA17231B30B /* SavePhotoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePhotoResponse.swift; sourceTree = "<group>"; };
 		CECD8BE435A1FBCE0BD74CD8 /* SearchRecordHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecordHandler.swift; sourceTree = "<group>"; };
 		CFD89509DDB068889657F66A /* WishlistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistViewModel.swift; sourceTree = "<group>"; };
@@ -516,9 +526,11 @@
 		DC48DB9A352F1162C6CE05B5 /* ParseIdentificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseIdentificationHandler.swift; sourceTree = "<group>"; };
 		E207398F97666C8F3A82493E /* PurchaseTipResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTipResponse.swift; sourceTree = "<group>"; };
 		E35E25D50C5EDDFFD2AB9E48 /* SearchDiscogsByBarcodeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDiscogsByBarcodeHandler.swift; sourceTree = "<group>"; };
+		E4E6BD59D80EB81321D1009B /* AnthropicAPIErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicAPIErrorTests.swift; sourceTree = "<group>"; };
 		E7813AFFF3E6F83877B4FF39 /* PurchaseTipProductHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTipProductHandler.swift; sourceTree = "<group>"; };
 		E840D77AF43EED2AF8DEDC90 /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		E9ECBB3FE24F0047FC5966F5 /* IDiscogsAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDiscogsAccessor.swift; sourceTree = "<group>"; };
+		ED17F6DAC1591FC2C3A50154 /* APIConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfigurationTests.swift; sourceTree = "<group>"; };
 		ED5EDDEDF7A1EB54850BA7DC /* RequestBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBase.swift; sourceTree = "<group>"; };
 		EDBD1680BB7232F0114172E5 /* IWishlistAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWishlistAccessor.swift; sourceTree = "<group>"; };
 		EE465BB4A0EB81E72A8ABDBD /* ParseIdentificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseIdentificationRequest.swift; sourceTree = "<group>"; };
@@ -811,6 +823,7 @@
 				FD945B2BCE3F632D560CCD80 /* Handlers */,
 				48CCABC2D4AD430D73895C83 /* DiscogsAccessor.swift */,
 				87AE91F1A286B4BD08590DED /* DiscogsAPI.swift */,
+				CCD0DCB3FB9145A8CBFF2102 /* DiscogsAPIError.swift */,
 			);
 			path = Discogs;
 			sourceTree = "<group>";
@@ -930,6 +943,14 @@
 			path = Contracts;
 			sourceTree = "<group>";
 		};
+		4608BBB3045057604AE3FFB9 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				ED17F6DAC1591FC2C3A50154 /* APIConfigurationTests.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
 		4EB3F6E1B7F40B94E8C76F60 /* Add */ = {
 			isa = PBXGroup;
 			children = (
@@ -1036,7 +1057,9 @@
 		6DACBB341B35F648D24A9F83 /* DeepGrooveTests */ = {
 			isa = PBXGroup;
 			children = (
+				8690A673238BA3433047E563 /* Accessors */,
 				A602F13227273FE63E343253 /* Common */,
+				4608BBB3045057604AE3FFB9 /* Configuration */,
 				D5E767292C200D3FFD94F77A /* Engines */,
 				1406FEB2040C618244DA9E01 /* Managers */,
 			);
@@ -1142,6 +1165,7 @@
 			children = (
 				2D74AC66A654C2A7ECCF608C /* Handlers */,
 				1851E7DA1D55A8408B0DDDD2 /* AIVisionAccessor.swift */,
+				8A7272A0525D3B8BED601547 /* AnthropicAPIError.swift */,
 			);
 			path = AIVision;
 			sourceTree = "<group>";
@@ -1152,6 +1176,15 @@
 				6D5FB35F8E6A214E776CB519 /* ComputeStatisticsHandlerTests.swift */,
 			);
 			path = Handlers;
+			sourceTree = "<group>";
+		};
+		8690A673238BA3433047E563 /* Accessors */ = {
+			isa = PBXGroup;
+			children = (
+				CD752CB3359B80DDA08BEEA2 /* AIVision */,
+				E9919EC2052EB79F3F0ED712 /* Discogs */,
+			);
+			path = Accessors;
 			sourceTree = "<group>";
 		};
 		90729FC2709AA726F4149D6E /* Utilities */ = {
@@ -1357,6 +1390,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		CD752CB3359B80DDA08BEEA2 /* AIVision */ = {
+			isa = PBXGroup;
+			children = (
+				E4E6BD59D80EB81321D1009B /* AnthropicAPIErrorTests.swift */,
+			);
+			path = AIVision;
+			sourceTree = "<group>";
+		};
 		CDDCD8A5CEDE36E724A7938E /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1477,6 +1518,14 @@
 				CB9F5CD0D4B0DBA4CEE138C4 /* View+ErrorAlert.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E9919EC2052EB79F3F0ED712 /* Discogs */ = {
+			isa = PBXGroup;
+			children = (
+				4F91CABF8621172CF86936A8 /* DiscogsAPIErrorTests.swift */,
+			);
+			path = Discogs;
 			sourceTree = "<group>";
 		};
 		EBB01BD998FDED31479A846A /* Products */ = {
@@ -1681,11 +1730,13 @@
 				4285E0AB396B5EEE2C9A3F9B /* AIVisionAccessor.swift in Sources */,
 				9FF5E1F5E17B6BA0E85A1A62 /* APIConfiguration.swift in Sources */,
 				2E9E6DC228843825782D1254 /* AddRecordSource.swift in Sources */,
+				7919EF43FCF75C18B7F954C2 /* AnthropicAPIError.swift in Sources */,
 				FB50FDD581891DD983EFB7C7 /* AppGroup.swift in Sources */,
 				9EFA30EF6A30674A2E7C89E1 /* CorrectArtistNameHandler.swift in Sources */,
 				6C468206C6FFAD1B8B0476BD /* CorrectArtistNameRequest.swift in Sources */,
 				EA027DFE5BA153160B646FEE /* CorrectArtistNameResponse.swift in Sources */,
 				9A1170E39A423658C0B8945E /* DiscogsAPI.swift in Sources */,
+				96999B96E18F7E2AD2EECD71 /* DiscogsAPIError.swift in Sources */,
 				B6396A941AB398B9D3FCA347 /* DiscogsAccessor.swift in Sources */,
 				1101534B828E2DC55CF1358F /* DiscogsSearchAPITypes.swift in Sources */,
 				63ADC86A417865692D263DDC /* DiscogsSearchResult.swift in Sources */,
@@ -1734,8 +1785,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBE2F8E3B1FBDD1DF2D6F084 /* APIConfigurationTests.swift in Sources */,
 				285EA0CEFF9FAEC038054FE1 /* AddToWishlistHandlerTests.swift in Sources */,
+				BE5347B1478637037F8938D4 /* AnthropicAPIErrorTests.swift in Sources */,
 				025136171692BA58DE072B56 /* ComputeStatisticsHandlerTests.swift in Sources */,
+				EEB6B01348FCB424C3CB0CF8 /* DiscogsAPIErrorTests.swift in Sources */,
 				8B2B1CCB5E837BA80244668B /* GetTipProductsHandlerTests.swift in Sources */,
 				FCCB67161DDF44FEC13068F5 /* MergeMetadataHandlerTests.swift in Sources */,
 				B1FD1823185FFF31E8459294 /* ParseIdentificationHandlerTests.swift in Sources */,
@@ -1766,6 +1820,7 @@
 				00E3CD9BC2D08BADF9D8AF67 /* AddToWishlistResponse.swift in Sources */,
 				1D5634D4D584032E376226EB /* AddToWishlistView.swift in Sources */,
 				96A3CDAAD6F6AC4617FE8501 /* AddToWishlistViewModel.swift in Sources */,
+				4785C56D12047412F9A45983 /* AnthropicAPIError.swift in Sources */,
 				AE15723F3967F89AA97DEB12 /* AppGroup.swift in Sources */,
 				892010AEA3352BCE1EC621CE /* AppMigrationPlan.swift in Sources */,
 				405540D73B11DDE595BC5399 /* AppSchemaV1.swift in Sources */,
@@ -1797,6 +1852,7 @@
 				AE27826A717335EA50A68819 /* DeleteWishlistItemResponse.swift in Sources */,
 				93DFF15A260B28DD2FB8360A /* DependencyContainer.swift in Sources */,
 				C7B0E11B2CAA31DEED3E319B /* DiscogsAPI.swift in Sources */,
+				CB4F673AEB14CE1C1F868577 /* DiscogsAPIError.swift in Sources */,
 				894EE1A1BA3675293ACE17D8 /* DiscogsAccessor.swift in Sources */,
 				968296766152D1E16B8DBF13 /* DiscogsEngine.swift in Sources */,
 				33E913E88A882169A1539FB0 /* DiscogsImageView.swift in Sources */,

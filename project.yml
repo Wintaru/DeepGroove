@@ -68,7 +68,9 @@ targets:
       - path: DeepGroove/Accessors/Discogs/Handlers/LoadDiscogsMasterHandler.swift
       - path: DeepGroove/Accessors/Discogs/Handlers/DiscogsSearchAPITypes.swift
       - path: DeepGroove/Accessors/Discogs/DiscogsAPI.swift
+      - path: DeepGroove/Accessors/Discogs/DiscogsAPIError.swift
       - path: DeepGroove/Accessors/AIVision/AIVisionAccessor.swift
+      - path: DeepGroove/Accessors/AIVision/AnthropicAPIError.swift
       - path: DeepGroove/Accessors/AIVision/Handlers/CorrectArtistNameHandler.swift
       - path: DeepGroove/Accessors/AIVision/Handlers/IdentifyRecordHandler.swift
       - path: DeepGroove/Engines/Interfaces/IIdentificationEngine.swift

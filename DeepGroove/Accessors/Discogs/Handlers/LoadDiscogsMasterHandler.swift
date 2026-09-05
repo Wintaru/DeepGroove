@@ -24,7 +24,7 @@ final class LoadDiscogsMasterHandler: IHandler {
                                             mainReleaseId: decoded.mainRelease)
         } catch {
             return LoadDiscogsMasterResponse(correlationId: req.correlationId,
-                                            errorMessage: error.localizedDescription)
+                                            errorMessage: DiscogsAPIError.message(for: error))
         }
     }
 }

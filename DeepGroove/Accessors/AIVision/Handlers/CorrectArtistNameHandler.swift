@@ -44,7 +44,7 @@ final class CorrectArtistNameHandler: IHandler {
             return CorrectArtistNameResponse(correlationId: req.correlationId, correctedName: text)
         } catch {
             return CorrectArtistNameResponse(correlationId: req.correlationId,
-                                            errorMessage: error.localizedDescription)
+                                            errorMessage: AnthropicAPIError.message(for: error))
         }
     }
 }
